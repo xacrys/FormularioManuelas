@@ -255,6 +255,37 @@
     <!--  FIN Seccion 6-->
 
     <!--  Seccion 5  -->
+
+    <!-- Seccion 5 Residentes  -->
+    <string name="TipoResidente">TIPO DE RESIDENTE:</string>
+    <string name="TipoResidenteOpcion1">1. Residentes habituales presentes</string>
+    <string name="TipoResidenteOpcion2">2. Residentes habituales ausentes (máximo por 6 meses)</string>
+    <string name="TipoResidenteOpcion3">3. Residentes temporales presentes</string>
+
+    <!-- Seccion 5 Pregunta 1 y 2 -->
+    <string name="ApellidosNombresTitulo">APELLIDOS Y NOMBRES DE LOS MIEMBROS DEL HOGAR</string>
+    <string name="ApellidosNombres">Registre los apellidos y nombres de todas las personas que pertenecen a este HOGAR, que comen y duermen habitualmente en esta VIVIENDA (Incluya a las personas que permanecen en el hogar más de tres meses)</string>
+    <string name="ApellidosNombresEtiqueta1">APELLIDOS - Registre los dos apellidos</string>
+    <string name="ApellidosNombresEtiqueta2">NOMBRES - Registre los dos nombres</string>
+
+
+    <!-- Seccion 5 Pregunta 3 -->
+    <string name="SexoTitulo">SEXO</string>
+    <string name="SexoOpcion1">1. Hombre</string>
+    <string name="SexoOpcion2">2. Mujer</string>
+
+    <!-- Seccion 5 Pregunta 4 y 5 -->
+    <string name="EdadTitulo">SEXO</string>
+    <string name="EdadFecha">Registre la fecha de nacimiento</string>
+    <string name="EdadEtiqueta1">¿Cuántos años cumplidos tiene (&#8230;)?</string>
+    <string name="EdadEtiqueta2">Para menores de 5 años cumplidos, anote años y meses</string>
+    <string name="EdadEtiqueta3">años</string>
+    <string name="EdadEtiqueta4">meses</string>
+
+    <!-- Seccion 5 Pregunta 6 -->
+    <string name="CorreoTitulo">CORREO ELECTRÓNICO</string>
+    <string name="CorreoEtiqueta">¿Cuál es el correo electrónico de (&#8230;)?</string>
+
     <!-- Seccion 5 Pregunta 7 -->
     <string name="ControlTrabajoDocumentoTitulo">DOCUMENTACIÓN</string>
     <string name="ControlTrabajoDocumento">¿(&#8230;) Tiene:</string>
