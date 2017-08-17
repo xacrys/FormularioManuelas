@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_observacion"
+          android:title="OBSERVACIONES"
+          android:icon="@drawable/ic_menu_observacion"
+          android:showAsAction="ifRoom|withText" />
+     
+    <item android:id="@+id/menu_terminar"
+          android:title="FINALIZAR"
+          android:icon="@drawable/ic_menu_terminar"
+          android:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/menu_exit"
+        android:title="Salir"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
+
+
+

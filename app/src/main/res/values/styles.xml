@@ -1,11 +1,302 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="android:Theme.Light" />
+
+    <style name="CuadroTexto" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/negro</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:background">@drawable/borde_cuadro_texto</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="preguntaSpinner">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="etiquetaSmallTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="etiquetaLargeTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">400dp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="seccionTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/negro</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="preguntaTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/azul_suave</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="areaCategoriaPadrePreguntaTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/azul_opaco</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="areaCategoriaPreguntaTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/azul_intenso</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="areaPreguntaTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/azul_fuerte</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="areaPreguntaHijaTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/azul_suave</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="areaNucleoTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/azul_fuerte</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <!-- Columna de la tabla de datos del nucleo -->
+    <style name="columnaTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/azul_fuerte</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <!-- Columna de la tabla de datos del nucleo que no se muestran -->
+    <style name="columnaInvisiblesTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+
+
+
+
+    <!-- Estilo padre para los textos con una sola linea de entrada"-->
+    <style name="respuestaEditTextSingleLine">
+        <item name="android:inputType">textCapCharacters|textNoSuggestions</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!-- Estilo padre para los textos con el valor de retorno del teclado "siguiente"  android:imeOptions="actionNext"-->
+    <style name="respuestaEditTextActionNext"  parent="@style/respuestaEditTextSingleLine">
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <!-- Estilo padre para los textos con el valor de retorno del teclado "Hecho"  android:imeOptions="actionDone"-->
+    <style name="respuestaEditTextActionDone"  parent="@style/respuestaEditTextSingleLine">
+        <item name="android:imeOptions">actionDone</item>
+    </style>
+
+
+    <!-- Estilo para entrada de texto solo letras, retorno del teclado "siguiente" -->
+
+    <style name="respuestaEditTextOnlyLettersActionNext" parent="@style/respuestaEditTextActionNext">
+        <item name="android:digits">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</item>
+    </style>
+
+    <style name="contenedorPregunta">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="respuestaSpinner">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_margin">10dp</item>
+
+    </style>
+
+    <style name="respuestaBusquedaSpinner">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="respuestaEditText" parent="@style/respuestaEditTextActionNext">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="respuestaNumerosEditText" parent="@style/respuestaEditTextActionNext">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:inputType">number</item>
+
+    </style>
+
+    <style name="respuestaTextosEditText" parent="@style/respuestaEditTextActionNext">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:digits">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890 \u0020</item>
+
+
+    </style>
+
+    <style name="respuestaTextosLetrasEditText" parent="@style/respuestaEditTextActionNext">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:digits">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</item>
+
+    </style>
+
+    <style name="respuestaEmailEditText" parent="@style/respuestaEditTextActionNext">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:digits">abcdefghijklmnñopqrstuvwxyz1234567890@._-</item>
+
+    </style>
+
+    <style name="respuestaTextosNombresApellidosEditText" parent="@style/respuestaEditTextActionNext">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:digits">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ \u0020</item>
+
+
+    </style>
+
+    <style name="actionButton">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/button_selector</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="actionButtonGreen">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/button_selector_green</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="seccionTextViewSubtitulo">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/grey</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/negro</item>
+        <item name="android:padding">15dp</item>
+    </style>
+
+    <style name="etiquetaTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">150dp</item>
+    </style>
+
+    <style name="HeaderRow">
+        <item name="android:background">@color/azul_suave</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="HeaderText">
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:shadowColor">@color/azul_fuerte</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1.0</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/borde</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="BodyRow">
+        <item name="android:background">#DFDFDF</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="BodyText">
+        <item name="android:textColor">#7F7F7F</item>
+        <item name="android:shadowColor">#AFFFFFFF</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1.0</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/borde</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="LoginFormContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
     </style>
 
 </resources>

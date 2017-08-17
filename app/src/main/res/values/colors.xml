@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <color name="negro">#000000</color>
+    <color name="blanco">#ffffff</color>
+    <color name="azul_suave_claro">#6dcaec</color>
+    <color name="azul_suave">#0099CC</color>
+    <color name="azul_fuerte">#0379b6</color>
+    <color name="azul_intenso">#003871</color>
+    <color name="azul_opaco">#021236</color>
+
+    <color name="gris_suave">#9b9ca0</color>
+    <color name="gris">#c3c4c7</color>
+
+    <color name="white_tranparent">#AAFFFFFF</color>
+    <color name="drag_active_color">#80cccccc</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="piel">#e5b269</color>
+    <color name="background">#55FFFFFF</color>
+    <color name="select">#55000000</color>
+    <color name="pressed">#ecc17d</color>
+    <color name="grey">#cccccc</color>
+    <color name="grey_light">#e5e6ea</color>
+    <color name="orange_light">#99ffbb33</color>
+    <color name="orange">#ff8800</color>
+    <color name="orange_light_transparent">#bbffbb33</color>
+    <color name="orange_transparent">#bbff8800</color>
+    <color name="coffee">#7f0000</color>
+    <color name="red">#cc0000</color>
+    <color name="purple_light">#aa66cc</color>
+    <color name="purple">#9933cc</color>
+    <color name="green">#669900</color>
+    <color name="green_light">#9999cc00</color>
+    <color name="green_light_transparent">#3399cc00</color>
+    <color name="red_light">#ff4444</color>
+    <color name="red_light_transparent">#33ff4444</color>
+    <color name="red_intense">#d11d44</color>
+
+    <color name="grey_intense">#bdc0c7</color>
+
 </resources>
