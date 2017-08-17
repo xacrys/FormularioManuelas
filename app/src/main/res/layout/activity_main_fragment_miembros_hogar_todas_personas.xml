@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Comentar el RelativeLayout para ver todo el diseño de la pantalla -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blanco"
+        android:fadeScrollbars="false"
+        android:scrollbarThumbVertical="@color/gris_suave"
+        android:scrollbarTrackVertical="@color/gris">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    style="@style/areaCategoriaPreguntaTextView"
+                    android:text="@string/tituloTodasPersonas" />
+            </LinearLayout>
+
+            <!-- Seccion  1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="50dp">
+
+                <!-- Inicio de la columna 1 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/borde_panel"
+                    android:orientation="vertical"
+                    android:padding="0dp">
+
+                    <!-- Inicio Pregunta tipo de docuemnto -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/controlTrabajoDocumentoTitulo" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/controlTrabajoDocumento" />
+
+                        <Spinner
+                            android:id="@+id/documentoSpinner"
+                            style="@style/respuestaSpinner" />
+
+                    </LinearLayout>
+
+                    <!-- Inicio Pregunta cedula -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/cedulaTitulo" />
+
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/cedula" />
+
+                        <EditText
+                            android:id="@+id/cedulaEditText"
+                            style="@style/respuestaNumerosEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:enabled="false"
+                            android:maxLength="10" />
+
+                    </LinearLayout>
+                    <!-- Fin Pregunta -->
+
+                    <!-- Inicio Pregunta parentesco -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/controlTrabajoParentescoJefeHogar" />
+
+                        <Spinner
+                            android:id="@+id/parentescoSpinner"
+                            style="@style/respuestaSpinner" />
+
+                    </LinearLayout>
+                    <!-- Fin Pregunta -->
+
+
+                    <!-- Inicio Pregunta estado civil -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPadrePreguntaTextView"
+                            android:text="@string/controlTrabajoEstadoCivilEtiqueta" />
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/controlTrabajoEstadoCivil" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/controlTrabajoEstadoCivilTitulo" />
+
+                        <Spinner
+                            android:id="@+id/seccion6EstadoCivilSpinner"
+                            style="@style/respuestaSpinner" />
+                    </LinearLayout>
+                    <!-- Fin Pregunta -->
+
+                    <!-- Inicio Pregunta Menores de 18 años -->
+                    <LinearLayout
+                        android:id="@+id/seccion5menores18AniosLinearLayout"
+                        style="@style/contenedorPregunta"
+                        android:visibility="visible">
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/controlMadreHogar" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/controlMadreHogarTitulo" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/viveMadreHogarRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/viveMadreHogarOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/seccion5ViveMadreHogarOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/seccion5CodigoPersonaLinearLayout"
+                            style="@style/contenedorPregunta"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:text="@string/controlMadreHogarEtiqueta" />
+
+                            <Spinner
+                                android:id="@+id/codigoPersonaMadreSpinner"
+                                style="@style/respuestaSpinner" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- Fin Pregunta Menores de 18 años -->
+
+                    <!-- Inicio Pregunta nacionalidad -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/nacionalidadTitulo" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/nacionalidad" />
+
+                        <Spinner
+                            android:id="@+id/nacionalidadSpinner"
+                            style="@style/respuestaSpinner" />
+
+                    </LinearLayout>
+                    <!-- Fin Pregunta  -->
+
+                    <!-- Inicio Pregunta AutoDefinicionEtnica -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPadrePreguntaTextView"
+                            android:text="@string/autodefinicionEtnicaEtiqueta" />
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/autodefinicionEtnicaTitulo" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/autodefinicionEtnicaEtiqueta" />
+
+                        <Spinner
+                            android:id="@+id/etniaSpinner"
+                            style="@style/respuestaSpinner" />
+                    </LinearLayout>
+                    <!-- Fin Pregunta -->
+                </LinearLayout>
+                <!-- Fin de la columna 1 -->
+
+
+                <!-- Inicio de la columna 2 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/borde_panel"
+                    android:orientation="vertical"
+                    android:padding="0dp">
+
+
+                    <!-- Inicio Pregunta aporte -->
+
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPadrePreguntaTextView"
+                            android:text="@string/aporteSeguroEtiqueta" />
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/aporteSeguroTitulo" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/aporteSeguro" />
+
+                        <Spinner
+                            android:id="@+id/seguroSocial1Spinner"
+                            style="@style/respuestaSpinner" />
+
+                        <Spinner
+                            android:id="@+id/seguroSocial2Spinner"
+                            style="@style/respuestaSpinner" />
+                    </LinearLayout>
+                    <!-- Fin Pregunta -->
+
+
+                    <!-- Inicio Pregunta seguro salud -->
+
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/seguroSaludTitulo" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/seguroSalud" />
+
+                        <Spinner
+                            android:id="@+id/seguroSalud1Spinner"
+                            style="@style/respuestaSpinner" />
+
+                        <Spinner
+                            android:id="@+id/seguroSalud2Spinner"
+                            style="@style/respuestaSpinner" />
+                    </LinearLayout>
+                    <!-- Fin Pregunta -->
+
+
+                </LinearLayout>
+                <!-- Fin de la columna 2 -->
+
+
+                <!-- Inicio de la columna 3 -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/borde_panel"
+                    android:orientation="vertical"
+                    android:padding="0dp">
+
+                    <!-- Inicio Pregunta 1 -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/discapacidadEtiqueta" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/poseeDiscapacidadTitulo" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp">
+
+                            <RadioGroup
+                                android:id="@+id/discapacidadRadioGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/discapacidadOpcion1RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_si" />
+
+                                <RadioButton
+                                    android:id="@+id/discapacidadOpcion2RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_no" />
+                            </RadioGroup>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <!-- Fin de la columna 3 -->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <include layout="@layout/reusable_bottom_actionbar_navigation" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView> <!-- Inicio de la columna 1 -->
+
+
+    <!-- Comentar las lineas de abajo para ver todo el diseño de la pantalla -->
+
+    <include layout="@layout/reusable_top_actionbar_miembros_hogar" />
+
+</RelativeLayout>

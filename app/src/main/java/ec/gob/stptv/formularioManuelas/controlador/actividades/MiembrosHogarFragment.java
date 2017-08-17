@@ -18,7 +18,7 @@ public class MiembrosHogarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View item = inflater.inflate(R.layout.activity_main_fragment_miembros_hogar,
+        View item = inflater.inflate(R.layout.activity_main_fragment_miembros_hogar_todas_personas,
                 container, false);
 
 

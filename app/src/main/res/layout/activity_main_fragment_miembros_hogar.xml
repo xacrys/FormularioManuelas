@@ -1,22 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanco"
-    android:fadeScrollbars="false"
-    android:scrollbarThumbVertical="@color/gris_suave"
-    android:scrollbarTrackVertical="@color/gris" >
+    android:background="@color/blanco" >
 
     <LinearLayout
-        android:id="@+id/pantallaControlViendaLinearLayout"
+        android:id="@+id/pantallaMiembrosHogarLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <!-- Titulo de la seccion I -->
-
+        <!-- Titulo de la seccion V -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,18 +18,316 @@
             android:padding="10dp" >
 
             <TextView
-                android:id="@+id/textView1"
                 style="@style/seccionTextView"
-                android:text="Miembros del Hogar" />
+                android:text="@string/seccion6" />
         </LinearLayout>
 
-        <!-- Fin Titulo de la seccion I -->
+        <!-- Contenedor 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false" >
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:padding="10dp" >
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tipoResidente" />
+
+                    <Spinner
+                        android:id="@+id/tipoResidenteSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/controlTrabajoDocumentoTitulo" />
+
+                    <Spinner
+                        android:id="@+id/seccion5DocumentoSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/cedulaEditText"
+                        style="@style/respuestaNumerosEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:hint="@string/etiquetaCedula"
+                        android:maxLength="10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:text="@string/apellidos" />
+
+                        <EditText
+                            android:id="@+id/apellidosEditText"
+                            style="@style/respuestaTextosNombresApellidosEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/apellidosNombresEtiqueta1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:text="@string/nombres" />
+
+                        <EditText
+                            android:id="@+id/nombresEditText"
+                            style="@style/respuestaTextosNombresApellidosEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/apellidosNombresEtiqueta2" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- INicio sexo edad y correo -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/sexoTitulo" />
+
+                    <Spinner
+                        android:id="@+id/sexoSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.32" />
+
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        style="@style/contenedorPregunta"
+                        android:layout_width="366dp" >
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:text="@string/edadTitulo" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0dp" >
+
+                            <RadioGroup
+                                android:id="@+id/edadRadioGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="42dp"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal" >
+
+                                <RadioButton
+                                    android:id="@+id/edadFechaNacimientoOpcion1RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcionFechaNacimiento" />
+
+                                <RadioButton
+                                    android:id="@+id/edadAniosCumplidosOpcion2RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcionAniosCumplidos" />
+                            </RadioGroup>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="380dp"
+                            android:layout_height="42dp" >
+
+                            <Button
+                                android:id="@+id/fechaNacimientoButton"
+                                style="@style/respuestaBusquedaSpinner"
+                                android:layout_width="wrap_content"
+                                android:drawableLeft="@android:drawable/ic_menu_agenda"
+                                android:text="@string/seleccioneFecha" >
+                            </Button>
+
+                            <EditText
+                                android:id="@+id/aniosEditText"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/fechaNacimientoButton"
+                                android:layout_alignBottom="@+id/fechaNacimientoButton"
+                                android:layout_toRightOf="@+id/fechaNacimientoButton"
+                                android:ems="10"
+                                android:hint="@string/edadEtiqueta3"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:lines="1"
+                                android:maxLength="2"
+                                android:maxLines="1" >
+
+                                <requestFocus />
+                            </EditText>
+
+                            <EditText
+                                android:id="@+id/mesesEditText"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/aniosEditText"
+                                android:layout_alignBottom="@+id/aniosEditText"
+                                android:layout_toRightOf="@+id/aniosEditText"
+                                android:ems="10"
+                                android:hint="@string/edadEtiqueta4"
+                                android:imeOptions="actionDone"
+                                android:inputType="number"
+                                android:lines="1"
+                                android:maxLength="2"
+                                android:maxLines="1" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <!-- Fin Pregunta edad -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/correoTitulo"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/correoEditText"
+                        style="@style/respuestaEmailEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:hint="@string/correoElectronico"
+                        android:imeOptions="actionDone"
+                        android:inputType="textWebEmailAddress"
+                        android:lines="1"
+                        android:maxLength="64"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <!-- Botones -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp" >
+
+                    <TextView style="@style/etiquetaSmallTextView" />
+
+                    <Button
+                        android:id="@+id/aniadirButton"
+                        style="@style/actionButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@android:drawable/ic_menu_add"
+                        android:text="@string/menu_guardar" />
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/nuevoButton"
+                        style="@style/actionButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@android:drawable/ic_menu_more"
+                        android:text="@string/menu_nuevo" />
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <!-- Tabla -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp" >
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:shrinkColumns="*"
+                        android:stretchColumns="*" >
+
+                        <TableRow
+                            android:id="@+id/tableRow1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#b0b0b0" >
+
+                            <TextView
+                                android:id="@+id/TextView04"
+                                android:layout_weight="1"
+                                android:gravity="left"
+                                android:padding="10dp"
+                                android:text="Lista de personas"
+                                android:textColor="#000000" />
+                        </TableRow>
+                    </TableLayout>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fadeScrollbars="false"
+                        android:scrollbarThumbVertical="@color/gris_suave"
+                        android:scrollbarTrackVertical="@color/gris" >
+
+                        <TableLayout
+                            android:id="@+id/personasTableLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:shrinkColumns="*"
+                            android:stretchColumns="*" >
+                        </TableLayout>
+                    </ScrollView>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
-
-
-
-
-</ScrollView>
+</RelativeLayout>

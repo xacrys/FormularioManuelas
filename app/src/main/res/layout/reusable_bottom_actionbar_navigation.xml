@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cabecera"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:padding="10dp" 
+    android:background="@drawable/borde_panel">
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+         <Button
+            android:id="@+id/atrasButton"
+            style="@style/actionButton"
+            android:layout_width="200dp"
+            android:drawableLeft="@android:drawable/ic_menu_revert"
+            android:text="atras" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <Button
+            android:id="@+id/guardarPersonaButton"
+            style="@style/actionButton"
+            android:layout_width="200dp"
+            android:drawableLeft="@android:drawable/ic_menu_save"
+            android:text="@string/menu_guardar" />
+    </LinearLayout>
+
+</RelativeLayout>
