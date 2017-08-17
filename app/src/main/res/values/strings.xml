@@ -405,4 +405,80 @@
     <string name="tipoDiscapacidadPsicosociales">Psicosociales (Mental, autismo o enfermedades psiquiátricas)?</string>
     <string name="tipoDiscapacidadPorcentaje">Porcentaje</string>
 
+    <!-- Seccion 5 Pregunta 19 -->
+    <string name="asistenciaEstablecimiento">Actualmente (&#8230;) asiste a algún establecimiento de Educación</string>
+    <string name="asistenciaEstablecimientoOpcion1">1. Ordinaria?</string>
+    <string name="asistenciaEstablecimientoOpcion2">2. Especializada?</string>
+    <string name="asistenciaEstablecimientoOpcion3">3. Superior?</string>
+    <string name="asistenciaEstablecimientoOpcion4">4. No asiste?</string>
+
+    <!-- Seccion 5 Pregunta 20 -->
+    <string name="servicioProteccion">Durante los ÚLTIMOS 12 MESES(de&#8230;a&#8230;), recibió (&#8230;) atención en algún servicio de protección social público o privado</string>
+    <string name="servicioProteccionOpcion1">1. Centros Infantiles del Buen Vivir - CIBV?</string>
+    <string name="servicioProteccionOpcion2">2. Creciendo con Nuestros Hijos - CNH?</string>
+    <string name="servicioProteccionOpcion3">3. Centros de referencia o acogida?</string>
+    <string name="servicioProteccionOpcion4">4. Centros Diurnos de Atención Integral?</string>
+    <string name="servicioProteccionOpcion5">5. Atención al Hogar y la Comunidad?</string>
+    <string name="servicioProteccionOpcion6">6. No recibió?</string>
+
+    <!-- Seccion 5 Pregunta 21 -->
+    <string name="necesitaAyudaTecnica">(&#8230;) necesita ayudas técnicas</string>
+
+    <!-- Seccion 5 Pregunta 22 -->
+    <string name="recibioAyudaTecnica">(&#8230;) recibió ayudas técnicas</string>
+
+    <!-- Seccion 5 Pregunta 24-->
+    <string name="institucionAyudasTecnicas">De qué Institución recibió las ayudas técnicas (&#8230;):</string>
+    <string name="institucionAyudasTecnicasOpcionA">A. Gobierno Central?</string>
+    <string name="institucionAyudasTecnicasOpcionB">B. Gobiernos Autónomos Descentralizados - GADs?</string>
+    <string name="institucionAyudasTecnicasOpcionC">C. Organizaciones Privadas?</string>
+    <string name="institucionAyudasTecnicasOpcionD">D. Ninguna?</string>
+
+    <!-- Seccion 5 Pregunta 25-->
+    <string name="sufreEnfermedades">(&#8230;) sufre de alguna:</string>
+    <string name="sufreEnfermedadesOpcion1">1. Enfermedad Catastrófica?</string>
+    <string name="sufreEnfermedadesOpcion2">2. Enfermedad Rara?</string>
+    <string name="sufreEnfermedadesOpcion3">3. VIH (SIDA)?</string>
+    <string name="sufreEnfermedadesOpcion4">4. Ninguna?</string>
+
+    <!-- Seccion 5 Pregunta 26-->
+    <string name="diagnosticoMedico">Por (&#8230;), (&#8230;) tiene diagnóstico médico:</string>
+
+    <!-- Seccion 5 Pregunta 27-->
+    <string name="enfermedadCatastrofica">Cuál es la enfermdad catastrófica:</string>
+    <string name="enfermedadCatastroficaOpcion1">1. Malformaciones congénitas del corazón y valvulopatías cardiacas(todo tipo)?</string>
+    <string name="enfermedadCatastroficaOpcion2">2. Cancér (todo tipo)?</string>
+    <string name="enfermedadCatastroficaOpcion3">3. Tumor cerebral?</string>
+    <string name="enfermedadCatastroficaOpcion4">4. Insufeciencia renal crónica?</string>
+    <string name="enfermedadCatastroficaOpcion5">5. Necesidad de transplante de órganos: riñon, hígado, médula ósea?</string>
+    <string name="enfermedadCatastroficaOpcion6">6. Secuelas de quemaduras graves?</string>
+    <string name="enfermedadCatastroficaOpcion7">7. Malformaciones arterio venosas Cerebrales?</string>
+    <string name="enfermedadCatastroficaOpcion8">8. Síndrome de Klippel Trenaunay?</string>
+    <string name="enfermedadCatastroficaOpcion9">9. Aneurisma tóraco - abdominal?</string>
+
+    <!-- Seccion 5 Pregunta 27-->
+    <string name="ayudasTecnicas">Qué ayudas técnicas recibió o necesita recibir:</string>
+    <string name="ayudasTecnicasDiscapacidadFisica">Discapacidad Física</string>
+    <string name="ayudasTecnicasOpcionA">A. Silla de ruedas?</string>
+    <string name="ayudasTecnicasOpcionB">B. Muletas?</string>
+    <string name="ayudasTecnicasOpcionC">C. Andadores?</string>
+    <string name="ayudasTecnicasOpcionD">D. Bastón de Apoyo?</string>
+    <string name="ayudasTecnicasOpcionE">E. Órtesis y prótesis?</string>
+    <string name="ayudasTecnicasOpcionF">F. Colchón antiescara?</string>
+    <string name="ayudasTecnicasOpcionG">G. Cojín aniescara?</string>
+    <string name="ayudasTecnicasDiscapacidadVisual">Discapacidad Visual</string>
+    <string name="ayudasTecnicasOpcionH">H. Bastón rastreo?</string>
+    <string name="ayudasTecnicasOpcionI">I. Abaco, regleta, punzón?</string>
+    <string name="ayudasTecnicasOpcionJ">J. Computadora con lector de pantalla?</string>
+    <string name="ayudasTecnicasDiscapacidadAuditiva">Discapacidad Auditiva</string>
+    <string name="ayudasTecnicasOpcionK">K. Audífonos?</string>
+    <string name="ayudasTecnicasOpcionL">L. Implante coclear?</string>
+    <string name="ayudasTecnicasDiscapacidadIntelectual">Discapacidad Intelectual</string>
+    <string name="ayudasTecnicasOpcionM">M. Coche postural?</string>
+    <string name="ayudasTecnicasInsumos">Insumos</string>
+    <string name="ayudasTecnicasOpcionN">N. Pañales desechables?</string>
+    <string name="ayudasTecnicasOpcionO">O. Silla para bañarse y evacuación?</string>
+    <string name="ayudasTecnicasOpcionP">P. Camas hospitalarias?</string>
+
+
 </resources>
