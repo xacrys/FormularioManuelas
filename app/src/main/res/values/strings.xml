@@ -1,3 +1,83 @@
 <resources>
     <string name="app_name">FormularioManuelas</string>
+    <!-- Login -->
+    <string name="login_progress_signing_in">Signing in&#8230;</string>
+    <string name="usuario">Usuario</string>
+    <string name="password">Password</string>
+    <string name="action_sign_in_register"><b>Login</b></string>
+    <string name="action_sign_in_short">Entrando</string>
+
+    <!-- Formulario de Busqueda -->
+    <string name="busquedaFormularios">BÚSQUEDA DE FORMULARIOS</string>
+    <string name="menu_nuevo">Nuevo</string>
+    <string name="estado_formulario">Estado del formulario</string>
+    <string name="fechaInicio"> Fecha de inicio</string>
+    <string name="fechaFin">Fecha de fin</string>
+    <string name="cambiarFecha">Cambiar</string>
+    <string name="menuSincronizarFormularios">Sincronizar Formularios</string>
+    <string name="tituloFormulario">Formularios</string>
+
+    <!-- Etiquetas comunes -->
+    <string name="seleccionRespuesta">Seleccione&#8230;</string>
+    <string name="menu_salir">Salir</string>
+    <string name="menu_buscar">Buscar/Actualizar</string>
+
+    <!-- Etiquetas de error -->
+    <string name="errorCampoRequerido">Este campo es requerido</string>
+    <string name="errorPasswordInvalido">La contraseña es muy corta</string>
+    <string name="errorConectarServidor">No se puede conectar al servidor</string>
+
+
+    <!-- Seccion Vivienda -->
+    <!-- Seccion I -->
+    <string name="fase">1. Fase</string>
+    <string name="tipoLevantamiento">2. Tipo de Levantamiento:</string>
+    <string name="barrido">Barrido</string>
+    <string name="convocatoria">Demanda</string>
+    <string name="area">3. Área: </string>
+    <string name="provincia">4. Provincia:</string>
+    <string name="canton">5. Cantón:</string>
+    <string name="parroquia">6. Cabecera cantonal o parroquial:</string>
+    <string name="parroquiaUrbana">7. Parroquia urbana:</string>
+    <string name="localidadComunidad">8. Localidad, comunidad, recinto, barrio:</string>
+    <string name="zona">9. Zona:</string>
+    <string name="sector">10. Sector:</string>
+    <string name="manzana">11. Manzana:</string>
+    <string name="division">Div</string>
+    <string name="edificio">12. Edificio:</string>
+    <string name="vivienda">13 Vivienda:</string>
+    <string name="hogar">14. Hogar:</string>
+    <string name="de">de</string>
+    <string name="direccion">15. Dirección</string>
+    <string name="calle1">Calle 1 / Camino o Sendero(principal)</string>
+    <string name="numeroCasa">N°</string>
+    <string name="calle2">Calle 2 / Camino o Sendero (Intersección, transversal)</string>
+    <string name="conjuntoHabitacional">Nombre o número del Conjunto Habitacional, Bloque o Edificio</string>
+    <string name="lote">Lote N°</string>
+    <string name="departamento">Departamento N°</string>
+    <string name="piso">Piso N°</string>
+    <string name="telefonoConvencional">Telefóno convencional N°:</string>
+    <string name="telefonoCelular">Celular N°:</string>
+    <string name="referanciaUbicacion">Referencia de ubicación de la vivienda:</string>
+
+    <!-- Seccion II -->
+    <string name="seccion2">SECCIÓN II CONDICIÓN DE OCUPACIÓN</string>
+    <string name="condicionOcupacionOpcion1">1. Ocupada</string>
+
+    <!-- Seccion III -->
+    <string name="seccion3">SECCIÓN III DATOS DE LA VIVIENDA</string>
+
+    <!-- Seccion 3 Pregunta 1 -->
+    <string name="tipoVivienda">1. Tipo de Vivienda (por observación)</string>
+    <string name="tipoViviendaOpcion1">1. Casa / villa</string>
+    <string name="tipoViviendaOpcion2">2. Departamento en casa o edificio</string>
+    <string name="tipoViviendaOpcion3">3. Cuarto(s) en casa de inquilinato</string>
+    <string name="tipoViviendaOpcion4">4. Mediagua</string>
+    <string name="tipoViviendaOpcion5">5. Rancho, covacha</string>
+    <string name="tipoViviendaOpcion6">6. Choza</string>
+    <string name="tipoViviendaOpcion7">7. Otro, cuál</string>
+
+
+
+
 </resources>
