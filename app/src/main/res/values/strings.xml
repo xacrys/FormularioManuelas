@@ -241,5 +241,122 @@
 
     <!-- FIN Seccion 4 -->
 
+    <!--  Seccion 6  -->
+    <string name="seccion6">SECCIÓN VI CONTROL</string>
+    <!--  Seccion 6 Pregunta 1  -->
+    <string name="ControlEntrevistas">1. CONTROL DE ENTREVISTAS EFECTIVAS</string>
+    <string name="ControlEntrevistasOpcion1">1. Completa (efectiva)</string>
+    <string name="ControlEntrevistasOpcion2">2. Rechazo</string>
+    <string name="ControlEntrevistasOpcion3">3. Nadie en casa</string>
+    <string name="ControlEntrevistasOpcion4">4. Informante no calificado</string>
+
+    <!--  Seccion 6 Pregunta 2  -->
+    <string name="ControlTrabajo">2. CONTROL DE ENTREVISTAS EFECTIVAS</string>
+    <string name="ControlTrabajoOpcion1">1. Investigador(a)</string>
+    <string name="ControlTrabajoOpcion2">2. Supervisor(a9</string>
+
+    <!--  FIN Seccion 6-->
+
+    <!--  Seccion 5  -->
+    <!-- Seccion 5 Pregunta 7 -->
+    <string name="ControlTrabajoDocumentoTitulo">DOCUMENTACIÓN</string>
+    <string name="ControlTrabajoDocumento">¿(&#8230;) Tiene:</string>
+    <string name="ControlTrabajoDocumentoOpcion1">1. Número de cédula de ciudadanía o identidad ecuatoriana?</string>
+    <string name="ControlTrabajoDocumentoOpcion2">2. Partida de nacimiento ecuatoriana con número de cédula?</string>
+    <string name="ControlTrabajoDocumentoOpcion3">3. Número de cédula de ciudadanía o identidad ecuatoriana, pero no sabe?</string>
+    <string name="ControlTrabajoDocumentoOpcion4">4. Nunca tuvo número de cédula (mayores de 5 años y más)?</string>
+    <string name="ControlTrabajoDocumentoOpcion5">5. Partida de nacimiento ecuatoriana sin número de cédula?</string>
+    <string name="ControlTrabajoDocumentoOpcion6">6. No está inscrito(menores de 5 años)?</string>
+    <string name="ControlTrabajoDocumento1Opcion7">7. Pasaporte (extranjeros)</string>
+
+    <!-- Seccion 5 Pregunta 8 -->
+    <string name="CedulaTitulo">CÉDULA DE CIUDADANÍA O IDENTIDAD ECUATORIANA</string>
+    <string name="Cedula">El número de cédula de ciudadanía ó identidad de (…) es</string>
+    <string name="CedulaEtiqueta">Para quienes dispongan del documento, copiar directamente del mismo</string>
+
+    <!-- Seccion 5 Pregunta 9 -->
+    <string name="ControlTrabajoParentescoJefeHogar">PARENTESCO con relación al jefe(a) del HOGAR</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion1">1. Jefe(a) del Hogar</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion2">2. Esposo(a) o conviviente</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion3">3. Hijo(a)</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion4">4. Hijastro(a)</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion5">5. Padre o madre</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion6">6. Suegro(a)</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion7">7. Yerno o Nuera</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion8">8. Nieto(a)</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion9">9. Hermano(a)</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion10">10. Cuñado(a)</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion11">11. Otro familiar</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion12">12. No familiar</string>
+    <string name="ControlTrabajoParentescoJefeHogarOpcion13">13. Servicio dómestico puertas adentro</string>
+
+    <!-- Seccion 5 Pregunta 10 -->
+    <string name="ControlTrabajoEstadoCivil">ESTADO CIVIL O CONYUGAL</string>
+    <string name="ControlTrabajoEstadoCivilTitulo">¿Cuál es el estado civil o conyugal actual de (&#8230;)?</string>
+    <string name="ControlTrabajoEstadoCivilEtiqueta">Preguntar solamente a personas de 12 años y más</string>
+    <string name="ControlTrabajoEstadoCivilOpcion1">1. Unión libre</string>
+    <string name="ControlTrabajoEstadoCivilOpcion2">2. Casado(a)</string>
+    <string name="ControlTrabajoEstadoCivilOpcion3">3. Viudo(a)</string>
+    <string name="ControlTrabajoEstadoCivilOpcion4">4. Separado(a)</string>
+    <string name="ControlTrabajoEstadoCivilOpcion5">5. Divorciado(a)</string>
+    <string name="ControlTrabajoEstadoCivilOpcion6">6. Soltero(a)</string>
+
+    <!-- Seccion 5 Pregunta 11 -->
+    <string name="ControlMadreHogar">MENORES DE 18 AÑOS</string>
+    <string name="ControlMadreHogarTitulo">¿La madre de (&#8230;) vive en este hogar?</string>
+    <string name="ControlMadreHogarEtiqueta">Cód de persona</string>
+
+    <!-- Seccion 5 Pregunta 12 -->
+    <string name="NacionalidadTitulo">NACIONALIDAD</string>
+    <string name="Nacionalidad">¿Qué nacionalidad tiene (&#8230;)?</string>
+    <string name="NacionalidadOpcion1">1. Ecuatoriano</string>
+    <string name="NacionalidadOpcion2">2. Colombiano</string>
+    <string name="NacionalidadOpcion3">3. Estadounidense</string>
+    <string name="NacionalidadOpcion4">4. Peruano</string>
+    <string name="NacionalidadOpcion5">5. Español</string>
+    <string name="NacionalidadOpcion6">6. Cubano</string>
+    <string name="NacionalidadOpcion7">7. Venezolano</string>
+    <string name="NacionalidadOpcion8">8. Otra nacionalidad</string>
+
+    <!-- Seccion 5 Pregunta 13-->
+    <string name="AutodefinicionEtnicaTitulo">AUTODEFINICIÓN ÉTNICA</string>
+    <string name="AutodefinicionEtnica">¿Cómo se identifica (&#8230;) según su cultura y costumbre:</string>
+    <string name="AutodefinicionEtnicaEtiqueta">Preguntar solamente a personas de 5 años y más</string>
+    <string name="AutodefinicionEtnicaOpcion1">1. Indígena?</string>
+    <string name="AutodefinicionEtnicaOpcion2">2. Afroecuatoriana/o Afrodescendiente?</string>
+    <string name="AutodefinicionEtnicaOpcion3">3. Negro(a)?</string>
+    <string name="AutodefinicionEtnicaOpcion4">4. Mulato(a)?</string>
+    <string name="AutodefinicionEtnicaOpcion5">5. Montubio(a)?</string>
+    <string name="AutodefinicionEtnicaOpcion6">6. Mestizo(a)?</string>
+    <string name="AutodefinicionEtnicaOpcion7">7. Blanco(a)?</string>
+    <string name="AutodefinicionEtnicaOpcion8">8. Otro?</string>
+
+    <!-- Seccion 5 Pregunta 14 -->
+    <string name="AporteSeguroTitulo">APORTE (Seguridad Social)</string>
+    <string name="AporteSeguro">Aporta actualmente (&#8230;) al:</string>
+    <string name="AporteSeguroEtiqueta">Para personas de 15 años y más</string>
+    <string name="AporteSeguroOpcion1">1. IESS General?</string>
+    <string name="AporteSeguroOpcion2">2. IESS Voluntario?</string>
+    <string name="AporteSeguroOpcion3">3. IESS Campesino?</string>
+    <string name="AporteSeguroOpcion4">4. IESS Trabajo no remunerado del hogar?</string>
+    <string name="AporteSeguroOpcion5">5. Seguro del ISSFA o ISSPOL?</string>
+    <string name="AporteSeguroOpcion6">6. No aporta?</string>
+    <string name="AporteSeguroOpcion7">7. No sabe?</string>
+
+    <!-- Seccion 5 Pregunta 15 -->
+    <string name="SeguroSaludTitulo">SEGURO DE SALUD</string>
+    <string name="SeguroSalud">Para atención de salud (&#8230;) está cubierto por:</string>
+    <string name="SeguroSaludOpcion1">1. IESS, Seguro General?</string>
+    <string name="SeguroSaludOpcion2">2. IESS, Seguro Voluntario?</string>
+    <string name="SeguroSaludOpcion3">3. Seguro Campesino?</string>
+    <string name="SeguroSaludOpcion4">4. Seguro del ISSFA o ISSPOL?</string>
+    <string name="SeguroSaludOpcion5">5. Seguro de salud privado con hospitalización?</string>
+    <string name="SeguroSaludOpcion6">6. Seguro de salud privado sin hospitalización?</string>
+    <string name="SeguroSaludOpcion7">7. Servicios Municipales o de Consejos Provinciales?</string>
+    <string name="SeguroSaludOpcion8">8. Ministerio de Salud Pública?</string>
+    <string name="SeguroSaludOpcion9">9. Otros?</string>
+    <string name="SeguroSaludOpcion10">10. Niguno?</string>
+
+
 
 </resources>
