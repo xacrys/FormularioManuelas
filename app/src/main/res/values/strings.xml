@@ -81,313 +81,328 @@
     <string name="tipoViviendaOpcion7">7. Otro, cuál</string>
 
     <!--  Seccion 3 Pregunta 2  -->
-    <string name="ViaAccesoPrincipal">2. Via de acceso principal a la VIVIENDA(por observación)</string>
-    <string name="ViaAccesoPrincipalOpcion1">1. Carretera/calle pavimentada o adoquinada</string>
-    <string name="ViaAccesoPrincipalOpcion2">2. Empedrado</string>
-    <string name="ViaAccesoPrincipalOpcion3">3. Lastrado / calle de tierra</string>
-    <string name="ViaAccesoPrincipalOpcion4">4. Sendero</string>
-    <string name="ViaAccesoPrincipalOpcion5">5. Río / mar</string>
-    <string name="ViaAccesoPrincipalOpcion6">6. Otros</string>
+    <string name="viaAccesoPrincipal">2. Via de acceso principal a la VIVIENDA(por observación)</string>
+    <string name="viaAccesoPrincipalOpcion1">1. Carretera/calle pavimentada o adoquinada</string>
+    <string name="viaAccesoPrincipalOpcion2">2. Empedrado</string>
+    <string name="viaAccesoPrincipalOpcion3">3. Lastrado / calle de tierra</string>
+    <string name="viaAccesoPrincipalOpcion4">4. Sendero</string>
+    <string name="viaAccesoPrincipalOpcion5">5. Río / mar</string>
+    <string name="viaAccesoPrincipalOpcion6">6. Otros</string>
     <!--  Seccion 3 Pregunta 3  -->
-    <string name="MaterialTecho">3. El material predominante del TECHO de la VIVIENDA es:</string>
-    <string name="MaterialTechoOpcion1">1. Hormigón/Losa/cemento?</string>
-    <string name="MaterialTechoOpcion2">2. Asbesto (eternit, eurolit)?</string>
-    <string name="MaterialTechoOpcion3">3. Zinc?</string>
-    <string name="MaterialTechoOpcion4">4. Teja?</string>
-    <string name="MaterialTechoOpcion5">5. Palma/paja/hoja?</string>
-    <string name="MaterialTechoOpcion6">6. Otro material?</string>
+    <string name="materialTecho">3. El material predominante del TECHO de la VIVIENDA es:</string>
+    <string name="materialTechoOpcion1">1. Hormigón/Losa/cemento?</string>
+    <string name="materialTechoOpcion2">2. Asbesto (eternit, eurolit)?</string>
+    <string name="materialTechoOpcion3">3. Zinc?</string>
+    <string name="materialTechoOpcion4">4. Teja?</string>
+    <string name="materialTechoOpcion5">5. Palma/paja/hoja?</string>
+    <string name="materialTechoOpcion6">6. Otro material?</string>
     <!--  Seccion 3 Pregunta 4  -->
-    <string name="MaterialPiso">4. El material predominante del PISO de la VIVIENDA es:</string>
-    <string name="MaterialPisoOpcion1">1. Duela/parket, tablón tratado, tabloncillo, piso flotante?</string>
-    <string name="MaterialPisoOpcion2">2. Baldosa/vinyl, cerámica?</string>
-    <string name="MaterialPisoOpcion3">3. Mármol/marmetón?</string>
-    <string name="MaterialPisoOpcion4">4. Cemento/ladrillo?</string>
-    <string name="MaterialPisoOpcion5">5. Tabla/tablón(no tratada)?</string>
-    <string name="MaterialPisoOpcion6">6. Caña?</string>
-    <string name="MaterialPisoOpcion7">7. Tierra?</string>
-    <string name="MaterialPisoOpcion8">8. Otro material?</string>
+    <string name="materialPiso">4. El material predominante del PISO de la VIVIENDA es:</string>
+    <string name="materialPisoOpcion1">1. Duela/parket, tablón tratado, tabloncillo, piso flotante?</string>
+    <string name="materialPisoOpcion2">2. Baldosa/vinyl, cerámica?</string>
+    <string name="materialPisoOpcion3">3. Mármol/marmetón?</string>
+    <string name="materialPisoOpcion4">4. Cemento/ladrillo?</string>
+    <string name="materialPisoOpcion5">5. Tabla/tablón(no tratada)?</string>
+    <string name="materialPisoOpcion6">6. Caña?</string>
+    <string name="materialPisoOpcion7">7. Tierra?</string>
+    <string name="materialPisoOpcion8">8. Otro material?</string>
     <!--  Seccion 3 Pregunta 5  -->
-    <string name="MaterialParedes">5. El material predominante de las PAREDES de la VIVIENDA es:</string>
-    <string name="MaterialParedesOpcion1">1. Hormigón, Bloque/ladrillo?</string>
-    <string name="MaterialParedesOpcion3">2. Asbesto/cemento(fibrolit)?</string>
-    <string name="MaterialParedesOpcion4">3. Adobe/tapia?</string>
-    <string name="MaterialParedesOpcion5">4. Madera?</string>
-    <string name="MaterialParedesOpcion6">5. Bahareque (caña y carrizo revestido)?</string>
-    <string name="MaterialParedesOpcion7">6. Caña/estera?</string>
-    <string name="MaterialParedesOpcion8">7. Otro material?</string>
+    <string name="materialParedes">5. El material predominante de las PAREDES de la VIVIENDA es:</string>
+    <string name="materialParedesOpcion1">1. Hormigón, Bloque/ladrillo?</string>
+    <string name="materialParedesOpcion3">2. Asbesto/cemento(fibrolit)?</string>
+    <string name="materialParedesOpcion4">3. Adobe/tapia?</string>
+    <string name="materialParedesOpcion5">4. Madera?</string>
+    <string name="materialParedesOpcion6">5. Bahareque (caña y carrizo revestido)?</string>
+    <string name="materialParedesOpcion7">6. Caña/estera?</string>
+    <string name="materialParedesOpcion8">7. Otro material?</string>
     <!--  Seccion 3 Pregunta 6  -->
-    <string name="TechoPisoPared">6. El estado del (……) de la VIVIENDA es:</string>
-    <string name="TechoPisoParedOpcion1">Bueno?</string>
-    <string name="TechoPisoParedOpcion2">Regular?</string>
-    <string name="TechoPisoParedOpcion3">Malo?</string>
-    <string name="EstadoTecho">TECHO</string>
-    <string name="EstadoPiso">PISO</string>
-    <string name="EstadoPared">PARED</string>
+    <string name="techoPisoPared">6. El estado del (……) de la VIVIENDA es:</string>
+    <string name="techoPisoParedOpcion1">Bueno?</string>
+    <string name="techoPisoParedOpcion2">Regular?</string>
+    <string name="techoPisoParedOpcion3">Malo?</string>
+    <string name="estadoTecho">TECHO</string>
+    <string name="estadoPiso">PISO</string>
+    <string name="estadoPared">PARED</string>
     <!--  FIN Seccion 3  -->
     <!--  Seccion 4  -->
     <string name="seccion4">SECCIÓN IV DATOS DE HOGAR</string>
     <!--  Seccion 4 Pregunta 1  -->
-    <string name="TenenciaHogar">1. La vivienda que ocupa este HOGAR es:</string>
-    <string name="TenenciaHogarOpcion1">1. Propia y la está pagando?</string>
-    <string name="TenenciaHogarOpcion2">2. Propia y totalmente pagada?</string>
-    <string name="TenenciaHogarOpcion3">3. En arriendo?</string>
-    <string name="TenenciaHogarOpcion4">4. Anticresis y/o arriendo?</string>
-    <string name="TenenciaHogarOpcion5">5. Cedida o gratuita?</string>
-    <string name="TenenciaHogarOpcion6">6. Recibida por servicios?</string>
-    <string name="TenenciaHogarOpcion7">7. Otras</string>
+    <string name="tenenciaHogar">1. La vivienda que ocupa este HOGAR es:</string>
+    <string name="tenenciaHogarOpcion1">1. Propia y la está pagando?</string>
+    <string name="tenenciaHogarOpcion2">2. Propia y totalmente pagada?</string>
+    <string name="tenenciaHogarOpcion3">3. En arriendo?</string>
+    <string name="tenenciaHogarOpcion4">4. Anticresis y/o arriendo?</string>
+    <string name="tenenciaHogarOpcion5">5. Cedida o gratuita?</string>
+    <string name="tenenciaHogarOpcion6">6. Recibida por servicios?</string>
+    <string name="tenenciaHogarOpcion7">7. Otras</string>
     <!--  Seccion 4 Pregunta 2  -->
-    <string name="DocumentoHogar">2. ¿Por esta vivienda los miembros de este hogar poseen:</string>
-    <string name="DocumentoHogarOpcion1">1. Escritura/título de propiedad registrado?</string>
-    <string name="DocumentoHogarOpcion2">2. Escritura en trámite?</string>
-    <string name="DocumentoHogarOpcion3">3. Promesa de compra-venta?</string>
-    <string name="DocumentoHogarOpcion4">4. Posesión efectiva?</string>
-    <string name="DocumentoHogarOpcion5">5. Otro documento?</string>
-    <string name="DocumentoHogarOpcion6">6. Ninguna</string>
+    <string name="documentoHogar">2. ¿Por esta vivienda los miembros de este hogar poseen:</string>
+    <string name="documentoHogarOpcion1">1. Escritura/título de propiedad registrado?</string>
+    <string name="documentoHogarOpcion2">2. Escritura en trámite?</string>
+    <string name="documentoHogarOpcion3">3. Promesa de compra-venta?</string>
+    <string name="documentoHogarOpcion4">4. Posesión efectiva?</string>
+    <string name="documentoHogarOpcion5">5. Otro documento?</string>
+    <string name="documentoHogarOpcion6">6. Ninguna</string>
     <!--  Seccion 4 Pregunta 3  -->
-    <string name="Cuartos">3. ¿De cuantós CUARTOS dispone este HOGAR sin incluir cuartos de cocina, baños, garajes, o los dedicados para negocios?</string>
-    <string name="CuartosOpcion1">Número de Cuartos</string>
+    <string name="cuartos">3. ¿De cuantós CUARTOS dispone este HOGAR sin incluir cuartos de cocina, baños, garajes, o los dedicados para negocios?</string>
+    <string name="cuartosOpcion1">Número de Cuartos</string>
     <!--  Seccion 4 Pregunta 4  -->
-    <string name="Dormitorios">4. ¿De estos CUARTOS, cuántos utiliza este HOGAR en forma exclusiva para dormir?</string>
-    <string name="DormitoriosOpcion1">Número de Dormitorios</string>
+    <string name="dormitorios">4. ¿De estos CUARTOS, cuántos utiliza este HOGAR en forma exclusiva para dormir?</string>
+    <string name="dormitoriosOpcion1">Número de Dormitorios</string>
     <!--  Seccion 4 Pregunta 5  -->
-    <string name="FuenteAgua">5. De dónde proviene principalmente el AGUA que recibe este HOGAR:</string>
-    <string name="FuenteAguaOpcion1">1. Red pública?</string>
-    <string name="FuenteAguaOpcion2">2. Pila/pileta o llave pública?</string>
-    <string name="FuenteAguaOpcion3">3. Otra fuente por tubería?</string>
-    <string name="FuenteAguaOpcion4">4. Carro repartidor/triciclo?</string>
-    <string name="FuenteAguaOpcion5">5. Pozo?</string>
-    <string name="FuenteAguaOpcion6">6. Río, vertiente o acequia?</string>
-    <string name="FuenteAguaOpcion7">7. Agua de lluvia?</string>
-    <string name="FuenteAguaOpcion8">8. Otro?</string>
+    <string name="fuenteAgua">5. De dónde proviene principalmente el AGUA que recibe este HOGAR:</string>
+    <string name="fuenteAguaOpcion1">1. Red pública?</string>
+    <string name="fuenteAguaOpcion2">2. Pila/pileta o llave pública?</string>
+    <string name="fuenteAguaOpcion3">3. Otra fuente por tubería?</string>
+    <string name="fuenteAguaOpcion4">4. Carro repartidor/triciclo?</string>
+    <string name="fuenteAguaOpcion5">5. Pozo?</string>
+    <string name="fuenteAguaOpcion6">6. Río, vertiente o acequia?</string>
+    <string name="fuenteAguaOpcion7">7. Agua de lluvia?</string>
+    <string name="fuenteAguaOpcion8">8. Otro?</string>
 
     <!-- Seccion 4 Pregunta 6 -->
-    <string name="UbicacionAgua">6. El AGUA que recibe este hogar es por:</string>
-    <string name="UbicacionAguaOpcion1">1. Tubería dentro de la vivienda?</string>
-    <string name="UbicacionAguaOpcion2">2. Tubería fuera de la vivienda PERO DENTRO del edificio, lote o terreno?</string>
-    <string name="UbicacionAguaOpcion3">3. Tubería FUERA DEL EDIFICIO, lote o terreno?</string>
-    <string name="UbicacionAguaOpcion4">4. No recibe agua por tubería sino por otros medios?</string>
+    <string name="ubicacionAgua">6. El AGUA que recibe este hogar es por:</string>
+    <string name="ubicacionAguaOpcion1">1. Tubería dentro de la vivienda?</string>
+    <string name="ubicacionAguaOpcion2">2. Tubería fuera de la vivienda PERO DENTRO del edificio, lote o terreno?</string>
+    <string name="ubicacionAguaOpcion3">3. Tubería FUERA DEL EDIFICIO, lote o terreno?</string>
+    <string name="ubicacionAguaOpcion4">4. No recibe agua por tubería sino por otros medios?</string>
 
     <!-- Seccion 4 Pregunta 7 -->
-    <string name="TratamientoAgua">7. Principalmente el tratamiento que le dan al AGUA que obtiene de (Pr.5) antes de beberla es:</string>
-    <string name="TratamientoAguaOpcion1">1. La hierven?</string>
-    <string name="TratamientoAguaOpcion2">2. Le echan cloro?</string>
-    <string name="TratamientoAguaOpcion3">3. La filtran?</string>
-    <string name="TratamientoAguaOpcion4">4. Compran agua purificada?</string>
-    <string name="TratamientoAguaOpcion5">5. Ninguno, tal como la obtienen?</string>
+    <string name="tratamientoAgua">7. Principalmente el tratamiento que le dan al AGUA que obtiene de (Pr.5) antes de beberla es:</string>
+    <string name="tratamientoAguaOpcion1">1. La hierven?</string>
+    <string name="tratamientoAguaOpcion2">2. Le echan cloro?</string>
+    <string name="tratamientoAguaOpcion3">3. La filtran?</string>
+    <string name="tratamientoAguaOpcion4">4. Compran agua purificada?</string>
+    <string name="tratamientoAguaOpcion5">5. Ninguno, tal como la obtienen?</string>
 
     <!-- Seccion 4 Pregunta 8 -->
-    <string name="ServicioSanitario">8. El tipo se SERVICIO HIGIÉNICO con que cuenta el HOGAR es:</string>
-    <string name="ServicioSanitarioOpcion1">1. Escusado/Inodoro y alcantarillado?</string>
-    <string name="ServicioSanitarioOpcion2">2. Escusado/Inodoro y pozo séptico?</string>
-    <string name="ServicioSanitarioOpcion3">3. Escusado/Inodoro y pozo ciego?</string>
-    <string name="ServicioSanitarioOpcion4">4. Descarga directa al mar, río, lago o quebrada?</string>
-    <string name="ServicioSanitarioOpcion5">5. Letrina?</string>
-    <string name="ServicioSanitarioOpcion6">6. No tiene?</string>
+    <string name="servicioSanitario">8. El tipo se SERVICIO HIGIÉNICO con que cuenta el HOGAR es:</string>
+    <string name="servicioSanitarioOpcion1">1. Escusado/Inodoro y alcantarillado?</string>
+    <string name="servicioSanitarioOpcion2">2. Escusado/Inodoro y pozo séptico?</string>
+    <string name="servicioSanitarioOpcion3">3. Escusado/Inodoro y pozo ciego?</string>
+    <string name="servicioSanitarioOpcion4">4. Descarga directa al mar, río, lago o quebrada?</string>
+    <string name="servicioSanitarioOpcion5">5. Letrina?</string>
+    <string name="servicioSanitarioOpcion6">6. No tiene?</string>
 
     <!-- Seccion 4 Pregunta 9 -->
-    <string name="UbicacionSanitario">9. El SERVICIO HIGIÉNICO con que cuenta el HOGAR está ubicado:</string>
-    <string name="UbicacionSanitarioOpcion1">1. Dentro de la vivienda?</string>
-    <string name="UbicacionSanitarioOpcion2">2. Fuera de la vivienda PERO EN EL LOTE O TERRENO?</string>
-    <string name="UbicacionSanitarioOpcion3">3. FUERA de la vivienda, lote o Terreno?</string>
+    <string name="ubicacionSanitario">9. El SERVICIO HIGIÉNICO con que cuenta el HOGAR está ubicado:</string>
+    <string name="ubicacionSanitarioOpcion1">1. Dentro de la vivienda?</string>
+    <string name="ubicacionSanitarioOpcion2">2. Fuera de la vivienda PERO EN EL LOTE O TERRENO?</string>
+    <string name="ubicacionSanitarioOpcion3">3. FUERA de la vivienda, lote o Terreno?</string>
 
     <!-- Seccion 4 Pregunta 10 -->
-    <string name="ServicioDucha">10. El servicio de DUCHA con que cuenta el HOGAR es:</string>
-    <string name="ServicioDuchaOpcion1">1. Exclusivo del hogar?</string>
-    <string name="ServicioDuchaOpcion2">2. Compartido con otros hogares?</string>
-    <string name="ServicioDuchaOpcion3">3. No tiene?</string>
+    <string name="servicioDucha">10. El servicio de DUCHA con que cuenta el HOGAR es:</string>
+    <string name="servicioDuchaOpcion1">1. Exclusivo del hogar?</string>
+    <string name="servicioDuchaOpcion2">2. Compartido con otros hogares?</string>
+    <string name="servicioDuchaOpcion3">3. No tiene?</string>
 
     <!-- Seccion 4 Pregunta 11 -->
-    <string name="EliminaBasura">11. Cómo ELIMINAN en este hogar la mayor parte de la BASURA?</string>
-    <string name="EliminaBasuraOpcion1">1. Servicio Municipal</string>
-    <string name="EliminaBasuraOpcion2">2. La botan a la calle/quebrada/río/lote</string>
-    <string name="EliminaBasuraOpcion3">3. La queman</string>
-    <string name="EliminaBasuraOpcion4">4. La entierran</string>
-    <string name="EliminaBasuraOpcion5">5. Reciclan</string>
-    <string name="EliminaBasuraOpcion6">6. Contratan el servicio</string>
-    <string name="EliminaBasuraOpcion7">7. Otro</string>
+    <string name="eliminaBasura">11. Cómo ELIMINAN en este hogar la mayor parte de la BASURA?</string>
+    <string name="eliminaBasuraOpcion1">1. Servicio Municipal</string>
+    <string name="eliminaBasuraOpcion2">2. La botan a la calle/quebrada/río/lote</string>
+    <string name="eliminaBasuraOpcion3">3. La queman</string>
+    <string name="eliminaBasuraOpcion4">4. La entierran</string>
+    <string name="eliminaBasuraOpcion5">5. Reciclan</string>
+    <string name="eliminaBasuraOpcion6">6. Contratan el servicio</string>
+    <string name="eliminaBasuraOpcion7">7. Otro</string>
     <!-- Seccion 4 Pregunta 12 -->
-    <string name="TipoAlumbrado">12. ¿Con qué tipo de ALUMBRADO cuenta este HOGAR:</string>
-    <string name="TipoAlumbradoOpcion1">1. Empresa eléctrica pública?</string>
-    <string name="TipoAlumbradoOpcion2">2. Planta eléctrica privada?</string>
-    <string name="TipoAlumbradoOpcion3">3. Panel solar?</string>
-    <string name="TipoAlumbradoOpcion4">4. Vela/ candil/ mechero/ gas?</string>
-    <string name="TipoAlumbradoOpcion5">5. Ninguno?</string>
+    <string name="tipoAlumbrado">12. ¿Con qué tipo de ALUMBRADO cuenta este HOGAR:</string>
+    <string name="tipoAlumbradoOpcion1">1. Empresa eléctrica pública?</string>
+    <string name="tipoAlumbradoOpcion2">2. Planta eléctrica privada?</string>
+    <string name="tipoAlumbradoOpcion3">3. Panel solar?</string>
+    <string name="tipoAlumbradoOpcion4">4. Vela/ candil/ mechero/ gas?</string>
+    <string name="tipoAlumbradoOpcion5">5. Ninguno?</string>
 
     <!-- Seccion 4 Pregunta 13 -->
-    <string name="CodigoElectrico">13. Solicite la planilla de pago y transcriba el código único eléctico nacional:</string>
+    <string name="codigoElectrico">13. Solicite la planilla de pago y transcriba el código único eléctico nacional:</string>
 
     <!-- Seccion 4 Pregunta 14 -->
-    <string name="EnergeticoCocina">14. En este hogar se COCINA principalmente con:</string>
-    <string name="EnergeticoCocinaOpcion1">1. Gas?</string>
-    <string name="EnergeticoCocinaOpcion2">2. Leña/ carbón?</string>
-    <string name="EnergeticoCocinaOpcion3">3. Electricidad?</string>
-    <string name="EnergeticoCocinaOpcion4">4. Otro?</string>
-    <string name="EnergeticoCocinaOpcion5">5. No cocina?</string>
+    <string name="energeticoCocina">14. En este hogar se COCINA principalmente con:</string>
+    <string name="energeticoCocinaOpcion1">1. Gas?</string>
+    <string name="energeticoCocinaOpcion2">2. Leña/ carbón?</string>
+    <string name="energeticoCocinaOpcion3">3. Electricidad?</string>
+    <string name="energeticoCocinaOpcion4">4. Otro?</string>
+    <string name="energeticoCocinaOpcion5">5. No cocina?</string>
 
     <!-- Seccion 4 Pregunta 15 -->
-    <string name="GasParaCalefon">15. Utiliza este hogar GAS doméstico para calefón</string>
-    <string name="GasParaCalefonOpcion1">1. SI</string>
-    <string name="GasParaCalefonOpcion2">2. NO</string>
+    <string name="gasParaCalefon">15. Utiliza este hogar GAS doméstico para calefón</string>
+    <string name="gasParaCalefonOpcion1">1. SI</string>
+    <string name="gasParaCalefonOpcion2">2. NO</string>
 
     <!-- Seccion 4 Pregunta 16 -->
-    <string name="TerrenoAgropecuario">16. Dispone este Hogar de terrenos? (Excluye uso agropecuario) </string>
-    <string name="TerrenoAgropecuarioOpcion1">1. SI</string>
-    <string name="TerrenoAgropecuarioOpcion2">2. NO</string>
+    <string name="terrenoAgropecuario">16. Dispone este Hogar de terrenos? (Excluye uso agropecuario) </string>
+    <string name="terrenoAgropecuarioOpcion1">1. SI</string>
+    <string name="terrenoAgropecuarioOpcion2">2. NO</string>
 
     <!-- Seccion 4 Pregunta 16.1 -->
-    <string name="TerrenoAgropecuarioSi">Uno o mas terrenos cuenta con servicios básicos?</string>
-    <string name="TerrenoAgropecuarioSiOpcion1">1. SI</string>
-    <string name="TerrenoAgropecuarioSiOpcion2">2. NO</string>
+    <string name="terrenoAgropecuarioSi">Uno o mas terrenos cuenta con servicios básicos?</string>
+    <string name="terrenoAgropecuarioSiOpcion1">1. SI</string>
+    <string name="terrenoAgropecuarioSiOpcion2">2. NO</string>
 
     <!-- FIN Seccion 4 -->
 
     <!--  Seccion 6  -->
     <string name="seccion6">SECCIÓN VI CONTROL</string>
     <!--  Seccion 6 Pregunta 1  -->
-    <string name="ControlEntrevistas">1. CONTROL DE ENTREVISTAS EFECTIVAS</string>
-    <string name="ControlEntrevistasOpcion1">1. Completa (efectiva)</string>
-    <string name="ControlEntrevistasOpcion2">2. Rechazo</string>
-    <string name="ControlEntrevistasOpcion3">3. Nadie en casa</string>
-    <string name="ControlEntrevistasOpcion4">4. Informante no calificado</string>
+    <string name="controlEntrevistas">1. CONTROL DE ENTREVISTAS EFECTIVAS</string>
+    <string name="controlEntrevistasOpcion1">1. Completa (efectiva)</string>
+    <string name="controlEntrevistasOpcion2">2. Rechazo</string>
+    <string name="controlEntrevistasOpcion3">3. Nadie en casa</string>
+    <string name="controlEntrevistasOpcion4">4. Informante no calificado</string>
 
     <!--  Seccion 6 Pregunta 2  -->
-    <string name="ControlTrabajo">2. CONTROL DE ENTREVISTAS EFECTIVAS</string>
-    <string name="ControlTrabajoOpcion1">1. Investigador(a)</string>
-    <string name="ControlTrabajoOpcion2">2. Supervisor(a9</string>
+    <string name="controlTrabajo">2. CONTROL DE ENTREVISTAS EFECTIVAS</string>
+    <string name="controlTrabajoOpcion1">1. Investigador(a)</string>
+    <string name="controlTrabajoOpcion2">2. Supervisor(a9</string>
 
     <!--  FIN Seccion 6-->
 
     <!--  Seccion 5  -->
 
     <!-- Seccion 5 Residentes  -->
-    <string name="TipoResidente">TIPO DE RESIDENTE:</string>
-    <string name="TipoResidenteOpcion1">1. Residentes habituales presentes</string>
-    <string name="TipoResidenteOpcion2">2. Residentes habituales ausentes (máximo por 6 meses)</string>
-    <string name="TipoResidenteOpcion3">3. Residentes temporales presentes</string>
+    <string name="tipoResidente">TIPO DE RESIDENTE:</string>
+    <string name="tipoResidenteOpcion1">1. Residentes habituales presentes</string>
+    <string name="tipoResidenteOpcion2">2. Residentes habituales ausentes (máximo por 6 meses)</string>
+    <string name="tipoResidenteOpcion3">3. Residentes temporales presentes</string>
 
     <!-- Seccion 5 Pregunta 1 y 2 -->
-    <string name="ApellidosNombresTitulo">APELLIDOS Y NOMBRES DE LOS MIEMBROS DEL HOGAR</string>
-    <string name="ApellidosNombres">Registre los apellidos y nombres de todas las personas que pertenecen a este HOGAR, que comen y duermen habitualmente en esta VIVIENDA (Incluya a las personas que permanecen en el hogar más de tres meses)</string>
-    <string name="ApellidosNombresEtiqueta1">APELLIDOS - Registre los dos apellidos</string>
-    <string name="ApellidosNombresEtiqueta2">NOMBRES - Registre los dos nombres</string>
+    <string name="apellidosNombresTitulo">APELLIDOS Y NOMBRES DE LOS MIEMBROS DEL HOGAR</string>
+    <string name="apellidosNombres">Registre los apellidos y nombres de todas las personas que pertenecen a este HOGAR, que comen y duermen habitualmente en esta VIVIENDA (Incluya a las personas que permanecen en el hogar más de tres meses)</string>
+    <string name="apellidosNombresEtiqueta1">APELLIDOS - Registre los dos apellidos</string>
+    <string name="apellidosNombresEtiqueta2">NOMBRES - Registre los dos nombres</string>
 
 
     <!-- Seccion 5 Pregunta 3 -->
-    <string name="SexoTitulo">SEXO</string>
-    <string name="SexoOpcion1">1. Hombre</string>
-    <string name="SexoOpcion2">2. Mujer</string>
+    <string name="sexoTitulo">SEXO</string>
+    <string name="sexoOpcion1">1. Hombre</string>
+    <string name="sexoOpcion2">2. Mujer</string>
 
     <!-- Seccion 5 Pregunta 4 y 5 -->
-    <string name="EdadTitulo">SEXO</string>
-    <string name="EdadFecha">Registre la fecha de nacimiento</string>
-    <string name="EdadEtiqueta1">¿Cuántos años cumplidos tiene (&#8230;)?</string>
-    <string name="EdadEtiqueta2">Para menores de 5 años cumplidos, anote años y meses</string>
-    <string name="EdadEtiqueta3">años</string>
-    <string name="EdadEtiqueta4">meses</string>
+    <string name="edadTitulo">SEXO</string>
+    <string name="edadFecha">Registre la fecha de nacimiento</string>
+    <string name="edadEtiqueta1">¿Cuántos años cumplidos tiene (&#8230;)?</string>
+    <string name="edadEtiqueta2">Para menores de 5 años cumplidos, anote años y meses</string>
+    <string name="edadEtiqueta3">años</string>
+    <string name="edadEtiqueta4">meses</string>
 
     <!-- Seccion 5 Pregunta 6 -->
-    <string name="CorreoTitulo">CORREO ELECTRÓNICO</string>
-    <string name="CorreoEtiqueta">¿Cuál es el correo electrónico de (&#8230;)?</string>
+    <string name="correoTitulo">CORREO ELECTRÓNICO</string>
+    <string name="correoEtiqueta">¿Cuál es el correo electrónico de (&#8230;)?</string>
 
     <!-- Seccion 5 Pregunta 7 -->
-    <string name="ControlTrabajoDocumentoTitulo">DOCUMENTACIÓN</string>
-    <string name="ControlTrabajoDocumento">¿(&#8230;) Tiene:</string>
-    <string name="ControlTrabajoDocumentoOpcion1">1. Número de cédula de ciudadanía o identidad ecuatoriana?</string>
-    <string name="ControlTrabajoDocumentoOpcion2">2. Partida de nacimiento ecuatoriana con número de cédula?</string>
-    <string name="ControlTrabajoDocumentoOpcion3">3. Número de cédula de ciudadanía o identidad ecuatoriana, pero no sabe?</string>
-    <string name="ControlTrabajoDocumentoOpcion4">4. Nunca tuvo número de cédula (mayores de 5 años y más)?</string>
-    <string name="ControlTrabajoDocumentoOpcion5">5. Partida de nacimiento ecuatoriana sin número de cédula?</string>
-    <string name="ControlTrabajoDocumentoOpcion6">6. No está inscrito(menores de 5 años)?</string>
-    <string name="ControlTrabajoDocumento1Opcion7">7. Pasaporte (extranjeros)</string>
+    <string name="controlTrabajoDocumentoTitulo">DOCUMENTACIÓN</string>
+    <string name="controlTrabajoDocumento">¿(&#8230;) Tiene:</string>
+    <string name="controlTrabajoDocumentoOpcion1">1. Número de cédula de ciudadanía o identidad ecuatoriana?</string>
+    <string name="controlTrabajoDocumentoOpcion2">2. Partida de nacimiento ecuatoriana con número de cédula?</string>
+    <string name="controlTrabajoDocumentoOpcion3">3. Número de cédula de ciudadanía o identidad ecuatoriana, pero no sabe?</string>
+    <string name="controlTrabajoDocumentoOpcion4">4. Nunca tuvo número de cédula (mayores de 5 años y más)?</string>
+    <string name="controlTrabajoDocumentoOpcion5">5. Partida de nacimiento ecuatoriana sin número de cédula?</string>
+    <string name="controlTrabajoDocumentoOpcion6">6. No está inscrito(menores de 5 años)?</string>
+    <string name="controlTrabajoDocumento1Opcion7">7. Pasaporte (extranjeros)</string>
 
     <!-- Seccion 5 Pregunta 8 -->
-    <string name="CedulaTitulo">CÉDULA DE CIUDADANÍA O IDENTIDAD ECUATORIANA</string>
-    <string name="Cedula">El número de cédula de ciudadanía ó identidad de (…) es</string>
-    <string name="CedulaEtiqueta">Para quienes dispongan del documento, copiar directamente del mismo</string>
+    <string name="cedulaTitulo">CÉDULA DE CIUDADANÍA O IDENTIDAD ECUATORIANA</string>
+    <string name="cedula">El número de cédula de ciudadanía ó identidad de (…) es</string>
+    <string name="cedulaEtiqueta">Para quienes dispongan del documento, copiar directamente del mismo</string>
 
     <!-- Seccion 5 Pregunta 9 -->
-    <string name="ControlTrabajoParentescoJefeHogar">PARENTESCO con relación al jefe(a) del HOGAR</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion1">1. Jefe(a) del Hogar</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion2">2. Esposo(a) o conviviente</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion3">3. Hijo(a)</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion4">4. Hijastro(a)</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion5">5. Padre o madre</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion6">6. Suegro(a)</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion7">7. Yerno o Nuera</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion8">8. Nieto(a)</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion9">9. Hermano(a)</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion10">10. Cuñado(a)</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion11">11. Otro familiar</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion12">12. No familiar</string>
-    <string name="ControlTrabajoParentescoJefeHogarOpcion13">13. Servicio dómestico puertas adentro</string>
+    <string name="controlTrabajoParentescoJefeHogar">PARENTESCO con relación al jefe(a) del HOGAR</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion1">1. Jefe(a) del Hogar</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion2">2. Esposo(a) o conviviente</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion3">3. Hijo(a)</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion4">4. Hijastro(a)</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion5">5. Padre o madre</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion6">6. Suegro(a)</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion7">7. Yerno o Nuera</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion8">8. Nieto(a)</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion9">9. Hermano(a)</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion10">10. Cuñado(a)</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion11">11. Otro familiar</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion12">12. No familiar</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion13">13. Servicio dómestico puertas adentro</string>
 
     <!-- Seccion 5 Pregunta 10 -->
-    <string name="ControlTrabajoEstadoCivil">ESTADO CIVIL O CONYUGAL</string>
-    <string name="ControlTrabajoEstadoCivilTitulo">¿Cuál es el estado civil o conyugal actual de (&#8230;)?</string>
-    <string name="ControlTrabajoEstadoCivilEtiqueta">Preguntar solamente a personas de 12 años y más</string>
-    <string name="ControlTrabajoEstadoCivilOpcion1">1. Unión libre</string>
-    <string name="ControlTrabajoEstadoCivilOpcion2">2. Casado(a)</string>
-    <string name="ControlTrabajoEstadoCivilOpcion3">3. Viudo(a)</string>
-    <string name="ControlTrabajoEstadoCivilOpcion4">4. Separado(a)</string>
-    <string name="ControlTrabajoEstadoCivilOpcion5">5. Divorciado(a)</string>
-    <string name="ControlTrabajoEstadoCivilOpcion6">6. Soltero(a)</string>
+    <string name="controlTrabajoEstadoCivil">ESTADO CIVIL O CONYUGAL</string>
+    <string name="controlTrabajoEstadoCivilTitulo">¿Cuál es el estado civil o conyugal actual de (&#8230;)?</string>
+    <string name="controlTrabajoEstadoCivilEtiqueta">Preguntar solamente a personas de 12 años y más</string>
+    <string name="controlTrabajoEstadoCivilOpcion1">1. Unión libre</string>
+    <string name="controlTrabajoEstadoCivilOpcion2">2. Casado(a)</string>
+    <string name="controlTrabajoEstadoCivilOpcion3">3. Viudo(a)</string>
+    <string name="controlTrabajoEstadoCivilOpcion4">4. Separado(a)</string>
+    <string name="controlTrabajoEstadoCivilOpcion5">5. Divorciado(a)</string>
+    <string name="controlTrabajoEstadoCivilOpcion6">6. Soltero(a)</string>
 
     <!-- Seccion 5 Pregunta 11 -->
-    <string name="ControlMadreHogar">MENORES DE 18 AÑOS</string>
-    <string name="ControlMadreHogarTitulo">¿La madre de (&#8230;) vive en este hogar?</string>
-    <string name="ControlMadreHogarEtiqueta">Cód de persona</string>
+    <string name="controlMadreHogar">MENORES DE 18 AÑOS</string>
+    <string name="controlMadreHogarTitulo">¿La madre de (&#8230;) vive en este hogar?</string>
+    <string name="controlMadreHogarEtiqueta">Cód de persona</string>
 
     <!-- Seccion 5 Pregunta 12 -->
-    <string name="NacionalidadTitulo">NACIONALIDAD</string>
-    <string name="Nacionalidad">¿Qué nacionalidad tiene (&#8230;)?</string>
-    <string name="NacionalidadOpcion1">1. Ecuatoriano</string>
-    <string name="NacionalidadOpcion2">2. Colombiano</string>
-    <string name="NacionalidadOpcion3">3. Estadounidense</string>
-    <string name="NacionalidadOpcion4">4. Peruano</string>
-    <string name="NacionalidadOpcion5">5. Español</string>
-    <string name="NacionalidadOpcion6">6. Cubano</string>
-    <string name="NacionalidadOpcion7">7. Venezolano</string>
-    <string name="NacionalidadOpcion8">8. Otra nacionalidad</string>
+    <string name="nacionalidadTitulo">NACIONALIDAD</string>
+    <string name="nacionalidad">¿Qué nacionalidad tiene (&#8230;)?</string>
+    <string name="nacionalidadOpcion1">1. Ecuatoriano</string>
+    <string name="nacionalidadOpcion2">2. Colombiano</string>
+    <string name="nacionalidadOpcion3">3. Estadounidense</string>
+    <string name="nacionalidadOpcion4">4. Peruano</string>
+    <string name="nacionalidadOpcion5">5. Español</string>
+    <string name="nacionalidadOpcion6">6. Cubano</string>
+    <string name="nacionalidadOpcion7">7. Venezolano</string>
+    <string name="nacionalidadOpcion8">8. Otra nacionalidad</string>
 
     <!-- Seccion 5 Pregunta 13-->
-    <string name="AutodefinicionEtnicaTitulo">AUTODEFINICIÓN ÉTNICA</string>
-    <string name="AutodefinicionEtnica">¿Cómo se identifica (&#8230;) según su cultura y costumbre:</string>
-    <string name="AutodefinicionEtnicaEtiqueta">Preguntar solamente a personas de 5 años y más</string>
-    <string name="AutodefinicionEtnicaOpcion1">1. Indígena?</string>
-    <string name="AutodefinicionEtnicaOpcion2">2. Afroecuatoriana/o Afrodescendiente?</string>
-    <string name="AutodefinicionEtnicaOpcion3">3. Negro(a)?</string>
-    <string name="AutodefinicionEtnicaOpcion4">4. Mulato(a)?</string>
-    <string name="AutodefinicionEtnicaOpcion5">5. Montubio(a)?</string>
-    <string name="AutodefinicionEtnicaOpcion6">6. Mestizo(a)?</string>
-    <string name="AutodefinicionEtnicaOpcion7">7. Blanco(a)?</string>
-    <string name="AutodefinicionEtnicaOpcion8">8. Otro?</string>
+    <string name="autodefinicionEtnicaTitulo">AUTODEFINICIÓN ÉTNICA</string>
+    <string name="autodefinicionEtnica">¿Cómo se identifica (&#8230;) según su cultura y costumbre:</string>
+    <string name="autodefinicionEtnicaEtiqueta">Preguntar solamente a personas de 5 años y más</string>
+    <string name="autodefinicionEtnicaOpcion1">1. Indígena?</string>
+    <string name="autodefinicionEtnicaOpcion2">2. Afroecuatoriana/o Afrodescendiente?</string>
+    <string name="autodefinicionEtnicaOpcion3">3. Negro(a)?</string>
+    <string name="autodefinicionEtnicaOpcion4">4. Mulato(a)?</string>
+    <string name="autodefinicionEtnicaOpcion5">5. Montubio(a)?</string>
+    <string name="autodefinicionEtnicaOpcion6">6. Mestizo(a)?</string>
+    <string name="autodefinicionEtnicaOpcion7">7. Blanco(a)?</string>
+    <string name="autodefinicionEtnicaOpcion8">8. Otro?</string>
 
     <!-- Seccion 5 Pregunta 14 -->
-    <string name="AporteSeguroTitulo">APORTE (Seguridad Social)</string>
-    <string name="AporteSeguro">Aporta actualmente (&#8230;) al:</string>
-    <string name="AporteSeguroEtiqueta">Para personas de 15 años y más</string>
-    <string name="AporteSeguroOpcion1">1. IESS General?</string>
-    <string name="AporteSeguroOpcion2">2. IESS Voluntario?</string>
-    <string name="AporteSeguroOpcion3">3. IESS Campesino?</string>
-    <string name="AporteSeguroOpcion4">4. IESS Trabajo no remunerado del hogar?</string>
-    <string name="AporteSeguroOpcion5">5. Seguro del ISSFA o ISSPOL?</string>
-    <string name="AporteSeguroOpcion6">6. No aporta?</string>
-    <string name="AporteSeguroOpcion7">7. No sabe?</string>
+    <string name="aporteSeguroTitulo">APORTE (Seguridad Social)</string>
+    <string name="aporteSeguro">Aporta actualmente (&#8230;) al:</string>
+    <string name="aporteSeguroEtiqueta">Para personas de 15 años y más</string>
+    <string name="aporteSeguroOpcion1">1. IESS General?</string>
+    <string name="aporteSeguroOpcion2">2. IESS Voluntario?</string>
+    <string name="aporteSeguroOpcion3">3. IESS Campesino?</string>
+    <string name="aporteSeguroOpcion4">4. IESS Trabajo no remunerado del hogar?</string>
+    <string name="aporteSeguroOpcion5">5. Seguro del ISSFA o ISSPOL?</string>
+    <string name="aporteSeguroOpcion6">6. No aporta?</string>
+    <string name="aporteSeguroOpcion7">7. No sabe?</string>
 
     <!-- Seccion 5 Pregunta 15 -->
-    <string name="SeguroSaludTitulo">SEGURO DE SALUD</string>
-    <string name="SeguroSalud">Para atención de salud (&#8230;) está cubierto por:</string>
-    <string name="SeguroSaludOpcion1">1. IESS, Seguro General?</string>
-    <string name="SeguroSaludOpcion2">2. IESS, Seguro Voluntario?</string>
-    <string name="SeguroSaludOpcion3">3. Seguro Campesino?</string>
-    <string name="SeguroSaludOpcion4">4. Seguro del ISSFA o ISSPOL?</string>
-    <string name="SeguroSaludOpcion5">5. Seguro de salud privado con hospitalización?</string>
-    <string name="SeguroSaludOpcion6">6. Seguro de salud privado sin hospitalización?</string>
-    <string name="SeguroSaludOpcion7">7. Servicios Municipales o de Consejos Provinciales?</string>
-    <string name="SeguroSaludOpcion8">8. Ministerio de Salud Pública?</string>
-    <string name="SeguroSaludOpcion9">9. Otros?</string>
-    <string name="SeguroSaludOpcion10">10. Niguno?</string>
+    <string name="seguroSaludTitulo">SEGURO DE SALUD</string>
+    <string name="seguroSalud">Para atención de salud (&#8230;) está cubierto por:</string>
+    <string name="seguroSaludOpcion1">1. IESS, Seguro General?</string>
+    <string name="seguroSaludOpcion2">2. IESS, Seguro Voluntario?</string>
+    <string name="seguroSaludOpcion3">3. Seguro Campesino?</string>
+    <string name="seguroSaludOpcion4">4. Seguro del ISSFA o ISSPOL?</string>
+    <string name="seguroSaludOpcion5">5. Seguro de salud privado con hospitalización?</string>
+    <string name="seguroSaludOpcion6">6. Seguro de salud privado sin hospitalización?</string>
+    <string name="seguroSaludOpcion7">7. Servicios Municipales o de Consejos Provinciales?</string>
+    <string name="seguroSaludOpcion8">8. Ministerio de Salud Pública?</string>
+    <string name="seguroSaludOpcion9">9. Otros?</string>
+    <string name="seguroSaludOpcion10">10. Niguno?</string>
 
+    <!-- Seccion 5 Pregunta 16 -->
+    <string name="poseeDiscapacidadTitulo">¿(&#8230;) Tiene alguna discapacidad de TIPO PERMANENTE: física, visual, auditiva, psicosocial o intelectual?</string>
 
+    <!-- Seccion 5 Pregunta 17 -->
+    <string name="carneDiscapacidadTitulo">Tiene (&#8230;) carné con discapacidad emitido por el CONADIS o MSP</string>
+
+    <!-- Seccion 5 Pregunta 18 -->
+    <string name="tipoDiscapacidadTitulo">La DISCAPACIDAD de (&#8230;) es:</string>
+    <string name="tipoDiscapacidadIntelectual">Intelectual (Dificultades en el aprendizaje)?</string>
+    <string name="tipoDiscapacidadFisica">Física - (Parálisis, amputaciones, entre otras)?</string>
+    <string name="tipoDiscapacidadCeguera">Visual (Ceguera total)?</string>
+    <string name="tipoDiscapacidadBajaVision">Visual (Baja visión)?</string>
+    <string name="tipoDiscapacidadSordera">Auditiva (Sordera Total)?</string>
+    <string name="tipoDiscapacidadHipoacusia">Auditiva (Hipoacusia)?</string>
+    <string name="tipoDiscapacidadPsicosociales">Psicosociales (Mental, autismo o enfermedades psiquiátricas)?</string>
+    <string name="tipoDiscapacidadPorcentaje">Porcentaje</string>
 
 </resources>
