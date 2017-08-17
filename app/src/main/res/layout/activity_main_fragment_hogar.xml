@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="1dp" >
 
         <!-- Titulo de la seccion I -->
 
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp" >
+            android:padding="5dp" >
 
             <TextView
                 android:id="@+id/textView1"
@@ -30,6 +30,310 @@
         </LinearLayout>
 
         <!-- Fin Titulo de la seccion I -->
+
+        <!-- Contenedor 1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+            <!-- Columna 1 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/borde_panel"
+                android:orientation="vertical"
+                android:padding="0dp">
+
+                <!-- 3 -1 Tipo de Hogar -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/tenenciaHogar" />
+
+                    <Spinner
+                        android:id="@+id/tipoHogarSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 4 -2 Documento Hogar -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/documentoHogar" />
+
+                    <Spinner
+                        android:id="@+id/documentoHogarSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 4 -3 Número de Cuartos -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/cuartos" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:text="@string/cuartosOpcion1" />
+                        <EditText
+                            android:id="@+id/numCuartosEditText"
+                            style="@style/respuestaTextosEditText"
+                            android:maxLength="2" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 4 -4 Número de Dormitorios -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/dormitorios" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:text="@string/dormitoriosOpcion1" />
+                        <EditText
+                            android:id="@+id/numDormitoriosEditText"
+                            style="@style/respuestaTextosEditText"
+                            android:maxLength="2" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 4 -5 Fuente Agua -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/fuenteAgua" />
+
+                    <Spinner
+                        android:id="@+id/fuenteAguaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <!-- FIN Columna 1 -->
+
+            <!-- Columna 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/borde_panel"
+                android:orientation="vertical">
+
+                <!-- 4 -6 Ubicacion Agua -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/ubicacionAgua" />
+
+                    <Spinner
+                        android:id="@+id/ubicacionAguaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 4 -7 Tratamiento Agua -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/tratamientoAgua" />
+
+                    <Spinner
+                        android:id="@+id/tratamientoAguaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+                <!-- 4 -8  Servicio Higiénico -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/servicioSanitario" />
+
+                    <Spinner
+                        android:id="@+id/servicioSanitarioSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 4 -9  Servicio Higiénico -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/ubicacionSanitario" />
+
+                    <Spinner
+                        android:id="@+id/ubicacionSanitarioSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 4 -10  Servicio Ducha -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/servicioDucha" />
+
+                    <Spinner
+                        android:id="@+id/servicioDuchaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 4 -11  Eliminación de Basura-->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/eliminaBasura" />
+
+                    <Spinner
+                        android:id="@+id/eliminaBasuraSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- FIN Columna 2 -->
+            <!-- Columna 3 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/borde_panel"
+                android:orientation="vertical">
+
+                <!-- 4 -12  Tipo de Alumbrado-->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/tipoAlumbrado" />
+
+                    <Spinner
+                        android:id="@+id/tipoAlumbradoSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 4 -13 Codigo Planilla-->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/codigoElectrico" />
+
+                    <EditText
+                        android:id="@+id/codigoElectricoEditText"
+                        style="@style/respuestaTextosEditText"
+                        android:maxLength="10" />
+                </LinearLayout>
+
+                <!-- 4 -14  Como se cocina-->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/energeticoCocina" />
+
+                    <Spinner
+                        android:id="@+id/energeticoCocinaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 4 -15  Uso de gas-->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/gasParaCalefon" />
+
+                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <RadioButton android:id="@+id/gasParaCalefonOpcion1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gasParaCalefonOpcion1" />
+                        <RadioButton android:id="@+id/gasParaCalefonOpcion2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gasParaCalefonOpcion2" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <!-- 4 -15  Disposicion de Terrenos-->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/terrenoAgropecuario" />
+
+                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <RadioButton android:id="@+id/terrenoAgropecuarioOpcion1rb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/terrenoAgropecuarioOpcion1" />
+                        <RadioButton android:id="@+id/terrenoAgropecuarioOpcion2rb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/terrenoAgropecuarioOpcion2" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/contenedorPregunta">
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/terrenoAgropecuarioSi" />
+                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <RadioButton android:id="@+id/terrenoAgropecuarioSiOpcion1rb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/terrenoAgropecuarioSiOpcion1" />
+                        <RadioButton android:id="@+id/terrenoAgropecuarioSiOpcion2rb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/terrenoAgropecuarioSiOpcion2" />
+                    </RadioGroup>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <!-- FIN Columna 3 -->
+
+        </LinearLayout>
+        <!-- FIN Contenedor 3 -->
+
+
 
 
     </LinearLayout>
