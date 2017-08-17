@@ -77,7 +77,85 @@
     <string name="tipoViviendaOpcion6">6. Choza</string>
     <string name="tipoViviendaOpcion7">7. Otro, cuál</string>
 
-
+    <!--  Seccion 3 Pregunta 2  -->
+    <string name="ViaAccesoPrincipal">2. Via de acceso principal a la VIVIENDA(por observación)</string>
+    <string name="ViaAccesoPrincipalOpcion1">1. Carretera/calle pavimentada o adoquinada</string>
+    <string name="ViaAccesoPrincipalOpcion2">2. Empedrado</string>
+    <string name="ViaAccesoPrincipalOpcion3">3. Lastrado / calle de tierra</string>
+    <string name="ViaAccesoPrincipalOpcion4">4. Sendero</string>
+    <string name="ViaAccesoPrincipalOpcion5">5. Río / mar</string>
+    <string name="ViaAccesoPrincipalOpcion6">6. Otros</string>
+    <!--  Seccion 3 Pregunta 3  -->
+    <string name="MaterialTecho">3. El material predominante del TECHO de la VIVIENDA es:</string>
+    <string name="MaterialTechoOpcion1">1. Hormigón/Losa/cemento?</string>
+    <string name="MaterialTechoOpcion2">2. Asbesto (eternit, eurolit)?</string>
+    <string name="MaterialTechoOpcion3">3. Zinc?</string>
+    <string name="MaterialTechoOpcion4">4. Teja?</string>
+    <string name="MaterialTechoOpcion5">5. Palma/paja/hoja?</string>
+    <string name="MaterialTechoOpcion6">6. Otro material?</string>
+    <!--  Seccion 3 Pregunta 4  -->
+    <string name="MaterialPiso">4. El material predominante del PISO de la VIVIENDA es:</string>
+    <string name="MaterialPisoOpcion1">1. Duela/parket, tablón tratado, tabloncillo, piso flotante?</string>
+    <string name="MaterialPisoOpcion2">2. Baldosa/vinyl, cerámica?</string>
+    <string name="MaterialPisoOpcion3">3. Mármol/marmetón?</string>
+    <string name="MaterialPisoOpcion4">4. Cemento/ladrillo?</string>
+    <string name="MaterialPisoOpcion5">5. Tabla/tablón(no tratada)?</string>
+    <string name="MaterialPisoOpcion6">6. Caña?</string>
+    <string name="MaterialPisoOpcion7">7. Tierra?</string>
+    <string name="MaterialPisoOpcion8">8. Otro material?</string>
+    <!--  Seccion 3 Pregunta 5  -->
+    <string name="MaterialParedes">5. El material predominante de las PAREDES de la VIVIENDA es:</string>
+    <string name="MaterialParedesOpcion1">1. Hormigón, Bloque/ladrillo?</string>
+    <string name="MaterialParedesOpcion3">2. Asbesto/cemento(fibrolit)?</string>
+    <string name="MaterialParedesOpcion4">3. Adobe/tapia?</string>
+    <string name="MaterialParedesOpcion5">4. Madera?</string>
+    <string name="MaterialParedesOpcion6">5. Bahareque (caña y carrizo revestido)?</string>
+    <string name="MaterialParedesOpcion7">6. Caña/estera?</string>
+    <string name="MaterialParedesOpcion8">7. Otro material?</string>
+    <!--  Seccion 3 Pregunta 6  -->
+    <string name="TechoPisoPared">6. El estado del (……) de la VIVIENDA es:</string>
+    <string name="TechoPisoParedOpcion1">Bueno?</string>
+    <string name="TechoPisoParedOpcion2">Regular?</string>
+    <string name="TechoPisoParedOpcion3">Malo?</string>
+    <string name="EstadoTecho">TECHO</string>
+    <string name="EstadoPiso">PISO</string>
+    <string name="EstadoPared">PARED</string>
+    <!--  FIN Seccion 3  -->
+    <!--  Seccion 4  -->
+    <string name="seccion4">SECCIÓN IV DATOS DE HOGAR</string>
+    <!--  Seccion 4 Pregunta 1  -->
+    <string name="TenenciaHogar">1. La vivienda que ocupa este HOGAR es:</string>
+    <string name="TenenciaHogarOpcion1">1. Propia y la está pagando?</string>
+    <string name="TenenciaHogarOpcion2">2. Propia y totalmente pagada?</string>
+    <string name="TenenciaHogarOpcion3">3. En arriendo?</string>
+    <string name="TenenciaHogarOpcion4">4. Anticresis y/o arriendo?</string>
+    <string name="TenenciaHogarOpcion5">5. Cedida o gratuita?</string>
+    <string name="TenenciaHogarOpcion6">6. Recibida por servicios?</string>
+    <string name="TenenciaHogarOpcion7">7. Otras</string>
+    <!--  Seccion 4 Pregunta 2  -->
+    <string name="DocumentoHogar">2. ¿Por esta vivienda los miembros de este hogar poseen:</string>
+    <string name="DocumentoHogarOpcion1">1. Escritura/título de propiedad registrado?</string>
+    <string name="DocumentoHogarOpcion2">2. Escritura en trámite?</string>
+    <string name="DocumentoHogarOpcion3">3. Promesa de compra-venta?</string>
+    <string name="DocumentoHogarOpcion4">4. Posesión efectiva?</string>
+    <string name="DocumentoHogarOpcion5">5. Otro documento?</string>
+    <string name="DocumentoHogarOpcion6">6. Ninguna</string>
+    <!--  Seccion 4 Pregunta 3  -->
+    <string name="Cuartos">2. ¿De cuantós CUARTOS dispone este HOGAR sin incluir cuartos de cocina, baños, garajes, o los dedicados para negocios?</string>
+    <string name="CuartosOpcion1">Número de Cuartos</string>
+    <!--  Seccion 4 Pregunta 4  -->
+    <string name="Dormitorios">3. ¿De estos CUARTOS, cuántos utiliza este HOGAR en forma exclusiva para dormir?</string>
+    <string name="DormitoriosOpcion1">Número de Dormitorios</string>
+    <!--  Seccion 4 Pregunta 5  -->
+    <string name="FuenteAgua">4. De dónde proviene principalmente el AGUA que recibe este HOGAR:</string>
+    <string name="FuenteAguaOpcion1">1. Red pública?</string>
+    <string name="FuenteAguaOpcion2">2. Pila/pileta o llave pública?</string>
+    <string name="FuenteAguaOpcion3">3. Otra fuente por tubería?</string>
+    <string name="FuenteAguaOpcion4">4. Carro repartidor/triciclo?</string>
+    <string name="FuenteAguaOpcion5">5. Pozo?</string>
+    <string name="FuenteAguaOpcion6">6. Río, vertiente o acequia?</string>
+    <string name="FuenteAguaOpcion7">7. Agua de lluvia?</string>
+    <string name="FuenteAguaOpcion8">8. Otro?</string>
 
 
 </resources>
