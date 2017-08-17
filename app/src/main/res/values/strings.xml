@@ -18,6 +18,9 @@
     <string name="tituloFormulario">Formularios</string>
 
     <!-- Etiquetas comunes -->
+    <string name="seccionVivienda">Sección Vivienda</string>
+    <string name="seccionHogar">Sección Hogar</string>
+    <string name="seccionMiembrosHogar">Sección Miembros del Hogar</string>
     <string name="seleccionRespuesta">Seleccione&#8230;</string>
     <string name="menu_salir">Salir</string>
     <string name="menu_buscar">Buscar/Actualizar</string>
