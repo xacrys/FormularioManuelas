@@ -6,14 +6,14 @@
     android:background="@color/blanco"
     android:fadeScrollbars="false"
     android:scrollbarThumbVertical="@color/gris_suave"
-    android:scrollbarTrackVertical="@color/gris" >
+    android:scrollbarTrackVertical="@color/gris">
 
     <LinearLayout
         android:id="@+id/pantallaControlViendaLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="10dp">
 
         <!-- Titulo de la seccion I -->
 
@@ -21,21 +21,694 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp" >
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/textView1"
                 style="@style/seccionTextView"
-                android:text="Vivienda" />
+                android:text="@string/tituloSecion1" />
         </LinearLayout>
 
         <!-- Fin Titulo de la seccion I -->
 
 
+        <!-- Contenedor 1 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false">
+
+            <!-- Contenedor provincias, cantones -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:focusableInTouchMode="true"
+                        android:text="@string/fase" />
+
+                    <TextView
+                        android:id="@+id/faseTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:focusableInTouchMode="true"
+                        android:text="@string/tipoLevantamiento" />
+
+                    <Spinner
+                        android:id="@+id/institucionSistemaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/area" />
+
+                    <Spinner
+                        android:id="@+id/areaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/provincia" />
+
+                    <Spinner
+                        android:id="@+id/provinciaSpinner"
+                        style="@style/respuestaSpinner"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/canton" />
+
+                    <Spinner
+                        android:id="@+id/cantonSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/parroquia" />
+
+                    <Spinner
+                        android:id="@+id/parroquiaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- FIN Contenedor provincias, cantones -->
+
+
+            <!-- Contenedor Identificacion Censal -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/parroquiaUrbana" />
+
+                    <Spinner
+                        android:id="@+id/parroquiaUrbanoSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/localidadComunidad" />
+
+                    <EditText
+                        android:id="@+id/localidadEditText"
+                        style="@style/respuestaTextosEditText"
+                        android:maxLength="50" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/areaPreguntaTextView"
+                    android:text="@string/identificacionCensal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/zona" />
+
+                    <Spinner
+                        android:id="@+id/zonaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/sector" />
+
+                    <Spinner
+                        android:id="@+id/sectorSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
+
+                            <TextView
+                                style="@style/etiquetaSmallTextView"
+                                android:text="@string/latitud" />
+
+                            <TextView
+                                android:id="@+id/latitudTextView"
+                                style="@style/respuestaNumerosEditText"
+                                android:enabled="false"
+                                android:inputType="none" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
+
+                            <TextView
+                                style="@style/etiquetaSmallTextView"
+                                android:text="@string/longitud" />
+
+                            <TextView
+                                android:id="@+id/longitudTextView"
+                                style="@style/respuestaNumerosEditText"
+                                android:enabled="false"
+                                android:inputType="none" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/capturarPuntoGPSbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableTop="@android:drawable/ic_menu_mylocation"
+                        android:text="@string/capturarLatitudLongitud" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- FIN Contenedor Identificacion Censal -->
+            <!-- Contenedor unidades -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/manzana" />
+
+                    <Spinner
+                        android:id="@+id/manzanaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/division" />
+
+                    <EditText
+                        android:id="@+id/divisionEditText"
+                        style="@style/respuestaTextosLetrasEditText"
+                        android:maxLength="2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/edificio" />
+
+                    <EditText
+                        android:id="@+id/edificioEditText"
+                        style="@style/respuestaNumerosEditText"
+                        android:maxLength="3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/vivienda" />
+
+                    <EditText
+                        android:id="@+id/viviendaEditText"
+                        style="@style/respuestaNumerosEditText"
+                        android:maxLength="4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/hogar" />
+
+                    <EditText
+                        android:id="@+id/hogarInicioEditText"
+                        style="@style/respuestaNumerosEditText"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:digits="12345"
+                        android:maxLength="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="@string/de" />
+
+                    <EditText
+                        android:id="@+id/hogarFinalEditText"
+                        style="@style/respuestaNumerosEditText"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:digits="12345"
+                        android:maxLength="1" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- FIN Contenedor unidades -->
+        </LinearLayout>
+
+        <!-- FIN Contenedor 1 -->
+
+
+        <!-- Contenedor 2 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                style="@style/areaPreguntaTextView"
+                android:text="@string/direccion" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/calle1" />
+
+                <EditText
+                    android:id="@+id/calleCaminoEditText"
+                    style="@style/respuestaTextosEditText"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:maxLength="100" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/numeroCasa" />
+
+                <EditText
+                    android:id="@+id/numeroEditText"
+                    style="@style/respuestaTextosEditText"
+                    android:layout_width="200dp"
+                    android:maxLength="8" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/calle2" />
+
+                <EditText
+                    android:id="@+id/calleCamino2EditText"
+                    style="@style/respuestaTextosEditText"
+                    android:maxLength="100" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/conjuntoHabitacional" />
+
+                <EditText
+                    android:id="@+id/nombreConjuntoEditText"
+                    style="@style/respuestaTextosEditText"
+                    android:maxLength="60"
+                    android:nextFocusForward="@+id/numeroLoteEditText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lote" />
+
+                <EditText
+                    android:id="@+id/numeroLoteEditText"
+                    style="@style/respuestaTextosEditText"
+                    android:layout_width="80dp"
+                    android:maxLength="4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/departamento" />
+
+                <EditText
+                    android:id="@+id/numeroDepartamentoEditText"
+                    style="@style/respuestaTextosEditText"
+                    android:layout_width="80dp"
+                    android:maxLength="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/piso" />
+
+                <EditText
+                    android:id="@+id/numeroPisoEditText"
+                    style="@style/respuestaNumerosEditText"
+                    android:layout_width="80dp"
+                    android:maxLength="2"
+                    android:nextFocusForward="@+id/numeroTelefonicoFijoEditText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/telefonoConvencional" />
+
+                <EditText
+                    android:id="@+id/telefonoConvencionalEditText"
+                    style="@style/respuestaNumerosEditText"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:maxLength="9" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/telefonoCelular" />
+
+                <EditText
+                    android:id="@+id/telefonoCelularEditText"
+                    style="@style/respuestaNumerosEditText"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:maxLength="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/referanciaUbicacion" />
+
+                <EditText
+                    android:id="@+id/referenciaUbicacionEditText"
+                    style="@style/respuestaTextosEditText"
+                    android:imeOptions="actionDone"
+                    android:maxLength="250" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/seccionTextView"
+                android:text="@string/seccion2" />
+
+            <Spinner
+                android:id="@+id/seccion2CondicionOcupacionSpinner"
+                style="@style/respuestaSpinner" />
+
+            <TextView
+                style="@style/seccionTextView"
+                android:text="@string/seccion3" />
+
+        </LinearLayout>
+        <!-- FIN Contenedor 2 -->
+
+        <!-- Contenedor 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <!-- Columna 1 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/borde_panel"
+                android:orientation="vertical"
+                android:padding="0dp">
+
+                <!-- 3 -1 Tipo de Vivienda -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/tipoVivienda" />
+
+                    <Spinner
+                        android:id="@+id/tipoViviendaSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 3 -2 Viveinda Via Acceso Principal -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/viaAccesoPrincipal" />
+
+                    <Spinner
+                        android:id="@+id/viaAccesoPrincipalSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- FIN Columna 1 -->
+
+            <!-- Columna 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/borde_panel"
+                android:orientation="vertical">
+
+                <!-- 3 -3 Vivienda Material Techo -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/materialTecho" />
+
+                    <Spinner
+                        android:id="@+id/materialTechoTechoSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 3 -4 VIvienda Material Piso -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/materialPiso" />
+
+                    <Spinner
+                        android:id="@+id/materialPisoSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- FIN Columna 2 -->
+            <!-- Columna 3 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/borde_panel"
+                android:orientation="vertical">
+
+                <!-- 3 -5 Vivienda Material Paredes -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/materialParedes" />
+
+                    <Spinner
+                        android:id="@+id/seccion3ViviendaMaterialParedesSpinner"
+                        style="@style/respuestaSpinner" />
+                </LinearLayout>
+
+                <!-- 3 -6 vivienda estado techo -->
+                <LinearLayout style="@style/contenedorPregunta">
+
+                    <TextView
+                        style="@style/areaPreguntaTextView"
+                        android:text="@string/techoPisoPared" />
+
+                    <!-- Vivienda Estado Techo -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:text="@string/estadoTecho" />
+
+                        <Spinner
+                            android:id="@+id/estadoTechoSpinner"
+                            style="@style/respuestaSpinner" />
+                    </LinearLayout>
+
+                    <!-- Vivienda Estado Piso -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:text="@string/estadoPiso" />
+
+                        <Spinner
+                            android:id="@+id/estadoPisoSpinner"
+                            style="@style/respuestaSpinner" />
+                    </LinearLayout>
+
+                    <!-- Vivienda Estado Paredes -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:text="@string/estadoPared" />
+                        <Spinner
+                            android:id="@+id/estadoParedSpinner"
+                            style="@style/respuestaSpinner" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- FIN Columna 3 -->
+
+        </LinearLayout>
+        <!-- FIN Contenedor 3 -->
+
+        <!-- Contenedor 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <include layout="@layout/reusable_bottom_actionbar" />
+        </LinearLayout>
     </LinearLayout>
-
-
-
-
-
+    <!-- FIN Contenedor 4 -->
 </ScrollView>
