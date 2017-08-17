@@ -141,13 +141,13 @@
     <string name="DocumentoHogarOpcion5">5. Otro documento?</string>
     <string name="DocumentoHogarOpcion6">6. Ninguna</string>
     <!--  Seccion 4 Pregunta 3  -->
-    <string name="Cuartos">2. ¿De cuantós CUARTOS dispone este HOGAR sin incluir cuartos de cocina, baños, garajes, o los dedicados para negocios?</string>
+    <string name="Cuartos">3. ¿De cuantós CUARTOS dispone este HOGAR sin incluir cuartos de cocina, baños, garajes, o los dedicados para negocios?</string>
     <string name="CuartosOpcion1">Número de Cuartos</string>
     <!--  Seccion 4 Pregunta 4  -->
-    <string name="Dormitorios">3. ¿De estos CUARTOS, cuántos utiliza este HOGAR en forma exclusiva para dormir?</string>
+    <string name="Dormitorios">4. ¿De estos CUARTOS, cuántos utiliza este HOGAR en forma exclusiva para dormir?</string>
     <string name="DormitoriosOpcion1">Número de Dormitorios</string>
     <!--  Seccion 4 Pregunta 5  -->
-    <string name="FuenteAgua">4. De dónde proviene principalmente el AGUA que recibe este HOGAR:</string>
+    <string name="FuenteAgua">5. De dónde proviene principalmente el AGUA que recibe este HOGAR:</string>
     <string name="FuenteAguaOpcion1">1. Red pública?</string>
     <string name="FuenteAguaOpcion2">2. Pila/pileta o llave pública?</string>
     <string name="FuenteAguaOpcion3">3. Otra fuente por tubería?</string>
@@ -156,6 +156,87 @@
     <string name="FuenteAguaOpcion6">6. Río, vertiente o acequia?</string>
     <string name="FuenteAguaOpcion7">7. Agua de lluvia?</string>
     <string name="FuenteAguaOpcion8">8. Otro?</string>
+
+    <!-- Seccion 4 Pregunta 6 -->
+    <string name="UbicacionAgua">6. El AGUA que recibe este hogar es por:</string>
+    <string name="UbicacionAguaOpcion1">1. Tubería dentro de la vivienda?</string>
+    <string name="UbicacionAguaOpcion2">2. Tubería fuera de la vivienda PERO DENTRO del edificio, lote o terreno?</string>
+    <string name="UbicacionAguaOpcion3">3. Tubería FUERA DEL EDIFICIO, lote o terreno?</string>
+    <string name="UbicacionAguaOpcion4">4. No recibe agua por tubería sino por otros medios?</string>
+
+    <!-- Seccion 4 Pregunta 7 -->
+    <string name="TratamientoAgua">7. Principalmente el tratamiento que le dan al AGUA que obtiene de (Pr.5) antes de beberla es:</string>
+    <string name="TratamientoAguaOpcion1">1. La hierven?</string>
+    <string name="TratamientoAguaOpcion2">2. Le echan cloro?</string>
+    <string name="TratamientoAguaOpcion3">3. La filtran?</string>
+    <string name="TratamientoAguaOpcion4">4. Compran agua purificada?</string>
+    <string name="TratamientoAguaOpcion5">5. Ninguno, tal como la obtienen?</string>
+
+    <!-- Seccion 4 Pregunta 8 -->
+    <string name="ServicioSanitario">8. El tipo se SERVICIO HIGIÉNICO con que cuenta el HOGAR es:</string>
+    <string name="ServicioSanitarioOpcion1">1. Escusado/Inodoro y alcantarillado?</string>
+    <string name="ServicioSanitarioOpcion2">2. Escusado/Inodoro y pozo séptico?</string>
+    <string name="ServicioSanitarioOpcion3">3. Escusado/Inodoro y pozo ciego?</string>
+    <string name="ServicioSanitarioOpcion4">4. Descarga directa al mar, río, lago o quebrada?</string>
+    <string name="ServicioSanitarioOpcion5">5. Letrina?</string>
+    <string name="ServicioSanitarioOpcion6">6. No tiene?</string>
+
+    <!-- Seccion 4 Pregunta 9 -->
+    <string name="UbicacionSanitario">9. El SERVICIO HIGIÉNICO con que cuenta el HOGAR está ubicado:</string>
+    <string name="UbicacionSanitarioOpcion1">1. Dentro de la vivienda?</string>
+    <string name="UbicacionSanitarioOpcion2">2. Fuera de la vivienda PERO EN EL LOTE O TERRENO?</string>
+    <string name="UbicacionSanitarioOpcion3">3. FUERA de la vivienda, lote o Terreno?</string>
+
+    <!-- Seccion 4 Pregunta 10 -->
+    <string name="ServicioDucha">10. El servicio de DUCHA con que cuenta el HOGAR es:</string>
+    <string name="ServicioDuchaOpcion1">1. Exclusivo del hogar?</string>
+    <string name="ServicioDuchaOpcion2">2. Compartido con otros hogares?</string>
+    <string name="ServicioDuchaOpcion3">3. No tiene?</string>
+
+    <!-- Seccion 4 Pregunta 11 -->
+    <string name="EliminaBasura">11. Cómo ELIMINAN en este hogar la mayor parte de la BASURA?</string>
+    <string name="EliminaBasuraOpcion1">1. Servicio Municipal</string>
+    <string name="EliminaBasuraOpcion2">2. La botan a la calle/quebrada/río/lote</string>
+    <string name="EliminaBasuraOpcion3">3. La queman</string>
+    <string name="EliminaBasuraOpcion4">4. La entierran</string>
+    <string name="EliminaBasuraOpcion5">5. Reciclan</string>
+    <string name="EliminaBasuraOpcion6">6. Contratan el servicio</string>
+    <string name="EliminaBasuraOpcion7">7. Otro</string>
+    <!-- Seccion 4 Pregunta 12 -->
+    <string name="TipoAlumbrado">12. ¿Con qué tipo de ALUMBRADO cuenta este HOGAR:</string>
+    <string name="TipoAlumbradoOpcion1">1. Empresa eléctrica pública?</string>
+    <string name="TipoAlumbradoOpcion2">2. Planta eléctrica privada?</string>
+    <string name="TipoAlumbradoOpcion3">3. Panel solar?</string>
+    <string name="TipoAlumbradoOpcion4">4. Vela/ candil/ mechero/ gas?</string>
+    <string name="TipoAlumbradoOpcion5">5. Ninguno?</string>
+
+    <!-- Seccion 4 Pregunta 13 -->
+    <string name="CodigoElectrico">13. Solicite la planilla de pago y transcriba el código único eléctico nacional:</string>
+
+    <!-- Seccion 4 Pregunta 14 -->
+    <string name="EnergeticoCocina">14. En este hogar se COCINA principalmente con:</string>
+    <string name="EnergeticoCocinaOpcion1">1. Gas?</string>
+    <string name="EnergeticoCocinaOpcion2">2. Leña/ carbón?</string>
+    <string name="EnergeticoCocinaOpcion3">3. Electricidad?</string>
+    <string name="EnergeticoCocinaOpcion4">4. Otro?</string>
+    <string name="EnergeticoCocinaOpcion5">5. No cocina?</string>
+
+    <!-- Seccion 4 Pregunta 15 -->
+    <string name="GasParaCalefon">15. Utiliza este hogar GAS doméstico para calefón</string>
+    <string name="GasParaCalefonOpcion1">1. SI</string>
+    <string name="GasParaCalefonOpcion2">2. NO</string>
+
+    <!-- Seccion 4 Pregunta 16 -->
+    <string name="TerrenoAgropecuario">16. Dispone este Hogar de terrenos? (Excluye uso agropecuario) </string>
+    <string name="TerrenoAgropecuarioOpcion1">1. SI</string>
+    <string name="TerrenoAgropecuarioOpcion2">2. NO</string>
+
+    <!-- Seccion 4 Pregunta 16.1 -->
+    <string name="TerrenoAgropecuarioSi">Uno o mas terrenos cuenta con servicios básicos?</string>
+    <string name="TerrenoAgropecuarioSiOpcion1">1. SI</string>
+    <string name="TerrenoAgropecuarioSiOpcion2">2. NO</string>
+
+    <!-- FIN Seccion 4 -->
 
 
 </resources>
