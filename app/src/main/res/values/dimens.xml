@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <dimen name="ancho_panel">350dp</dimen>
+    <dimen name="alto_panel">350dp</dimen>
+    <dimen name="ancho_localizacion_spinner">200dp</dimen>
+    <dimen name="ancho_preguntas_spinner">200dp</dimen>
+    <dimen name="border_width">0.5dp</dimen>
+    <dimen name="border_offset">-0.5dp</dimen>
+</resources>

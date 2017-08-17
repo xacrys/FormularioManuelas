@@ -1,0 +1,293 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controlador.actividades.FormulariosActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="0dp" 
+        android:background="@color/blanco">
+
+        <!-- Titulo de la seccion I -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/seccionTextView"
+                android:text="@string/busquedaFormularios" />
+
+           <!--   <TextView
+                android:id="@+id/textView1"
+                style="@style/areaTextView"
+                android:text="@string/parametrosBusqueda" />-->
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            
+            
+             <LinearLayout
+                android:id="@+id/linearLayoutPanel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:paddingTop="20dp" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="700dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp" >
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/fase" />
+
+                    <Spinner
+                        android:id="@+id/faseSpinner"
+                        style="@style/respuestaBusquedaSpinner" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/estado_formulario" />
+
+                    <Spinner
+                        android:id="@+id/estadoSpinner"
+                        style="@style/respuestaBusquedaSpinner"
+                        android:layout_width="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                     android:weightSum="2" 
+                    >
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/fechaInicio" />
+
+                    <Button
+                        android:id="@+id/fechaInicioButton"
+                        style="@style/respuestaBusquedaSpinner"
+                        android:drawableLeft="@android:drawable/ic_menu_agenda"
+                        android:text="@string/cambiarFecha" >
+                    </Button>
+
+                    <TextView
+                       android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                    <!--<Switch
+                        android:id="@+id/sincronizadoSwitch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="30dp"
+                        android:text="Sincronizados:" />-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:weightSum="2" >
+
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:text="@string/fechaFin" />
+
+                    <Button
+                        android:id="@+id/fechaFinButton"
+                        style="@style/respuestaBusquedaSpinner"
+                        android:drawableLeft="@android:drawable/ic_menu_agenda"
+                        android:text="@string/cambiarFecha" >
+                    </Button>
+
+                    <Button
+                        android:id="@+id/buscarFormulariosButton"
+                           style="@style/respuestaBusquedaSpinner"
+                        android:drawableLeft="@android:drawable/ic_menu_search"
+                        android:text="@string/menu_buscar" />
+                </LinearLayout>
+            </LinearLayout>
+            
+            <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" 
+                    android:background="@drawable/borde_frame"
+                    android:layout_marginLeft="150dp">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Simbologia de colores"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" 
+                        android:padding="10dp"
+                        android:background="@color/orange_light">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Incompletas sincronizadas" />
+                    </LinearLayout>
+                    
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" 
+                        android:padding="10dp"
+                        android:background="@color/green_light">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sincronizadas" />
+                    </LinearLayout>
+                    
+                    
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" 
+                        android:padding="10dp"
+                        android:background="@color/blanco">
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="No sincronizadas" />
+                    </LinearLayout>
+                    
+                    
+                    
+                </LinearLayout>
+            
+                   </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+            
+                    
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:shrinkColumns="*" >
+            
+                 <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                 android:background="#b0b0b0"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dip"
+                    android:text="Tabla de formularios"
+                    android:textSize="18dp" 
+                    android:textStyle="bold"/>
+                
+                <TextView
+                    android:id="@+id/paginationInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dip"
+                    android:text="Pagina"
+                    android:textSize="18dp" />
+
+                
+                    <HorizontalScrollView 
+                        android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                        <LinearLayout
+                    android:id="@+id/paginationLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+                         </LinearLayout>
+                    </HorizontalScrollView>
+               
+            </LinearLayout>
+                 <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#8adec7"
+                    android:padding="5dp" >
+
+                    <TextView
+                        android:id="@+id/TextView04"
+                         android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:gravity="left"
+                        android:padding="10dip"
+                        android:text="codigo"
+                        android:textColor="#000000" />
+
+
+                     
+                </TableRow>
+            </TableLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fadeScrollbars="false"
+                android:scrollbarThumbVertical="@color/gris_suave"
+                android:scrollbarTrackVertical="@color/gris" >
+                 
+                      <TableLayout
+                        android:id="@+id/formulariosTableLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                       >
+                    
+
+                </TableLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
