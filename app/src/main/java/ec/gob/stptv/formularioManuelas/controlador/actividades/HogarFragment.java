@@ -27,14 +27,18 @@ public class HogarFragment extends Fragment {
 
         Bundle extra = getActivity().getIntent().getExtras();
 
-        this.getViews(item);
-        this.loadPreguntas();
+        this.obtenerVistas(item);
+        this.cargarPreguntas();
 
 
         return item;
     }
 
-    private void getViews(View item) {
+    /**
+     * Método para obtener las controles de la vista
+     * @param item
+     */
+    private void obtenerVistas(View item) {
 
         tipoHogarSpinner = item
                 .findViewById(R.id.tipoHogarSpinner);
@@ -43,16 +47,50 @@ public class HogarFragment extends Fragment {
 
     }
 
-
-    /***
-     * Método para cargar las preguntas
+    /**
+     * Método que llena los controles con datos de la base
      */
-    private void loadPreguntas() {
+    private void llenarCamposVivienda() {
+
+    }
+
+    /**
+     * Método que carga las preguntas de los controles de la aplicacion por ejemplo los spinner
+     */
+    private void cargarPreguntas() {
 
         tipoHogarSpinner.setAdapter(HogarPreguntas
                 .getTipoViviendaAdapter(getActivity()));
+    }
+
+    /**
+     * Método para habilitar o desabilitar los controles de la vista
+     */
+    public void habilitarDeshabilitar() {
+
+    }
+
+    /**
+     * Método que guarda la vivienda en la base de datos
+     */
+    private void guardar() {
+
+    }
+
+    /**
+     * Método que permite hacer los saltos de la pregunta
+     */
+    private void mallasValidacion() {
 
 
     }
 
+    /**
+     * Método que valida campos obligatorios, numeros de telefonos etc.
+     * @return
+     */
+    protected boolean validarCampos() {
+
+        return false;
+    }
 }
