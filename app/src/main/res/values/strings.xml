@@ -309,7 +309,7 @@
     <!-- Seccion 5 Pregunta 7 -->
     <string name="tituloTodasPersonas">PARA TODAS LAS PERSONAS</string>
     <string name="controlTrabajoDocumentoTitulo">DOCUMENTACIÓN</string>
-    <string name="controlTrabajoDocumento">¿(&#8230;) Tiene:</string>
+    <string name="controlTrabajoDocumento">7. ¿(&#8230;) Tiene:</string>
     <string name="controlTrabajoDocumentoOpcion1">1. Número de cédula de ciudadanía o identidad ecuatoriana?</string>
     <string name="controlTrabajoDocumentoOpcion2">2. Partida de nacimiento ecuatoriana con número de cédula?</string>
     <string name="controlTrabajoDocumentoOpcion3">3. Número de cédula de ciudadanía o identidad ecuatoriana, pero no sabe?</string>
@@ -320,12 +320,12 @@
 
     <!-- Seccion 5 Pregunta 8 -->
     <string name="cedulaTitulo">CÉDULA DE CIUDADANÍA O IDENTIDAD ECUATORIANA</string>
-    <string name="cedula">El número de cédula de ciudadanía ó identidad de (…) es</string>
+    <string name="cedula">8. El número de cédula de ciudadanía ó identidad de (…) es</string>
     <string name="cedulaEtiqueta">Para quienes dispongan del documento, copiar directamente del mismo</string>
     <string name="etiquetaCedula">Cédula</string>
 
     <!-- Seccion 5 Pregunta 9 -->
-    <string name="controlTrabajoParentescoJefeHogar">PARENTESCO con relación al jefe(a) del HOGAR</string>
+    <string name="controlTrabajoParentescoJefeHogar">9. PARENTESCO con relación al jefe(a) del HOGAR</string>
     <string name="controlTrabajoParentescoJefeHogarOpcion1">1. Jefe(a) del Hogar</string>
     <string name="controlTrabajoParentescoJefeHogarOpcion2">2. Esposo(a) o conviviente</string>
     <string name="controlTrabajoParentescoJefeHogarOpcion3">3. Hijo(a)</string>
@@ -342,7 +342,7 @@
 
     <!-- Seccion 5 Pregunta 10 -->
     <string name="controlTrabajoEstadoCivil">ESTADO CIVIL O CONYUGAL</string>
-    <string name="controlTrabajoEstadoCivilTitulo">¿Cuál es el estado civil o conyugal actual de (&#8230;)?</string>
+    <string name="controlTrabajoEstadoCivilTitulo">10. ¿Cuál es el estado civil o conyugal actual de (&#8230;)?</string>
     <string name="controlTrabajoEstadoCivilEtiqueta">Preguntar solamente a personas de 12 años y más</string>
     <string name="controlTrabajoEstadoCivilOpcion1">1. Unión libre</string>
     <string name="controlTrabajoEstadoCivilOpcion2">2. Casado(a)</string>
@@ -353,12 +353,12 @@
 
     <!-- Seccion 5 Pregunta 11 -->
     <string name="controlMadreHogar">MENORES DE 18 AÑOS</string>
-    <string name="controlMadreHogarTitulo">¿La madre de (&#8230;) vive en este hogar?</string>
+    <string name="controlMadreHogarTitulo">11. ¿La madre de (&#8230;) vive en este hogar?</string>
     <string name="controlMadreHogarEtiqueta">Cód de persona</string>
 
     <!-- Seccion 5 Pregunta 12 -->
     <string name="nacionalidadTitulo">NACIONALIDAD</string>
-    <string name="nacionalidad">¿Qué nacionalidad tiene (&#8230;)?</string>
+    <string name="nacionalidad">12. ¿Qué nacionalidad tiene (&#8230;)?</string>
     <string name="nacionalidadOpcion1">1. Ecuatoriano</string>
     <string name="nacionalidadOpcion2">2. Colombiano</string>
     <string name="nacionalidadOpcion3">3. Estadounidense</string>
@@ -370,7 +370,7 @@
 
     <!-- Seccion 5 Pregunta 13-->
     <string name="autodefinicionEtnicaTitulo">AUTODEFINICIÓN ÉTNICA</string>
-    <string name="autodefinicionEtnica">¿Cómo se identifica (&#8230;) según su cultura y costumbre:</string>
+    <string name="autodefinicionEtnica">13. ¿Cómo se identifica (&#8230;) según su cultura y costumbre:</string>
     <string name="autodefinicionEtnicaEtiqueta">Preguntar solamente a personas de 5 años y más</string>
     <string name="autodefinicionEtnicaOpcion1">1. Indígena?</string>
     <string name="autodefinicionEtnicaOpcion2">2. Afroecuatoriana/o Afrodescendiente?</string>
@@ -383,7 +383,7 @@
 
     <!-- Seccion 5 Pregunta 14 -->
     <string name="aporteSeguroTitulo">APORTE (Seguridad Social)</string>
-    <string name="aporteSeguro">Aporta actualmente (&#8230;) al:</string>
+    <string name="aporteSeguro">14. Aporta actualmente (&#8230;) al:</string>
     <string name="aporteSeguroEtiqueta">Para personas de 15 años y más</string>
     <string name="aporteSeguroOpcion1">1. IESS General?</string>
     <string name="aporteSeguroOpcion2">2. IESS Voluntario?</string>
@@ -395,7 +395,7 @@
 
     <!-- Seccion 5 Pregunta 15 -->
     <string name="seguroSaludTitulo">SEGURO DE SALUD</string>
-    <string name="seguroSalud">Para atención de salud (&#8230;) está cubierto por:</string>
+    <string name="seguroSalud">15. Para atención de salud (&#8230;) está cubierto por:</string>
     <string name="seguroSaludOpcion1">1. IESS, Seguro General?</string>
     <string name="seguroSaludOpcion2">2. IESS, Seguro Voluntario?</string>
     <string name="seguroSaludOpcion3">3. Seguro Campesino?</string>
@@ -409,13 +409,13 @@
 
     <!-- Seccion 5 Pregunta 16 -->
     <string name="discapacidadEtiqueta">DISCAPACIDAD</string>
-    <string name="poseeDiscapacidadTitulo">¿(&#8230;) Tiene alguna discapacidad de TIPO PERMANENTE: física, visual, auditiva, psicosocial o intelectual?</string>
+    <string name="poseeDiscapacidadTitulo">16. ¿(&#8230;) Tiene alguna discapacidad de TIPO PERMANENTE: física, visual, auditiva, psicosocial o intelectual?</string>
 
     <!-- Seccion 5 Pregunta 17 -->
-    <string name="carneDiscapacidadTitulo">Tiene (&#8230;) carné con discapacidad emitido por el CONADIS o MSP</string>
+    <string name="carneDiscapacidadTitulo">17. Tiene (&#8230;) carné con discapacidad emitido por el CONADIS o MSP</string>
 
     <!-- Seccion 5 Pregunta 18 -->
-    <string name="tipoDiscapacidadTitulo">La DISCAPACIDAD de (&#8230;) es:</string>
+    <string name="tipoDiscapacidadTitulo">18. La DISCAPACIDAD de (&#8230;) es:</string>
     <string name="tipoDiscapacidadIntelectual">Intelectual (Dificultades en el aprendizaje)?</string>
     <string name="tipoDiscapacidadFisica">Física - (Parálisis, amputaciones, entre otras)?</string>
     <string name="tipoDiscapacidadCeguera">Visual (Ceguera total)?</string>
@@ -426,14 +426,14 @@
     <string name="tipoDiscapacidadPorcentaje">Porcentaje</string>
 
     <!-- Seccion 5 Pregunta 19 -->
-    <string name="asistenciaEstablecimiento">Actualmente (&#8230;) asiste a algún establecimiento de Educación</string>
+    <string name="asistenciaEstablecimiento">19. Actualmente (&#8230;) asiste a algún establecimiento de Educación</string>
     <string name="asistenciaEstablecimientoOpcion1">1. Ordinaria?</string>
     <string name="asistenciaEstablecimientoOpcion2">2. Especializada?</string>
     <string name="asistenciaEstablecimientoOpcion3">3. Superior?</string>
     <string name="asistenciaEstablecimientoOpcion4">4. No asiste?</string>
 
     <!-- Seccion 5 Pregunta 20 -->
-    <string name="servicioProteccion">Durante los ÚLTIMOS 12 MESES(de&#8230;a&#8230;), recibió (&#8230;) atención en algún servicio de protección social público o privado</string>
+    <string name="servicioProteccion">20. Durante los ÚLTIMOS 12 MESES(de&#8230;a&#8230;), recibió (&#8230;) atención en algún servicio de protección social público o privado</string>
     <string name="servicioProteccionOpcion1">1. Centros Infantiles del Buen Vivir - CIBV?</string>
     <string name="servicioProteccionOpcion2">2. Creciendo con Nuestros Hijos - CNH?</string>
     <string name="servicioProteccionOpcion3">3. Centros de referencia o acogida?</string>
@@ -442,30 +442,30 @@
     <string name="servicioProteccionOpcion6">6. No recibió?</string>
 
     <!-- Seccion 5 Pregunta 21 -->
-    <string name="necesitaAyudaTecnica">(&#8230;) necesita ayudas técnicas</string>
+    <string name="necesitaAyudaTecnica">21. (&#8230;) necesita ayudas técnicas</string>
 
     <!-- Seccion 5 Pregunta 22 -->
-    <string name="recibioAyudaTecnica">(&#8230;) recibió ayudas técnicas</string>
+    <string name="recibioAyudaTecnica">22. (&#8230;) recibió ayudas técnicas</string>
 
     <!-- Seccion 5 Pregunta 24-->
-    <string name="institucionAyudasTecnicas">De qué Institución recibió las ayudas técnicas (&#8230;):</string>
+    <string name="institucionAyudasTecnicas">24. De qué Institución recibió las ayudas técnicas (&#8230;):</string>
     <string name="institucionAyudasTecnicasOpcionA">A. Gobierno Central?</string>
     <string name="institucionAyudasTecnicasOpcionB">B. Gobiernos Autónomos Descentralizados - GADs?</string>
     <string name="institucionAyudasTecnicasOpcionC">C. Organizaciones Privadas?</string>
     <string name="institucionAyudasTecnicasOpcionD">D. Ninguna?</string>
 
     <!-- Seccion 5 Pregunta 25-->
-    <string name="sufreEnfermedades">(&#8230;) sufre de alguna:</string>
+    <string name="sufreEnfermedades">25. (&#8230;) sufre de alguna:</string>
     <string name="sufreEnfermedadesOpcion1">1. Enfermedad Catastrófica?</string>
     <string name="sufreEnfermedadesOpcion2">2. Enfermedad Rara?</string>
     <string name="sufreEnfermedadesOpcion3">3. VIH (SIDA)?</string>
     <string name="sufreEnfermedadesOpcion4">4. Ninguna?</string>
 
     <!-- Seccion 5 Pregunta 26-->
-    <string name="diagnosticoMedico">Por (&#8230;), (&#8230;) tiene diagnóstico médico:</string>
+    <string name="diagnosticoMedico">26. Por (&#8230;), (&#8230;) tiene diagnóstico médico:</string>
 
     <!-- Seccion 5 Pregunta 27-->
-    <string name="enfermedadCatastrofica">Cuál es la enfermdad catastrófica:</string>
+    <string name="enfermedadCatastrofica">27. Cuál es la enfermdad catastrófica:</string>
     <string name="enfermedadCatastroficaOpcion1">1. Malformaciones congénitas del corazón y valvulopatías cardiacas(todo tipo)?</string>
     <string name="enfermedadCatastroficaOpcion2">2. Cancér (todo tipo)?</string>
     <string name="enfermedadCatastroficaOpcion3">3. Tumor cerebral?</string>
@@ -476,8 +476,8 @@
     <string name="enfermedadCatastroficaOpcion8">8. Síndrome de Klippel Trenaunay?</string>
     <string name="enfermedadCatastroficaOpcion9">9. Aneurisma tóraco - abdominal?</string>
 
-    <!-- Seccion 5 Pregunta 27-->
-    <string name="ayudasTecnicas">Qué ayudas técnicas recibió o necesita recibir:</string>
+    <!-- Seccion 5 Pregunta 23-->
+    <string name="ayudasTecnicas">23. Qué ayudas técnicas recibió o necesita recibir:</string>
     <string name="ayudasTecnicasDiscapacidadFisica">Discapacidad Física</string>
     <string name="ayudasTecnicasOpcionA">A. Silla de ruedas?</string>
     <string name="ayudasTecnicasOpcionB">B. Muletas?</string>

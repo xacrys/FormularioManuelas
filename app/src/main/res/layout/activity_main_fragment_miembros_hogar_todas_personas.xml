@@ -222,7 +222,7 @@
 
                         <TextView
                             style="@style/areaPreguntaTextView"
-                            android:text="@string/autodefinicionEtnicaEtiqueta" />
+                            android:text="@string/autodefinicionEtnica" />
 
                         <Spinner
                             android:id="@+id/etniaSpinner"
