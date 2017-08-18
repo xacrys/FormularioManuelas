@@ -41,7 +41,7 @@
     <string name="fase">1. Fase</string>
     <string name="tipoLevantamiento">2. Tipo de Levantamiento:</string>
     <string name="barrido">Barrido</string>
-    <string name="convocatoria">Demanda</string>
+    <string name="demanda">Demanda</string>
     <string name="area">3. Área: </string>
     <string name="provincia">4. Provincia:</string>
     <string name="canton">5. Cantón:</string>
@@ -118,12 +118,12 @@
     <!--  Seccion 3 Pregunta 5  -->
     <string name="materialParedes">5. El material predominante de las PAREDES de la VIVIENDA es:</string>
     <string name="materialParedesOpcion1">1. Hormigón, Bloque/ladrillo?</string>
-    <string name="materialParedesOpcion3">2. Asbesto/cemento(fibrolit)?</string>
-    <string name="materialParedesOpcion4">3. Adobe/tapia?</string>
-    <string name="materialParedesOpcion5">4. Madera?</string>
-    <string name="materialParedesOpcion6">5. Bahareque (caña y carrizo revestido)?</string>
-    <string name="materialParedesOpcion7">6. Caña/estera?</string>
-    <string name="materialParedesOpcion8">7. Otro material?</string>
+    <string name="materialParedesOpcion2">2. Asbesto/cemento(fibrolit)?</string>
+    <string name="materialParedesOpcion3">3. Adobe/tapia?</string>
+    <string name="materialParedesOpcion4">4. Madera?</string>
+    <string name="materialParedesOpcion5">5. Bahareque (caña y carrizo revestido)?</string>
+    <string name="materialParedesOpcion6">6. Caña/estera?</string>
+    <string name="materialParedesOpcion7">7. Otro material?</string>
     <!--  Seccion 3 Pregunta 6  -->
     <string name="techoPisoPared">6. El estado del (……) de la VIVIENDA es:</string>
     <string name="techoPisoParedOpcion1">Bueno?</string>
