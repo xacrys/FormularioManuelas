@@ -18,11 +18,6 @@ import ec.gob.stptv.formularioManuelas.controlador.preguntas.PersonaPreguntas;
 
 public class MiembrosHogarFragment extends Fragment {
 
-    private Spinner documentoSpinner;
-    private Spinner parentescoSpinner;
-    private Spinner estadoCivilSpinner;
-    private Spinner nacionalidadSpinner;
-
     private Button nuevoButton;
     private Button atrasButton;
 
@@ -30,7 +25,7 @@ public class MiembrosHogarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View item = inflater.inflate(R.layout.activity_main_fragment_miembros_hogar_todas_personas,
+        View item = inflater.inflate(R.layout.activity_main_fragment_miembros_hogar,
                 container, false);
 
 
@@ -48,11 +43,6 @@ public class MiembrosHogarFragment extends Fragment {
      */
     private void obtenerVistas(View item) {
 
-        //documentoSpinner = item.findViewById(R.id.documentoSpinner);
-        parentescoSpinner=item.findViewById(R.id.parentescoSpinner);
-        estadoCivilSpinner=item.findViewById(R.id.estadoCivilSpinner);
-        nacionalidadSpinner=item.findViewById(R.id.nacionalidadSpinner);
-
         nuevoButton = item.findViewById(R.id.nuevoButton);
         atrasButton = item.findViewById(R.id.atrasButton);
 
@@ -63,12 +53,6 @@ public class MiembrosHogarFragment extends Fragment {
      * Método que carga las preguntas de los controles de la aplicacion por ejemplo los spinner
      */
     private void cargarPreguntas() {
-
-        documentoSpinner.setAdapter(PersonaPreguntas.getControlTrabajoDocumentoAdapter(getActivity()));
-        parentescoSpinner.setAdapter(PersonaPreguntas.getControlTrabajoParentescoAdapter(getActivity()));
-        estadoCivilSpinner.setAdapter(PersonaPreguntas.getControlTrabajoEstadoCivilAdapter(getActivity()));
-        nacionalidadSpinner.setAdapter(PersonaPreguntas.getNacionalidadAdapter(getActivity()));
-
 
 
     }
