@@ -1,10 +1,12 @@
 package ec.gob.stptv.formularioManuelas.controlador.actividades;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import ec.gob.stptv.formularioManuelas.R;
@@ -21,6 +23,9 @@ public class MiembrosHogarFragment extends Fragment {
     private Spinner estadoCivilSpinner;
     private Spinner nacionalidadSpinner;
 
+    private Button nuevoButton;
+    private Button atrasButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class MiembrosHogarFragment extends Fragment {
         Bundle extra = getActivity().getIntent().getExtras();
         this.obtenerVistas(item);
         this.cargarPreguntas();
+        this.realizarAcciones();
 
         return item;
     }
@@ -42,10 +48,13 @@ public class MiembrosHogarFragment extends Fragment {
      */
     private void obtenerVistas(View item) {
 
-        documentoSpinner = item.findViewById(R.id.documentoSpinner);
+        //documentoSpinner = item.findViewById(R.id.documentoSpinner);
         parentescoSpinner=item.findViewById(R.id.parentescoSpinner);
         estadoCivilSpinner=item.findViewById(R.id.estadoCivilSpinner);
         nacionalidadSpinner=item.findViewById(R.id.nacionalidadSpinner);
+
+        nuevoButton = item.findViewById(R.id.nuevoButton);
+        atrasButton = item.findViewById(R.id.atrasButton);
 
     }
 
@@ -61,6 +70,34 @@ public class MiembrosHogarFragment extends Fragment {
         nacionalidadSpinner.setAdapter(PersonaPreguntas.getNacionalidadAdapter(getActivity()));
 
 
+
+    }
+
+    /**
+     * metodo para realizar las acciones
+     */
+    private void realizarAcciones() {
+
+        nuevoButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                Fragment newFragment = new MiembrosHogarTodasPersonasFragment();
+                Bundle args = new Bundle();
+                //args.putParcelable("persona", persona);
+
+                newFragment.setArguments(args);
+                FragmentTransaction transaction = getFragmentManager()
+                        .beginTransaction();
+
+                transaction.replace(R.id.fragmentContainer, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
 
     }
 }

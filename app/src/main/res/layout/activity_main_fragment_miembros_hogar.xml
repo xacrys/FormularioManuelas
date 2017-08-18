@@ -19,7 +19,7 @@
 
             <TextView
                 style="@style/seccionTextView"
-                android:text="@string/seccion6" />
+                android:text="@string/seccion5" />
         </LinearLayout>
 
         <!-- Contenedor 1 -->

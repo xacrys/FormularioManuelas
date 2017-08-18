@@ -76,7 +76,7 @@
                         android:text="@string/tipoLevantamiento" />
 
                     <Spinner
-                        android:id="@+id/institucionSistemaSpinner"
+                        android:id="@+id/tipoLevantamientoSpinner"
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
 
@@ -536,7 +536,7 @@
                 android:text="@string/seccion2" />
 
             <Spinner
-                android:id="@+id/seccion2CondicionOcupacionSpinner"
+                android:id="@+id/condicionOcupacionSpinner"
                 style="@style/respuestaSpinner" />
 
             <TextView
@@ -640,7 +640,7 @@
                         android:text="@string/materialParedes" />
 
                     <Spinner
-                        android:id="@+id/seccion3ViviendaMaterialParedesSpinner"
+                        android:id="@+id/materialParedesSpinner"
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
 
