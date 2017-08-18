@@ -5,18 +5,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
 
-/**
- * Created by lmorales on 17/08/17.
+/***
+ * Autor: Christian Tintin
  */
 
 public class HogarFragment extends Fragment {
 
     Spinner tipoHogarSpinner;
+    Spinner documentoHogarSpinner;
+    Spinner fuenteAguaSpinner;
+    Spinner ubicacionAguaSpinner;
+    Spinner tratamientoAguaSpinner;
+    Spinner servicioSanitarioSpinner;
+    Spinner ubicacionSanitarioSpinner;
+    Spinner servicioDuchaSpinner;
+    Spinner eliminaBasuraSpinner;
+    Spinner tipoAlumbradoSpinner;
+    Spinner energeticoCocinaSpinner;
+    EditText codigoElectricoEditText;
+    EditText numCuartosEditText;
+    EditText numDormitoriosEditText;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,17 +51,28 @@ public class HogarFragment extends Fragment {
         return item;
     }
 
+
+
     /**
      * Método para obtener las controles de la vista
-     * @param item
+     *
      */
     private void obtenerVistas(View item) {
 
-        tipoHogarSpinner = item
-                .findViewById(R.id.tipoHogarSpinner);
-
-
-
+        tipoHogarSpinner = item.findViewById(R.id.tipoHogarSpinner);
+        documentoHogarSpinner = item.findViewById(R.id.documentoHogarSpinner);
+        numCuartosEditText = item.findViewById(R.id.numCuartosEditText);
+        numDormitoriosEditText = item.findViewById(R.id.numDormitoriosEditText);
+        fuenteAguaSpinner = item.findViewById(R.id.fuenteAguaSpinner);
+        ubicacionAguaSpinner=item.findViewById(R.id.ubicacionAguaSpinner);
+        tratamientoAguaSpinner=item.findViewById(R.id.tratamientoAguaSpinner);
+        servicioSanitarioSpinner=item.findViewById(R.id.servicioSanitarioSpinner);
+        ubicacionSanitarioSpinner = item.findViewById(R.id.ubicacionSanitarioSpinner);
+        servicioDuchaSpinner=item.findViewById(R.id.servicioDuchaSpinner);
+        eliminaBasuraSpinner = item.findViewById(R.id.eliminaBasuraSpinner);
+        tipoAlumbradoSpinner = item.findViewById(R.id.tipoAlumbradoSpinner);
+        codigoElectricoEditText = item.findViewById(R.id.codigoElectricoEditText);
+        energeticoCocinaSpinner = item.findViewById(R.id.energeticoCocinaSpinner);
     }
 
     /**
@@ -59,8 +87,8 @@ public class HogarFragment extends Fragment {
      */
     private void cargarPreguntas() {
 
-        tipoHogarSpinner.setAdapter(HogarPreguntas
-                .getTipoViviendaAdapter(getActivity()));
+        tipoHogarSpinner.setAdapter(HogarPreguntas.getTenenciaHogarAdapter(getActivity()));
+        documentoHogarSpinner.setAdapter(HogarPreguntas.getDocumentoHogarAdapter(getActivity()));
     }
 
     /**
@@ -86,8 +114,8 @@ public class HogarFragment extends Fragment {
     }
 
     /**
-     * Método que valida campos obligatorios, numeros de telefonos etc.
-     * @return
+     * valida campos obligatorios, numeros de telefonos etc.
+     *
      */
     protected boolean validarCampos() {
 
