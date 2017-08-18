@@ -316,7 +316,7 @@
     <string name="controlTrabajoDocumentoOpcion4">4. Nunca tuvo número de cédula (mayores de 5 años y más)?</string>
     <string name="controlTrabajoDocumentoOpcion5">5. Partida de nacimiento ecuatoriana sin número de cédula?</string>
     <string name="controlTrabajoDocumentoOpcion6">6. No está inscrito(menores de 5 años)?</string>
-    <string name="controlTrabajoDocumento1Opcion7">7. Pasaporte (extranjeros)</string>
+    <string name="controlTrabajoDocumentoOpcion7">7. Pasaporte (extranjeros)</string>
 
     <!-- Seccion 5 Pregunta 8 -->
     <string name="cedulaTitulo">CÉDULA DE CIUDADANÍA O IDENTIDAD ECUATORIANA</string>
