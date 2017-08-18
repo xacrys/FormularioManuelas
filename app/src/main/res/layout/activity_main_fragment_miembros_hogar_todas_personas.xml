@@ -49,7 +49,7 @@
                     android:padding="0dp">
 
                     <!-- Inicio Pregunta tipo de docuemnto -->
-                    <LinearLayout style="@style/contenedorPregunta">
+                    <!-- <LinearLayout style="@style/contenedorPregunta">
 
                         <TextView
                             style="@style/areaCategoriaPreguntaTextView"
@@ -63,7 +63,7 @@
                             android:id="@+id/documentoSpinner"
                             style="@style/respuestaSpinner" />
 
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <!-- Inicio Pregunta cedula -->
                     <LinearLayout style="@style/contenedorPregunta">
@@ -176,7 +176,7 @@
                         <LinearLayout
                             android:id="@+id/seccion5CodigoPersonaLinearLayout"
                             style="@style/contenedorPregunta"
-                            android:visibility="invisible">
+                            android:visibility="visible">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -229,23 +229,8 @@
                             style="@style/respuestaSpinner" />
                     </LinearLayout>
                     <!-- Fin Pregunta -->
-                </LinearLayout>
-                <!-- Fin de la columna 1 -->
-
-
-                <!-- Inicio de la columna 2 -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/borde_panel"
-                    android:orientation="vertical"
-                    android:padding="0dp">
-
 
                     <!-- Inicio Pregunta aporte -->
-
                     <LinearLayout style="@style/contenedorPregunta">
 
                         <TextView
@@ -293,22 +278,6 @@
                     </LinearLayout>
                     <!-- Fin Pregunta -->
 
-
-                </LinearLayout>
-                <!-- Fin de la columna 2 -->
-
-
-                <!-- Inicio de la columna 3 -->
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/borde_panel"
-                    android:orientation="vertical"
-                    android:padding="0dp">
-
                     <!-- Inicio Pregunta discapacidad -->
                     <LinearLayout style="@style/contenedorPregunta">
 
@@ -350,6 +319,21 @@
 
                     </LinearLayout>
                     <!-- Fin pregunta -->
+
+
+                </LinearLayout>
+                <!-- Fin de la columna 1 -->
+
+
+                <!-- Inicio de la columna 2 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/borde_panel"
+                    android:orientation="vertical"
+                    android:padding="0dp">
 
                     <!-- Inicio Pregunta carnet de conadis -->
                     <LinearLayout style="@style/contenedorPregunta">
@@ -762,6 +746,7 @@
                     </LinearLayout>
                     <!-- Fin Pregunta -->
 
+
                     <!-- Inicio Pregunta necesitaAyudaTecnica -->
                     <LinearLayout style="@style/contenedorPregunta">
 
@@ -838,7 +823,8 @@
                     </LinearLayout>
                     <!-- Fin pregunta -->
 
-                    <!-- Inicio Pregunta necesitaAyudaTecnica -->
+
+                    <!-- Inicio Pregunta parte uno necesitaAyudaTecnica -->
                     <LinearLayout style="@style/contenedorPregunta">
 
                         <TextView
@@ -1145,6 +1131,29 @@
                             </RelativeLayout>
                         </LinearLayout>
                         <!-- FIn -->
+
+                    </LinearLayout>
+                    <!-- Fin pregunta -->
+
+
+                </LinearLayout>
+                <!-- Fin de la columna 2 -->
+
+
+                <!-- Inicio de la columna 3 -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/borde_panel"
+                    android:orientation="vertical"
+                    android:padding="0dp">
+
+
+                    <!-- Inicio Pregunta parte 2 necesitaAyudaTecnica -->
+                    <LinearLayout style="@style/contenedorPregunta">
 
                         <TextView
                             style="@style/etiquetaSmallTextView"
@@ -1598,7 +1607,8 @@
                     <!-- Fin pregunta -->
 
 
-                    <!-- Inicio Pregunta necesitaAyudaTecnica -->
+
+                    <!-- Inicio Pregunta institucio que reibio ayudas tecnicas -->
                     <LinearLayout style="@style/contenedorPregunta">
 
                         <TextView
@@ -1775,16 +1785,25 @@
                        </LinearLayout>
                     <!-- Fin pregunta -->
 
-                    <!-- Inicio Pregunta discapacidad -->
+                    <!-- Inicio Pregunta sufreEnfermedades -->
                     <LinearLayout style="@style/contenedorPregunta">
 
                         <TextView
-                            style="@style/areaCategoriaPreguntaTextView"
-                            android:text="@string/discapacidadEtiqueta" />
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/sufreEnfermedades" />
+
+                        <Spinner
+                            android:id="@+id/sufreEnfermedadesSpinner"
+                            style="@style/respuestaSpinner" />
+
+                    </LinearLayout>
+
+                    <!-- Inicio Pregunta diagnosticoMedico -->
+                    <LinearLayout style="@style/contenedorPregunta">
 
                         <TextView
                             style="@style/areaPreguntaTextView"
-                            android:text="@string/poseeDiscapacidadTitulo" />
+                            android:text="@string/diagnosticoMedico" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -1792,21 +1811,21 @@
                             android:paddingBottom="10dp">
 
                             <RadioGroup
-                                android:id="@+id/discapacidadjRadioGroup"
+                                android:id="@+id/diagnosticoMedicoRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:orientation="horizontal">
 
                                 <RadioButton
-                                    android:id="@+id/discapacidadjhOpcion1RadioButton"
+                                    android:id="@+id/diagnosticoMedicoOpcion1RadioButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_si" />
 
                                 <RadioButton
-                                    android:id="@+id/discapacidadhOpcion2RadioButton"
+                                    android:id="@+id/diagnosticoMedicoOpcion2RadioButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
@@ -1816,6 +1835,19 @@
 
                     </LinearLayout>
                     <!-- Fin pregunta -->
+
+                    <!-- Inicio Pregunta enfermedadCatastrofica -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/enfermedadCatastrofica" />
+
+                        <Spinner
+                            android:id="@+id/enfermedadCatastroficaSpinner"
+                            style="@style/respuestaSpinner" />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
