@@ -89,6 +89,17 @@ public class HogarFragment extends Fragment {
 
         tipoHogarSpinner.setAdapter(HogarPreguntas.getTenenciaHogarAdapter(getActivity()));
         documentoHogarSpinner.setAdapter(HogarPreguntas.getDocumentoHogarAdapter(getActivity()));
+        fuenteAguaSpinner.setAdapter(HogarPreguntas.getFuenteAguaAdapter(getActivity()));
+        ubicacionAguaSpinner.setAdapter(HogarPreguntas.getUbicacionAguaAdapter(getActivity()));
+        tratamientoAguaSpinner.setAdapter(HogarPreguntas.getTratamientoAguaAdapter(getActivity()));
+        servicioSanitarioSpinner.setAdapter(HogarPreguntas.getServicioSanitarioAdapter(getActivity()));
+        ubicacionSanitarioSpinner.setAdapter(HogarPreguntas.getUbicacionSanitarioAdapter(getActivity()));
+        servicioDuchaSpinner.setAdapter(HogarPreguntas.getServicioDuchaAdapter(getActivity()));
+        eliminaBasuraSpinner.setAdapter(HogarPreguntas.getEliminaBasuraAdapter(getActivity()));
+        tipoAlumbradoSpinner.setAdapter(HogarPreguntas.getTipoAlumbradoAdapter(getActivity()));
+        energeticoCocinaSpinner.setAdapter(HogarPreguntas.getEnergeticoCocinaAdapter(getActivity()
+        ));
+
     }
 
     /**
