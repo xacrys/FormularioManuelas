@@ -13,47 +13,90 @@ import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 public class HogarPreguntas {
 
     /**
-     * tipo de vivienda
+     * Tenencia Hogar
      */
-    public enum TipoVivienda {
+    public enum TenenciaHogar {
 
-        CASA_VILLA(1),
-        DEPARTAMENTO(2),
-        CUARTOS(3),
-        MEDIAGUA(4),
-        RANCHO(5),
-        CHOZA(6),
+        PROPIA_PAGANDO(1),
+        PROPIA_PAGADA(2),
+        ARRIENDO(3),
+        ANTICRESIS(4),
+        CEDIDA(5),
+        RECIBIDA(6),
         OTRO(7);
 
         private int valor;
-
-        TipoVivienda(int valor) {
+        TenenciaHogar(int valor) {
             this.valor = valor;
         }
-
         public int getValor() {
             return this.valor;
         }
     }
 
-    public static ArrayAdapter<Values> getTipoViviendaAdapter(Context context) {
+    /**
+     * Documento Hogar
+     */
+    public enum DocumentoHogar {
+        
+        ESCRITURA_TITULO(1),
+        ESCRITURA_TRAMITE(2),
+        PROMESA_COMPRA(3),
+        POSESION(4),
+        OTRO(5),
+        NINGUNO(6);
 
-        ArrayList<Values> tipoVivienda = new ArrayList<Values>();
+        private int valor;
+        DocumentoHogar(int valor) {
+            this.valor = valor;
+        }
+        public int getValor() {
+            return this.valor;
+        }
+    }
 
-        tipoVivienda.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
-        tipoVivienda.add(new Values(ViviendaPreguntas.TipoVivienda.CASA_VILLA.getValor(),context.getString(R.string.tipoViviendaOpcion1)));
-        tipoVivienda.add(new Values(ViviendaPreguntas.TipoVivienda.DEPARTAMENTO.getValor(),context.getString(R.string.tipoViviendaOpcion2)));
-        tipoVivienda.add(new Values(ViviendaPreguntas.TipoVivienda.CUARTOS.getValor(),context.getString(R.string.tipoViviendaOpcion3)));
-        tipoVivienda.add(new Values(ViviendaPreguntas.TipoVivienda.MEDIAGUA.getValor(),context.getString(R.string.tipoViviendaOpcion4)));
-        tipoVivienda.add(new Values(ViviendaPreguntas.TipoVivienda.RANCHO.getValor(),context.getString(R.string.tipoViviendaOpcion5)));
-        tipoVivienda.add(new Values(ViviendaPreguntas.TipoVivienda.CHOZA.getValor(),context.getString(R.string.tipoViviendaOpcion6)));
-        tipoVivienda.add(new Values(ViviendaPreguntas.TipoVivienda.OTRO.getValor(),context.getString(R.string.tipoViviendaOpcion7)));
+    public static ArrayAdapter<Values> getTenenciaHogarAdapter(Context context) {
 
-        ArrayAdapter<Values> tipoViviendaAdapter = new ArrayAdapter<Values>(
-                context, android.R.layout.simple_spinner_item, tipoVivienda);
-        tipoViviendaAdapter
+        ArrayList<Values> tenenciaHogar = new ArrayList<Values>();
+
+        tenenciaHogar.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        tenenciaHogar.add(new Values(TenenciaHogar.PROPIA_PAGANDO.getValor(),context.getString(R.string.tenenciaHogarOpcion1)));
+        tenenciaHogar.add(new Values(TenenciaHogar.PROPIA_PAGANDO.getValor(),context.getString(R.string.tenenciaHogarOpcion2)));
+        tenenciaHogar.add(new Values(TenenciaHogar.ARRIENDO.getValor(),context.getString(R.string.tenenciaHogarOpcion3)));
+        tenenciaHogar.add(new Values(TenenciaHogar.ANTICRESIS.getValor(),context.getString(R.string.tenenciaHogarOpcion4)));
+        tenenciaHogar.add(new Values(TenenciaHogar.CEDIDA.getValor(),context.getString(R.string.tenenciaHogarOpcion5)));
+        tenenciaHogar.add(new Values(TenenciaHogar.RECIBIDA.getValor(),context.getString(R.string.tenenciaHogarOpcion6)));
+        tenenciaHogar.add(new Values(TenenciaHogar.OTRO.getValor(),context.getString(R.string.tenenciaHogarOpcion7)));
+
+        ArrayAdapter<Values> tenenciaHogarAdapter = new ArrayAdapter<Values>(
+                context, android.R.layout.simple_spinner_item, tenenciaHogar);
+        tenenciaHogarAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        return tipoViviendaAdapter;
+        return tenenciaHogarAdapter;
     }
+
+    public static ArrayAdapter<Values> getDocumentoHogarAdapter(Context context) {
+
+        ArrayList<Values> listaDocumentoHogar = new ArrayList<Values>();
+
+        listaDocumentoHogar.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        listaDocumentoHogar.add(new Values(DocumentoHogar.ESCRITURA_TITULO.getValor(),context.getString(R.string.documentoHogarOpcion1)));
+        listaDocumentoHogar.add(new Values(DocumentoHogar.ESCRITURA_TRAMITE.getValor(),context.getString(R.string.documentoHogarOpcion2)));
+        listaDocumentoHogar.add(new Values(DocumentoHogar.PROMESA_COMPRA.getValor(),context.getString(R.string.documentoHogarOpcion3)));
+        listaDocumentoHogar.add(new Values(DocumentoHogar.POSESION.getValor(),context.getString(R.string.documentoHogarOpcion4)));
+        listaDocumentoHogar.add(new Values(DocumentoHogar.OTRO.getValor(),context.getString(R.string.documentoHogarOpcion5)));
+        listaDocumentoHogar.add(new Values(DocumentoHogar.NINGUNO.getValor(),context.getString(R.string.documentoHogarOpcion6)));
+
+        ArrayAdapter<Values> DocumentoHogarAdapter = new ArrayAdapter<Values>(
+                context, android.R.layout.simple_spinner_item, listaDocumentoHogar);
+        DocumentoHogarAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        return DocumentoHogarAdapter;
+    }
+
+    
+
+
 }
