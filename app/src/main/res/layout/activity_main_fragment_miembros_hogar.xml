@@ -55,7 +55,7 @@
                         android:text="@string/controlTrabajoDocumentoTitulo" />
 
                     <Spinner
-                        android:id="@+id/seccion5DocumentoSpinner"
+                        android:id="@+id/documentoSpinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
