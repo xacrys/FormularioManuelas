@@ -436,10 +436,9 @@
 
                             <EditText
                                 android:id="@+id/porcentajeIntelectualEditText"
-                                style="@style/respuestaEditText"
+                                style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:inputType="number"
                                 android:maxLength="3" />
                         </LinearLayout>
                         <!-- Fin -->
@@ -485,10 +484,9 @@
 
                             <EditText
                                 android:id="@+id/porcentajeFisicaEditText"
-                                style="@style/respuestaEditText"
+                                style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:inputType="number"
                                 android:maxLength="3" />
                         </LinearLayout>
                         <!-- Fin -->
@@ -534,10 +532,9 @@
 
                             <EditText
                                 android:id="@+id/porcentajeCegueraEditText"
-                                style="@style/respuestaEditText"
+                                style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:inputType="number"
                                 android:maxLength="3" />
                         </LinearLayout>
                         <!-- Fin -->
@@ -583,10 +580,9 @@
 
                             <EditText
                                 android:id="@+id/porcentajeVisionEditText"
-                                style="@style/respuestaEditText"
+                                style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:inputType="number"
                                 android:maxLength="3" />
                         </LinearLayout>
                         <!-- Fin -->
@@ -632,10 +628,9 @@
 
                             <EditText
                                 android:id="@+id/porcentajeSorderaEditText"
-                                style="@style/respuestaEditText"
+                                style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:inputType="number"
                                 android:maxLength="3" />
                         </LinearLayout>
                         <!-- Fin -->
@@ -681,10 +676,9 @@
 
                             <EditText
                                 android:id="@+id/porcentajeHipoacusiaEditText"
-                                style="@style/respuestaEditText"
+                                style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:inputType="number"
                                 android:maxLength="3" />
                         </LinearLayout>
                         <!-- Fin -->
@@ -730,10 +724,9 @@
 
                             <EditText
                                 android:id="@+id/porcentajePsicosocialesEditText"
-                                style="@style/respuestaEditText"
+                                style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:inputType="number"
                                 android:maxLength="3" />
 
                         </LinearLayout>
