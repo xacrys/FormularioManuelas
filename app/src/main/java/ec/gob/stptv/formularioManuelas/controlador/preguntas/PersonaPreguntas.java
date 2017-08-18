@@ -54,6 +54,21 @@ public class PersonaPreguntas {
     }
 
     /**
+     * Enum para Sexo
+     */
+    private enum SexoPersona {
+        MASCULINO(1),
+        FEMENINO(2);
+        private int valor;
+        SexoPersona(int valor) {
+            this.valor = valor;
+        }
+        public int getValor() {
+            return this.valor;
+        }
+    }
+
+    /**
      * Enum para parentesco
      */
     private enum ControlTrabajoParentesco {
@@ -351,6 +366,21 @@ public class PersonaPreguntas {
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         return controlTrabajoDocumentoAdapter;
+    }
+
+    public static ArrayAdapter<Values> getSexoPersonaAdapter(Context context) {
+
+        ArrayList<Values> listaSexoPersona = new ArrayList<>();
+
+        listaSexoPersona.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        listaSexoPersona.add(new Values(SexoPersona.MASCULINO.getValor(), context.getString(R.string.sexoOpcion1)));
+        listaSexoPersona.add(new Values(SexoPersona.FEMENINO.getValor(), context.getString(R.string.sexoOpcion2)));
+        ArrayAdapter<Values> sexoPersonaAdapter = new ArrayAdapter<>(
+                context, android.R.layout.simple_spinner_item, listaSexoPersona);
+        sexoPersonaAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        return sexoPersonaAdapter;
     }
 
     public static ArrayAdapter<Values> getControlTrabajoParentescoAdapter(Context context) {

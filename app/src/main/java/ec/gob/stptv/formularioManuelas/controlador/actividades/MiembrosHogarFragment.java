@@ -20,6 +20,9 @@ public class MiembrosHogarFragment extends Fragment {
 
     private Button nuevoButton;
     private Button atrasButton;
+    private Spinner tipoResidenteSpinner;
+    private Spinner documentoSpinner;
+    private Spinner sexoSpinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +48,10 @@ public class MiembrosHogarFragment extends Fragment {
 
         nuevoButton = item.findViewById(R.id.nuevoButton);
         atrasButton = item.findViewById(R.id.atrasButton);
+        tipoResidenteSpinner = item.findViewById(R.id.tipoResidenteSpinner);
+        documentoSpinner = item.findViewById(R.id.documentoSpinner);
+        sexoSpinner = item.findViewById(R.id.sexoSpinner);
+
 
     }
 
@@ -53,7 +60,9 @@ public class MiembrosHogarFragment extends Fragment {
      * Método que carga las preguntas de los controles de la aplicacion por ejemplo los spinner
      */
     private void cargarPreguntas() {
-
+        tipoResidenteSpinner.setAdapter(PersonaPreguntas.getTipoResidenteAdapter(getActivity()));
+        documentoSpinner.setAdapter(PersonaPreguntas.getControlTrabajoDocumentoAdapter(getActivity()));
+        sexoSpinner.setAdapter(PersonaPreguntas.getSexoPersonaAdapter(getActivity()));
 
     }
 
