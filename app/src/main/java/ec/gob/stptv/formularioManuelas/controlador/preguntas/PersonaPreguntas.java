@@ -13,6 +13,23 @@ import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 public class PersonaPreguntas {
 
     /**
+     * Enum para Tipo de Residente
+     */
+    private enum TipoResidente {
+
+        HABITUALES_PRESENTES(1),
+        HABITALES_AUSENTES(2),
+        TEMPORALES_PRESENTES(3);
+        private int valor;
+        TipoResidente(int valor) {
+            this.valor = valor;
+        }
+        public int getValor() {
+            return this.valor;
+        }
+    }
+
+    /**
      * Enum para documentacion
      */
     private enum ControlTrabajoDocumento {
@@ -299,6 +316,21 @@ public class PersonaPreguntas {
         }
     }
 
+    public static ArrayAdapter<Values> getTipoResidenteAdapter(Context context) {
+
+        ArrayList<Values> listaTipoResidente = new ArrayList<>();
+
+        listaTipoResidente.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        listaTipoResidente.add(new Values(TipoResidente.HABITUALES_PRESENTES.getValor(), context.getString(R.string.tipoResidenteOpcion1)));
+        listaTipoResidente.add(new Values(TipoResidente.HABITALES_AUSENTES.getValor(), context.getString(R.string.tipoResidenteOpcion2)));
+        listaTipoResidente.add(new Values(TipoResidente.TEMPORALES_PRESENTES.getValor(), context.getString(R.string.tipoResidenteOpcion3)));
+        ArrayAdapter<Values> tipoResidenteAdapter = new ArrayAdapter<>(
+                context, android.R.layout.simple_spinner_item, listaTipoResidente);
+        tipoResidenteAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        return tipoResidenteAdapter;
+    }
 
     public static ArrayAdapter<Values> getControlTrabajoDocumentoAdapter(Context context) {
 
@@ -386,6 +418,27 @@ public class PersonaPreguntas {
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         return nacionalidadAdapter;
+    }
+
+    public static ArrayAdapter<Values> getAutoDefinicionEtnicaAdapter(Context context) {
+
+        ArrayList<Values> listaAutoDefinicionEtnica = new ArrayList<>();
+
+        listaAutoDefinicionEtnica.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        listaAutoDefinicionEtnica.add(new Values(AutoDefinicionEtnica.INDIGENA.getValor(), context.getString(R.string.autodefinicionEtnicaOpcion1)));
+        listaAutoDefinicionEtnica.add(new Values(AutoDefinicionEtnica.AFROECUATORIANO.getValor(), context.getString(R.string.autodefinicionEtnicaOpcion2)));
+        listaAutoDefinicionEtnica.add(new Values(AutoDefinicionEtnica.NEGRO.getValor(), context.getString(R.string.autodefinicionEtnicaOpcion3)));
+        listaAutoDefinicionEtnica.add(new Values(AutoDefinicionEtnica.MULATO.getValor(), context.getString(R.string.autodefinicionEtnicaOpcion4)));
+        listaAutoDefinicionEtnica.add(new Values(AutoDefinicionEtnica.MONTUBIO.getValor(), context.getString(R.string.autodefinicionEtnicaOpcion5)));
+        listaAutoDefinicionEtnica.add(new Values(AutoDefinicionEtnica.MESTIZO.getValor(), context.getString(R.string.autodefinicionEtnicaOpcion6)));
+        listaAutoDefinicionEtnica.add(new Values(AutoDefinicionEtnica.BLANCO.getValor(), context.getString(R.string.autodefinicionEtnicaOpcion7)));
+        listaAutoDefinicionEtnica.add(new Values(AutoDefinicionEtnica.OTRO.getValor(), context.getString(R.string.autodefinicionEtnicaOpcion8)));
+        ArrayAdapter<Values> autodefinicionEtnicaAdapter = new ArrayAdapter<>(
+                context, android.R.layout.simple_spinner_item, listaAutoDefinicionEtnica);
+        autodefinicionEtnicaAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        return autodefinicionEtnicaAdapter;
     }
 
     public static ArrayAdapter<Values> getAporteSeguroAdapter(Context context) {
