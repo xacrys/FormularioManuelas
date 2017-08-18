@@ -35,9 +35,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:layout_marginTop="50dp">
+                android:padding="10dp">
 
                 <!-- Inicio de la columna 1 -->
                 <LinearLayout
@@ -309,7 +309,7 @@
                     android:orientation="vertical"
                     android:padding="0dp">
 
-                    <!-- Inicio Pregunta 1 -->
+                    <!-- Inicio Pregunta discapacidad -->
                     <LinearLayout style="@style/contenedorPregunta">
 
                         <TextView
@@ -349,6 +349,1480 @@
                         </RelativeLayout>
 
                     </LinearLayout>
+                    <!-- Fin pregunta -->
+
+                    <!-- Inicio Pregunta carnet de conadis -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/carneDiscapacidadTitulo" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp">
+
+                            <RadioGroup
+                                android:id="@+id/carnetConadisRadioGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/carnetConadisOpcion1RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_si" />
+
+                                <RadioButton
+                                    android:id="@+id/carnetConadisOpcion2RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_no" />
+                            </RadioGroup>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <!-- Fin Pregunta  -->
+
+                    <!-- Inicio Pregunta tipo de discapacida -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/tipoDiscapacidadTitulo" />
+
+                        <!-- Inicio INtelectual -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="180dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/tipoDiscapacidadIntelectual" />
+
+                            <RelativeLayout
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="0dp">
+
+                                <RadioGroup
+                                    android:id="@+id/discapacidadIntelectualRadioGroup"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="false"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadIntelectualOpcion1RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadIntelectualOpcion2RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+
+                            <EditText
+                                android:id="@+id/porcentajeIntelectualEditText"
+                                style="@style/respuestaEditText"
+                                android:layout_width="100dp"
+                                android:hint="@string/tipoDiscapacidadPorcentaje"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                        <!-- Fin -->
+
+                        <!-- Inicio fisica -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="180dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/tipoDiscapacidadFisica" />
+
+                            <RelativeLayout
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="0dp">
+
+                                <RadioGroup
+                                    android:id="@+id/discapacidadFisicaRadioGroup"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="false"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadFisicaOpcion1RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadFisicaOpcion2RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+
+                            <EditText
+                                android:id="@+id/porcentajeFisicaEditText"
+                                style="@style/respuestaEditText"
+                                android:layout_width="100dp"
+                                android:hint="@string/tipoDiscapacidadPorcentaje"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                        <!-- Fin -->
+
+                        <!-- Inicio vision total -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="180dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/tipoDiscapacidadCeguera" />
+
+                            <RelativeLayout
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="0dp">
+
+                                <RadioGroup
+                                    android:id="@+id/discapacidadCegueraRadioGroup"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="false"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadCegueraOpcion1RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadCegueraOpcion2RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+
+                            <EditText
+                                android:id="@+id/porcentajeCegueraEditText"
+                                style="@style/respuestaEditText"
+                                android:layout_width="100dp"
+                                android:hint="@string/tipoDiscapacidadPorcentaje"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                        <!-- Fin -->
+
+                        <!-- Inicio tipoDiscapacidadBajaVision -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="180dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/tipoDiscapacidadBajaVision" />
+
+                            <RelativeLayout
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="0dp">
+
+                                <RadioGroup
+                                    android:id="@+id/discapacidadVisionRadioGroup"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="false"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadVisionOpcion1RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadVisionOpcio2RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+
+                            <EditText
+                                android:id="@+id/porcentajeVisionEditText"
+                                style="@style/respuestaEditText"
+                                android:layout_width="100dp"
+                                android:hint="@string/tipoDiscapacidadPorcentaje"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                        <!-- Fin -->
+
+                        <!-- Inicio tipoDiscapacidadSordera -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="180dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/tipoDiscapacidadSordera" />
+
+                            <RelativeLayout
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="0dp">
+
+                                <RadioGroup
+                                    android:id="@+id/discapacidadSorderaRadioGroup"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="false"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadSorderaOpcion1RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadSorderaOpcio2RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+
+                            <EditText
+                                android:id="@+id/porcentajeSorderaEditText"
+                                style="@style/respuestaEditText"
+                                android:layout_width="100dp"
+                                android:hint="@string/tipoDiscapacidadPorcentaje"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                        <!-- Fin -->
+
+                        <!-- Inicio tipoDiscapacidadHipoacusia -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="180dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/tipoDiscapacidadHipoacusia" />
+
+                            <RelativeLayout
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="0dp">
+
+                                <RadioGroup
+                                    android:id="@+id/discapacidadHipoacusiaRadioGroup"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="false"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadHipoacusiaOpcion1RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadHipoacusiaOpcio2RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+
+                            <EditText
+                                android:id="@+id/porcentajeHipoacusiaEditText"
+                                style="@style/respuestaEditText"
+                                android:layout_width="100dp"
+                                android:hint="@string/tipoDiscapacidadPorcentaje"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                        <!-- Fin -->
+
+                        <!-- Inicio tipoDiscapacidadPsicosociales -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="180dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/tipoDiscapacidadPsicosociales" />
+
+                            <RelativeLayout
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="0dp">
+
+                                <RadioGroup
+                                    android:id="@+id/discapacidadPsicosocialesRadioGroup"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="false"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadPsicosocialesOpcion1RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/discapacidadPsicosocialesOpcio2RadioButton"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+
+                            <EditText
+                                android:id="@+id/porcentajePsicosocialesEditText"
+                                style="@style/respuestaEditText"
+                                android:layout_width="100dp"
+                                android:hint="@string/tipoDiscapacidadPorcentaje"
+                                android:inputType="number"
+                                android:maxLength="3" />
+
+                        </LinearLayout>
+                        <!-- Fin -->
+                    </LinearLayout>
+                    <!-- Fin Pregunta  -->
+
+                    <!-- Inicio Pregunta asiste a educacion  -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/asistenciaEstablecimiento" />
+
+                        <Spinner
+                            android:id="@+id/asistenciaEstablecimientoSpinner"
+                            style="@style/respuestaSpinner" />
+
+                    </LinearLayout>
+                    <!-- Fin Pregunta -->
+
+                    <!-- Inicio Pregunta servicio Proteccion  -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/servicioProteccion" />
+
+                        <Spinner
+                            android:id="@+id/proteccionSocialpinner"
+                            style="@style/respuestaSpinner" />
+
+                    </LinearLayout>
+                    <!-- Fin Pregunta -->
+
+                    <!-- Inicio Pregunta necesitaAyudaTecnica -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/necesitaAyudaTecnica" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp">
+
+                            <RadioGroup
+                                android:id="@+id/necesitaAyudaTecnicaRadioGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/necesitaAyudaTecnicaOpcion1RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_si" />
+
+                                <RadioButton
+                                    android:id="@+id/necesitaAyudaTecnicaOpcion2RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_no" />
+                            </RadioGroup>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <!-- Fin pregunta -->
+
+                    <!-- Inicio Pregunta necesitaAyudaTecnica -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/recibioAyudaTecnica" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp">
+
+                            <RadioGroup
+                                android:id="@+id/recibioAyudaTecnicaRadioGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/recibioAyudaTecnicaOpcion1RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_si" />
+
+                                <RadioButton
+                                    android:id="@+id/recibioAyudaTecnicaOpcion2RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_no" />
+                            </RadioGroup>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <!-- Fin pregunta -->
+
+                    <!-- Inicio Pregunta necesitaAyudaTecnica -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/ayudasTecnicas" />
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:text="@string/ayudasTecnicasDiscapacidadFisica" />
+
+                        <!-- Inicio silla de ruedas -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionA" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/sillaRuedasRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/sillaRuedasOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/sillaRuedasOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio silla de muletas -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionB" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/muletasRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/muletasOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/muletasOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio andadores -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionC" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/andadoresRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/andadoresOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/andadoresOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionD -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionD" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/bastonApoyoRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/bastonApoyoOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/bastonApoyoOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionE -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionE" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/ortesisRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/ortesisOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/ortesisOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionF -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionF" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/colchonRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/colchonOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/colchonOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionG -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionG" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/cojinRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/cojinOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/cojinOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:text="@string/ayudasTecnicasDiscapacidadVisual" />
+
+                        <!-- Inicio ayudasTecnicasOpcionH -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionH" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/bastonRastreoRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/bastonRastreoOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/bastonRastreoOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionI -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionI" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/abacoRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/abacoOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/abacoOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionJ -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionJ" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/computadoraRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/computadoraOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/computadoraOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:text="@string/ayudasTecnicasDiscapacidadAuditiva" />
+
+                        <!-- Inicio ayudasTecnicasOpcionK -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionK" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/audifonosRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/audifonosOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/audifonosOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionL -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionL" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/implantesRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/implantesOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/implantesOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:text="@string/ayudasTecnicasDiscapacidadIntelectual" />
+
+                        <!-- Inicio ayudasTecnicasOpcionL -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionM" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/cochePostularRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/cochePostularOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/cochePostularOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <TextView
+                            style="@style/etiquetaSmallTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:text="@string/ayudasTecnicasInsumos" />
+
+                        <!-- Inicio ayudasTecnicasOpcionL -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionN" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/panialesRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/panialesOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/panialesOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionO -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionO" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/sillaBaniarseRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/sillaBaniarseOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/sillaBaniarseOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionP -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionP" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/camasRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/camasOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/camasOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio ayudasTecnicasOpcionQ -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/ayudasTecnicasOpcionQ" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/otrosRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/otrosOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/otrosOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                    </LinearLayout>
+                    <!-- Fin pregunta -->
+
+
+                    <!-- Inicio Pregunta necesitaAyudaTecnica -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/institucionAyudasTecnicas" />
+
+                        <!-- Inicio gobierno central -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/institucionAyudasTecnicasOpcionA" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/gobiernoCentralRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/gobiernoCentralOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/gobiernoCentralOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio gobierno autonomo -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/institucionAyudasTecnicasOpcionB" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/gobiernoAutonomoRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/gobiernoAutonomoOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/gobiernoAutonomoOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio institucionAyudasTecnicasOpcionC -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/institucionAyudasTecnicasOpcionC" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/organizacionPrivadaRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/organizacionPrivadaOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/organizacionPrivadaOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+
+                        <!-- Inicio institucionAyudasTecnicasOpcionD -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="match_parent"
+                                android:padding="5dp"
+                                android:text="@string/institucionAyudasTecnicasOpcionD" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="10dp">
+
+                                <RadioGroup
+                                    android:id="@+id/ningunaRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/ningunaOpcion1RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_si" />
+
+                                    <RadioButton
+                                        android:id="@+id/ningunaOpcion2RadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:text="@string/opcion_no" />
+                                </RadioGroup>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- FIn -->
+                       </LinearLayout>
+                    <!-- Fin pregunta -->
+
+                    <!-- Inicio Pregunta discapacidad -->
+                    <LinearLayout style="@style/contenedorPregunta">
+
+                        <TextView
+                            style="@style/areaCategoriaPreguntaTextView"
+                            android:text="@string/discapacidadEtiqueta" />
+
+                        <TextView
+                            style="@style/areaPreguntaTextView"
+                            android:text="@string/poseeDiscapacidadTitulo" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp">
+
+                            <RadioGroup
+                                android:id="@+id/discapacidadjRadioGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/discapacidadjhOpcion1RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_si" />
+
+                                <RadioButton
+                                    android:id="@+id/discapacidadhOpcion2RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_no" />
+                            </RadioGroup>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <!-- Fin pregunta -->
 
 
                 </LinearLayout>

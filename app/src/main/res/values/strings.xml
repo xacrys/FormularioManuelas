@@ -423,7 +423,7 @@
     <string name="tipoDiscapacidadSordera">Auditiva (Sordera Total)?</string>
     <string name="tipoDiscapacidadHipoacusia">Auditiva (Hipoacusia)?</string>
     <string name="tipoDiscapacidadPsicosociales">Psicosociales (Mental, autismo o enfermedades psiquiátricas)?</string>
-    <string name="tipoDiscapacidadPorcentaje">Porcentaje</string>
+    <string name="tipoDiscapacidadPorcentaje">Porc (%)</string>
 
     <!-- Seccion 5 Pregunta 19 -->
     <string name="asistenciaEstablecimiento">19. Actualmente (&#8230;) asiste a algún establecimiento de Educación</string>
@@ -499,6 +499,6 @@
     <string name="ayudasTecnicasOpcionN">N. Pañales desechables?</string>
     <string name="ayudasTecnicasOpcionO">O. Silla para bañarse y evacuación?</string>
     <string name="ayudasTecnicasOpcionP">P. Camas hospitalarias?</string>
-
+    <string name="ayudasTecnicasOpcionQ">Q. Otros?</string>
 
 </resources>
