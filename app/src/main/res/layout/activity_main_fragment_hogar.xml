@@ -83,15 +83,12 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:orientation="vertical">
-
                         <TextView
                             style="@style/etiquetaSmallTextView"
                             android:text="@string/cuartosOpcion1" />
-                        <EditText
-                            android:id="@+id/numCuartosEditText"
-                            style="@style/respuestaTextosEditText"
-                            android:maxLength="2"
-                            android:digits="0123456789"/>
+                        <Spinner
+                            android:id="@+id/numCuartosSpinner"
+                            style="@style/respuestaSpinner" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -111,11 +108,9 @@
                         <TextView
                             style="@style/etiquetaSmallTextView"
                             android:text="@string/dormitoriosOpcion1" />
-                        <EditText
-                            android:id="@+id/numDormitoriosEditText"
-                            style="@style/respuestaTextosEditText"
-                            android:maxLength="2"
-                            android:digits="0123456789"/>
+                        <Spinner
+                            android:id="@+id/numDormitoriosSpinner"
+                            style="@style/respuestaSpinner" />
                     </LinearLayout>
                 </LinearLayout>
 
