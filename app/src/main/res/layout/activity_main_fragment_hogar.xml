@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blanco"
@@ -26,13 +25,14 @@
             <TextView
                 android:id="@+id/textView1"
                 style="@style/seccionTextView"
-                android:text="Hogar" />
+                android:text="@string/seccionHogar" />
         </LinearLayout>
 
         <!-- Fin Titulo de la seccion I -->
 
         <!-- Contenedor 1-->
         <LinearLayout
+            android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -90,7 +90,8 @@
                         <EditText
                             android:id="@+id/numCuartosEditText"
                             style="@style/respuestaTextosEditText"
-                            android:maxLength="2" />
+                            android:maxLength="2"
+                            android:digits="0123456789"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -113,7 +114,8 @@
                         <EditText
                             android:id="@+id/numDormitoriosEditText"
                             style="@style/respuestaTextosEditText"
-                            android:maxLength="2" />
+                            android:maxLength="2"
+                            android:digits="0123456789"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -137,6 +139,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/borde_panel"
@@ -219,17 +222,20 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/borde_panel"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <!-- 4 -12  Tipo de Alumbrado-->
                 <LinearLayout style="@style/contenedorPregunta">
 
                     <TextView
                         style="@style/areaPreguntaTextView"
-                        android:text="@string/tipoAlumbrado" />
+                        android:text="@string/tipoAlumbrado"
+                        />
 
                     <Spinner
                         android:id="@+id/tipoAlumbradoSpinner"
@@ -246,7 +252,8 @@
                     <EditText
                         android:id="@+id/codigoElectricoEditText"
                         style="@style/respuestaTextosEditText"
-                        android:maxLength="10" />
+                        android:maxLength="10"
+                        android:digits="0123456789"/>
                 </LinearLayout>
 
                 <!-- 4 -14  Como se cocina-->
@@ -268,7 +275,7 @@
                         style="@style/areaPreguntaTextView"
                         android:text="@string/gasParaCalefon" />
 
-                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    <RadioGroup android:id="@+id/gasParaCalefon"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -290,7 +297,7 @@
                         style="@style/areaPreguntaTextView"
                         android:text="@string/terrenoAgropecuario" />
 
-                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    <RadioGroup android:id="@+id/terrenoAgropecuario"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -310,7 +317,7 @@
                     <TextView
                         style="@style/areaPreguntaTextView"
                         android:text="@string/terrenoAgropecuarioSi" />
-                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    <RadioGroup android:id="@+id/terrenoAgropecuarioSi"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -330,12 +337,18 @@
             </LinearLayout>
             <!-- FIN Columna 3 -->
 
+
+
         </LinearLayout>
         <!-- FIN Contenedor 3 -->
 
-
-
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <include layout="@layout/reusable_bottom_actionbar_navigation" />
+        </LinearLayout>
     </LinearLayout>
 
 
