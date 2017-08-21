@@ -147,104 +147,87 @@ public class HogarFragment extends Fragment {
         View focusView = null;
         if (((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tenenciaHogar));
-            return cancel;
         }
 
-        if ((((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("1") ||
+        else if ((((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("1") ||
                 ((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("2")) &&
                         ((Values) documentoHogarSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.documentoHogar));
-            return cancel;
         }
 
-        if (numCuartosEditText.getText().toString().trim().equals(""))
+        else if (numCuartosEditText.getText().toString().trim().equals(""))
         {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.cuartos));
-            focusView = numCuartosEditText;
-            focusView.setFocusable(true);
-            return cancel;
         }
-        if (numDormitoriosEditText.getText().toString().trim().equals(""))
+        else if (numDormitoriosEditText.getText().toString().trim().equals(""))
         {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.dormitorios));
-            focusView = numDormitoriosEditText;
-            return cancel;
+//            focusView = numDormitoriosEditText;
         }
 
-        if (((Values) fuenteAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        else if (((Values) fuenteAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.fuenteAgua));
-            return cancel;
         }
 
-        if (((Values) ubicacionAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        else if (((Values) ubicacionAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ubicacionAgua));
-            return cancel;
         }
 
-        if (((Values) tratamientoAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
+       else if (((Values) tratamientoAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tratamientoAgua));
-            return cancel;
         }
 
-        if (((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("-1")) {
+        else if (((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.servicioSanitario));
-            return cancel;
         }
 
-        if (((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey().equals("-1") &&
+        else if (((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey().equals("-1") &&
                 !((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")
                 ) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ubicacionSanitario));
-            return cancel;
         }
-        if (((Values) servicioDuchaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        else if (((Values) servicioDuchaSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.servicioDucha));
-            return cancel;
         }
-        if (((Values) eliminaBasuraSpinner.getSelectedItem()).getKey().equals("-1")) {
+        else if (((Values) eliminaBasuraSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.eliminaBasura));
-            return cancel;
         }
-        if (((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals("-1")) {
+        else if (((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoAlumbrado));
-            return cancel;
         }
-        if (codigoElectricoEditText.getText().toString().trim().equals("") &&
+        else if (codigoElectricoEditText.getText().toString().trim().equals("") &&
         ((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals("1"))
         {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.codigoElectrico));
-            focusView = codigoElectricoEditText;
-            return cancel;
+//            focusView = codigoElectricoEditText;
         }
-        if (((Values) energeticoCocinaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        else if (((Values) energeticoCocinaSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.energeticoCocina));
-            return cancel;
         }
 
-        if(gasParaCalefonOpcion.getCheckedRadioButtonId()== -1){
+        else if(gasParaCalefonOpcion.getCheckedRadioButtonId()== -1){
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.gasParaCalefon));
-            return cancel;
         }
 
-        if(terrenoAgropecuario.getCheckedRadioButtonId()== -1){
+        else if(terrenoAgropecuario.getCheckedRadioButtonId()== -1){
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.terrenoAgropecuario));
-            return cancel;
         }
 
-        if(terrenoAgropecuarioSi.getCheckedRadioButtonId()== -1 &&
+        else if(terrenoAgropecuarioSi.getCheckedRadioButtonId()== -1 &&
                 terrenoAgropecuario.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioOpcion1rb
                 ){
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.terrenoAgropecuarioSi));
-            return cancel;
         }
-
-        return false;
+        else {
+            cancel=false;
+        }
+        return cancel;
     }
 
     /***
      * Método para enviar una aleta
-     * @param title
-     * @param message
+     * @param title me permite agregar un titulo
+     * @param message me permite agregar el mensaje
      */
     private void getAlert(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
