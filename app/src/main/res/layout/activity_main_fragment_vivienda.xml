@@ -342,13 +342,9 @@
                         style="@style/etiquetaSmallTextView"
                         android:text="@string/hogar" />
 
-                    <EditText
-                        android:id="@+id/hogarInicioEditText"
-                        style="@style/respuestaNumerosEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:digits="12345"
-                        android:maxLength="1" />
+                    <Spinner
+                        android:id="@+id/hogarInicialSpinner"
+                        style="@style/respuestaSpinner" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -356,13 +352,9 @@
                         android:padding="10dp"
                         android:text="@string/de" />
 
-                    <EditText
-                        android:id="@+id/hogarFinalEditText"
-                        style="@style/respuestaNumerosEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:digits="12345"
-                        android:maxLength="1" />
+                    <Spinner
+                        android:id="@+id/hogarFinalSpinner"
+                        style="@style/respuestaSpinner" />
                 </LinearLayout>
             </LinearLayout>
             <!-- FIN Contenedor unidades -->
@@ -394,7 +386,7 @@
                     android:text="@string/calle1" />
 
                 <EditText
-                    android:id="@+id/calleCaminoEditText"
+                    android:id="@+id/calle1EditText"
                     style="@style/respuestaTextosEditText"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
@@ -407,7 +399,7 @@
                     android:text="@string/numeroCasa" />
 
                 <EditText
-                    android:id="@+id/numeroEditText"
+                    android:id="@+id/numeroCasaEditText"
                     style="@style/respuestaTextosEditText"
                     android:layout_width="200dp"
                     android:maxLength="8" />
@@ -424,7 +416,7 @@
                     android:text="@string/calle2" />
 
                 <EditText
-                    android:id="@+id/calleCamino2EditText"
+                    android:id="@+id/calle2EditText"
                     style="@style/respuestaTextosEditText"
                     android:maxLength="100" />
             </LinearLayout>
@@ -440,7 +432,7 @@
                     android:text="@string/conjuntoHabitacional" />
 
                 <EditText
-                    android:id="@+id/nombreConjuntoEditText"
+                    android:id="@+id/conjuntoHabitacionalEditText"
                     style="@style/respuestaTextosEditText"
                     android:maxLength="60"
                     android:nextFocusForward="@+id/numeroLoteEditText" />
@@ -457,7 +449,7 @@
                     android:text="@string/lote" />
 
                 <EditText
-                    android:id="@+id/numeroLoteEditText"
+                    android:id="@+id/loteEditText"
                     style="@style/respuestaTextosEditText"
                     android:layout_width="80dp"
                     android:maxLength="4" />
@@ -469,7 +461,7 @@
                     android:text="@string/departamento" />
 
                 <EditText
-                    android:id="@+id/numeroDepartamentoEditText"
+                    android:id="@+id/departamentoEditText"
                     style="@style/respuestaTextosEditText"
                     android:layout_width="80dp"
                     android:maxLength="2" />
@@ -481,7 +473,7 @@
                     android:text="@string/piso" />
 
                 <EditText
-                    android:id="@+id/numeroPisoEditText"
+                    android:id="@+id/pisoEditText"
                     style="@style/respuestaNumerosEditText"
                     android:layout_width="80dp"
                     android:maxLength="2"

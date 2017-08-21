@@ -1,15 +1,22 @@
 package ec.gob.stptv.formularioManuelas.controlador.actividades;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
+import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 
 /***
  * Autor:Christian Tintin
@@ -19,8 +26,28 @@ public class ViviendaFragment extends Fragment {
     private Spinner tipoLevantamientoSpinner;
     private Spinner areaSpinner;
     private Spinner provinciaSpinner;
-    private Spinner cantoneSpinner;
+    private Spinner cantonSpinner;
     private Spinner parroquiaSpinner;
+    private EditText localidadEditText;
+    private Spinner zonaSpinner;
+    private Spinner sectorSpinner;
+    private Spinner manzanaSpinner;
+    private EditText divisionEditText;
+    private EditText edificioEditText;
+    private EditText viviendaEditText;
+    private Spinner hogarInicialSpinner;
+    private Spinner hogarFinalSpinner;
+    private EditText calle1EditText;
+    private EditText numeroCasaEditText;
+    private EditText calle2EditText;
+    private EditText conjuntoHabitacionalEditText;
+    private EditText loteEditText;
+    private EditText departamentoEditText;
+    private EditText pisoEditText;
+    private EditText telefonoConvencionalEditText;
+    private EditText telefonoCelularEditText;
+    private EditText referenciaUbicacionEditText;
+
 
 
     private Spinner condicionOcupacionSpinner;
@@ -33,6 +60,8 @@ public class ViviendaFragment extends Fragment {
     private Spinner estadoPisoSpinner;
     private Spinner estadoParedSpinner;
 
+    private Button guadarButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +72,7 @@ public class ViviendaFragment extends Fragment {
         Bundle extra = getActivity().getIntent().getExtras();
         this.obtenerVistas(item);
         this.cargarPreguntas();
+        this.realizarAcciones();
 
         return item;
     }
@@ -54,6 +84,29 @@ public class ViviendaFragment extends Fragment {
 
         tipoLevantamientoSpinner = item.findViewById(R.id.tipoLevantamientoSpinner);
         areaSpinner = item.findViewById(R.id.areaSpinner);
+        provinciaSpinner = item.findViewById(R.id.provinciaSpinner);
+        cantonSpinner = item.findViewById(R.id.cantonSpinner);
+        parroquiaSpinner = item.findViewById(R.id.parroquiaSpinner);
+        localidadEditText = item.findViewById(R.id.localidadEditText);
+        zonaSpinner = item.findViewById(R.id.zonaSpinner);
+        sectorSpinner = item.findViewById(R.id.sectorSpinner);
+        localidadEditText = item.findViewById(R.id.localidadEditText);
+        manzanaSpinner = item.findViewById(R.id.manzanaSpinner);
+        divisionEditText = item.findViewById(R.id.divisionEditText);
+        edificioEditText = item.findViewById(R.id.edificioEditText);
+        viviendaEditText = item.findViewById(R.id.viviendaEditText);
+        hogarInicialSpinner = item.findViewById(R.id.hogarInicialSpinner);
+        hogarFinalSpinner = item.findViewById(R.id.hogarFinalSpinner);
+        calle1EditText = item.findViewById(R.id.calle1EditText);
+        numeroCasaEditText = item.findViewById(R.id.numeroCasaEditText);
+        calle2EditText = item.findViewById(R.id.calle2EditText);
+        conjuntoHabitacionalEditText = item.findViewById(R.id.conjuntoHabitacionalEditText);
+        loteEditText = item.findViewById(R.id.loteEditText);
+        departamentoEditText = item.findViewById(R.id.departamentoEditText);
+        pisoEditText = item.findViewById(R.id.pisoEditText);
+        telefonoConvencionalEditText = item.findViewById(R.id.telefonoConvencionalEditText);
+        telefonoCelularEditText = item.findViewById(R.id.telefonoCelularEditText);
+        referenciaUbicacionEditText = item.findViewById(R.id.referenciaUbicacionEditText);
         condicionOcupacionSpinner = item.findViewById(R.id.condicionOcupacionSpinner);
 
         tipoViviendaSpinner = item.findViewById(R.id.tipoViviendaSpinner);
@@ -64,6 +117,8 @@ public class ViviendaFragment extends Fragment {
         estadoTechoSpinner = item.findViewById(R.id.estadoTechoSpinner);
         estadoPisoSpinner = item.findViewById(R.id.estadoPisoSpinner);
         estadoParedSpinner = item.findViewById(R.id.estadoParedSpinner);
+
+        guadarButton = item.findViewById(R.id.guardarButton);
 
     }
 
@@ -92,6 +147,8 @@ public class ViviendaFragment extends Fragment {
         estadoTechoSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
         estadoPisoSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
         estadoParedSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
+
+
 
     }
 
@@ -122,6 +179,148 @@ public class ViviendaFragment extends Fragment {
      */
     protected boolean validarCampos() {
 
+        boolean cancel = false;
+        View focusView = null;
+
+        if (((Values) tipoLevantamientoSpinner.getSelectedItem())
+                .getKey().equals("-1")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.tipoLevantamiento));
+            focusView = tipoLevantamientoSpinner;
+            cancel = true;
+            return cancel;
+        }
+
+        if (((Values) areaSpinner.getSelectedItem())
+                .getKey().equals("-1")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.area));
+            focusView = areaSpinner;
+            cancel = true;
+            return cancel;
+        }
+
+
+        if (((Values) provinciaSpinner.getSelectedItem())
+                .getKey().equals("-1")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.provincia));
+            focusView = provinciaSpinner;
+            cancel = true;
+            return cancel;
+        }
+
+        if (((Values) cantonSpinner.getSelectedItem())
+                .getKey().equals("-1")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.canton));
+            focusView = cantonSpinner;
+            cancel = true;
+            return cancel;
+        }
+
+        if (((Values) parroquiaSpinner.getSelectedItem())
+                .getKey().equals("-1")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.canton));
+            focusView = parroquiaSpinner;
+            cancel = true;
+            return cancel;
+        }
+
+        if (((Values) zonaSpinner.getSelectedItem())
+                .getKey().equals("-1")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.zona));
+            focusView = zonaSpinner;
+            cancel = true;
+            return cancel;
+        }
+
+        if (((Values) sectorSpinner.getSelectedItem())
+                .getKey().equals("-1")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.sector));
+            focusView = sectorSpinner;
+            cancel = true;
+            return cancel;
+        }
+
+        if (!((Values) zonaSpinner.getSelectedItem()).getKey().equals("999") &&
+                ((Values) manzanaSpinner.getSelectedItem()).getKey().equals("-1")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.manzana));
+            focusView = manzanaSpinner;
+            cancel = true;
+            return cancel;
+        }
+
+
+        calle1EditText.setError(null);
+        calle1EditText.clearFocus();
+        if (TextUtils.isEmpty(calle1EditText.getText().toString().trim())) {
+            calle1EditText
+                    .setError(getString(R.string.errorCampoRequerido));
+            focusView = calle1EditText;
+            cancel = true;
+        }
+
         return false;
+    }
+
+    /**
+     * Muestra las alertas
+     * @param title
+     * @param message
+     */
+    private void getAlert(String title, String message) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setMessage(message).setTitle(title);
+
+        builder.setPositiveButton("Aceptar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    /**
+     * Método para realizar las acciones
+     */
+    private void realizarAcciones() {
+
+        guadarButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if (validarCampos())
+                    return;
+
+            }
+        });
+
     }
 }

@@ -27,6 +27,8 @@
     <string name="menu_guardar">Guardar</string>
     <string name="opcion_si">SI</string>
     <string name="opcion_no">NO</string>
+    <string name="validacion_aviso">Validación</string>
+    <string name="seleccione_pregunta">Seleccione la pregunta:&#160;</string>
 
 
     <!-- Etiquetas de error -->
