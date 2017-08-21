@@ -503,4 +503,20 @@
     <string name="ayudasTecnicasOpcionP">P. Camas hospitalarias?</string>
     <string name="ayudasTecnicasOpcionQ">Q. Otros?</string>
 
+
+    <!-- Mensajes de alerta -->
+    <string name="mvTipoViviendaUbicacionAguaAlerta">Departamento y ubicación de agua no corresponde, coloque en observación.</string>
+    <string name="mvTipoViviendaUbicacionSanitarioAlerta">Departamento y ubicación del sanitario no corresponde, coloque en observación.</string>
+    <string name="mvServicioSanitarioUbicacionSanitarioDescargaAlerta">Descarga directa y servicio higiénico dentro de la vivienda, coloque en observación.</string>
+    <string name="mvServicioSanitarioUbicacionSanitarioPozoAlerta">Pozo ciego y servicio higiénico dentro de la vivienda, coloque en observación.</string>
+    <string name="mvServicioSanitarioUbicacionSanitarioInodoroAlerta">Inodoro y alcantarillado fuera de la vivienda, lote o terreno, coloque en observación.</string>
+    <string name="mvUbicacionAguaUbicacionSanitarioLetrinaAlerta">Letrina y servicio higiénico dentro de la vivienda, lote o terreno, coloque en observación.</string>
+    <string name="mvUbicacionAguaUbicacionSanitarioTuberiaAlerta">Tubería fuera del edificio, lote o terreno y servicio higiénico dentro de la vivienda, coloque en observación.</string>
+    <string name="mvTipoViviendaTenenciaViviendaAlerta">Tipo de vivienda cuartos no corresponde a tenencia, coloque en observación.</string>
+    <string name="mvTipoViviendaCasaMaterialTechoAlerta">Tipo vivienda Casa y Techo de Otro Material, coloque en observación.</string>
+    <string name="mvTipoViviendaDepartamentoMaterialTechoAlerta">Tipo vivienda Departamento y Techo de Otro Material, coloque en observación.</string>
+    <string name="mvViaAccesoPrincipalEliminanBasuraAlerta">Otro tipo de acceso a la vivienda y registra y elimina la basura por servicio municipal, coloque en observación.</string>
+
+
+
 </resources>
