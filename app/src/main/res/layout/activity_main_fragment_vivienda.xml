@@ -341,17 +341,14 @@
                     <TextView
                         style="@style/etiquetaSmallTextView"
                         android:text="@string/hogar" />
-
                     <Spinner
                         android:id="@+id/hogarInicialSpinner"
                         style="@style/respuestaSpinner" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text="@string/de" />
-
                     <Spinner
                         android:id="@+id/hogarFinalSpinner"
                         style="@style/respuestaSpinner" />
