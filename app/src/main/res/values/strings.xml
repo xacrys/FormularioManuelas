@@ -504,7 +504,74 @@
     <string name="ayudasTecnicasOpcionQ">Q. Otros?</string>
 
 
-    <!-- Mensajes de alerta -->
+    <!-- Mensajes de validacion Seccion III y IV -->
+    <string name="mv_seccion3TipoVivienda">Seleccione la pregunta: "Seccion III - 1. Tipo de Vivienda (por observación)"</string>
+    <string name="mv_seccion3ViviendaViaAccesoPrincipal">Seleccione la pregunta: "Seccion III - 2. Via de acceso principal a la VIVIENDA(por observación)"</string>
+    <string name="mv_seccion3ViviendaMaterialTecho">Seleccione la pregunta: "Seccion III - 3. El material predominante del TECHO de la VIVIENDA es:"</string>
+    <string name="mv_seccion3ViviendaMaterialPiso">Seleccione la pregunta: "Seccion III - 4. El material predominante del PISO de la VIVIENDA es:"</string>
+    <string name="mv_seccion3ViviendaMaterialParedes">Seleccione la pregunta: "Seccion III - 5. El material predominante de las PAREDES de la VIVIENDA es:"</string>
+    <string name="mv_seccion3EstadoVivienda">Seleccione la pregunta: "Seccion III - 6. El estado del (&#8230;&#8230;) de la VIVIENDA es:"</string>
+    <string name="mvMaterialParedes">Techo de hormigón y paredes de adobe/tapia</string>
+    <string name="mvMediagua">Mediagua y techo de hormigón, losa o cemento</string>
+    <string name="mv_seccion4ViaAccesoSendero">Via de acceso sendero y elimina basura servicio municipal</string>
+    <string name="mvViaAccesoRio">Via de acceso Rio/Mar y elimina basura servicio municipal</string>
+    <string name="mv_seccion3Otros">Via de acceso otros y elimina basura servicio municipal</string>
+    <string name="mv_Seccion4TenenciaVivienda">Seleccione la pregunta: "Seccion IV - 1. La vivienda que ocupa este HOGAR es:"</string>
+    <string name="mv_Seccion4DocumentoVivienda">Seleccione la pregunta: "Seccion IV - 2. Por esta vivienda los miembros de este hogar possen:"</string>
+    <string name="mv_idSeccion4AdquisicionVivienda">Seleccione la pregunta: "Seccion IV - 3. ¿Cómo adquirió su vivienda? (Registre los dos principales)"</string>
+    <string name="mv_idSeccion4AdquisicionViviendaAnio">No puede superar al año actual (Prg. 19)</string>
+    <string name="mv_idSeccion4Prestamo">Seleccione la pregunta: "Seccion IV - 4. ¿Ha recibido préstamos para el mejoramiento de su vivienda?"</string>
+    <string name="mv_seccion4Cuartos">Complete la pregunta: "Seccion IV - 2. ¿De cuantós CUARTOS dispone este HOGAR sin incluir cuartos de cocina, baños, garajes, o los dedicados para negocios?"</string>
+    <string name="mv_seccion4Dormitorios">Complete la pregunta: "Seccion IV - 3. ¿De estos CUARTOS, cuantós utiliza este HOGAR en forma exclusiva para dormir?"</string>
+    <string name="mv_seccion4FuenteAgua">Seleccione la pregunta: "Seccion IV - 4. De dondé obtiene el AGUA principalmente este HOGAR:"</string>
+    <string name="mv_seccion4UbicacionAgua">Seleccione la pregunta: "Seccion IV - 5. El AGUA que recibe este hogar es:"</string>
+    <string name="mv_seccion4TratamientoAgua">Seleccione la pregunta: "Seccion IV - 6. Principalmente el tratamiento que le dan al AGUA que obtiene de (pr.4) antes de beberla es:"</string>
+    <string name="mv_seccion4ServicioSanitario">Seleccione la pregunta: "Seccion IV - 7. El tipo se SERVICIO HIGIÉNICO con que cuenta el HOGAR es:"</string>
+    <string name="mv_seccion4UbicacionSanitario">Seleccione la pregunta: "Seccion IV - 8. Tiene sanitario y no contesta ubicación"</string>
+    <string name="mv_seccion4ServicioDucha">Seleccione la pregunta: "Seccion IV - 9. El servicio de DUCHA con que cuenta el HOGAR es:"</string>
+    <string name="mv_seccion4EliminaBasura">Seleccione la pregunta: "Seccion IV - 10. Comó ELIMINAN en este hogar la mayor parte de la BASURA:"</string>
+    <string name="mv_seccion4TipoAlumbrado">Seleccione la pregunta: "Seccion IV - 11. Con qué tipo de ALUMBRADO cuenta este HOGAR:"</string>
+    <string name="mv_seccion4EnergeticoCocina">Seleccione la pregunta: "Seccion IV - 12. En este hogar se COCINA principalmente con:"</string>
+    <string name="mv_seccion4CocinaDormitorio">Escoja la pregunta: "Seccion IV - 13. Ubicación de la cocina dentro del dormitorio"</string>
+    <string name="mv_seccion4RiesgoAnimal">Escoja la pregunta: "Seccion IV - 14. Riesgo por animales"</string>
+    <string name="mv_seccion4PresenciaVectores">Escoja la pregunta: "Seccion V - 1. Presencia de vectores transmisores de enfermedades "</string>
+    <string name="mv_seccion4AreaEndemica">Escoja la pregunta: "Seccion V - 2. Usan mosquitero"</string>
+    <string name="mv_seccion4ContaminacionSuelo">Escoja la pregunta: "Seccion V - 1. Contaminación del suelo"</string>
+    <string name="mv_seccion4ContaminacionAire">Escoja la pregunta: "Seccion V - 2. Contaminación del aire"</string>
+    <string name="mv_seccion4ContaminacionAgua">Escoja la pregunta: "Seccion V - 3. Contaminación del agua"</string>
+    <string name="mv_seccion4ContaminacionSueloCual">Seleccione Contaminación del suelo</string>
+    <string name="mv_seccion4ContaminacionAireCual">Seleccione Contaminación del aire</string>
+    <string name="mv_seccion4ContaminacionAguaCual">Seleccione Contaminación del agua</string>
+    <string name="mv_seccion4RiesgoIncendio">Escoja la pregunta: "Seccion V - 1. Riesgo de incendio"</string>
+    <string name="mv_seccion4RiesgoDeslizamiento">Escoja la pregunta: "Seccion V - 2. Riesgo de Deslizamiento"</string>
+
+    <string name="mv_idSeccion4GasCalefon">Seleccione la pregunta: "Seccion IV - 17. Utiliza este hogar GAS doméstico para calefón:"</string>
+    <string name="mv_idSeccion4PoseeOtroLugar">Seleccione la pregunta: "Seccion IV - 18. ¿En otro lugar dentro del país, posee vivienda propia y la está pagando ó propia y totalmente pagada?"</string>
+    <string name="mv_idSeccion4AnioAdquisicion">Seleccione la pregunta: "Seccion IV - 19. ¿Cuál fue el año en que tuvo su vivienda propia y que la está pagando ó propia y totalmente pagada? (se refiere a la vivienda que tiene el hogar aún cuando no la esté habitando)"</string>
+    <string name="mv_seccion4Pregunta8">Departamento y ubicación del agua no corresponde</string>
+    <string name="mv_seccion4Pregunta11">Departamento y ubicación del sanitario no corresponde</string>
+    <string name="mvCuartosTipoVivienda">Número de cuartos no corresponde a tipo de vivienda</string>
+    <string name="mvViviendaMaterialTecho">Tipo de vivienda no corresponde al material del TECHO</string>
+    <string name="mvViviendaMaterialTechoObservacion">Tipo de vivienda no corresponde al material del TECHO, coloque en observación</string>
+    <string name="mvViviendaMaterialPiso">Tipo de vivienda no corrresponde a material de PISO</string>
+    <string name="mvViviendaMaterialParedes">Tipo de vivienda no corresponde a material de PAREDES</string>
+    <string name="mvDormitoriosCuartos">Número total de cuartos menor al número de cuartos exclusivos para dormir</string>
+    <string name="mv_seccion4ServicioHigienico">Departamento y ubicación del agua no corresponde</string>
+    <string name="mvServicioHigienicoDepartamento">Departamento y no tiene servicio higiénico </string>
+    <string name="mv_seccion4TenenciaVivienda">Tipo de vivienda no corresponde a tenencia</string>
+    <string name="mv_seccion4AguaUbicacionSanitario">Tubería fuera del edificio, lote o terreno y servicio higiénico dentro de la vivienda</string>
+    <string name="mv_seccion4ServicioUbicacionSanitario">Descarga directa y servicio higiénico dentro de la vivienda</string>
+    <string name="mvServicioUbicacionSanitarioHogar">Letrina y servicio higiénico dentro de la vivienda</string>
+    <string name="mv_seccion4TipoViviendaCalefon">Tipo vivienda Choza, covacha, rancho, otros y tiene calefón</string>
+    <string name="mvEnergeticoCocinaTipoAlumbrado">Cocina con electricidad y tipo de alumbrado no corresponde</string>
+    <string name="mv_seccion4Pregunta3Registro1Registro2">Las formas de adquisición NO PUEDEN SER LAS MISMAS</string>
+    <string name="mv_seccion2Pregunta1NoVivienda">Para condición en construcción u otra no se requiere dato en VIVIENDA.</string>
+    <string name="mv_seccion2Pregunta1NoHogarInicialFinal">Para condición en  desocupada, en construccion, destruida, temporal y otra no se requiere dato en 13. Hogar&#8230;.de&#8230;.</string>
+    <string name="mv_seccion4Inodoro">Inodoro y alcantarillado fuera de la vivienda lote/terreno</string>
+    <string name="mvServicioDucha">El servicio de ducha con el que cuenta el hogar no corresponde a tipo de vivienda.</string>
+    <!-- FIN Mensajes de validacion Seccion III y IV -->
+
+    <!-- Mensajes de alerta tipo dos  -->
     <string name="mvTipoViviendaUbicacionAguaAlerta">Departamento y ubicación de agua no corresponde, coloque en observación.</string>
     <string name="mvTipoViviendaUbicacionSanitarioAlerta">Departamento y ubicación del sanitario no corresponde, coloque en observación.</string>
     <string name="mvServicioSanitarioUbicacionSanitarioDescargaAlerta">Descarga directa y servicio higiénico dentro de la vivienda, coloque en observación.</string>
