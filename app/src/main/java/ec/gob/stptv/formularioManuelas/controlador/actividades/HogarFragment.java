@@ -2,7 +2,10 @@ package ec.gob.stptv.formularioManuelas.controlador.actividades;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.*;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 
@@ -38,6 +41,7 @@ public class HogarFragment extends Fragment {
     private EditText numCuartosEditText;
     private EditText numDormitoriosEditText;
     private Button guardarPersonaButton;
+    private Button atrasButton;
     private RadioGroup gasParaCalefonOpcion;
     private RadioGroup terrenoAgropecuario;
     private RadioGroup terrenoAgropecuarioSi;
@@ -85,6 +89,7 @@ public class HogarFragment extends Fragment {
         gasParaCalefonOpcion = item.findViewById(R.id.gasParaCalefon);
         terrenoAgropecuario = item.findViewById(R.id.terrenoAgropecuario);
         terrenoAgropecuarioSi = item.findViewById(R.id.terrenoAgropecuarioSi);
+        atrasButton = item.findViewById(R.id.atrasButton);
 
 
 
@@ -256,6 +261,21 @@ public class HogarFragment extends Fragment {
 
             }
         });
+
+        atrasButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new ViviendaFragment();
+                Bundle args = new Bundle();
+                newFragment.setArguments(args);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.hogarFragment, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+
 
     }
 }
