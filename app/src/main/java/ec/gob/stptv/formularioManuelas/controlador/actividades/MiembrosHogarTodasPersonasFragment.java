@@ -8,18 +8,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.PersonaPreguntas;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
 
-/**
- * Created by lmorales on 17/08/17.
+/***
+ *  Autor:Christian Tintin
  */
 
 public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
     private Button nuevoButton;
     private Button atrasButton;
+    private Spinner parentescoSpinner;
+    private Spinner estadoCivilSpinner;
+    private Spinner nacionalidadSpinner;
+    private Spinner etniaSpinner;
+    private Spinner seguroSocial1Spinner;
+    private Spinner seguroSocial2Spinner;
+    private Spinner seguroSalud1Spinner;
+    private Spinner seguroSalud2Spinner;
+    private Spinner asistenciaEstablecimientoSpinner;
+    private Spinner proteccionSocialpinner;
+    private Spinner sufreEnfermedadesSpinner;
+    private Spinner enfermedadCatastroficaSpinner;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +58,18 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
         nuevoButton = item.findViewById(R.id.nuevoButton);
         atrasButton = item.findViewById(R.id.atrasButton);
+        parentescoSpinner=item.findViewById(R.id.parentescoSpinner);
+        estadoCivilSpinner = item.findViewById(R.id.estadoCivilSpinner);
+        nacionalidadSpinner = item.findViewById(R.id.nacionalidadSpinner);
+        etniaSpinner = item.findViewById(R.id.etniaSpinner);
+        seguroSocial1Spinner = item.findViewById(R.id.seguroSocial1Spinner);
+        seguroSocial2Spinner=item.findViewById(R.id.seguroSocial2Spinner);
+        seguroSalud1Spinner = item.findViewById(R.id.seguroSalud1Spinner);
+        seguroSalud2Spinner = item.findViewById(R.id.seguroSalud2Spinner);
+        asistenciaEstablecimientoSpinner = item.findViewById(R.id.asistenciaEstablecimientoSpinner);
+        proteccionSocialpinner=item.findViewById(R.id.proteccionSocialpinner);
+        sufreEnfermedadesSpinner=item.findViewById(R.id.sufreEnfermedadesSpinner);
+        enfermedadCatastroficaSpinner=item.findViewById(R.id.enfermedadCatastroficaSpinner);
     }
 
 
@@ -58,6 +85,18 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
      * Método que carga las preguntas de los controles de la aplicacion por ejemplo los spinner
      */
     private void cargarPreguntas() {
+        parentescoSpinner.setAdapter(PersonaPreguntas.getControlTrabajoParentescoAdapter(getActivity()));
+        estadoCivilSpinner.setAdapter(PersonaPreguntas.getControlTrabajoEstadoCivilAdapter(getActivity()));
+        nacionalidadSpinner.setAdapter(PersonaPreguntas.getNacionalidadAdapter(getActivity()));
+        etniaSpinner.setAdapter(PersonaPreguntas.getAutoDefinicionEtnicaAdapter(getActivity()));
+        seguroSocial1Spinner.setAdapter(PersonaPreguntas.getAporteSeguroAdapter(getActivity()));
+        seguroSocial2Spinner.setAdapter(PersonaPreguntas.getAporteSeguroAdapter(getActivity()));
+        seguroSalud1Spinner.setAdapter(PersonaPreguntas.getSeguroSaludAdapter(getActivity()));
+        seguroSalud2Spinner.setAdapter(PersonaPreguntas.getSeguroSaludAdapter(getActivity()));
+        asistenciaEstablecimientoSpinner.setAdapter(PersonaPreguntas.getAsistenciaEstablecimientoAdapter(getActivity()));
+        sufreEnfermedadesSpinner.setAdapter(PersonaPreguntas.getSufreEnfermedadesAdapter(getActivity()));
+        enfermedadCatastroficaSpinner.setAdapter(PersonaPreguntas.getEnfermedadCatastroficaAdapter(getActivity()));
+
 
     }
 
