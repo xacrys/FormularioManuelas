@@ -429,6 +429,56 @@ public class HogarPreguntas {
 
         return energeticoCocinaAdapter;
     }
+
+    public static ArrayAdapter<Values> getNumCuartosAdapter(Context context) {
+
+        ArrayList<Values> listaNumCuartos = new ArrayList<>();
+
+        listaNumCuartos.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        listaNumCuartos.add(new Values(1,"1"));
+        listaNumCuartos.add(new Values(2,"2"));
+        listaNumCuartos.add(new Values(3,"3"));
+        listaNumCuartos.add(new Values(4,"4"));
+        listaNumCuartos.add(new Values(5,"5"));
+        listaNumCuartos.add(new Values(6,"6"));
+        listaNumCuartos.add(new Values(7,"7"));
+        listaNumCuartos.add(new Values(8,"8"));
+        listaNumCuartos.add(new Values(9,"9"));
+        listaNumCuartos.add(new Values(10,"10"));
+        listaNumCuartos.add(new Values(11,"11"));
+        listaNumCuartos.add(new Values(12,"12"));
+        listaNumCuartos.add(new Values(13,"13"));
+        listaNumCuartos.add(new Values(14,"14"));
+        listaNumCuartos.add(new Values(15,"15"));
+        ArrayAdapter<Values> numCuartosAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listaNumCuartos);
+        numCuartosAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return numCuartosAdapter;
+    }
+
+    public static ArrayAdapter<Values> getNumDormitoriosAdapter(Context context) {
+
+        ArrayList<Values> listaNumDormitorios = new ArrayList<>();
+
+        listaNumDormitorios.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        listaNumDormitorios.add(new Values(1,"1"));
+        listaNumDormitorios.add(new Values(2,"2"));
+        listaNumDormitorios.add(new Values(3,"3"));
+        listaNumDormitorios.add(new Values(4,"4"));
+        listaNumDormitorios.add(new Values(5,"5"));
+        listaNumDormitorios.add(new Values(6,"6"));
+        listaNumDormitorios.add(new Values(7,"7"));
+        listaNumDormitorios.add(new Values(8,"8"));
+        listaNumDormitorios.add(new Values(9,"9"));
+        listaNumDormitorios.add(new Values(10,"10"));
+        listaNumDormitorios.add(new Values(11,"11"));
+        listaNumDormitorios.add(new Values(12,"12"));
+        listaNumDormitorios.add(new Values(13,"13"));
+        listaNumDormitorios.add(new Values(14,"14"));
+        listaNumDormitorios.add(new Values(15,"15"));
+        ArrayAdapter<Values> numDormitoriosAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listaNumDormitorios);
+        numDormitoriosAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return numDormitoriosAdapter;
+    }
     
     
     
