@@ -16,6 +16,13 @@
     <string name="cambiarFecha">Cambiar</string>
     <string name="menuSincronizarFormularios">Sincronizar Formularios</string>
     <string name="tituloFormulario">Formularios</string>
+    <string name="columna_codigo_viv">Codigo</string>
+    <string name="columna_fecha_registro">Fecha de registro</string>
+    <string name="columna_zona">Zona</string>
+    <string name="columna_sector">Sector</string>
+    <string name="columna_estado">Estado</string>
+    <string name="columna_observacion">Observaciones</string>
+    <string name="mensajeBotonVisitar">Abrir</string>
 
     <!-- Etiquetas comunes -->
     <string name="seccionVivienda">Sección Vivienda</string>
@@ -47,6 +54,8 @@
     <string name="barrido">Barrido</string>
     <string name="demanda">Demanda</string>
     <string name="area">3. Área: </string>
+    <string name="areaOpcion1">1. Urbana: </string>
+    <string name="areaOpcion2">2. Rural: </string>
     <string name="provincia">4. Provincia:</string>
     <string name="canton">5. Cantón:</string>
     <string name="parroquia">6. Cabecera cantonal o parroquial:</string>
@@ -256,6 +265,8 @@
 
     <!--  Seccion 6  -->
     <string name="seccion6">SECCIÓN VI CONTROL</string>
+    <string name="estadoTodos">Todos</string>
+    <string name="estadoImcompleto">Incompleto</string>
     <!--  Seccion 6 Pregunta 1  -->
     <string name="controlEntrevistas">1. CONTROL DE ENTREVISTAS EFECTIVAS</string>
     <string name="controlEntrevistasOpcion1">1. Completa (efectiva)</string>
