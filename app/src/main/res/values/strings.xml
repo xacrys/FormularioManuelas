@@ -526,6 +526,52 @@
     <!-- Mensajes de validacion Seccion I -->
     <string name="error_numero_fijo">Ingrese 9 dígitos</string>
 
+    <!-- Mensajes de validacion Seccion I y II -->
+
+    <string name="mv_tipo_levantamiento">Seleccione el tipo de levantamiento</string>
+    <string name="mv_condicion_ocupacion">Seleccione la condición de ocupación</string>
+    <string name="mv_provincia">Seleccione la Provincia</string>
+    <string name="mv_canton">Seleccione el Cantón</string>
+    <string name="mv_parroquia">Seleccione la Parroquia</string>
+    <string name="mv_parroquia_urbana">Seleccione la Parroquia urbana</string>
+    <string name="mv_zona">Seleccione la zona</string>
+    <string name="mv_sector">Seleccione el sector</string>
+    <string name="mv_convocatoriaManzana">Convocatoria con dato en manzana</string>
+    <string name="mv_convocatoriaEdifico">Convocatoria con dato en edificio</string>
+    <string name="mv_localidad">Seleccione localidad/cominidad/recinto/barrio</string>
+    <string name="mv_manzana">Seleccione el número de manzana</string>
+    <string name="mv_calle1">Ingrese la Calle 1/Camino o Sendero(principal)</string>
+    <string name="mv_calle1_numero">Ingrese el campo Piso N°</string>
+    <string name="mv_calle1_numero_numerico">El campo número (N°) debe ser numérico</string>
+    <string name="mv_calle1_numero_numerico_mayor">El campo número (N°) no puede ser menor o igual a cero</string>
+    <string name="mv_calle2">Ingrese la Calle 2/Camino o Sendero(intersección, transversal)</string>
+    <string name="mv_referencia">Ingrese la referencia de ubicación de la vivienda</string>
+    <string name="mv_codigo_vivienda_invalido">El código de vivienda no es válido [VIV_CODIGO=0], primero debe guardar la seccion 1-4</string>
+    <string name="mv_latitud_longitud">Capture la longitud y latitud</string>
+    <string name="mv_numero_certificado">Ingrese el numero de certificado</string>
+    <string name="mv_foto_vivienda">Capture la foto de la vivienda</string>
+    <string name="mv_foto_certificado">Capture la foto del certificado</string>
+    <string name="mv_vivienda_ocupada">Vivienda ocupada sin dato en vivienda</string>
+    <string name="mv_vivienda_desocupada">Vivienda desocupada sin dato en vivienda</string>
+    <string name="mv_vivienda_destruida">Vivienda destruida sin dato en vivienda</string>
+    <string name="mv_vivienda_temporal">Vivienda temporal sin dato en vivienda</string>
+    <string name="mv_vivienda_hogar">Vivienda ocupada sin dato en hogar</string>
+    <string name="mv_vivienda_hogar_mayor">El Hogar de inicio no debe ser mayor que el hogar final</string>
+    <string name="mv_tipo_levantamiento_condicion">Si es Convocatoria no puede ser diferente a Ocupada en Condición de Ocupación </string>
+    <string name="mv_edificio_requerido">Ingrese edificio</string>
+    <string name="mv_division_alfanumerico">El campo Div solo debe contener letras[A-Z]</string>
+    <string name="mv_numerotelefono_fijo">El campo número telefónico fijo debe contener números de [0-9]</string>
+    <string name="mv_numerotelefono_celular">El campo número telefónico celular debe contener números de [0-9]</string>
+    <string name="mv_lote_alfanumerico">El campo número de lote debe contener letras [A-Z] y/o números de [0-9]</string>
+    <string name="mv_departamento_alfanumerico">El campo número de departamento debe contener letras [A-Z] y/o números de [0-9]</string>
+    <string name="mv_campo_vivienda_mayor_cero">El campo 12 vivienda debe ser un número entero mayor que cero</string>
+    <string name="mv_campo_edificio_mayor_cero">El campo 11 edificio debe ser un número entero mayor que cero</string>
+    <string name="mv_campo_hogar_mayor_cero">El campo 13 "Hogar de" debe ser un número entero mayor que cero</string>
+    <string name="error_numero_celularCeros">No es campo obligatorio</string>
+    <string name="error_numero_celular">Ingrese 10 dígitos</string>
+
+    <!-- FIN Mensajes de validacion Seccion I y II -->
+
     <!-- Mensajes de validacion Seccion III y IV -->
     <string name="mv_seccion3TipoVivienda">Seleccione la pregunta: "Seccion III - 1. Tipo de Vivienda (por observación)"</string>
     <string name="mv_seccion3ViviendaViaAccesoPrincipal">Seleccione la pregunta: "Seccion III - 2. Via de acceso principal a la VIVIENDA(por observación)"</string>

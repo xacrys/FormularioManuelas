@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.database.Cursor;
 
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localidad;
 
@@ -16,7 +17,7 @@ public class LocalidadDao extends Localidad {
 	public static ArrayList<Values> getLocalidades(Cursor result) {
 		
 		ArrayList<Values> localidades = new ArrayList<Values>();
-		localidades.add(new Values("-1", "Seleccione.."));
+		localidades.add(new Values(String.valueOf(Global.VALOR_SELECCIONE), "Seleccione.."));
 
 		if (result.moveToFirst())
 			do {

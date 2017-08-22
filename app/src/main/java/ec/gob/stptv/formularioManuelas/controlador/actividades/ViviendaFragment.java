@@ -21,6 +21,7 @@ import android.widget.TabHost;
 import java.util.ArrayList;
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
@@ -93,6 +94,7 @@ public class ViviendaFragment extends Fragment {
         contentResolver = getActivity().getContentResolver();
         this.obtenerVistas(item);
         this.cargarPreguntas();
+        this.habilitarDeshabilitar();
         this.realizarAcciones();
 
         try {
@@ -131,6 +133,7 @@ public class ViviendaFragment extends Fragment {
         tabs.setup();
 
     }
+
 
     /**
      * Método para obtener las controles de la vista
@@ -198,7 +201,7 @@ public class ViviendaFragment extends Fragment {
         } else {
             divisionEditText.setText("");
         }
-        if (vivienda.getEdificio().equals(Global.CADENAS_VACIAS)) {
+        if (!vivienda.getEdificio().equals(Global.CADENAS_VACIAS)) {
             edificioEditText.setText(vivienda.getEdificio());
         } else {
             edificioEditText.setText("");
@@ -295,7 +298,7 @@ public class ViviendaFragment extends Fragment {
          */
         ArrayList<Values> hogarInicial = new ArrayList<Values>();
 
-        hogarInicial.add(new Values("-1",
+        hogarInicial.add(new Values(String.valueOf(Global.VALOR_SELECCIONE),
                 getString(R.string.seleccionRespuesta)));
 
         for (int i = 1; i <= Global.MAXIMO_VALOR_HOGAR_FINAL; i++) {
@@ -316,7 +319,7 @@ public class ViviendaFragment extends Fragment {
          */
         ArrayList<Values> hogarFinal = new ArrayList<Values>();
 
-        hogarFinal.add(new Values("-1",
+        hogarFinal.add(new Values(String.valueOf(Global.VALOR_SELECCIONE),
                 getString(R.string.seleccionRespuesta)));
 
         for (int i = 1; i <= Global.MAXIMO_VALOR_HOGAR_FINAL; i++) {
@@ -350,6 +353,9 @@ public class ViviendaFragment extends Fragment {
      * Método para habilitar o desabilitar los controles de la vista
      */
     public void habilitarDeshabilitar() {
+
+        hogarInicialSpinner.setEnabled(false);
+        hogarInicialSpinner.setSelection(1);
 
     }
 
@@ -481,6 +487,10 @@ public class ViviendaFragment extends Fragment {
         //vivienda.setIdfase(fase.getId());
         vivienda.setIdfase(1);
         vivienda.setIdcontrolentrevista(1);
+        vivienda.setCodigodpa(((Values) parroquiaSpinner.getSelectedItem()).getKey()+
+                ((Values) zonaSpinner.getSelectedItem()).getKey()
+                +((Values) sectorSpinner.getSelectedItem()).getKey()
+                +((Values) manzanaSpinner.getSelectedItem()).getKey());
 
 
         if (vivienda.getId() == 0) {
@@ -544,7 +554,7 @@ public class ViviendaFragment extends Fragment {
         View focusView = null;
 
         if (((Values) tipoLevantamientoSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -554,7 +564,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) areaSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -564,7 +574,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) provinciaSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -573,7 +583,7 @@ public class ViviendaFragment extends Fragment {
             return cancel;
         }
         if (((Values) cantonSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -582,7 +592,7 @@ public class ViviendaFragment extends Fragment {
             return cancel;
         }
         if (((Values) parroquiaSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -591,7 +601,7 @@ public class ViviendaFragment extends Fragment {
             return cancel;
         }
         if (((Values) zonaSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -601,7 +611,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) sectorSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -611,7 +621,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (!((Values) zonaSpinner.getSelectedItem()).getKey().equals("999") &&
-                ((Values) manzanaSpinner.getSelectedItem()).getKey().equals("-1")) {
+                ((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -619,6 +629,63 @@ public class ViviendaFragment extends Fragment {
             cancel = true;
             return cancel;
         }
+
+        //estas validaciones se hacia dependiendo la condicion de ocupacion pero como ahora es slo ocupada entonces no se
+        //hace esa validacion x ejm destruida, tempòral etc
+        if (((Values) hogarFinalSpinner.getSelectedItem())
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) && Integer
+                .valueOf(((Values) condicionOcupacionSpinner
+                        .getSelectedItem()).getKey()) == ViviendaPreguntas.CondicionOcupacion.OCUPADA
+                .getValor()) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.hogar));
+            cancel = true;
+            return cancel;
+        }
+
+        if (viviendaEditText.getText().length() == 0
+                && Integer
+                .valueOf(((Values) condicionOcupacionSpinner
+                        .getSelectedItem()).getKey()) == ViviendaPreguntas.CondicionOcupacion.OCUPADA
+                .getValor()) {
+            viviendaEditText
+                    .setError(getString(R.string.mv_vivienda_ocupada));
+            viviendaEditText.requestFocus();
+            cancel = true;
+            //return cancel;
+        }
+
+        if (((Values) tipoLevantamientoSpinner
+                .getSelectedItem()).getKey().equals("1")) {
+
+            if (edificioEditText.getText().length() == 0
+                    && (Integer
+                    .valueOf(((Values) condicionOcupacionSpinner
+                            .getSelectedItem()).getKey()) == ViviendaPreguntas.CondicionOcupacion.OCUPADA
+                    .getValor())) {
+                edificioEditText
+                        .setError(getString(R.string.mv_edificio_requerido));
+                edificioEditText.requestFocus();
+                cancel = true;
+                //return cancel;
+            }
+
+            if ((edificioEditText.getText().length() > 0
+                    && Integer.valueOf(edificioEditText.getText()
+                    .toString()) <= 0 && (Integer
+                    .valueOf(((Values) condicionOcupacionSpinner
+                            .getSelectedItem()).getKey()) == ViviendaPreguntas.CondicionOcupacion.OCUPADA
+                    .getValor()))) {
+                edificioEditText
+                        .setError(getString(R.string.mv_campo_edificio_mayor_cero));
+                edificioEditText.requestFocus();
+                cancel = true;
+                //return cancel;
+            }
+        }
+
 
         calle1EditText.setError(null);
         calle1EditText.clearFocus();
@@ -654,6 +721,15 @@ public class ViviendaFragment extends Fragment {
             }
         }
 
+        telefonoCelularEditText.setError(null);
+        telefonoCelularEditText.clearFocus();
+        if (TextUtils.isEmpty(telefonoCelularEditText.getText().toString().trim())) {
+            telefonoCelularEditText
+                    .setError(getString(R.string.errorCampoRequerido));
+            focusView = telefonoCelularEditText;
+            cancel = true;
+        }
+
         referenciaUbicacionEditText.setError(null);
         referenciaUbicacionEditText.clearFocus();
         if (TextUtils.isEmpty(referenciaUbicacionEditText.getText().toString().trim())) {
@@ -666,7 +742,8 @@ public class ViviendaFragment extends Fragment {
         telefonoConvencionalEditText.setError(null);
         telefonoConvencionalEditText.clearFocus();
         if ((telefonoConvencionalEditText.getText().toString().length() > 0)
-                && (telefonoConvencionalEditText.getText().toString().length() < 9)) {
+                && (telefonoConvencionalEditText.getText().toString()
+                .length() <9)) {
 
             telefonoConvencionalEditText
                     .setError(getString(R.string.error_numero_fijo));
@@ -674,9 +751,41 @@ public class ViviendaFragment extends Fragment {
             cancel = true;
             return cancel;
         }
+        telefonoConvencionalEditText.clearFocus();
+        if (telefonoConvencionalEditText.getText().toString().equals("000000000")) {
+
+            telefonoConvencionalEditText
+                    .setError(getString(R.string.error_numero_celularCeros));
+            telefonoConvencionalEditText.requestFocus();
+            cancel = true;
+            return cancel;
+        }
+
+
+        telefonoCelularEditText.clearFocus();
+        if ((telefonoCelularEditText.getText().toString().length() > 0)
+                && (telefonoCelularEditText.getText().toString()
+                .length() <10)) {
+
+            telefonoCelularEditText
+                    .setError(getString(R.string.error_numero_celular));
+            telefonoCelularEditText.requestFocus();
+            cancel = true;
+            return cancel;
+        }
+
+        telefonoCelularEditText.clearFocus();
+        if (telefonoCelularEditText.getText().toString().equals("0000000000")) {
+
+            telefonoCelularEditText
+                    .setError(getString(R.string.error_numero_celularCeros));
+            telefonoCelularEditText.requestFocus();
+            cancel = true;
+            return cancel;
+        }
 
         if (((Values) tipoViviendaSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -686,7 +795,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) viaAccesoPrincipalSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -696,7 +805,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) materialTechoSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -706,7 +815,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) materialPisoSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -716,7 +825,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) materialParedesSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -726,7 +835,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) estadoTechoSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -736,7 +845,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) estadoPisoSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -745,8 +854,9 @@ public class ViviendaFragment extends Fragment {
             return cancel;
         }
 
+
         if (((Values) estadoParedSpinner.getSelectedItem())
-                .getKey().equals("-1")) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -756,7 +866,7 @@ public class ViviendaFragment extends Fragment {
         }
 
 
-        return false;
+        return cancel;
     }
 
     /**
@@ -811,6 +921,33 @@ public class ViviendaFragment extends Fragment {
             }
         });
 
+        /**
+         * Valida q no ingrese espacios en blanco al inicio o
+         */
+        calle1EditText.addTextChangedListener(Utilitarios
+                .clearSpaceEditText(calle1EditText));
+
+        calle2EditText.addTextChangedListener(Utilitarios
+                .clearSpaceEditText(calle2EditText));
+
+        referenciaUbicacionEditText.addTextChangedListener(Utilitarios
+                .clearSpaceEditText(referenciaUbicacionEditText));
+
+        pisoEditText.addTextChangedListener(Utilitarios
+                .clearSpaceEditText(pisoEditText));
+
+        localidadEditText.addTextChangedListener(Utilitarios
+                .clearSpaceEditText(localidadEditText));
+
+        /**
+         * Valida q siempre ingrese el numero cero
+         */
+        telefonoConvencionalEditText.addTextChangedListener
+                (Utilitarios.numeroCeroEditText(telefonoConvencionalEditText));
+
+        telefonoCelularEditText.addTextChangedListener
+                (Utilitarios.numeroCeroEditText(telefonoCelularEditText));
+
     }
 
     /**
@@ -859,7 +996,7 @@ public class ViviendaFragment extends Fragment {
                         Values provincia = (Values) adapter.getAdapter()
                                 .getItem(position);
 
-                        if (!provincia.getKey().equals("-1")) {
+                        if (!provincia.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
 
                             ArrayList<Values> localidades = null;
                             Cursor cursor = contentResolver.query(
@@ -916,7 +1053,7 @@ public class ViviendaFragment extends Fragment {
                                        int position, long arg3) {
 
                 Values canton = (Values) adapter.getAdapter().getItem(position);
-                if (!canton.getKey().equals("-1")) {
+                if (!canton.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
                     //new GetParroquias().execute(canton.getKey());
 
                     ArrayList<Values> localidades = null;
@@ -974,7 +1111,7 @@ public class ViviendaFragment extends Fragment {
                         Values parroquia = (Values) adapter.getAdapter()
                                 .getItem(position);
                         String _idParroquia = parroquia.getKey();
-                        if (!_idParroquia.equals("-1")) {
+                        if (!_idParroquia.equals(String.valueOf(Global.VALOR_SELECCIONE))) {
 
                             String idProvincia = _idParroquia.substring(0, 2);
                             String idCanton = _idParroquia.substring(2, 4);
@@ -1038,7 +1175,7 @@ public class ViviendaFragment extends Fragment {
                 Values zona = (Values) adapter.getAdapter().getItem(position);
 
                 String _idParroquia = parroquia.getKey();
-                if (!zona.getKey().equals("-1")) {
+                if (!zona.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
 
                     String idProvincia = _idParroquia.substring(0, 2);
                     String idCanton = _idParroquia.substring(2, 4);
@@ -1113,7 +1250,7 @@ public class ViviendaFragment extends Fragment {
                 Values sector = (Values) adapter.getAdapter().getItem(position);
 
                 String _idParroquia = parroquia.getKey();
-                if (!sector.getKey().equals("-1")) {
+                if (!sector.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
 
                     String idProvincia = _idParroquia.substring(0, 2);
                     String idCanton = _idParroquia.substring(2, 4);
