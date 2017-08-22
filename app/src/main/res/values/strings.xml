@@ -16,6 +16,7 @@
     <string name="cambiarFecha">Cambiar</string>
     <string name="menuSincronizarFormularios">Sincronizar Formularios</string>
     <string name="tituloFormulario">Formularios</string>
+    <string name="listaPersonas">Lista de Personas</string>
 
     <!-- Etiquetas comunes -->
     <string name="seccionVivienda">Sección Vivienda</string>
@@ -605,7 +606,7 @@
     <string name="seccion5MensajeIngreseMesesNumeros">El campo meses debe ser numérico</string>
     <string name="seccion5MensajeIngreseMesesFueraRango">El campo meses esta fuera de rango</string>
     <string name="seccion5MensajeEdadMayor98">La edad no puede ser mayor que 98 años, si es mayor a 98 ponerlo como observación</string>
-    <string name="seccion5MensajeCodigoViviendaNoValido">El código de vivienda no es válido [VIV_CODIGO=0], primero debe guardar la seccion 1-4</string>
+    <string name="seccion5MensajeCodigoViviendaNoValido">El código de vivienda no es válido [VIV_CODIGO=0], primero debe guardar la seccion 1&#8211;4</string>
     <string name="seccion5MensajePersonasMismoNombreApellido">Ya existe otra persona con los mismos nombres y apellidos</string>
     <string name="seccion5MensajePersonasMismoNombreApellidoTitulo">Persona con el mismo nombre</string>
     <string name="seccion5MensajePrimerMiembroHogar">La primera persona que registre debe ser el jefe(a) del hogar y no puede ser menor de 12 años</string>
