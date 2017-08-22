@@ -58,6 +58,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -264,6 +265,8 @@ public class FormulariosActivity extends Activity {
 
 			row.setTag(vivienda);
 
+			((TextView) row.findViewById(R.id.columnaCodigoVivTextView)).setText(vivienda.getVivcodigo());
+
 
 			((TextView) row.findViewById(R.id.columnaFechaRegistroTextView))
 					.setText(vivienda.getFechacreacion());
@@ -273,6 +276,50 @@ public class FormulariosActivity extends Activity {
 
 			((TextView) row.findViewById(R.id.columnaSectorTextView))
 					.setText(vivienda.getSector());
+
+			//falta manzana
+
+			if(!vivienda.getEdificio().equals(Global.ENTEROS_VACIOS))
+			{
+				((TextView) row.findViewById(R.id.columnaEdificioTextView))
+						.setText(String.valueOf(vivienda.getEdificio()));
+			}else{
+				((TextView) row.findViewById(R.id.columnaEdificioTextView))
+						.setText("");
+			}
+
+			if (!vivienda.getVivienda().equals(Global.ENTEROS_VACIOS)) {
+				((TextView) row.findViewById(R.id.columnaViviendaTextView))
+						.setText(String.valueOf(vivienda.getVivienda()));
+			}
+			else
+			{
+				((TextView) row.findViewById(R.id.columnaViviendaTextView))
+						.setText("");
+			}
+
+			if (!vivienda.getHogarinicial().equals(Global.ENTEROS_VACIOS)) {
+				((TextView) row.findViewById(R.id.columnaHogarInicialFinalTextView))
+						.setText(String.valueOf(vivienda.getHogarinicial())+ "-"+ String.valueOf(vivienda.getHogarfinal()));
+			} else {
+				((TextView) row.findViewById(R.id.columnaHogarInicialFinalTextView))
+						.setText("");
+			}
+
+			if (vivienda.getNumerovisitas().equals(Global.ENTEROS_VACIOS)) {
+				((TextView) row.findViewById(R.id.columnaNumeroVisitasTextView))
+						.setText(String.valueOf(vivienda.getNumerovisitas()));
+			} else {
+				((TextView) row.findViewById(R.id.columnaNumeroVisitasTextView))
+						.setText("");
+			}
+
+			//falta estado
+
+
+			//falta observacion
+
+
 
 			if (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA
 					.getValor()){
@@ -444,6 +491,14 @@ public class FormulariosActivity extends Activity {
 	private void cargarPreguntas() {
 		estadoSpinner.setAdapter(ControlPreguntas.getControlEntrevistaAdapter(this));
 		faseSpinner.setAdapter(ViviendaPreguntas.getAreaAdapter(this));
+		/*ArrayList<Fase> fases= FaseDao.getFases(cr, null, null, Fase.COLUMNA_ESTADO + " desc");
+
+		ArrayAdapter<Fase> fasesAdapter = new ArrayAdapter<Fase>(this, android.R.layout.simple_spinner_item,fases);
+		fasesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+		faseSpinner.setAdapter(fasesAdapter);*/
+		fechaInicioButton.setText(Utilitarios.getCurrentDate());
+		fechaFinButton.setText(Utilitarios.getCurrentDate());
 
 
 	}

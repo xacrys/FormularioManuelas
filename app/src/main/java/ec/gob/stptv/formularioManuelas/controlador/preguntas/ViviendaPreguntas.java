@@ -34,7 +34,7 @@ public class ViviendaPreguntas {
 
         ArrayList<Values> tipoLevantamiento = new ArrayList<Values>();
 
-        tipoLevantamiento.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        //tipoLevantamiento.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         tipoLevantamiento.add(new Values(TipoLevantamiento.BARRIDO.getValor(), context.getString(R.string.barrido)));
         tipoLevantamiento.add(new Values(TipoLevantamiento.DEMANDA.getValor(), context.getString(R.string.demanda)));
 
