@@ -17,6 +17,7 @@ import android.widget.Spinner;
 
 import ec.gob.stptv.formularioManuelas.*;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 
 /***
@@ -219,42 +220,42 @@ public class HogarFragment extends Fragment {
     protected boolean validarCampos() {
         boolean cancel = true;
         View focusView = null;
-        if (((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("-1")) {
+        if (((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tenenciaHogar));
         } else if ((((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("1") ||
                 ((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("2")) &&
-                ((Values) documentoHogarSpinner.getSelectedItem()).getKey().equals("-1")) {
+                ((Values) documentoHogarSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.documentoHogar));
-        } else if (((Values) numCuartosSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) numCuartosSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.cuartos));
         } else if (((Values) numDormitoriosSpinner
-                .getSelectedItem()).getKey().equals("-1")) {
+                .getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.dormitorios));
 //            focusView = numDormitoriosEditText;
-        } else if (((Values) fuenteAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) fuenteAguaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.fuenteAgua));
-        } else if (((Values) ubicacionAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) ubicacionAguaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ubicacionAgua));
-        } else if (((Values) tratamientoAguaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) tratamientoAguaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tratamientoAgua));
-        } else if (((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.servicioSanitario));
-        } else if (((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey().equals("-1") &&
+        } else if (((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
                 !((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")
                 ) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ubicacionSanitario));
-        } else if (((Values) servicioDuchaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) servicioDuchaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.servicioDucha));
-        } else if (((Values) eliminaBasuraSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) eliminaBasuraSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.eliminaBasura));
-        } else if (((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoAlumbrado));
         } else if (codigoElectricoEditText.getText().toString().trim().equals("") &&
                 ((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals("1")) {
             codigoElectricoEditText.setError(null);
             codigoElectricoEditText.clearFocus();
             codigoElectricoEditText.setError(getString(R.string.errorCampoRequerido));
-        } else if (((Values) energeticoCocinaSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) energeticoCocinaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.energeticoCocina));
         } else if (gasParaCalefonOpcion.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.gasParaCalefon));

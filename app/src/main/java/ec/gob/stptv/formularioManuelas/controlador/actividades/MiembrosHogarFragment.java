@@ -27,6 +27,7 @@ import java.util.Date;
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.PersonaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.DatePickerFragment;
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 
@@ -97,9 +98,9 @@ public class MiembrosHogarFragment extends Fragment {
         Boolean cancel = true;
         cedulaEditText.setError(null);
         cedulaEditText.clearFocus();
-        if (((Values) tipoResidenteSpinner.getSelectedItem()).getKey().equals("-1")) {
+        if (((Values) tipoResidenteSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoResidente));
-        } else if (((Values) documentoSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) documentoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.etiquetaCedula));
         } else if ((((Values) documentoSpinner.getSelectedItem()).getKey().equals("1") ||
                 ((Values) documentoSpinner.getSelectedItem()).getKey().equals("2")) &&
@@ -113,7 +114,7 @@ public class MiembrosHogarFragment extends Fragment {
             nombresEditText.setError(null);
             nombresEditText.clearFocus();
             nombresEditText.setError(getString(R.string.errorCampoRequerido));
-        } else if (((Values) sexoSpinner.getSelectedItem()).getKey().equals("-1")) {
+        } else if (((Values) sexoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.sexoTitulo));
         } else if (edadRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.edadTitulo));
