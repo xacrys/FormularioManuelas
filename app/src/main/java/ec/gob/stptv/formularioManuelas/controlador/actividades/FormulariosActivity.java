@@ -18,10 +18,17 @@ import com.google.gson.reflect.TypeToken;
 
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.util.DatePickerFragment;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
+import ec.gob.stptv.formularioManuelas.controlador.util.Pageable;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
+import ec.gob.stptv.formularioManuelas.controlador.util.Values;
+import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
 import android.location.LocationManager;
 import android.net.Uri;
@@ -68,8 +75,8 @@ import android.widget.Toast;
 public class FormulariosActivity extends Activity {
 
 	private PackageInfo infoApp;
-	private ContentResolver cr;
 	private LayoutInflater inflaterLayout;
+	private Spinner faseSpinner;
 	private Spinner estadoSpinner;
 	private Button fechaInicioButton;
 	private Button fechaFinButton;
@@ -94,14 +101,15 @@ public class FormulariosActivity extends Activity {
 	private int contadorSincronizacion = 0;
 	//private SincronizacionVivienda sincronizacionVivenda;
 	private ProgressDialog mProgressDialogFormularios;
-	
+	ContentResolver contentResolver;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_formularios);
 		this.gson = new GsonBuilder().serializeNulls().create();
-		this.cr = getContentResolver();
+		this.contentResolver = getContentResolver();
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		Bundle extra = this.getIntent().getExtras();
 		
@@ -119,13 +127,15 @@ public class FormulariosActivity extends Activity {
 		//this.usuario = (Usuario) extra.getSerializable("usuario");
 		//this.faseActual = FaseDao.getFase(cr, Fase.whereFaseEnabled, null, null);
 		
-		this.getViews();
-		this.loadPreguntas();
-		this.getActions();
-		this.mallasValidacion();
+		this.obtenerVistas();
+		this.cargarPreguntas();
+		this.realizarAcciones();
 	}
 
-	private void getActions() {
+	/**
+	 * Método para realizar las acciones
+	 */
+	private void realizarAcciones() {
 
 		this.fechaInicioButton.setOnClickListener(new OnClickListener() {
 
@@ -147,46 +157,198 @@ public class FormulariosActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				
 				Utilitarios.hideSoftKeyboard(FormulariosActivity.this);
-				if(consultaIndividualCheckBox.isChecked())
-				{
-					buscarFormulario();
-				}
-				else
-				{
 					buscarFormularios();
-				}
-				
-
 			}
 		});
 
 	}
 
-	protected void buscarFormulario() {
+	protected void buscarFormularios() {
+
+		paginationLinearLayout.removeAllViews();
+		formulariosTableLayout.removeAllViews();
+		paginationInfo.setText("" );
+
+		String estado = ((Values) estadoSpinner.getSelectedItem()).getKey();
+		//int idFase = ((Fase) faseSpinner.getSelectedItem()).getId();
+		//String isSincronizado = sincronizadoSwitch.isChecked() ? "1": "0";
+
+		String where = null;
+		String parametros[] = null;
+		where = Vivienda.whereByFechasControlEntrevistaFormularios;
+		parametros = new String[]{String.valueOf(1), fechaInicioButton.getText().toString(),
+				fechaFinButton.getText().toString(), String.valueOf(1)};
+
+
+		final List<Vivienda> viviendas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_ID );
+
+
+		final Pageable<Vivienda> pagination = new Pageable<Vivienda>(viviendas);
+		pagination.setPageSize(20);
+		Log.e("", "viviendas.size(): " + viviendas.size());
+		Log.e("", "pagination.getMaxPages(): " + pagination.getMaxPages());
+
+
+		if(pagination.getMaxPages() > 0)
+		{
+			paginationInfo.setText("Total: " + viviendas.size() + " registros - Página "+ pagination.getMaxPages()+ " de " + pagination.getMaxPages());
+			pagination.setPage(pagination.getMaxPages());
+			cargarFormularios(pagination.getListForPage());
+		}
+
+		if(pagination.getMaxPages() > 1)
+		{
+			for (int i = 1; i <= pagination.getMaxPages(); i++) {
+
+				final int page = i;
+				Button button = new Button(this);
+				button.setText("" + page);
+				button.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						v.setActivated(true);
+						pagination.setPage(page);
+						paginationInfo.setText("Total: " + viviendas.size() + " registros - Página " + page + " de " + pagination.getMaxPages());
+						cargarFormularios(pagination.getListForPage());
+					}
+				});
+				paginationLinearLayout.addView(button);
+
+				pagination.setPage(i);
+				Log.e("", "pagination.setPage: " + pagination.getPage());
+				for (Vivienda vivienda : pagination.getListForPage()) {
+					Log.e("", "viviendas.getCodigo(): " + vivienda.getId());
+				}
+
+			}
+		}
+	}
+
+
+	/**
+	 *
+	 * @param viviendas
+	 */
+	public void cargarFormularios(List<Vivienda> viviendas) {
+
+		formulariosTableLayout.removeAllViews();
+
+		for (final Vivienda vivienda : viviendas) {
+
+			final View row = inflaterLayout.inflate(R.layout.reusable_table_row_formulario,
+					null);
+
+
+			if (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INCOMPLETA
+					.getValor()
+					&& vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_COMPLETA) {
+				row.setBackgroundResource(R.drawable.table_row_selector_incompletas);
+			} else {
+				if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_COMPLETA) {
+					row.setBackgroundResource(R.drawable.table_row_selector_validation);
+				} else {
+					if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_INCOMPLETA) {
+						row.setBackgroundResource(R.drawable.table_row_selector);
+					}
+					else
+					{
+						if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
+							row.setBackgroundResource(R.drawable.table_row_selector);
+						}
+					}
+
+				}
+
+			}
+
+			row.setTag(vivienda);
+
+
+			((TextView) row.findViewById(R.id.columnaFechaRegistroTextView))
+					.setText(vivienda.getFechacreacion());
+
+			((TextView) row.findViewById(R.id.columnaZonaTextView))
+					.setText(vivienda.getZona());
+
+			((TextView) row.findViewById(R.id.columnaSectorTextView))
+					.setText(vivienda.getSector());
+
+			if (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA
+					.getValor()){
+
+				row.setOnClickListener(new OnClickListener() {
+					public void onClick(final View v) {
+						getAlertActions("Información", vivienda);
+
+					}
+				});
+
+			}
+
+			formulariosTableLayout.addView(row);
+
+		}
 
 	}
-	
-	public void mallasValidacion() {
 
-		
+	/**
+	 * Metdo que realiza las acciones en los formularios por ejemplo completar la informacion, validar con el supervisor
+	 * @param title
+	 * @param _vivienda
+	 */
+	private void getAlertActions(String title, final Vivienda _vivienda) {
+
+		final String[] acciones = {getString(R.string.mensajeBotonVisitar)};
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setIcon(getResources().getDrawable(
+				android.R.drawable.ic_dialog_info));
+		builder.setTitle(title);
+		builder.setSingleChoiceItems(acciones, -1,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						switch (which) {
+							/**
+							 * Completar información de la vivienda
+							 */
+							case 0:
+								Intent intent = new Intent(FormulariosActivity.this,
+										MainActivity.class);
+								intent.putExtra("vivienda", _vivienda);
+								//intent.putExtra("usuario", usuario);
+								//intent.putExtra("fase", fase);
+								startActivity(intent);
+								dialog.dismiss();
+								break;
+
+						}
+					}
+				});
+
+		builder.setCancelable(true);
+		builder.setPositiveButton("Cerrar",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+
+					}
+				});
+
+		AlertDialog dialog = builder.create();
+		dialog.show();
+
 	}
-	
-	private boolean validacionCampos() {
 
-
-
-		boolean cancel = false;
-
-
-		return cancel;
-	}
-	
 
 	@Override
 	protected void onResume() {
-
+		this.buscarFormularios();
 		super.onResume();
 	}
 
@@ -254,30 +416,62 @@ public class FormulariosActivity extends Activity {
 	}
 
 
-
-	private void getViews() {
+	/**
+	 * Método para obtener las controles de la vista
+	 */
+	private void obtenerVistas() {
 
 		inflaterLayout = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		builder = new AlertDialog.Builder(this);
-		
+		this.faseSpinner = findViewById(R.id.faseSpinner);
 		this.estadoSpinner = findViewById(R.id.estadoSpinner);
 		this.fechaInicioButton = findViewById(R.id.fechaInicioButton);
 		this.fechaFinButton = findViewById(R.id.fechaFinButton);
 		this.buscarFormulariosButton = findViewById(R.id.buscarFormulariosButton);
 		this.formulariosTableLayout = findViewById(R.id.formulariosTableLayout);
-
+		paginationLinearLayout = findViewById(R.id.paginationLinearLayout);
+		paginationInfo = findViewById(R.id.paginationInfo);
+		mProgressDialog = new ProgressDialog(this);
+		mProgressDialogFase = new ProgressDialog(this);
 
 
 	}
 
-	private void loadPreguntas() {
 
+	/**
+	 * Método que carga las preguntas de los controles de la aplicacion por ejemplo los spinner
+	 */
+	private void cargarPreguntas() {
+		estadoSpinner.setAdapter(ControlPreguntas.getControlEntrevistaAdapter(this));
+		faseSpinner.setAdapter(ViviendaPreguntas.getAreaAdapter(this));
 
 
 	}
 
 	private void showDatePicker(int tipoFecha) {
 
+		DatePickerFragment date = new DatePickerFragment();
+		/**
+		 * Set Up Current Date Into dialog
+		 */
+		Calendar calender = Calendar.getInstance();
+		Bundle args = new Bundle();
+		args.putInt("year", calender.get(Calendar.YEAR));
+		args.putInt("month", calender.get(Calendar.MONTH));
+		args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+		date.setArguments(args);
+		/**
+		 * Set Call back to capture selected date
+		 */
+		if (tipoFecha == 1) {
+			date.setCallBack(ondateInicio);
+		}
+
+		if (tipoFecha == 2) {
+			date.setCallBack(ondateFin);
+		}
+
+		date.show(getFragmentManager(), "Date Picker");
 	}
 
 	OnDateSetListener ondateInicio = new OnDateSetListener() {
@@ -306,13 +500,6 @@ public class FormulariosActivity extends Activity {
 	};
 	
 
-	public void buscarFormularios() {
-
-		
-	}
-
-	
-	
 	private void getAlert(String title, String message) {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);

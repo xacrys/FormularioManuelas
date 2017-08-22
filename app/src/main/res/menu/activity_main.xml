@@ -9,6 +9,10 @@
           android:title="FINALIZAR"
           android:icon="@drawable/ic_menu_terminar"
           android:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/menu_control_entrevista"
+        android:title="Control Entrevista" />
+
     <item android:id="@+id/menu_exit"
         android:title="Salir"
         android:orderInCategory="100"

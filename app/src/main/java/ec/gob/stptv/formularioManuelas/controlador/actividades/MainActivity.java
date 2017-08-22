@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TabHost;
 
@@ -22,6 +23,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
+import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
 public class MainActivity extends Activity {
 
@@ -51,20 +57,20 @@ public class MainActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 
-        /*if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
             Vivienda vivienda = ViviendaFragment.getVivienda();
 
-            if(vivienda.getCodigo() != 0)
+            if(vivienda.getId() != 0)
             {
-                if (vivienda.getControlEntrevista() == SeccionVIIPreguntas.ControlEntrevista.COMPLETA
+                if (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA
                         .getValor()) {
                     finish();
                 }
                 else
                 {
-                    if(vivienda.getCondicionOcupacion() == SeccionIIPreguntas.CondicionOcupacion.OCUPADA.getValor()
-                            && vivienda.getControlEntrevista() == SeccionVIIPreguntas.ControlEntrevista.INCOMPLETA.getValor())
+                    if(vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                            && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor())
                     {
                         getVisitastAlert(vivienda).show();
                     }
@@ -78,21 +84,50 @@ public class MainActivity extends Activity {
             {
                 getExitAlert().show();
             }
-        }*/
+        }
         return false;
     }
 
-    private AlertDialog getAlertBackButton() {
+    /**
+     *
+     * @param vivienda
+     * @return
+     */
+    private AlertDialog getVisitastAlert(final Vivienda vivienda) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        /*builder.setMessage("Esta seguro que desea finalizar la encuenta?")
+        builder.setMessage("Esta seguro que desea salir?")
                 .setTitle(R.string.confirmacion_aviso);
 
         builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
-                finish();
+
+                /*vivienda.setNumerovisitas(vivienda.getNumerovisitas() + 1);
+                int filasAfectadas = ViviendaDao.update(cr, vivienda);
+
+                if(vivienda.getNumerovisitas() < Global.NUMERO_VISITAS_MAXIMO)
+                {
+                    getEditVisitasObservacion(vivienda);
+
+                    //finish();
+                }
+
+
+                if(vivienda.getVisitas() == SeccionIPreguntas.NUMERO_VISITAS_MAXIMO)
+                {
+                    if(vivienda.getCondicionOcupacion() == SeccionIIPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                            && vivienda.getControlEntrevista() == SeccionVIIPreguntas.ControlEntrevista.INCOMPLETA.getValor()
+                            )
+                    {
+
+                        vivienda.setVisitas(2);
+                        filasAfectadas = ViviendaDao.update(cr, vivienda);
+                        getEditControlEntrevista(vivienda);
+                    }
+                }*/
+
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -100,18 +135,23 @@ public class MainActivity extends Activity {
                 dialog.dismiss();
             }
         });
-        */
+
         AlertDialog dialog = builder.create();
 
         return dialog;
     }
 
 
+
+    /**
+     * Presenta mensaje de salida
+     * @return
+     */
     private AlertDialog getExitAlert() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        /*builder.setMessage("Esta seguro que desea salir?")
+        builder.setMessage("Esta seguro que desea salir?")
                 .setTitle(R.string.confirmacion_aviso);
 
         builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
@@ -124,11 +164,13 @@ public class MainActivity extends Activity {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
             }
-        });*/
+        });
 
         AlertDialog dialog = builder.create();
+        dialog.show();
 
         return dialog;
+
     }
 
 
@@ -196,15 +238,38 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-        switch (item.getItemId()) {
+        switch (id) {
+            case R.id.menu_observacion:
+                FragmentManager fm = getFragmentManager();
+                ObservacionDialog editarObservacionesDialog = new ObservacionDialog();
+                Bundle parametros = new Bundle();
+                parametros.putSerializable("vivienda", ViviendaFragment.getVivienda());
+                editarObservacionesDialog.setArguments(parametros);
+                editarObservacionesDialog.show(fm, "fragment_observaciones");
+                break;
 
-                        default:
-                return super.onOptionsItemSelected(item);
+            case R.id.menu_control_entrevista:
+                /*FragmentManager controlEntevista = getFragmentManager();
+                ControlEntrevistaDialog controlEntrevistaDialog = new ControlEntrevistaDialog();
+                parametros = new Bundle();
+                parametros.putSerializable("vivienda", ViviendaFragment.getVivienda());
+                controlEntrevistaDialog.setArguments(parametros);
+                controlEntrevistaDialog.show(controlEntevista, "fragment_control_entrevista");*/
+                break;
+
+            case R.id.menu_exit:
+                getExitAlert();
+                break;
+
+            default:
+                break;
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

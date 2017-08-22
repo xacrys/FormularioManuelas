@@ -69,5 +69,25 @@ public class Global {
     /**
      * Valor para la opcion seleccione
      */
-    public static final int VALOR_SELECCIONE = -1;
+    public static final int VALOR_SELECCIONE = 99;
+
+    /**
+     * Valor maximo de hogar final
+     */
+    public static final int MAXIMO_VALOR_HOGAR_FINAL = 8;
+
+    /**
+     * Valor Cadenas Vacias
+     */
+    public static final String CADENAS_VACIAS = "";
+
+    /**
+     * Valor Cadenas Vacias
+     */
+    public static final Integer ENTEROS_VACIOS = 99;
+
+    /**
+     * numero de visitas que se puede hacer en el formulario
+     */
+    public static final int NUMERO_VISITAS_MAXIMO = 3;
 }
