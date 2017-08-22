@@ -182,6 +182,8 @@ public class HogarFragment extends Fragment {
                 else{
                     codigoElectricoEditText.setText("");
                     codigoElectricoEditText.setEnabled(false);
+                    codigoElectricoEditText.setError(null);
+                    codigoElectricoEditText.clearFocus();
                 }
             }
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -249,8 +251,9 @@ public class HogarFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoAlumbrado));
         } else if (codigoElectricoEditText.getText().toString().trim().equals("") &&
                 ((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals("1")) {
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.codigoElectrico));
-//            focusView = codigoElectricoEditText;
+            codigoElectricoEditText.setError(null);
+            codigoElectricoEditText.clearFocus();
+            codigoElectricoEditText.setError(getString(R.string.errorCampoRequerido));
         } else if (((Values) energeticoCocinaSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.energeticoCocina));
         } else if (gasParaCalefonOpcion.getCheckedRadioButtonId() == -1) {
