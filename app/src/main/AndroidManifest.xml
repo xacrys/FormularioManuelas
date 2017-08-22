@@ -29,6 +29,12 @@
             </intent-filter>
         </activity>
 
+        <provider
+            android:name="ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider"
+            android:authorities="ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelas"
+            android:exported="false" >
+        </provider>
+
         <activity
             android:name="ec.gob.stptv.formularioManuelas.controlador.actividades.MainActivity"
             android:label="Formulario Las Manuelas"
@@ -41,12 +47,6 @@
             android:label="@string/tituloFormulario"
             android:screenOrientation="landscape" >
         </activity>
-
-        <provider
-            android:name="ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider"
-            android:authorities="ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelas"
-            android:exported="false" >
-        </provider>
 
     </application>
 

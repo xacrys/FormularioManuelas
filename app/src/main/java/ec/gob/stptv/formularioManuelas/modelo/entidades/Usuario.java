@@ -30,6 +30,7 @@ public class Usuario implements Serializable {
 
 	//Atributos de la Tabla
 	public final static String COLUMNA_VIV_CODIGO = "VIV_CODIGO";
+	public final static String COLUMNA_MAXVIVCODIGO = "MAXVIVCODIGO";
 
 	//crear un string con las columnas de la tabla
 	public static final String[] columnas = new String[] {
@@ -66,4 +67,107 @@ public class Usuario implements Serializable {
 	}
 
 
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public int getCodigoGrupo() {
+		return codigoGrupo;
+	}
+
+	public void setCodigoGrupo(int codigoGrupo) {
+		this.codigoGrupo = codigoGrupo;
+	}
+
+	public int getCodigoDispositivo() {
+		return codigoDispositivo;
+	}
+
+	public void setCodigoDispositivo(int codigoDispositivo) {
+		this.codigoDispositivo = codigoDispositivo;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
+	public String getImei() {
+		return imei;
+	}
+
+	public void setImei(String imei) {
+		this.imei = imei;
+	}
+
+	public String getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(String fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public String getMaxVivCodigo() {
+		return maxVivCodigo;
+	}
+
+	public void setMaxVivCodigo(String maxVivCodigo) {
+		this.maxVivCodigo = maxVivCodigo;
+	}
 }

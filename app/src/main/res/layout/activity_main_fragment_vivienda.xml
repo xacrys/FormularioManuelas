@@ -343,6 +343,7 @@
                         android:text="@string/hogar" />
                     <Spinner
                         android:id="@+id/hogarInicialSpinner"
+                        android:layout_width="80dp"
                         style="@style/respuestaSpinner" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -351,6 +352,7 @@
                         android:text="@string/de" />
                     <Spinner
                         android:id="@+id/hogarFinalSpinner"
+                        android:layout_width="80dp"
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
             </LinearLayout>
@@ -595,7 +597,7 @@
                         android:text="@string/materialTecho" />
 
                     <Spinner
-                        android:id="@+id/materialTechoTechoSpinner"
+                        android:id="@+id/materialTechoSpinner"
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
 

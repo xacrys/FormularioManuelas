@@ -69,8 +69,8 @@ public class ViviendaPreguntas {
         ArrayList<Values> area = new ArrayList<Values>();
 
         area.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
-        area.add(new Values(Area.URBANA.getValor(), context.getString(R.string.barrido)));
-        area.add(new Values(Area.RURAL.getValor(), context.getString(R.string.demanda)));
+        area.add(new Values(Area.URBANA.getValor(), context.getString(R.string.areaOpcion1)));
+        area.add(new Values(Area.RURAL.getValor(), context.getString(R.string.areaOpcion2)));
 
         ArrayAdapter<Values> areaAdapter = new ArrayAdapter<Values>(context,
                 android.R.layout.simple_spinner_item, area);

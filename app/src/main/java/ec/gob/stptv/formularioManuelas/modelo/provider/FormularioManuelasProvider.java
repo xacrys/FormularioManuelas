@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.modelo.bd.BaseDatosHelper;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.DpaManzana;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localidad;
@@ -37,6 +38,7 @@ public class FormularioManuelasProvider extends ContentProvider {
     private static final String ESQUEMA = "content://";
     //Representa la identificación única del Content Provider sobre otros.
     public static final String AUTORIDAD = "ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelas";
+    //public static final String AUTORIDAD ="ec.gob.stptv.formularioManuelas.provider.formularioManuelas";
 
     // Definicion del CONTENT_URI (URI sirven para identificar los recursos)
     private static final String uri_vivienda = ESQUEMA + AUTORIDAD + "/viviendas";
@@ -45,7 +47,8 @@ public class FormularioManuelasProvider extends ContentProvider {
     private static final String uri_usuario = ESQUEMA + AUTORIDAD + "/usuarios";
     private static final String uri_fase = ESQUEMA + AUTORIDAD	+ "/fases";
     private static final String uri_localizacion = ESQUEMA + AUTORIDAD + "/localizaciones";
-    private static final String uri_localidad = ESQUEMA + AUTORIDAD + "/localidades";
+    private static final String uri_dpamanzana = ESQUEMA + AUTORIDAD + "/dpamanzanas";
+    private static final String uri_localidad = ESQUEMA + AUTORIDAD	+ "/localidades";
 
     public static final Uri CONTENT_URI_VIVIENDA = Uri.parse(uri_vivienda);
     public static final Uri CONTENT_URI_HOGAR = Uri.parse(uri_hogar);
@@ -53,7 +56,9 @@ public class FormularioManuelasProvider extends ContentProvider {
     public static final Uri CONTENT_URI_USUARIO = Uri.parse(uri_usuario);
     public static final Uri CONTENT_URI_FASE = Uri.parse(uri_fase);
     public static final Uri CONTENT_URI_LOCALIZACION = Uri.parse(uri_localizacion);
+    public static final Uri CONTENT_URI_DPAMANZANA = Uri.parse(uri_dpamanzana);
     public static final Uri CONTENT_URI_LOCALIDAD = Uri.parse(uri_localidad);
+
 
 
     // Definicion del CONTENT_URI UriMatcher. Ayuda a distinguir entre una URI q retorna múltiples filas y una sola fila
@@ -80,8 +85,11 @@ public class FormularioManuelasProvider extends ContentProvider {
     private static final int LOCALIZACION = 11;
     private static final int LOCALIZACION_ID = 12;
 
-    private static final int LOCALIDAD = 13;
-    private static final int LOCALIDAD_ID = 14;
+    private static final int DPAMANZANA = 13;
+    private static final int DPAMANZANA_ID = 14;
+
+    private static final int LOCALIDAD = 15;
+    private static final int LOCALIDAD_ID = 16;
 
 
     // Inicializamos el UriMatcher
@@ -105,8 +113,11 @@ public class FormularioManuelasProvider extends ContentProvider {
         uriMatcher.addURI(AUTORIDAD, "localizaciones", LOCALIZACION);
         uriMatcher.addURI(AUTORIDAD, "localizacion/#", LOCALIZACION_ID);
 
+        uriMatcher.addURI(AUTORIDAD, "dpamanzanas", DPAMANZANA);
+        uriMatcher.addURI(AUTORIDAD, "dpamanzana/#", DPAMANZANA_ID);
+
         uriMatcher.addURI(AUTORIDAD, "localidades", LOCALIDAD);
-        uriMatcher.addURI(AUTORIDAD, "localidad/#", LOCALIDAD_ID);
+        uriMatcher.addURI(AUTORIDAD, "localidades/#", LOCALIDAD_ID);
     }
 
     /**
@@ -187,6 +198,10 @@ public class FormularioManuelasProvider extends ContentProvider {
                 qb.setTables(Localizacion.NOMBRE_TABLA);
                 break;
 
+            case DPAMANZANA:
+                qb.setTables(DpaManzana.NOMBRE_TABLA);
+                break;
+
             case LOCALIDAD:
                 qb.setTables(Localidad.NOMBRE_TABLA);
                 break;
@@ -195,17 +210,34 @@ public class FormularioManuelasProvider extends ContentProvider {
                 // Si el URI no coincide con ninguno de los patrones conocidos, lanza una excepcion
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
+
         String orderBy = null;
-        // Si no se especifica el orden de clasificacion, utiliza el valor por defecto
         if (TextUtils.isEmpty(sortOrder)) {
             // orderBy = DEFAULT_SORT_ORDER;
         } else {
+
             orderBy = sortOrder;
         }
-        // Abre el objeto de base de datos en modo "leer", ya que no se escribe
+
         dataBase = helperBd.getReadableDatabase();
+
+        String sql = qb.buildQuery(projection, selection, selectionArgs, null,
+                null, orderBy, null);
+
+        Utilitarios.logInfo(FormularioManuelasProvider.class.getName(), sql);
+
+        if (selectionArgs != null) {
+
+            for (int i = 0; i < selectionArgs.length; i++) {
+
+                Utilitarios.logInfo(FormularioManuelasProvider.class.getName(), "Sentencia Sql, Parametros: " + selectionArgs[i]);
+                //Log.e(RegistroSocialProvider.class.getName(), "Sentencia Sql, Parametros: " + selectionArgs[i]);
+            }
+        }
+
         Cursor c = qb.query(dataBase, projection, selection, selectionArgs,
                 null, null, orderBy);
+
         c.setNotificationUri(getContext().getContentResolver(), uri);
         return c;
     }
@@ -221,7 +253,13 @@ public class FormularioManuelasProvider extends ContentProvider {
                     id = dataBase
                             .insertOrThrow(Vivienda.NOMBRE_TABLA, null, values);
                     if (id > 0) {
+
+                        Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
+                                "Registro insertado: Tabla: "
+                                        + Vivienda.NOMBRE_TABLA + " Id: " + id
+                                        + " Valores: " + values.toString());
                         nuevaUri = ContentUris.withAppendedId(CONTENT_URI_VIVIENDA,id);
+
                     }
                     break;
 
