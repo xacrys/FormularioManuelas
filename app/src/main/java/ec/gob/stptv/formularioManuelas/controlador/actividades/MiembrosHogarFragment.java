@@ -7,10 +7,12 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -61,7 +63,7 @@ public class MiembrosHogarFragment extends Fragment {
         this.obtenerVistas(item);
         this.cargarPreguntas();
         this.realizarAcciones();
-
+        this.mallasValidacion();
         return item;
     }
 
@@ -93,7 +95,6 @@ public class MiembrosHogarFragment extends Fragment {
      */
     protected Boolean validarCampos() {
         Boolean cancel = true;
-        View focusView = null;
         cedulaEditText.setError(null);
         cedulaEditText.clearFocus();
         if (((Values) tipoResidenteSpinner.getSelectedItem()).getKey().equals("-1")) {
@@ -104,17 +105,14 @@ public class MiembrosHogarFragment extends Fragment {
                 ((Values) documentoSpinner.getSelectedItem()).getKey().equals("2")) &&
                 TextUtils.isEmpty(cedulaEditText.getText().toString().trim())) {
             cedulaEditText.setError(getString(R.string.errorCampoRequerido));
-//            focusView = cedulaEditText;
         } else if (TextUtils.isEmpty(apellidosEditText.getText().toString().trim())) {
             apellidosEditText.setError(null);
             apellidosEditText.clearFocus();
             apellidosEditText.setError(getString(R.string.errorCampoRequerido));
-//            focusView = apellidosEditText;
         } else if (TextUtils.isEmpty(nombresEditText.getText().toString().trim())) {
             nombresEditText.setError(null);
             nombresEditText.clearFocus();
             nombresEditText.setError(getString(R.string.errorCampoRequerido));
-//            focusView = nombresEditText;
         } else if (((Values) sexoSpinner.getSelectedItem()).getKey().equals("-1")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.sexoTitulo));
         } else if (edadRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -125,7 +123,6 @@ public class MiembrosHogarFragment extends Fragment {
             aniosEditText.setError(null);
             aniosEditText.clearFocus();
             aniosEditText.setError(getString(R.string.errorCampoRequerido));
-//            focusView = aniosEditText;
         } else if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton &&
                 TextUtils.isEmpty(mesesEditText.getText().toString().trim())
                 ) {
@@ -198,6 +195,51 @@ public class MiembrosHogarFragment extends Fragment {
 
     }
 
+    /**
+     * Método que permite hacer los saltos de la pregunta
+     */
+    private void mallasValidacion() {
+        //Listener para cuando cambia la elección Tipo de Hogar
+        documentoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (((Values) documentoSpinner.getSelectedItem()).getKey().equals("1") ||
+                        ((Values) documentoSpinner.getSelectedItem()).getKey().equals("2")) {
+                    cedulaEditText.setEnabled(true);
+                } else {
+                    cedulaEditText.setText("");
+                    cedulaEditText.setEnabled(false);
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        edadRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton) {
+                    fechaNacimientoButton.setEnabled(true);
+                    aniosEditText.setEnabled(false);
+                    mesesEditText.setEnabled(false);
+                    aniosEditText.setText("");
+                    mesesEditText.setText("");
+                    aniosEditText.setError(null);
+                    aniosEditText.clearFocus();
+                    mesesEditText.setError(null);
+                    mesesEditText.clearFocus();
+
+                } else {
+                    fechaNacimientoButton.setEnabled(false);
+                    fechaNacimientoButton.setText(R.string.seleccioneFecha);
+                    aniosEditText.setEnabled(true);
+                    mesesEditText.setEnabled(true);
+                }
+            }
+        });
+
+    }
+
     /***
      * Método para enviar una aleta
      * @param title me permite agregar un titulo
@@ -248,7 +290,7 @@ public class MiembrosHogarFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            if (dateComponente!=null && dateActual.compareTo(dateComponente) < 0) {
+            if (dateComponente != null && dateActual.compareTo(dateComponente) < 0) {
 
                 getAlert(getString(R.string.validacion_aviso), getString(R.string.mvFechaNacimientoActual));
                 fechaNacimientoButton.requestFocus();
