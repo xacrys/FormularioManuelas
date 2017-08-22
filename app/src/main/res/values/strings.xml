@@ -29,6 +29,8 @@
     <string name="opcion_no">NO</string>
     <string name="validacion_aviso">Validación</string>
     <string name="seleccione_pregunta">Seleccione la pregunta:&#160;</string>
+    <string name="confirmacion_aviso">Confirmación</string>
+
 
 
     <!-- Etiquetas de error -->
@@ -503,6 +505,8 @@
     <string name="ayudasTecnicasOpcionP">P. Camas hospitalarias?</string>
     <string name="ayudasTecnicasOpcionQ">Q. Otros?</string>
 
+    <!-- Mensajes de validacion Seccion I -->
+    <string name="error_numero_fijo">Ingrese 9 dígitos</string>
 
     <!-- Mensajes de validacion Seccion III y IV -->
     <string name="mv_seccion3TipoVivienda">Seleccione la pregunta: "Seccion III - 1. Tipo de Vivienda (por observación)"</string>
@@ -583,6 +587,79 @@
     <string name="mvTipoViviendaCasaMaterialTechoAlerta">Tipo vivienda Casa y Techo de Otro Material, coloque en observación.</string>
     <string name="mvTipoViviendaDepartamentoMaterialTechoAlerta">Tipo vivienda Departamento y Techo de Otro Material, coloque en observación.</string>
     <string name="mvViaAccesoPrincipalEliminanBasuraAlerta">Otro tipo de acceso a la vivienda y registra y elimina la basura por servicio municipal, coloque en observación.</string>
+
+
+    <!-- Validaciones formulario miembros del hogar -->
+    <string name="seccion5MensajeSelccioneTipoResidente">Seleccione el tipo de residente</string>
+    <string name="seccion5MensajeIngresePrimerApellido">Ingrese al menos el primer apelldio</string>
+    <string name="seccion5MensajeIngresePrimerNombre">Ingrese al menos el primer nombre</string>
+    <string name="seccion5MensajeSelccioneGenero">Seleccione el sexo</string>
+    <string name="seccion5MensajeSelccioneEdad">Seleccione la edad</string>
+    <string name="mvFechaNacimiento">Seleccione la fecha de nacimiento</string>
+    <string name="mvEdadMayorCero">La edad debe ser mayor que cero</string>
+    <string name="mvFechaNacimientoActual">Fecha de Nacimiento no debe ser mayor a la fecha actual (Preg. 6)</string>
+    <string name="seccion5MensajeIngreseAnios">Ingrese los años</string>
+    <string name="seccion5MensajeIngreseAniosNumeros">El campo años debe ser numérico</string>
+    <string name="seccion5MensajeIngreseAniosMayorCero">El campo años no puede ser menor que cero</string>
+    <string name="seccion5MensajeIngreseMeses">Ingrese los meses</string>
+    <string name="seccion5MensajeIngreseMesesNumeros">El campo meses debe ser numérico</string>
+    <string name="seccion5MensajeIngreseMesesFueraRango">El campo meses esta fuera de rango</string>
+    <string name="seccion5MensajeEdadMayor98">La edad no puede ser mayor que 98 años, si es mayor a 98 ponerlo como observación</string>
+    <string name="seccion5MensajeCodigoViviendaNoValido">El código de vivienda no es válido [VIV_CODIGO=0], primero debe guardar la seccion 1-4</string>
+    <string name="seccion5MensajePersonasMismoNombreApellido">Ya existe otra persona con los mismos nombres y apellidos</string>
+    <string name="seccion5MensajePersonasMismoNombreApellidoTitulo">Persona con el mismo nombre</string>
+    <string name="seccion5MensajePrimerMiembroHogar">La primera persona que registre debe ser el jefe(a) del hogar y no puede ser menor de 12 años</string>
+    <string name="seccion5MensajeValidacionPregunta0">El campo tipo de residente esta fuera de rango</string>
+    <string name="seccion5MensajeValidacionPregunta1">El campo apellidos solo debe contener letras[A-Z]</string>
+    <string name="seccion5MensajeValidacionPregunta2">El campo nombres solo debe contener letras[A-Z]</string>
+    <string name="seccion5MensajeValidacionPregunta3">El campo sexo esta fuera de rango</string>
+    <string name="seccion5MensajeValidacionEdadParentesco">El jefe de hogar no puede ser menor de 12 años</string>
+    <string name="seccion5MensajeValidacionRelacionParentescoNoEdad">Relación de parentesco no corresponde a la diferencia de edad</string>
+    <string name="seccion5MensajeValidacionRelacionNucleosJefesNucleos">Número de núcleos diferente de número de jefes de núcleo</string>
+    <string name="seccion5MensajeValidacionRelacionNucleosJefesNucleosOrden">Existe más de un jefe de núcleo</string>
+    <string name="seccion5MensajeValidacionEdadParentescoConviviente">El/La esposo(a) o conviviente no puede ser menor de 12 años</string>
+    <string name="seccion5MensajeValidacionMatrimonioMismoSexo">No puede existir la relación Jefe Hogar/Esposo(a) o conviviente del mismo sexo </string>
+
+    <!-- fin Validaciones formulario miembros del hogar -->
+    <string name="seccion5MensajePregunta7ParentescoEdad">Los menores de edad no pueden ser (Padre/madre, Suegro(a), Yerno o Nuera) </string>
+    <string name="seccion5MensajePregunta8EstadoCivil">Seleccione el estado civil en la pregunta 8</string>
+    <string name="seccion5MensajePregunta9Registre">Registre la pregunta 9</string>
+    <string name="seccion5MensajeDocumento">Seleccione el tipo de documento</string>
+    <string name="seccion5MensajeNoCedula">Número de cédula no es válida</string>
+    <string name="seccion5MensajeRelacionNucleo">Seleccione el parentesco con relacion al núcleo familiar (Prg. 10)</string>
+    <string name="seccion5MensajeRelacionJefe">Seleccione el parentesco con relacion al jefe(a) Hogar (Prg. 7)</string>
+    <string name="seccion5MensajeOrdenNucleo">Seleccione el orden del núcleo familiar (Prg. 9)</string>
+    <string name="seccion5MensajeNacionalidad">Seleccione la nacionalidad (Prg. 12)</string>
+    <string name="seccion5MensajeAutodefinicionEtnica">Seleccione la autodefinición étnica (Prg. 13)</string>
+    <string name="seccion5MensajePregunta12EdadNucleoFamiliar">El jefe del núcleo familiar no puede ser menor de 12 años</string>
+    <string name="seccion5MensajePregunta12EdadConyugeNucleo">El/La Cónyuge o pareja no puede ser menor de 12 años</string>
+    <string name="seccion5MensajePregunta12Seguros">Seleccione registro en el seguro social (Prg. 12)</string>
+    <string name="seccion5MensajePregunta13SeguroPrivado">Seleccione registro en el seguro privado (Prg. 13)</string>
+    <string name="seccion5MensajePregunta14Discapacidad">Seleccione registro en discapacidad (Prg. 14)</string>
+    <string name="seccion5MensajeEnfermedadCatastrofica">Registre la pregunta 20</string>
+    <string name="seccion5MensajeEnfermedadCatastroficaDescripcion">Tiene enfermedad catastrófica y no responde P17 b</string>
+    <string name="seccion5MensajePresenciaEnfermedades">Registre la pregunta 21</string>
+    <string name="seccion5MensajeEnfermedadTuvo">Registre la pregunta 22</string>
+    <string name="seccion5MensajeRazonNoAcudeMedico">Registre la pregunta 23</string>
+    <string name="seccion5MensajeQuienLeAtendio">Registre la pregunta 24</string>
+    <string name="seccion5MensajeLugarAtencion">Registre la pregunta 25</string>
+
+
+    <string name="seccion5MensajeNucleosDispersos">No puede existir nucleos dispersos</string>
+
+    <!--Validaciones Seccion5 Pregunta Menores de 18 años -->
+    <string name="seccion5MensajeCodigoPersonaMadre">Registre la pregunta 11</string>
+    <string name="seccion5MensajeCodigoPersonaMadreIgual">No debe seleccionar como madre a la misma persona.</string>
+
+    <!-- Validaciones formulario para todas las personas -->
+    <string name="seccion5MensajeCedulaExistente">Cédula repetida dentro del mismo formulario</string>
+    <string name="seccion5MensajeSeguro">No hay registro en Seguro Social (Prg. 16)</string>
+    <string name="seccion5MensajeSeguroPrivado">No hay registro en Seguro Privado (Prg. 17)</string>
+    <string name="seccion5MensajeDiscapacidad">No hay registro en discapacidad (Prg. 18)</string>
+    <string name="seccion5MensajeCarnetConadis">Tiene discapacidad y no responde P19</string>
+    <string name="seccion5MensajePorcentajeConadis">Tiene carnet de discapacidad y no hay dato en porcentaje (Prg. 19)</string>
+
+    <!-- fin Validaciones formulario para todas las personas -->
 
 
 
