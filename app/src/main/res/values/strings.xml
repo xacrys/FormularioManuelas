@@ -576,6 +576,7 @@
     <string name="mvServicioDucha">El servicio de ducha con el que cuenta el hogar no corresponde a tipo de vivienda.</string>
     <!-- FIN Mensajes de validacion Seccion III y IV -->
 
+
     <!-- Mensajes de alerta tipo dos  -->
     <string name="mvTipoViviendaUbicacionAguaAlerta">Departamento y ubicación de agua no corresponde, coloque en observación.</string>
     <string name="mvTipoViviendaUbicacionSanitarioAlerta">Departamento y ubicación del sanitario no corresponde, coloque en observación.</string>
