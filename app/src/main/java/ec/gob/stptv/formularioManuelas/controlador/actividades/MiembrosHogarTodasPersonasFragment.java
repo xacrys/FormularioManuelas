@@ -23,6 +23,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
     private Button nuevoButton;
     private Button atrasButton;
+    private Button guardarPersonaButton;
     private Spinner parentescoSpinner;
     private Spinner estadoCivilSpinner;
     private Spinner nacionalidadSpinner;
@@ -93,6 +94,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         seguroSocial2Spinner.setAdapter(PersonaPreguntas.getAporteSeguroAdapter(getActivity()));
         seguroSalud1Spinner.setAdapter(PersonaPreguntas.getSeguroSaludAdapter(getActivity()));
         seguroSalud2Spinner.setAdapter(PersonaPreguntas.getSeguroSaludAdapter(getActivity()));
+        proteccionSocialpinner.setAdapter(PersonaPreguntas.getServicioProteccionAdapter(getActivity()));
         asistenciaEstablecimientoSpinner.setAdapter(PersonaPreguntas.getAsistenciaEstablecimientoAdapter(getActivity()));
         sufreEnfermedadesSpinner.setAdapter(PersonaPreguntas.getSufreEnfermedadesAdapter(getActivity()));
         enfermedadCatastroficaSpinner.setAdapter(PersonaPreguntas.getEnfermedadCatastroficaAdapter(getActivity()));
