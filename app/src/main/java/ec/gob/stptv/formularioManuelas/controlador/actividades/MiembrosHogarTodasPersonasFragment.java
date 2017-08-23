@@ -69,7 +69,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private RadioGroup abacoRadioGroup;
     private RadioGroup computadoraRadioGroup;
     private RadioGroup implantesRadioGroup;
-    private RadioGroup cochePostularRadioGroup        ;
+    private RadioGroup cochePostularRadioGroup;
     private RadioGroup panialesRadioGroup;
     private RadioGroup sillaBaniarseRadioGroup;
     private RadioGroup camasRadioGroup;
@@ -87,8 +87,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private EditText porcentajeSorderaEditText;
     private EditText porcentajeHipoacusiaEditText;
     private EditText porcentajePsicosocialesEditText;
-
-
 
 
     @Override
@@ -142,41 +140,33 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadPsicosocialesRadioGroup = item.findViewById(R.id.discapacidadPsicosocialesRadioGroup);
         necesitaAyudaTecnicaRadioGroup = item.findViewById(R.id.necesitaAyudaTecnicaRadioGroup);
         recibioAyudaTecnicaRadioGroup = item.findViewById(R.id.recibioAyudaTecnicaRadioGroup);
-        sillaRuedasRadioGroup=item.findViewById(R.id.sillaRuedasRadioGroup);
-        muletasRadioGroup=item.findViewById(R.id.muletasRadioGroup);
-        andadoresRadioGroup=item.findViewById(R.id.andadoresRadioGroup);
-        bastonApoyoRadioGroup=item.findViewById(R.id.bastonApoyoRadioGroup);
-        ortesisRadioGroup= item.findViewById(R.id.ortesisRadioGroup);
+        sillaRuedasRadioGroup = item.findViewById(R.id.sillaRuedasRadioGroup);
+        muletasRadioGroup = item.findViewById(R.id.muletasRadioGroup);
+        andadoresRadioGroup = item.findViewById(R.id.andadoresRadioGroup);
+        bastonApoyoRadioGroup = item.findViewById(R.id.bastonApoyoRadioGroup);
+        ortesisRadioGroup = item.findViewById(R.id.ortesisRadioGroup);
         colchonRadioGroup = item.findViewById(R.id.colchonRadioGroup);
         cojinRadioGroup = item.findViewById(R.id.cojinRadioGroup);
-        bastonRastreoRadioGroup= item.findViewById(R.id.bastonRastreoRadioGroup);
-        abacoRadioGroup=item.findViewById(R.id.abacoRadioGroup);
-        computadoraRadioGroup =item.findViewById(R.id.computadoraRadioGroup);
-        implantesRadioGroup=item.findViewById(R.id.implantesRadioGroup);
-        cochePostularRadioGroup=item.findViewById(R.id.cochePostularRadioGroup);
-        panialesRadioGroup=item.findViewById(R.id.panialesRadioGroup);
-        sillaBaniarseRadioGroup=item.findViewById(R.id.sillaBaniarseRadioGroup);
-        camasRadioGroup=item.findViewById(R.id.camasRadioGroup);
-        otrosRadioGroup=item.findViewById(R.id.otrosRadioGroup);
-        audifonosRadioGroup=item.findViewById(R.id.audifonosRadioGroup);
-        gobiernoCentralRadioGroup=item.findViewById(R.id.gobiernoCentralRadioGroup);
-        gobiernoAutonomoRadioGroup=item.findViewById(R.id.gobiernoAutonomoRadioGroup);
-        organizacionPrivadaRadioGroup=item.findViewById(R.id.organizacionPrivadaRadioGroup);
-        ningunaRadioGroup=item.findViewById(R.id.ningunaRadioGroup);
-        diagnosticoMedicoRadioGroup=item.findViewById(R.id.diagnosticoMedicoRadioGroup);
+        bastonRastreoRadioGroup = item.findViewById(R.id.bastonRastreoRadioGroup);
+        abacoRadioGroup = item.findViewById(R.id.abacoRadioGroup);
+        computadoraRadioGroup = item.findViewById(R.id.computadoraRadioGroup);
+        implantesRadioGroup = item.findViewById(R.id.implantesRadioGroup);
+        cochePostularRadioGroup = item.findViewById(R.id.cochePostularRadioGroup);
+        panialesRadioGroup = item.findViewById(R.id.panialesRadioGroup);
+        sillaBaniarseRadioGroup = item.findViewById(R.id.sillaBaniarseRadioGroup);
+        camasRadioGroup = item.findViewById(R.id.camasRadioGroup);
+        otrosRadioGroup = item.findViewById(R.id.otrosRadioGroup);
+        audifonosRadioGroup = item.findViewById(R.id.audifonosRadioGroup);
+        gobiernoCentralRadioGroup = item.findViewById(R.id.gobiernoCentralRadioGroup);
+        gobiernoAutonomoRadioGroup = item.findViewById(R.id.gobiernoAutonomoRadioGroup);
+        organizacionPrivadaRadioGroup = item.findViewById(R.id.organizacionPrivadaRadioGroup);
+        ningunaRadioGroup = item.findViewById(R.id.ningunaRadioGroup);
+        diagnosticoMedicoRadioGroup = item.findViewById(R.id.diagnosticoMedicoRadioGroup);
         porcentajeCegueraEditText = item.findViewById(R.id.porcentajeCegueraEditText);
         porcentajeVisionEditText = item.findViewById(R.id.porcentajeVisionEditText);
         porcentajeSorderaEditText = item.findViewById(R.id.porcentajeSorderaEditText);
         porcentajeHipoacusiaEditText = item.findViewById(R.id.porcentajeHipoacusiaEditText);
         porcentajePsicosocialesEditText = item.findViewById(R.id.porcentajePsicosocialesEditText);
-
-
-
-
-
-
-
-
 
 
     }
@@ -241,35 +231,42 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                         discapacidadIntelectualRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     porcentajeIntelectualEditText.setEnabled(false);
+                    porcentajeIntelectualEditText.setText("");
                     discapacidadFisicaRadioGroup.check(-1);
                     for (int cont = 0; cont < discapacidadFisicaRadioGroup.getChildCount(); cont++) {
                         discapacidadFisicaRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     porcentajeFisicaEditText.setEnabled(false);
+                    porcentajeFisicaEditText.setText("");
                     discapacidadCegueraRadioGroup.check(-1);
                     for (int cont = 0; cont < discapacidadCegueraRadioGroup.getChildCount(); cont++) {
                         discapacidadCegueraRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     porcentajeCegueraEditText.setEnabled(false);
+                    porcentajeCegueraEditText.setText("");
                     discapacidadVisionRadioGroup.check(-1);
                     for (int cont = 0; cont < discapacidadVisionRadioGroup.getChildCount(); cont++) {
                         discapacidadVisionRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     porcentajeVisionEditText.setEnabled(false);
+                    porcentajeVisionEditText.setText("");
                     discapacidadSorderaRadioGroup.check(-1);
                     for (int cont = 0; cont < discapacidadSorderaRadioGroup.getChildCount(); cont++) {
                         discapacidadSorderaRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     porcentajeSorderaEditText.setEnabled(false);
+                    porcentajeSorderaEditText.setText("");
                     discapacidadHipoacusiaRadioGroup.check(-1);
                     for (int cont = 0; cont < discapacidadHipoacusiaRadioGroup.getChildCount(); cont++) {
                         discapacidadHipoacusiaRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     porcentajeHipoacusiaEditText.setEnabled(false);
+                    porcentajeHipoacusiaEditText.setText("");
                     discapacidadPsicosocialesRadioGroup.check(-1);
                     for (int cont = 0; cont < discapacidadPsicosocialesRadioGroup.getChildCount(); cont++) {
                         discapacidadPsicosocialesRadioGroup.getChildAt(cont).setEnabled(false);
                     }
+                    porcentajePsicosocialesEditText.setText("");
                     porcentajePsicosocialesEditText.setEnabled(false);
                     asistenciaEstablecimientoSpinner.setSelection(0);
                     asistenciaEstablecimientoSpinner.setEnabled(false);
@@ -279,199 +276,42 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     for (int cont = 0; cont < necesitaAyudaTecnicaRadioGroup.getChildCount(); cont++) {
                         necesitaAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(false);
                     }
-                    recibioAyudaTecnicaRadioGroup.check(-1);
-                    for (int cont = 0; cont < recibioAyudaTecnicaRadioGroup.getChildCount(); cont++) {
-                        recibioAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    sillaRuedasRadioGroup.check(-1);
-                    for (int cont = 0; cont < sillaRuedasRadioGroup.getChildCount(); cont++) {
-                        sillaRuedasRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    muletasRadioGroup.check(-1);
-                    for (int cont = 0; cont < muletasRadioGroup.getChildCount(); cont++) {
-                        muletasRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    andadoresRadioGroup.check(-1);
-                    for (int cont = 0; cont < andadoresRadioGroup.getChildCount(); cont++) {
-                        andadoresRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    bastonApoyoRadioGroup.check(-1);
-                    for (int cont = 0; cont < bastonApoyoRadioGroup.getChildCount(); cont++) {
-                        bastonApoyoRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    ortesisRadioGroup.check(-1);
-                    for (int cont = 0; cont < ortesisRadioGroup.getChildCount(); cont++) {
-                        ortesisRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    colchonRadioGroup.check(-1);
-                    for (int cont = 0; cont < colchonRadioGroup.getChildCount(); cont++) {
-                        colchonRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    cojinRadioGroup.check(-1);
-                    for (int cont = 0; cont < cojinRadioGroup.getChildCount(); cont++) {
-                        cojinRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    bastonRastreoRadioGroup.check(-1);
-                    for (int cont = 0; cont < bastonRastreoRadioGroup.getChildCount(); cont++) {
-                        bastonRastreoRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    abacoRadioGroup.check(-1);
-                    for (int cont = 0; cont < abacoRadioGroup.getChildCount(); cont++) {
-                        abacoRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    computadoraRadioGroup.check(-1);
-                    for (int cont = 0; cont < computadoraRadioGroup.getChildCount(); cont++) {
-                        computadoraRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    audifonosRadioGroup.check(-1);
-                    for (int cont = 0; cont < audifonosRadioGroup.getChildCount(); cont++) {
-                        audifonosRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    implantesRadioGroup.check(-1);
-                    for (int cont = 0; cont < implantesRadioGroup.getChildCount(); cont++) {
-                        implantesRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    cochePostularRadioGroup.check(-1);
-                    for (int cont = 0; cont < cochePostularRadioGroup.getChildCount(); cont++) {
-                        cochePostularRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    panialesRadioGroup.check(-1);
-                    for (int cont = 0; cont < panialesRadioGroup.getChildCount(); cont++) {
-                        panialesRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    sillaBaniarseRadioGroup.check(-1);
-                    for (int cont = 0; cont < sillaBaniarseRadioGroup.getChildCount(); cont++) {
-                        sillaBaniarseRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    camasRadioGroup.check(-1);
-                    for (int cont = 0; cont < camasRadioGroup.getChildCount(); cont++) {
-                        camasRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    otrosRadioGroup.check(-1);
-                    for (int cont = 0; cont < otrosRadioGroup.getChildCount(); cont++) {
-                        otrosRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    gobiernoCentralRadioGroup.check(-1);
-                    for (int cont = 0; cont < gobiernoCentralRadioGroup.getChildCount(); cont++) {
-                        gobiernoCentralRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    gobiernoAutonomoRadioGroup.check(-1);
-                    for (int cont = 0; cont < gobiernoAutonomoRadioGroup.getChildCount(); cont++) {
-                        gobiernoAutonomoRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    organizacionPrivadaRadioGroup.check(-1);
-                    for (int cont = 0; cont < organizacionPrivadaRadioGroup.getChildCount(); cont++) {
-                        organizacionPrivadaRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    ningunaRadioGroup.check(-1);
-                    for (int cont = 0; cont < ningunaRadioGroup.getChildCount(); cont++) {
-                        ningunaRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                }
-                else
-                {
+                    deshabilitarAyudasTecnicas();
+                    deshabilitarInstitucionesAyudasTecnicas();
+
+                } else {
                     for (int cont = 0; cont < carnetConadisRadioGroup.getChildCount(); cont++) {
                         carnetConadisRadioGroup.getChildAt(cont).setEnabled(true);
                     }
                     for (int cont = 0; cont < discapacidadIntelectualRadioGroup.getChildCount(); cont++) {
                         discapacidadIntelectualRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    porcentajeIntelectualEditText.setEnabled(true);
                     for (int cont = 0; cont < discapacidadFisicaRadioGroup.getChildCount(); cont++) {
                         discapacidadFisicaRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    porcentajeFisicaEditText.setEnabled(true);
                     for (int cont = 0; cont < discapacidadCegueraRadioGroup.getChildCount(); cont++) {
                         discapacidadCegueraRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    porcentajeCegueraEditText.setEnabled(true);
                     for (int cont = 0; cont < discapacidadVisionRadioGroup.getChildCount(); cont++) {
                         discapacidadVisionRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    porcentajeVisionEditText.setEnabled(true);
                     for (int cont = 0; cont < discapacidadSorderaRadioGroup.getChildCount(); cont++) {
                         discapacidadSorderaRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    porcentajeSorderaEditText.setEnabled(true);
                     for (int cont = 0; cont < discapacidadHipoacusiaRadioGroup.getChildCount(); cont++) {
                         discapacidadHipoacusiaRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    porcentajeHipoacusiaEditText.setEnabled(true);
                     for (int cont = 0; cont < discapacidadPsicosocialesRadioGroup.getChildCount(); cont++) {
                         discapacidadPsicosocialesRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    porcentajePsicosocialesEditText.setEnabled(true);
                     asistenciaEstablecimientoSpinner.setEnabled(true);
                     proteccionSocialpinner.setEnabled(true);
                     for (int cont = 0; cont < necesitaAyudaTecnicaRadioGroup.getChildCount(); cont++) {
                         necesitaAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    for (int cont = 0; cont < recibioAyudaTecnicaRadioGroup.getChildCount(); cont++) {
-                        recibioAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < sillaRuedasRadioGroup.getChildCount(); cont++) {
-                        sillaRuedasRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < muletasRadioGroup.getChildCount(); cont++) {
-                        muletasRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < andadoresRadioGroup.getChildCount(); cont++) {
-                        andadoresRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < bastonApoyoRadioGroup.getChildCount(); cont++) {
-                        bastonApoyoRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < ortesisRadioGroup.getChildCount(); cont++) {
-                        ortesisRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < colchonRadioGroup.getChildCount(); cont++) {
-                        colchonRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < cojinRadioGroup.getChildCount(); cont++) {
-                        cojinRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < bastonRastreoRadioGroup.getChildCount(); cont++) {
-                        bastonRastreoRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < abacoRadioGroup.getChildCount(); cont++) {
-                        abacoRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < computadoraRadioGroup.getChildCount(); cont++) {
-                        computadoraRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < audifonosRadioGroup.getChildCount(); cont++) {
-                        audifonosRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < implantesRadioGroup.getChildCount(); cont++) {
-                        implantesRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < cochePostularRadioGroup.getChildCount(); cont++) {
-                        cochePostularRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < panialesRadioGroup.getChildCount(); cont++) {
-                        panialesRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < sillaBaniarseRadioGroup.getChildCount(); cont++) {
-                        sillaBaniarseRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < camasRadioGroup.getChildCount(); cont++) {
-                        camasRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < otrosRadioGroup.getChildCount(); cont++) {
-                        otrosRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < gobiernoCentralRadioGroup.getChildCount(); cont++) {
-                        gobiernoCentralRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < gobiernoAutonomoRadioGroup.getChildCount(); cont++) {
-                        gobiernoAutonomoRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < organizacionPrivadaRadioGroup.getChildCount(); cont++) {
-                        organizacionPrivadaRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    for (int cont = 0; cont < ningunaRadioGroup.getChildCount(); cont++) {
-                        ningunaRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
+                    habilitarAyudasTecnicas();
+                    habilitarInstitucionesAyudasTecnicas();
+
                 }
             }
         });
@@ -479,15 +319,14 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         sufreEnfermedadesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey())== 4){
+                if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 4) {
                     diagnosticoMedicoRadioGroup.check(-1);
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     enfermedadCatastroficaSpinner.setSelection(0);
                     enfermedadCatastroficaSpinner.setEnabled(false);
-                }
-                else{
+                } else {
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
                     }
@@ -500,6 +339,177 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
             }
         });
+
+        seguroSocial1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial2Spinner.getSelectedItem()).getKey())
+                         &&
+                        !((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorSeguroSocialIguales));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        seguroSocial2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (((Values) seguroSocial2Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial1Spinner.getSelectedItem()).getKey())
+                         &&
+                        !((Values) seguroSocial2Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorSeguroSocialIguales));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        seguroSalud1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSalud2Spinner.getSelectedItem()).getKey())
+                         &&
+                        !((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorSeguroSaludIguales));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        seguroSalud2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (((Values) seguroSocial2Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial1Spinner.getSelectedItem()).getKey())
+                         &&
+                        !((Values) seguroSocial2Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorSeguroSaludIguales));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        discapacidadIntelectualRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton) {
+                    porcentajeIntelectualEditText.setEnabled(true);
+                } else {
+                    porcentajeIntelectualEditText.setEnabled(false);
+                    porcentajeIntelectualEditText.setText("");
+                }
+            }
+        });
+
+        discapacidadFisicaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton) {
+                    porcentajeFisicaEditText.setEnabled(true);
+                } else {
+                    porcentajeFisicaEditText.setEnabled(false);
+                    porcentajeFisicaEditText.setText("");
+                }
+            }
+        });
+
+        discapacidadCegueraRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton) {
+                    porcentajeCegueraEditText.setEnabled(true);
+                } else {
+                    porcentajeCegueraEditText.setEnabled(false);
+                    porcentajeCegueraEditText.setText("");
+                }
+            }
+        });
+
+        discapacidadVisionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton) {
+                    porcentajeVisionEditText.setEnabled(true);
+                } else {
+                    porcentajeVisionEditText.setEnabled(false);
+                    porcentajeVisionEditText.setText("");
+                }
+            }
+        });
+
+        discapacidadSorderaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton) {
+                    porcentajeSorderaEditText.setEnabled(true);
+                } else {
+                    porcentajeSorderaEditText.setEnabled(false);
+                    porcentajeSorderaEditText.setText("");
+                }
+            }
+        });
+
+        discapacidadHipoacusiaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion1RadioButton) {
+                    porcentajeHipoacusiaEditText.setEnabled(true);
+                } else {
+                    porcentajeHipoacusiaEditText.setEnabled(false);
+                    porcentajeHipoacusiaEditText.setText("");
+                }
+            }
+        });
+
+        discapacidadPsicosocialesRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton) {
+                    porcentajePsicosocialesEditText.setEnabled(true);
+                } else {
+                    porcentajePsicosocialesEditText.setEnabled(false);
+                    porcentajePsicosocialesEditText.setText("");
+                }
+            }
+        });
+
+        necesitaAyudaTecnicaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion2RadioButton) {
+                    deshabilitarAyudasTecnicas();
+                    deshabilitarInstitucionesAyudasTecnicas();
+                } else {
+                    habilitarAyudasTecnicas();
+                    habilitarAyudasTecnicas();
+                }
+            }
+        });
+
+        recibioAyudaTecnicaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion1RadioButton) {
+                    habilitarInstitucionesAyudasTecnicas();
+                } else {
+                    deshabilitarInstitucionesAyudasTecnicas();
+                }
+            }
+        });
+
+
     }
 
     /**
@@ -524,9 +534,17 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         } else if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
                 ((Values) seguroSocial2Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.aporteSeguro));
+        } else if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial2Spinner.getSelectedItem()).getKey())
+                 &&
+                !((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.errorSeguroSocialIguales));
         } else if (((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
                 ((Values) seguroSalud2Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.seguroSalud));
+        } else if (((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSalud2Spinner.getSelectedItem()).getKey())
+                 &&
+                !((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.errorSeguroSaludIguales));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.poseeDiscapacidadTitulo));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
@@ -559,8 +577,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeCegueraEditText.setError(null);
             porcentajeCegueraEditText.clearFocus();
             porcentajeCegueraEditText.setError(getString(R.string.errorCampoRequerido));
-        }
-        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadVisionRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadBajaVision));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
@@ -569,18 +586,16 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeVisionEditText.setError(null);
             porcentajeVisionEditText.clearFocus();
             porcentajeVisionEditText.setError(getString(R.string.errorCampoRequerido));
-        }
-        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadSordera));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
-                discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton&&
+                discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton &&
                 TextUtils.isEmpty(porcentajeSorderaEditText.getText().toString().trim())) {
             porcentajeSorderaEditText.setError(null);
             porcentajeSorderaEditText.clearFocus();
             porcentajeSorderaEditText.setError(getString(R.string.errorCampoRequerido));
-        }
-        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadHipoacusia));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
@@ -589,8 +604,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeHipoacusiaEditText.setError(null);
             porcentajeHipoacusiaEditText.clearFocus();
             porcentajeHipoacusiaEditText.setError(getString(R.string.errorCampoRequerido));
-        }
-        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadPsicosociales));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
@@ -602,118 +616,86 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 ((Values) asistenciaEstablecimientoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.asistenciaEstablecimiento));
-        }
-        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 ((Values) proteccionSocialpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.servicioProteccion));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==-1) {
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.necesitaAyudaTecnica));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
-                recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==-1) {
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+                recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.recibioAyudaTecnica));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 sillaRuedasRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionA));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 muletasRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionB));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 andadoresRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionC));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 bastonApoyoRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionD));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 ortesisRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionE));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 colchonRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionF));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 cojinRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionG));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 bastonRastreoRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionH));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 bastonRastreoRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionI));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 computadoraRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionJ));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 audifonosRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionK));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 implantesRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionL));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 cochePostularRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionM));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 panialesRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionN));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 sillaBaniarseRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionO));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 camasRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionP));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 otrosRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicasOpcionQ));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 gobiernoCentralRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.institucionAyudasTecnicasOpcionA));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 gobiernoAutonomoRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.institucionAyudasTecnicasOpcionB));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 organizacionPrivadaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.institucionAyudasTecnicasOpcionC));
-        }
-        else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId()==R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+        } else if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
                 ningunaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.institucionAyudasTecnicasOpcionD));
-        }
-        else if (((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+        } else if (((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.sufreEnfermedades));
-        }
-        else if (!((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals("4") &&
+        } else if (!((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals("4") &&
                 diagnosticoMedicoRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.diagnosticoMedico));
-        }
-        else if (!((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals("4") &&
+        } else if (!((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals("4") &&
                 ((Values) enfermedadCatastroficaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.enfermedadCatastrofica));
-        }
-
-
-
-
-        else {
+        } else {
             flag = false;
         }
         return flag;
@@ -769,6 +751,175 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void deshabilitarAyudasTecnicas() {
+        recibioAyudaTecnicaRadioGroup.check(-1);
+        for (int cont = 0; cont < recibioAyudaTecnicaRadioGroup.getChildCount(); cont++) {
+            recibioAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        sillaRuedasRadioGroup.check(-1);
+        for (int cont = 0; cont < sillaRuedasRadioGroup.getChildCount(); cont++) {
+            sillaRuedasRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        muletasRadioGroup.check(-1);
+        for (int cont = 0; cont < muletasRadioGroup.getChildCount(); cont++) {
+            muletasRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        andadoresRadioGroup.check(-1);
+        for (int cont = 0; cont < andadoresRadioGroup.getChildCount(); cont++) {
+            andadoresRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        bastonApoyoRadioGroup.check(-1);
+        for (int cont = 0; cont < bastonApoyoRadioGroup.getChildCount(); cont++) {
+            bastonApoyoRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        ortesisRadioGroup.check(-1);
+        for (int cont = 0; cont < ortesisRadioGroup.getChildCount(); cont++) {
+            ortesisRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        colchonRadioGroup.check(-1);
+        for (int cont = 0; cont < colchonRadioGroup.getChildCount(); cont++) {
+            colchonRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        cojinRadioGroup.check(-1);
+        for (int cont = 0; cont < cojinRadioGroup.getChildCount(); cont++) {
+            cojinRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        bastonRastreoRadioGroup.check(-1);
+        for (int cont = 0; cont < bastonRastreoRadioGroup.getChildCount(); cont++) {
+            bastonRastreoRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        abacoRadioGroup.check(-1);
+        for (int cont = 0; cont < abacoRadioGroup.getChildCount(); cont++) {
+            abacoRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        computadoraRadioGroup.check(-1);
+        for (int cont = 0; cont < computadoraRadioGroup.getChildCount(); cont++) {
+            computadoraRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        audifonosRadioGroup.check(-1);
+        for (int cont = 0; cont < audifonosRadioGroup.getChildCount(); cont++) {
+            audifonosRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        implantesRadioGroup.check(-1);
+        for (int cont = 0; cont < implantesRadioGroup.getChildCount(); cont++) {
+            implantesRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        cochePostularRadioGroup.check(-1);
+        for (int cont = 0; cont < cochePostularRadioGroup.getChildCount(); cont++) {
+            cochePostularRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        panialesRadioGroup.check(-1);
+        for (int cont = 0; cont < panialesRadioGroup.getChildCount(); cont++) {
+            panialesRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        sillaBaniarseRadioGroup.check(-1);
+        for (int cont = 0; cont < sillaBaniarseRadioGroup.getChildCount(); cont++) {
+            sillaBaniarseRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        camasRadioGroup.check(-1);
+        for (int cont = 0; cont < camasRadioGroup.getChildCount(); cont++) {
+            camasRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        otrosRadioGroup.check(-1);
+        for (int cont = 0; cont < otrosRadioGroup.getChildCount(); cont++) {
+            otrosRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+
+    }
+
+
+    private void habilitarAyudasTecnicas() {
+        for (int cont = 0; cont < recibioAyudaTecnicaRadioGroup.getChildCount(); cont++) {
+            recibioAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < sillaRuedasRadioGroup.getChildCount(); cont++) {
+            sillaRuedasRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < muletasRadioGroup.getChildCount(); cont++) {
+            muletasRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < andadoresRadioGroup.getChildCount(); cont++) {
+            andadoresRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < bastonApoyoRadioGroup.getChildCount(); cont++) {
+            bastonApoyoRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < ortesisRadioGroup.getChildCount(); cont++) {
+            ortesisRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < colchonRadioGroup.getChildCount(); cont++) {
+            colchonRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < cojinRadioGroup.getChildCount(); cont++) {
+            cojinRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < bastonRastreoRadioGroup.getChildCount(); cont++) {
+            bastonRastreoRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < abacoRadioGroup.getChildCount(); cont++) {
+            abacoRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < computadoraRadioGroup.getChildCount(); cont++) {
+            computadoraRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < audifonosRadioGroup.getChildCount(); cont++) {
+            audifonosRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < implantesRadioGroup.getChildCount(); cont++) {
+            implantesRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < cochePostularRadioGroup.getChildCount(); cont++) {
+            cochePostularRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < panialesRadioGroup.getChildCount(); cont++) {
+            panialesRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < sillaBaniarseRadioGroup.getChildCount(); cont++) {
+            sillaBaniarseRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < camasRadioGroup.getChildCount(); cont++) {
+            camasRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < otrosRadioGroup.getChildCount(); cont++) {
+            otrosRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+
+    }
+
+    private void deshabilitarInstitucionesAyudasTecnicas(){
+        gobiernoCentralRadioGroup.check(-1);
+        for (int cont = 0; cont < gobiernoCentralRadioGroup.getChildCount(); cont++) {
+            gobiernoCentralRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        gobiernoAutonomoRadioGroup.check(-1);
+        for (int cont = 0; cont < gobiernoAutonomoRadioGroup.getChildCount(); cont++) {
+            gobiernoAutonomoRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        organizacionPrivadaRadioGroup.check(-1);
+        for (int cont = 0; cont < organizacionPrivadaRadioGroup.getChildCount(); cont++) {
+            organizacionPrivadaRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        ningunaRadioGroup.check(-1);
+        for (int cont = 0; cont < ningunaRadioGroup.getChildCount(); cont++) {
+            ningunaRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+    }
+
+    private void habilitarInstitucionesAyudasTecnicas(){
+        for (int cont = 0; cont < gobiernoCentralRadioGroup.getChildCount(); cont++) {
+            gobiernoCentralRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < gobiernoAutonomoRadioGroup.getChildCount(); cont++) {
+            gobiernoAutonomoRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < organizacionPrivadaRadioGroup.getChildCount(); cont++) {
+            organizacionPrivadaRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < ningunaRadioGroup.getChildCount(); cont++) {
+            ningunaRadioGroup.getChildAt(cont).setEnabled(true);
+        }
     }
 
 }
