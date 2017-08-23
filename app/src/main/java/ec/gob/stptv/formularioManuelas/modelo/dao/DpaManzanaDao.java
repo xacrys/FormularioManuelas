@@ -18,7 +18,7 @@ public class DpaManzanaDao extends DpaManzana {
     public static ArrayList<Values> getZonaSectorManzana(Cursor result) {
 
         ArrayList<Values> dpaManzanas = new ArrayList<Values>();
-        dpaManzanas.add(new Values(String.valueOf(Global.VALOR_SELECCIONE), "Seleccione.."));
+        dpaManzanas.add(new Values(String.valueOf(Global.VALOR_SELECCIONE_DPA), "Seleccione.."));
 
         if (result.moveToFirst())
             do {

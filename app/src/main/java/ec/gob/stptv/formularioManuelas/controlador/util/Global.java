@@ -72,6 +72,11 @@ public class Global {
     public static final int VALOR_SELECCIONE = 99;
 
     /**
+     * Valor para la opcion seleccione para manejatr la dpa manzana
+     */
+    public static final int VALOR_SELECCIONE_DPA = -1;
+
+    /**
      * Valor maximo de hogar final
      */
     public static final int MAXIMO_VALOR_HOGAR_FINAL = 8;

@@ -480,20 +480,41 @@ public class ViviendaFragment extends Fragment {
         vivienda.setIdestadoviviendaPiso(Integer.parseInt(((Values) estadoPisoSpinner.getSelectedItem()).getKey()));
         vivienda.setIdestadoviviendaPared(Integer.parseInt(((Values) estadoParedSpinner.getSelectedItem()).getKey()));
 
-        vivienda.setFechacreacion(Utilitarios.getCurrentDate());
-        vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-        vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
-
-        //vivienda.setIdfase(fase.getId());
-        vivienda.setIdfase(1);
-        vivienda.setIdcontrolentrevista(1);
         vivienda.setCodigodpa(((Values) parroquiaSpinner.getSelectedItem()).getKey()+
                 ((Values) zonaSpinner.getSelectedItem()).getKey()
                 +((Values) sectorSpinner.getSelectedItem()).getKey()
                 +((Values) manzanaSpinner.getSelectedItem()).getKey());
 
 
+        if (Integer
+                .valueOf(((Values) condicionOcupacionSpinner
+                        .getSelectedItem()).getKey()) == ViviendaPreguntas.CondicionOcupacion.OCUPADA
+                .getValor() && ((Values) condicionOcupacionSpinner
+                .getSelectedItem()).getKey().equals("1")) {
+
+            vivienda.setIdcontrolentrevista(ControlPreguntas.ControlEntrevista.INCOMPLETA
+                    .getValor());
+        }
+        vivienda.setIdcontrolentrevista(1);
+        //vivienda.setIdfase(fase.getId());
+        vivienda.setIdfase(1);
+        //vivienda.setIdusuario(usuario.getCedula());
+        //vivienda.setCodigounicodispositivo(usuario.getCodigoDispositivo());
+        vivienda.setImei(Utilitarios.getImeiDispositivo(getActivity()));
+        vivienda.setFechacreacion(Utilitarios.getCurrentDate());
+        vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
+        vivienda.setFechafin(Utilitarios.getCurrentDateAndHour());
+        vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+        vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
+
         if (vivienda.getId() == 0) {
+            if (vivienda.getIdocupada() != ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()) {
+                vivienda.setNumerovisitas(1);
+            }
+            else
+            {
+                vivienda.setNumerovisitas(0);
+            }
 
             vivienda.setId(ViviendaDao.getUltimoRegistro(contentResolver, usuario));
             //vivienda.setVivcodigo(usuario.getCodigoDispositivo()+ "-" + ViviendaDao.getUltimoRegistro(contentResolver, usuario));
@@ -511,6 +532,9 @@ public class ViviendaFragment extends Fragment {
 
 
         } else {
+            if (vivienda.getIdocupada() != ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()) {
+                vivienda.setNumerovisitas(vivienda.getNumerovisitas() + 1);
+            }
             ViviendaDao.update(contentResolver, vivienda);
         }
 
@@ -533,14 +557,6 @@ public class ViviendaFragment extends Fragment {
                 });
         dialog = builder.create();
         dialog.show();
-
-
-    }
-
-    /**
-     * Método que permite hacer los saltos de la pregunta
-     */
-    private void mallasValidacion() {
 
 
     }
@@ -574,7 +590,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) provinciaSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -583,7 +599,7 @@ public class ViviendaFragment extends Fragment {
             return cancel;
         }
         if (((Values) cantonSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -592,16 +608,16 @@ public class ViviendaFragment extends Fragment {
             return cancel;
         }
         if (((Values) parroquiaSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
-                            + getString(R.string.canton));
+                            + getString(R.string.parroquia));
             cancel = true;
             return cancel;
         }
         if (((Values) zonaSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -611,7 +627,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (((Values) sectorSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -621,7 +637,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (!((Values) zonaSpinner.getSelectedItem()).getKey().equals("999") &&
-                ((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                ((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -996,7 +1012,7 @@ public class ViviendaFragment extends Fragment {
                         Values provincia = (Values) adapter.getAdapter()
                                 .getItem(position);
 
-                        if (!provincia.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                        if (!provincia.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
 
                             ArrayList<Values> localidades = null;
                             Cursor cursor = contentResolver.query(
@@ -1053,7 +1069,7 @@ public class ViviendaFragment extends Fragment {
                                        int position, long arg3) {
 
                 Values canton = (Values) adapter.getAdapter().getItem(position);
-                if (!canton.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                if (!canton.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
                     //new GetParroquias().execute(canton.getKey());
 
                     ArrayList<Values> localidades = null;
@@ -1111,7 +1127,7 @@ public class ViviendaFragment extends Fragment {
                         Values parroquia = (Values) adapter.getAdapter()
                                 .getItem(position);
                         String _idParroquia = parroquia.getKey();
-                        if (!_idParroquia.equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                        if (!_idParroquia.equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
 
                             String idProvincia = _idParroquia.substring(0, 2);
                             String idCanton = _idParroquia.substring(2, 4);
@@ -1175,7 +1191,7 @@ public class ViviendaFragment extends Fragment {
                 Values zona = (Values) adapter.getAdapter().getItem(position);
 
                 String _idParroquia = parroquia.getKey();
-                if (!zona.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                if (!zona.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
 
                     String idProvincia = _idParroquia.substring(0, 2);
                     String idCanton = _idParroquia.substring(2, 4);
@@ -1250,7 +1266,7 @@ public class ViviendaFragment extends Fragment {
                 Values sector = (Values) adapter.getAdapter().getItem(position);
 
                 String _idParroquia = parroquia.getKey();
-                if (!sector.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+                if (!sector.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
 
                     String idProvincia = _idParroquia.substring(0, 2);
                     String idCanton = _idParroquia.substring(2, 4);
