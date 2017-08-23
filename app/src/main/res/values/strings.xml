@@ -274,7 +274,7 @@
     <!--  Seccion 6  -->
     <string name="seccion6">SECCIÓN VI CONTROL</string>
     <string name="estadoTodos">Todos</string>
-    <string name="estadoImcompleto">Incompleta</string>
+    <string name="estadoImcompleto">0. Incompleta</string>
     <!--  Seccion 6 Pregunta 1  -->
     <string name="controlEntrevistas">1. CONTROL DE ENTREVISTAS EFECTIVAS</string>
     <string name="controlEntrevistasOpcion1">1. Completa (efectiva)</string>
