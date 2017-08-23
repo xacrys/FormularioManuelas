@@ -71,7 +71,7 @@ public class PersonaPreguntas {
     /**
      * Enum para parentesco
      */
-    private enum ControlTrabajoParentesco {
+    public enum ControlTrabajoParentesco {
 
         JEFE(1),
         ESPOSO(2),

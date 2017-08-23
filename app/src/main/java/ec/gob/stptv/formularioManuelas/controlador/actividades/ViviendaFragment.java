@@ -972,6 +972,14 @@ public class ViviendaFragment extends Fragment {
     }
 
     /**
+     * Método que permite hacer los saltos de la pregunta
+     */
+    private void mallasValidacion() {
+
+    }
+
+
+    /**
      * Métdo que permite cargar la dpa, zonas, sectores y manzanas
      */
     public void cargarUbicacionGeografica() {

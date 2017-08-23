@@ -52,6 +52,7 @@ import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -343,6 +344,24 @@ public class Utilitarios {
             }
         }
         return value;
+    }
+
+    /**
+     * Método que permite obtener la posicion de un array list
+     * @param values
+     * @param index
+     * @return
+     */
+    public static int getPosicionByKey(ArrayList<Values> values,
+                                       String index) {
+        int posicion = 0;
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i).getKey().equals(index)) {
+                posicion = i;
+            }
+        }
+        return posicion;
+
     }
 
     /**

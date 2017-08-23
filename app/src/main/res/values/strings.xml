@@ -709,6 +709,12 @@
     <string name="seccion5MensajeRazonNoAcudeMedico">Registre la pregunta 23</string>
     <string name="seccion5MensajeQuienLeAtendio">Registre la pregunta 24</string>
     <string name="seccion5MensajeLugarAtencion">Registre la pregunta 25</string>
+    <string name="completarInformacion">Completar información</string>
+    <string name="editar">Editar[Nombres, Apellidos, Sexo, Edad]</string>
+    <string name="eliminarRegistro">Eliminar registro</string>
+    <string name="mvNoEditar">No se puede editar el género y la edad de un Jefe de Núcleo. Si es necesario cambiar debe eliminar a la persona.</string>
+    <string name="mensajeEliminarMiembroHogar">¿Esta seguro de eliminar el registro con toda su información?</string>
+    <string name="mensajeValidacionEdadParentesco">El jefe de hogar no puede ser menor de 12 años</string>
 
 
     <string name="seccion5MensajeNucleosDispersos">No puede existir nucleos dispersos</string>

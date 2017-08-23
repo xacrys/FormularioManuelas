@@ -498,4 +498,12 @@ public class HogarFragment extends Fragment {
 
 
     }
+
+    /**
+     * regresa la vivienda
+     * @return
+     */
+    public static Hogar getHogar() {
+        return hogar;
+    }
 }

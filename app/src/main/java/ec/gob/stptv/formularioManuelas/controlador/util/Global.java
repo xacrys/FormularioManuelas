@@ -105,4 +105,11 @@ public class Global {
      * Valor para la opcion NO
      */
     public static final int NO = 2;
+
+    public static final int INFORMACION_COMPLETA = 1;
+    public static final int INFORMACION_INCOMPLETA = 0;
+    /**
+     * Valor para la opcion edad parentesco
+     */
+    public static final int EDAD_PARENTESCO = 12;
 }
