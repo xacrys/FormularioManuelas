@@ -179,7 +179,7 @@ public class FormulariosActivity extends Activity {
 		String parametros[] = null;
 		where = Vivienda.whereByFechasControlEntrevistaFormularios;
 		parametros = new String[]{String.valueOf(1), fechaInicioButton.getText().toString(),
-				fechaFinButton.getText().toString(), String.valueOf(1)};
+				fechaFinButton.getText().toString(), String.valueOf(estado)};
 
 
 		final List<Vivienda> viviendas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_ID );

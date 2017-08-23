@@ -17,7 +17,7 @@ public class LocalidadDao extends Localidad {
 	public static ArrayList<Values> getLocalidades(Cursor result) {
 		
 		ArrayList<Values> localidades = new ArrayList<Values>();
-		localidades.add(new Values(String.valueOf(Global.VALOR_SELECCIONE), "Seleccione.."));
+		localidades.add(new Values(String.valueOf(Global.VALOR_SELECCIONE_DPA), "Seleccione.."));
 
 		if (result.moveToFirst())
 			do {
