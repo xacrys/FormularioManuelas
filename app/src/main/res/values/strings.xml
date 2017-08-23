@@ -27,6 +27,7 @@
     <string name="columna_hogar_inicial_final">Hogar</string>
     <string name="columna_numero_vivitas">N° Visitas</string>
     <string name="columna_observacion">Observaciones</string>
+    <string name="mv_numero_visitas">¿Esta seguro que desea realizar una nueva visita?</string>
 
     <!-- Etiquetas comunes -->
     <string name="seccionVivienda">Sección Vivienda</string>

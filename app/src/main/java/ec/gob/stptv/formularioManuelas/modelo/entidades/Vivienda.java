@@ -192,6 +192,9 @@ public class Vivienda implements Serializable {
             + COLUMNA_IDCONTROLENTREVISTA
             + " = ?";
 
+    public static String whereByFechasFormularios =  COLUMNA_IDFASE + " = ? AND " +"(" + COLUMNA_FECHACREACION
+            + " BETWEEN  ?"	+ " AND ?) AND " + COLUMNA_IDCONTROLENTREVISTA +" <> ?" ;
+
 
     public Vivienda() {
         id = 0;

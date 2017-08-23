@@ -177,10 +177,29 @@ public class FormulariosActivity extends Activity {
 
 		String where = null;
 		String parametros[] = null;
-		where = Vivienda.whereByFechasControlEntrevistaFormularios;
-		parametros = new String[]{String.valueOf(1), fechaInicioButton.getText().toString(),
-				fechaFinButton.getText().toString(), String.valueOf(estado)};
 
+		if( estadoSpinner.getSelectedItemPosition() <= 5 && (estado.equals(String.valueOf(ControlPreguntas.ControlEntrevista.COMPLETA.getValor()))
+				|| estado.equals(String.valueOf(ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor()))
+				|| estado.equals(String.valueOf(ControlPreguntas.ControlEntrevista.RECHAZO.getValor()))
+				|| estado.equals(String.valueOf(ControlPreguntas.ControlEntrevista.NADIE_EN_CASA.getValor()))
+				|| estado.equals(String.valueOf(ControlPreguntas.ControlEntrevista.INFORMANTE_NO_CALIFICADO.getValor()))
+		))
+		{
+
+			where = Vivienda.whereByFechasControlEntrevistaFormularios;
+			parametros = new String[]{String.valueOf(1), fechaInicioButton.getText().toString(),
+					fechaFinButton.getText().toString(), String.valueOf(estado)};
+
+		}else{
+			if (estado.equals(String.valueOf(ControlPreguntas.ControlEntrevista.TODOS.getValor())))
+			{
+
+				where = Vivienda.whereByFechasFormularios;
+				//parametros = new String[] { String.valueOf(idFase), fechaInicioButton.getText().toString(),
+				parametros = new String[] { String.valueOf(1), fechaInicioButton.getText().toString(),
+						fechaFinButton.getText().toString(), String.valueOf(ControlPreguntas.ControlEntrevista.ELIMINADO.getValor())};
+			}
+		}
 
 		final List<Vivienda> viviendas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_ID );
 
@@ -331,7 +350,58 @@ public class FormulariosActivity extends Activity {
 					}
 				});
 
+			}else{
+				if (vivienda.getIdcontrolentrevista() != ControlPreguntas.ControlEntrevista.ELIMINADO.getValor()){
+					row.setOnClickListener(new OnClickListener() {
+						public void onClick(final View v) {
+
+							builder.setMessage(
+									getString(R.string.mv_numero_visitas))
+									.setTitle("Visitar");
+							builder.setIcon(getResources().getDrawable(
+									android.R.drawable.ic_dialog_alert));
+							builder.setPositiveButton(
+									getString(R.string.opcion_si),
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog,
+												int id) {
+
+
+
+											//Fase fase = FaseDao.getFase(contentResolver, Fase.whereById, new String[]{String.valueOf(((Vivienda) v.getTag()).getFase())}, null);
+											Intent intent = new Intent(FormulariosActivity.this,
+													MainActivity.class);
+											intent.putExtra("vivienda", (Vivienda) v.getTag());
+											//intent.putExtra("usuario", usuario);
+											//intent.putExtra("fase", fase);
+											startActivity(intent);
+
+
+
+
+										}
+									});
+
+							builder.setNegativeButton(
+									getString(R.string.opcion_no),
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog,
+												int id) {
+											dialog.cancel();
+										}
+									});
+
+							AlertDialog dialogo = builder.create();
+							dialogo.show();
+
+
+						}
+					});
+				}
 			}
+
 
 			formulariosTableLayout.addView(row);
 
