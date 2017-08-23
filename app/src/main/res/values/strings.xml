@@ -546,7 +546,7 @@
     <string name="mv_calle1_numero_numerico_mayor">El campo número (N°) no puede ser menor o igual a cero</string>
     <string name="mv_calle2">Ingrese la Calle 2/Camino o Sendero(intersección, transversal)</string>
     <string name="mv_referencia">Ingrese la referencia de ubicación de la vivienda</string>
-    <string name="mv_codigo_vivienda_invalido">El código de vivienda no es válido [VIV_CODIGO=0], primero debe guardar la seccion 1-4</string>
+    <string name="mv_codigo_vivienda_invalido">El código de vivienda no es válido [VIV_CODIGO=0], primero debe guardar la seccion 1&#8211;4</string>
     <string name="mv_latitud_longitud">Capture la longitud y latitud</string>
     <string name="mv_numero_certificado">Ingrese el numero de certificado</string>
     <string name="mv_foto_vivienda">Capture la foto de la vivienda</string>
@@ -560,10 +560,10 @@
     <string name="mv_tipo_levantamiento_condicion">Si es Convocatoria no puede ser diferente a Ocupada en Condición de Ocupación </string>
     <string name="mv_edificio_requerido">Ingrese edificio</string>
     <string name="mv_division_alfanumerico">El campo Div solo debe contener letras[A-Z]</string>
-    <string name="mv_numerotelefono_fijo">El campo número telefónico fijo debe contener números de [0-9]</string>
-    <string name="mv_numerotelefono_celular">El campo número telefónico celular debe contener números de [0-9]</string>
-    <string name="mv_lote_alfanumerico">El campo número de lote debe contener letras [A-Z] y/o números de [0-9]</string>
-    <string name="mv_departamento_alfanumerico">El campo número de departamento debe contener letras [A-Z] y/o números de [0-9]</string>
+    <string name="mv_numerotelefono_fijo">El campo número telefónico fijo debe contener números de [0&#8211;9]</string>
+    <string name="mv_numerotelefono_celular">El campo número telefónico celular debe contener números de [0&#8211;9]</string>
+    <string name="mv_lote_alfanumerico">El campo número de lote debe contener letras [A-Z] y/o números de [0&#8211;9]</string>
+    <string name="mv_departamento_alfanumerico">El campo número de departamento debe contener letras [A&#8211;Z] y/o números de [0&#8211;9]</string>
     <string name="mv_campo_vivienda_mayor_cero">El campo 12 vivienda debe ser un número entero mayor que cero</string>
     <string name="mv_campo_edificio_mayor_cero">El campo 11 edificio debe ser un número entero mayor que cero</string>
     <string name="mv_campo_hogar_mayor_cero">El campo 13 "Hogar de" debe ser un número entero mayor que cero</string>
@@ -670,7 +670,7 @@
     <string name="seccion5MensajeIngreseMesesNumeros">El campo meses debe ser numérico</string>
     <string name="seccion5MensajeIngreseMesesFueraRango">El campo meses esta fuera de rango</string>
     <string name="seccion5MensajeEdadMayor98">La edad no puede ser mayor que 98 años, si es mayor a 98 ponerlo como observación</string>
-    <string name="seccion5MensajeCodigoViviendaNoValido">El código de vivienda no es válido [VIV_CODIGO=0], primero debe guardar la seccion 1-4</string>
+    <string name="seccion5MensajeCodigoViviendaNoValido">El código de vivienda no es válido [VIV_CODIGO=0], primero debe guardar la seccion 1&#8211;4</string>
     <string name="seccion5MensajePersonasMismoNombreApellido">Ya existe otra persona con los mismos nombres y apellidos</string>
     <string name="seccion5MensajePersonasMismoNombreApellidoTitulo">Persona con el mismo nombre</string>
     <string name="seccion5MensajePrimerMiembroHogar">La primera persona que registre debe ser el jefe(a) del hogar y no puede ser menor de 12 años</string>
@@ -725,6 +725,12 @@
     <string name="seccion5MensajePorcentajeConadis">Tiene carnet de discapacidad y no hay dato en porcentaje (Prg. 19)</string>
 
     <!-- fin Validaciones formulario para todas las personas -->
+
+    <!-- String Errores-->
+    <string name="errorSeguroSocialIguales">En la pregunta 14. los items seleccionados no pueden ser iguales</string>
+    <string name="errorSeguroSaludIguales">En la pregunta 15. los items seleccionados no pueden ser iguales</string>
+
+
 
 
 
