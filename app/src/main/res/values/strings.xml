@@ -27,6 +27,7 @@
     <string name="columna_hogar_inicial_final">Hogar</string>
     <string name="columna_numero_vivitas">N° Visitas</string>
     <string name="columna_observacion">Observaciones</string>
+    <string name="mv_numero_visitas">¿Esta seguro que desea realizar una nueva visita?</string>
 
     <!-- Etiquetas comunes -->
     <string name="seccionVivienda">Sección Vivienda</string>
@@ -273,7 +274,7 @@
     <!--  Seccion 6  -->
     <string name="seccion6">SECCIÓN VI CONTROL</string>
     <string name="estadoTodos">Todos</string>
-    <string name="estadoImcompleto">Incompleta</string>
+    <string name="estadoImcompleto">0. Incompleta</string>
     <!--  Seccion 6 Pregunta 1  -->
     <string name="controlEntrevistas">1. CONTROL DE ENTREVISTAS EFECTIVAS</string>
     <string name="controlEntrevistasOpcion1">1. Completa (efectiva)</string>

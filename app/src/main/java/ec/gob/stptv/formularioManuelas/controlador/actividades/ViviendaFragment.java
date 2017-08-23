@@ -45,6 +45,7 @@ public class ViviendaFragment extends Fragment {
     private Spinner provinciaSpinner;
     private Spinner cantonSpinner;
     private Spinner parroquiaSpinner;
+    private Spinner parroquiaUrbanoSpinner;
     private EditText localidadEditText;
     private Spinner zonaSpinner;
     private Spinner sectorSpinner;
@@ -145,6 +146,7 @@ public class ViviendaFragment extends Fragment {
         provinciaSpinner = item.findViewById(R.id.provinciaSpinner);
         cantonSpinner = item.findViewById(R.id.cantonSpinner);
         parroquiaSpinner = item.findViewById(R.id.parroquiaSpinner);
+        parroquiaUrbanoSpinner = item.findViewById(R.id.parroquiaUrbanoSpinner);
         localidadEditText = item.findViewById(R.id.localidadEditText);
         zonaSpinner = item.findViewById(R.id.zonaSpinner);
         sectorSpinner = item.findViewById(R.id.sectorSpinner);
@@ -356,6 +358,8 @@ public class ViviendaFragment extends Fragment {
 
         hogarInicialSpinner.setEnabled(false);
         hogarInicialSpinner.setSelection(1);
+        parroquiaUrbanoSpinner.setEnabled(false);
+
 
     }
 
@@ -495,7 +499,6 @@ public class ViviendaFragment extends Fragment {
             vivienda.setIdcontrolentrevista(ControlPreguntas.ControlEntrevista.INCOMPLETA
                     .getValor());
         }
-        vivienda.setIdcontrolentrevista(1);
         //vivienda.setIdfase(fase.getId());
         vivienda.setIdfase(1);
         //vivienda.setIdusuario(usuario.getCedula());
@@ -537,26 +540,6 @@ public class ViviendaFragment extends Fragment {
             }
             ViviendaDao.update(contentResolver, vivienda);
         }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        AlertDialog dialog;
-
-        builder.setMessage(
-                "Datos de la Vivienda ingresados correctamente, siga con la Sección Hogar")
-                .setTitle(getString(R.string.confirmacion_aviso));
-
-        builder.setPositiveButton("Aceptar",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-
-                        tabs.getTabWidget().getChildTabViewAt(1)
-                                .setEnabled(true);
-                        tabs.setCurrentTab(1);
-                    }
-                });
-        dialog = builder.create();
-        dialog.show();
 
 
     }
@@ -920,7 +903,29 @@ public class ViviendaFragment extends Fragment {
 
                 if (validarCampos())
                     return;
+
                 guardar();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                AlertDialog dialog;
+
+                builder.setMessage(
+                        "Datos de la Vivienda ingresados correctamente, siga con la Sección Hogar")
+                        .setTitle(getString(R.string.confirmacion_aviso));
+
+                builder.setPositiveButton("Aceptar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+
+                                tabs.getTabWidget().getChildTabViewAt(1)
+                                        .setEnabled(true);
+                                tabs.setCurrentTab(1);
+                            }
+                        });
+                dialog = builder.create();
+                dialog.show();
+
 
                 /*Fragment newFragment = new HogarFragment();
                 Bundle args = new Bundle();

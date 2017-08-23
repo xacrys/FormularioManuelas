@@ -95,4 +95,14 @@ public class Global {
      * numero de visitas que se puede hacer en el formulario
      */
     public static final int NUMERO_VISITAS_MAXIMO = 3;
+
+    /**
+     * Valor para la opcion SI
+     */
+    public static final int SI = 1;
+
+    /**
+     * Valor para la opcion NO
+     */
+    public static final int NO = 2;
 }

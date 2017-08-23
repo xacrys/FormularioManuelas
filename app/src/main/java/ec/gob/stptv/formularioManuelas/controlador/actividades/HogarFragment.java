@@ -3,22 +3,32 @@ package ec.gob.stptv.formularioManuelas.controlador.actividades;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TabHost;
 
 import ec.gob.stptv.formularioManuelas.*;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
+import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
+import ec.gob.stptv.formularioManuelas.modelo.dao.HogarDao;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
 /***
  * Autor: Christian J. Tintin
@@ -45,6 +55,10 @@ public class HogarFragment extends Fragment {
     private RadioGroup gasParaCalefonOpcion;
     private RadioGroup terrenoAgropecuario;
     private RadioGroup terrenoAgropecuarioSi;
+    private static Hogar hogar;
+    private TabHost tabs;
+    private Vivienda vivienda;
+    private ContentResolver contentResolver;
 
 
     @Override
@@ -54,8 +68,7 @@ public class HogarFragment extends Fragment {
         View item = inflater.inflate(R.layout.activity_main_fragment_hogar,
                 container, false);
 
-
-        Bundle extra = getActivity().getIntent().getExtras();
+        this.contentResolver = getActivity().getContentResolver();
 
         this.obtenerVistas(item);
         this.cargarPreguntas();
@@ -66,6 +79,26 @@ public class HogarFragment extends Fragment {
         return item;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        tabs = getActivity().findViewById(android.R.id.tabhost);
+        String[] parametros;
+
+        this.vivienda = ViviendaFragment.getVivienda();
+
+        Log.e("prueba",""+vivienda.getId());
+
+        parametros = new String[] { String.valueOf(vivienda.getId()) };
+        hogar = HogarDao.getHogar(contentResolver, Hogar.whereByViviendaId, parametros);
+        if (hogar != null) {
+            this.llenarCamposHogar();
+        } else {
+            hogar = new Hogar();
+        }
+
+    }
 
     /**
      * Método para obtener las controles de la vista
@@ -98,7 +131,66 @@ public class HogarFragment extends Fragment {
     /**
      * Método que llena los controles con datos de la base
      */
-    private void llenarCamposVivienda() {
+    private void llenarCamposHogar() {
+         int posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoHogarSpinner.getAdapter(), String.valueOf(hogar.getIdpropiedadvivienda()));
+        tipoHogarSpinner.setSelection(posicion);
+
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) documentoHogarSpinner.getAdapter(), String.valueOf(hogar.getIddocumentovivienda()));
+        documentoHogarSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) numCuartosSpinner.getAdapter(), String.valueOf(hogar.getCuartos()));
+        numCuartosSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) numDormitoriosSpinner.getAdapter(), String.valueOf(hogar.getDormitorio()));
+        numDormitoriosSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) fuenteAguaSpinner.getAdapter(), String.valueOf(hogar.getIdagua()));
+        fuenteAguaSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) ubicacionAguaSpinner.getAdapter(), String.valueOf(hogar.getIdredagua()));
+        ubicacionAguaSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tratamientoAguaSpinner.getAdapter(), String.valueOf(hogar.getIdtratamientoagua()));
+        tratamientoAguaSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) servicioSanitarioSpinner.getAdapter(), String.valueOf(hogar.getIdtiposshh()));
+        servicioSanitarioSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) ubicacionSanitarioSpinner.getAdapter(), String.valueOf(hogar.getIdsshh()));
+        ubicacionSanitarioSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) servicioDuchaSpinner.getAdapter(), String.valueOf(hogar.getIdducha()));
+        servicioDuchaSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) eliminaBasuraSpinner.getAdapter(), String.valueOf(hogar.getIdbasura()));
+        eliminaBasuraSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoAlumbradoSpinner.getAdapter(), String.valueOf(hogar.getIdalumbrado()));
+        tipoAlumbradoSpinner.setSelection(posicion);
+        if (!hogar.getPlanillapago().equals(Global.CADENAS_VACIAS)) {
+            codigoElectricoEditText.setText(String.valueOf(hogar.getPlanillapago()));
+        } else {
+            codigoElectricoEditText.setText("");
+        }
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) energeticoCocinaSpinner.getAdapter(), String.valueOf(hogar.getIdtipococina()));
+        energeticoCocinaSpinner.setSelection(posicion);
+        if (hogar.getGascalefon() == Global.SI) {
+            gasParaCalefonOpcion
+                    .check(R.id.gasParaCalefonOpcion1);
+        } else {
+            if (hogar.getGascalefon() == Global.NO) {
+                gasParaCalefonOpcion
+                        .check(R.id.gasParaCalefonOpcion2);
+            }
+        }
+        if (hogar.getTerreno() == Global.SI) {
+            terrenoAgropecuario
+                    .check(R.id.terrenoAgropecuarioOpcion1rb);
+        } else {
+            if (hogar.getTerreno() == Global.NO) {
+                terrenoAgropecuario
+                        .check(R.id.terrenoAgropecuarioOpcion2rb);
+            }
+        }
+        if (hogar.getTerrenoservicios() == Global.SI) {
+            terrenoAgropecuarioSi
+                    .check(R.id.terrenoAgropecuarioSiOpcion1rb);
+        } else {
+            if (hogar.getTerrenoservicios() == Global.NO) {
+                terrenoAgropecuarioSi
+                        .check(R.id.terrenoAgropecuarioSiOpcion2rb);
+            }
+        }
 
     }
 
@@ -134,6 +226,72 @@ public class HogarFragment extends Fragment {
      * Método que guarda la vivienda en la base de datos
      */
     private void guardar() {
+
+        hogar.setIdpropiedadvivienda(Integer.parseInt(((Values) tipoHogarSpinner.getSelectedItem()).getKey()));
+        hogar.setIddocumentovivienda(Integer.parseInt(((Values) documentoHogarSpinner.getSelectedItem()).getKey()));
+
+        hogar.setCuartos(Integer.parseInt(((Values) numCuartosSpinner.getSelectedItem()).getKey()));
+        hogar.setDormitorio(Integer.parseInt(((Values) numDormitoriosSpinner.getSelectedItem()).getKey()));
+        hogar.setIdagua(Integer.parseInt(((Values) fuenteAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdredagua(Integer.parseInt(((Values) ubicacionAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdtratamientoagua(Integer.parseInt(((Values) tratamientoAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdtiposshh(Integer.parseInt(((Values) servicioSanitarioSpinner.getSelectedItem()).getKey()));
+
+        hogar.setIdsshh(Integer.parseInt(((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey()));
+        hogar.setIdducha(Integer.parseInt(((Values) servicioDuchaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdbasura(Integer.parseInt(((Values) eliminaBasuraSpinner.getSelectedItem()).getKey()));
+
+        hogar.setIdalumbrado(Integer.parseInt(((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey()));
+        if (!(TextUtils.isEmpty(codigoElectricoEditText.getText()))) {
+            hogar.setPlanillapago(codigoElectricoEditText.getText().toString().trim());
+        } else {
+            hogar.setPlanillapago(Global.CADENAS_VACIAS);
+        }
+        hogar.setIdtipococina(Integer.parseInt(((Values) energeticoCocinaSpinner.getSelectedItem()).getKey()));
+
+        if (gasParaCalefonOpcion.getCheckedRadioButtonId() == R.id.gasParaCalefonOpcion1) {
+            hogar.setGascalefon(Global.SI);
+        } else {
+            if (gasParaCalefonOpcion.getCheckedRadioButtonId() == R.id.gasParaCalefonOpcion2) {
+                hogar.setGascalefon(Global.NO);
+            } else {
+                hogar.setGascalefon(Global.ENTEROS_VACIOS);
+            }
+        }
+
+        if (terrenoAgropecuario.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioOpcion1rb) {
+            hogar.setTerreno(Global.SI);
+        } else {
+            if (terrenoAgropecuario.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioOpcion2rb) {
+                hogar.setTerreno(Global.NO);
+            } else {
+                hogar.setTerreno(Global.ENTEROS_VACIOS);
+            }
+        }
+
+        if (terrenoAgropecuarioSi.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioSiOpcion1rb) {
+            hogar.setTerrenoservicios(Global.SI);
+        } else {
+            if (terrenoAgropecuarioSi.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioSiOpcion2rb) {
+                hogar.setTerrenoservicios(Global.NO);
+            } else {
+                hogar.setTerrenoservicios(Global.ENTEROS_VACIOS);
+            }
+        }
+        hogar.setFechainicio(Utilitarios.getCurrentDate());
+        hogar.setFechafin(Utilitarios.getCurrentDate());
+
+        if (hogar.getId() == 0) {
+            Utilitarios.logInfo(HogarFragment.class.getName(), "Guardar hogar");
+            hogar.setIdvivienda(vivienda.getId());
+            Uri uri = HogarDao.save(contentResolver, hogar);
+            String id = uri.getPathSegments().get(1);
+            hogar.setId(Integer.parseInt(id));
+
+        } else {
+            Utilitarios.logInfo(HogarFragment.class.getName(),"Actualiza hogar");
+            HogarDao.update(contentResolver, hogar);
+        }
 
     }
 
@@ -297,9 +455,29 @@ public class HogarFragment extends Fragment {
         guardarPersonaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validarCampos()) {
-                    getAlert("Cris", "Si guarda");
-                }
+                if (validarCampos())
+                    return;
+                guardar();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(
+                        getActivity());
+                builder.setCancelable(false);
+                builder.setMessage(
+                        "Datos del Hogar ingresados correctamente, siga con la Sección Miembros del Hogar")
+                        .setTitle(R.string.confirmacion_aviso);
+
+                builder.setPositiveButton("Aceptar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+
+                                tabs.getTabWidget().getChildTabViewAt(2)
+                                        .setEnabled(true);
+                                tabs.setCurrentTab(2);
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
             }
         });
