@@ -33,9 +33,7 @@ public class Persona implements Serializable {
 	private Integer idparentesco;
 	private Integer idestadocivil;
 	private Integer madrevive;
-	private Integer idpersonamadre;
-	private Integer idpersonaviviendamadre;
-	private Integer idpersonahogarmadre;
+	private Integer ordenMadre = 99;
 	private Integer idnacionalidad;
 	private Integer idetnia;
 	private Integer idsegurosocial1;
@@ -78,9 +76,7 @@ public class Persona implements Serializable {
 	public final static String COLUMNA_IDPARENTESCO="idparentesco";
 	public final static String COLUMNA_IDESTADOCIVIL="idestadocivil";
 	public final static String COLUMNA_MADREVIVE="madrevive";
-	public final static String COLUMNA_IDPERSONA_MADRE="idpersona_madre";
-	public final static String COLUMNA_IDPERSONAVIVIENDAMADRE="idpersonavivienda_madre";
-	public final static String COLUMNA_IDPERSONAHOGARMADRE="idpersonahogar_madre";
+	public final static String COLUMNA_ORDENMADRE="ordenmadre";
 	public final static String COLUMNA_IDNACIONALIDAD="idnacionalidad";
 	public final static String COLUMNA_IDETNIA="idetnia";
 	public final static String COLUMNA_IDSEGUROSOCIAL1="idsegurosocial1";
@@ -119,9 +115,8 @@ public class Persona implements Serializable {
 			COLUMNA_IDPARENTESCO,
 			COLUMNA_IDESTADOCIVIL,
 			COLUMNA_MADREVIVE,
-			COLUMNA_IDPERSONA_MADRE,
-			COLUMNA_IDPERSONAVIVIENDAMADRE,
-			COLUMNA_IDPERSONAHOGARMADRE,
+			COLUMNA_ORDENMADRE,
+			COLUMNA_ORDEN,
 			COLUMNA_IDNACIONALIDAD,
 			COLUMNA_IDETNIA,
 			COLUMNA_IDSEGUROSOCIAL1,
@@ -150,6 +145,7 @@ public class Persona implements Serializable {
 	public static String whereByViviendaId = COLUMNA_IDVIVIENDA + " = ?";
 
 
+
 	public Persona() {
 		//codigo = 0;
 	}
@@ -176,13 +172,11 @@ public class Persona implements Serializable {
 		values.put(COLUMNA_IDPARENTESCO, persona.getIdparentesco());
 		values.put(COLUMNA_IDESTADOCIVIL, persona.getIdestadocivil());
 		values.put(COLUMNA_MADREVIVE, persona.getMadrevive());
-		values.put(COLUMNA_IDPERSONA_MADRE, persona.getIdpersonamadre());
-		values.put(COLUMNA_IDPERSONAVIVIENDAMADRE, persona.getIdpersonaviviendamadre());
-		values.put(COLUMNA_IDPERSONAHOGARMADRE, persona.getIdpersonahogarmadre());
+		values.put(COLUMNA_ORDENMADRE, persona.getOrdenMadre());
 		values.put(COLUMNA_IDNACIONALIDAD, persona.getIdnacionalidad());
 		values.put(COLUMNA_IDETNIA, persona.getIdetnia());
 		values.put(COLUMNA_IDSEGUROSOCIAL1, persona.getIdsegurosocial1());
-		values.put(COLUMNA_IDSEGUROSOCIAL2, persona.getIdsegurosalud2());
+		values.put(COLUMNA_IDSEGUROSOCIAL2, persona.getIdsegurosocial2());
 		values.put(COLUMNA_IDSEGUROSALUD1, persona.getIdsegurosalud1());
 		values.put(COLUMNA_IDSEGUROSALUD2, persona.getIdsegurosalud2());
 		values.put(COLUMNA_TIENEDISCAPACIDAD, persona.getTienediscapacidad());
@@ -225,9 +219,7 @@ public class Persona implements Serializable {
 		persona.setIdparentesco(result.getInt(result.getColumnIndex(COLUMNA_IDPARENTESCO)));
 		persona.setIdestadocivil(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOCIVIL)));
 		persona.setMadrevive(result.getInt(result.getColumnIndex(COLUMNA_MADREVIVE)));
-		persona.setIdpersonamadre(result.getInt(result.getColumnIndex(COLUMNA_IDPERSONA_MADRE)));
-		persona.setIdpersonaviviendamadre(result.getInt(result.getColumnIndex(COLUMNA_IDPERSONAVIVIENDAMADRE)));
-		persona.setIdpersonahogarmadre(result.getInt(result.getColumnIndex(COLUMNA_IDPERSONAHOGARMADRE)));
+		persona.setOrdenMadre(result.getInt(result.getColumnIndex(COLUMNA_ORDENMADRE)));
 		persona.setIdnacionalidad(result.getInt(result.getColumnIndex(COLUMNA_IDNACIONALIDAD)));
 		persona.setIdetnia(result.getInt(result.getColumnIndex(COLUMNA_IDETNIA)));
 		persona.setIdsegurosocial1(result.getInt(result.getColumnIndex(COLUMNA_IDSEGUROSOCIAL1)));
@@ -425,30 +417,6 @@ public class Persona implements Serializable {
 		this.madrevive = madrevive;
 	}
 
-	public Integer getIdpersonamadre() {
-		return idpersonamadre;
-	}
-
-	public void setIdpersonamadre(Integer idpersonamadre) {
-		this.idpersonamadre = idpersonamadre;
-	}
-
-	public Integer getIdpersonaviviendamadre() {
-		return idpersonaviviendamadre;
-	}
-
-	public void setIdpersonaviviendamadre(Integer idpersonaviviendamadre) {
-		this.idpersonaviviendamadre = idpersonaviviendamadre;
-	}
-
-	public Integer getIdpersonahogarmadre() {
-		return idpersonahogarmadre;
-	}
-
-	public void setIdpersonahogarmadre(Integer idpersonahogarmadre) {
-		this.idpersonahogarmadre = idpersonahogarmadre;
-	}
-
 	public Integer getIdnacionalidad() {
 		return idnacionalidad;
 	}
@@ -599,5 +567,13 @@ public class Persona implements Serializable {
 
 	public void setInformacioncompleta(Integer informacioncompleta) {
 		this.informacioncompleta = informacioncompleta;
+	}
+
+	public Integer getOrdenMadre() {
+		return ordenMadre;
+	}
+
+	public void setOrdenMadre(Integer ordenMadre) {
+		this.ordenMadre = ordenMadre;
 	}
 }
