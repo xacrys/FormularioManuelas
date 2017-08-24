@@ -15,9 +15,9 @@ public class ViviendaPreguntas {
     /**
      * tipo de levantamiento de ocupacion
      */
-    public enum TipoLevantamiento {
+    private enum TipoLevantamiento {
         BARRIDO(1),
-        DEMANDA(1);
+        DEMANDA(2);
 
         private int valor;
 
@@ -32,13 +32,13 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getTipoLevantamientoAdapter(Context context) {
 
-        ArrayList<Values> tipoLevantamiento = new ArrayList<Values>();
+        ArrayList<Values> tipoLevantamiento = new ArrayList<>();
 
         //tipoLevantamiento.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         tipoLevantamiento.add(new Values(TipoLevantamiento.BARRIDO.getValor(), context.getString(R.string.barrido)));
         tipoLevantamiento.add(new Values(TipoLevantamiento.DEMANDA.getValor(), context.getString(R.string.demanda)));
 
-        ArrayAdapter<Values> tipoLevantamientoAdapter = new ArrayAdapter<Values>(context,
+        ArrayAdapter<Values> tipoLevantamientoAdapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_spinner_item, tipoLevantamiento);
 
         tipoLevantamientoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -49,7 +49,7 @@ public class ViviendaPreguntas {
     /**
      * AREA
      */
-    public enum Area {
+    private enum Area {
         URBANA(1),
         RURAL(2);
 
@@ -66,13 +66,13 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getAreaAdapter(Context context) {
 
-        ArrayList<Values> area = new ArrayList<Values>();
+        ArrayList<Values> area = new ArrayList<>();
 
         area.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         area.add(new Values(Area.URBANA.getValor(), context.getString(R.string.areaOpcion1)));
         area.add(new Values(Area.RURAL.getValor(), context.getString(R.string.areaOpcion2)));
 
-        ArrayAdapter<Values> areaAdapter = new ArrayAdapter<Values>(context,
+        ArrayAdapter<Values> areaAdapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_spinner_item, area);
 
         areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,11 +100,11 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getCondicionOcupacionAdapter(Context context) {
 
-        ArrayList<Values> condicionOcupacion = new ArrayList<Values>();
+        ArrayList<Values> condicionOcupacion = new ArrayList<>();
 
         condicionOcupacion.add(new Values(CondicionOcupacion.OCUPADA.getValor(), context.getString(R.string.condicionOcupacionOpcion1)));
 
-        ArrayAdapter<Values> condicionOcupacionAdapter = new ArrayAdapter<Values>(context,
+        ArrayAdapter<Values> condicionOcupacionAdapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_spinner_item, condicionOcupacion);
 
         condicionOcupacionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -115,7 +115,7 @@ public class ViviendaPreguntas {
     /**
      * tipo de vivienda
      */
-    public enum TipoVivienda {
+    private enum TipoVivienda {
 
         CASA_VILLA(1),
         DEPARTAMENTO(2),
@@ -138,7 +138,7 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getTipoViviendaAdapter(Context context) {
 
-        ArrayList<Values> tipoVivienda = new ArrayList<Values>();
+        ArrayList<Values> tipoVivienda = new ArrayList<>();
 
         tipoVivienda.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         tipoVivienda.add(new Values(TipoVivienda.CASA_VILLA.getValor(),context.getString(R.string.tipoViviendaOpcion1)));
@@ -149,7 +149,7 @@ public class ViviendaPreguntas {
         tipoVivienda.add(new Values(TipoVivienda.CHOZA.getValor(),context.getString(R.string.tipoViviendaOpcion6)));
         tipoVivienda.add(new Values(TipoVivienda.OTRO.getValor(),context.getString(R.string.tipoViviendaOpcion7)));
 
-        ArrayAdapter<Values> tipoViviendaAdapter = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> tipoViviendaAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, tipoVivienda);
         tipoViviendaAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -161,7 +161,7 @@ public class ViviendaPreguntas {
      *
      * pregunta 2 Vivienda Via Acceso Principal
      */
-    public enum ViviendaViaAccesoPrincipal {
+    private enum ViviendaViaAccesoPrincipal {
 
         CARRETERA(1),
         EMPEDRADO(2),
@@ -183,7 +183,7 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getViviendaViaAccesoPrincipalAdapter(Context context) {
 
-        ArrayList<Values> viviendaViaAccesoPrincipal = new ArrayList<Values>();
+        ArrayList<Values> viviendaViaAccesoPrincipal = new ArrayList<>();
 
         viviendaViaAccesoPrincipal.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         viviendaViaAccesoPrincipal.add(new Values(ViviendaViaAccesoPrincipal.CARRETERA.getValor(),context.getString(R.string.viaAccesoPrincipalOpcion1)));
@@ -193,7 +193,7 @@ public class ViviendaPreguntas {
         viviendaViaAccesoPrincipal.add(new Values(ViviendaViaAccesoPrincipal.RIO.getValor(),context.getString(R.string.viaAccesoPrincipalOpcion5)));
         viviendaViaAccesoPrincipal.add(new Values(ViviendaViaAccesoPrincipal.OTROS.getValor(),context.getString(R.string.viaAccesoPrincipalOpcion6)));
 
-        ArrayAdapter<Values> viviendaViaAccesoPrincipalAdapter = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> viviendaViaAccesoPrincipalAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, viviendaViaAccesoPrincipal);
         viviendaViaAccesoPrincipalAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -205,7 +205,7 @@ public class ViviendaPreguntas {
      *
      * pregunta 3 Vivienda Material Techo
      */
-    public enum ViviendaMaterialTecho {
+    private enum ViviendaMaterialTecho {
 
         HORMIGON(1),
         ASBESTO(2),
@@ -227,7 +227,7 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getViviendaMaterialTechoAdapter(Context context) {
 
-        ArrayList<Values> viviendaMaterialTecho = new ArrayList<Values>();
+        ArrayList<Values> viviendaMaterialTecho = new ArrayList<>();
 
         viviendaMaterialTecho.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         viviendaMaterialTecho.add(new Values(ViviendaMaterialTecho.HORMIGON.getValor(),context.getString(R.string.materialTechoOpcion1)));
@@ -238,7 +238,7 @@ public class ViviendaPreguntas {
         viviendaMaterialTecho.add(new Values(ViviendaMaterialTecho.OTRO_MATERIAL.getValor(),context.getString(R.string.materialTechoOpcion6)));
 
 
-        ArrayAdapter<Values> viviendaMaterialTechoAdapter = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> viviendaMaterialTechoAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, viviendaMaterialTecho);
         viviendaMaterialTechoAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -249,7 +249,7 @@ public class ViviendaPreguntas {
     /**
      * pregunta 4 seccion3 Vivienda Material Piso
      */
-    public enum ViviendaMaterialPiso {
+    private enum ViviendaMaterialPiso {
 
         DUELA(1),
         BALDOSA(2),
@@ -273,7 +273,7 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getViviendaMaterialPisoAdapter(Context context) {
 
-        ArrayList<Values> viviendaMaterialPiso = new ArrayList<Values>();
+        ArrayList<Values> viviendaMaterialPiso = new ArrayList<>();
 
         viviendaMaterialPiso.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         viviendaMaterialPiso.add(new Values(ViviendaMaterialPiso.DUELA.getValor(),context.getString(R.string.materialPisoOpcion1)));
@@ -285,7 +285,7 @@ public class ViviendaPreguntas {
         viviendaMaterialPiso.add(new Values(ViviendaMaterialPiso.TIERRA.getValor(),context.getString(R.string.materialPisoOpcion7)));
         viviendaMaterialPiso.add(new Values(ViviendaMaterialPiso.OTRO_MATERIAL.getValor(),context.getString(R.string.materialPisoOpcion8)));
 
-        ArrayAdapter<Values> viviendaMaterialPisoAdapter = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> viviendaMaterialPisoAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, viviendaMaterialPiso);
         viviendaMaterialPisoAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -297,7 +297,7 @@ public class ViviendaPreguntas {
      *
      * pregunta 5 seccion3 ViviendaMaterialParedes
      */
-    public enum ViviendaMaterialParedes {
+    private enum ViviendaMaterialParedes {
 
         HORMIGON(1),
         ASBESTO(2),
@@ -320,7 +320,7 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getViviendaMaterialParedesAdapter(Context context) {
 
-        ArrayList<Values> viviendaMaterialParedes = new ArrayList<Values>();
+        ArrayList<Values> viviendaMaterialParedes = new ArrayList<>();
 
         viviendaMaterialParedes.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         viviendaMaterialParedes.add(new Values(ViviendaMaterialParedes.HORMIGON.getValor(),context.getString(R.string.materialParedesOpcion1)));
@@ -331,7 +331,7 @@ public class ViviendaPreguntas {
         viviendaMaterialParedes.add(new Values(ViviendaMaterialParedes.CANIA.getValor(),context.getString(R.string.materialParedesOpcion6)));
         viviendaMaterialParedes.add(new Values(ViviendaMaterialParedes.OTRO_MATERIAL.getValor(),context.getString(R.string.materialParedesOpcion7)));
 
-        ArrayAdapter<Values> viviendaMaterialParedesAdapter = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> viviendaMaterialParedesAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, viviendaMaterialParedes);
         viviendaMaterialParedesAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -343,7 +343,7 @@ public class ViviendaPreguntas {
      *
      * pregunta 6 7 8 seccion3EstadoTechoPisoPared
      */
-    public enum EstadoTechoPisoPared {
+    private enum EstadoTechoPisoPared {
 
         BUENO(1),
         REGULAR(2),
@@ -362,14 +362,14 @@ public class ViviendaPreguntas {
 
     public static ArrayAdapter<Values> getEstadoTechoPisoParedAdapter(Context context) {
 
-        ArrayList<Values> estadoTechoPisoPared = new ArrayList<Values>();
+        ArrayList<Values> estadoTechoPisoPared = new ArrayList<>();
 
         estadoTechoPisoPared.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         estadoTechoPisoPared.add(new Values(EstadoTechoPisoPared.BUENO.getValor(),context.getString(R.string.techoPisoParedOpcion1)));
         estadoTechoPisoPared.add(new Values(EstadoTechoPisoPared.REGULAR.getValor(),context.getString(R.string.techoPisoParedOpcion2)));
         estadoTechoPisoPared.add(new Values(EstadoTechoPisoPared.MALO.getValor(),context.getString(R.string.techoPisoParedOpcion3)));
 
-        ArrayAdapter<Values> estadoTechoPisoParedAdapter = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> estadoTechoPisoParedAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, estadoTechoPisoPared);
         estadoTechoPisoParedAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
