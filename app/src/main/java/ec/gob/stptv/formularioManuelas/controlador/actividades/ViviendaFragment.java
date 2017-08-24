@@ -7,7 +7,10 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +19,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -38,7 +43,7 @@ import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvide
 /***
  * Autor:Christian Tintin
  */
-public class ViviendaFragment extends Fragment {
+public class ViviendaFragment extends Fragment{
 
     private Spinner tipoLevantamientoSpinner;
     private Spinner areaSpinner;
@@ -102,13 +107,13 @@ public class ViviendaFragment extends Fragment {
             vivienda = (Vivienda) extra.getSerializable("vivienda");
             //usuario = (Usuario) extra.getSerializable("usuario");
 
-            if (vivienda.getId() != 0) {
-
-                this.llenarCamposVivienda();
+            if (!(null == vivienda)) {
+                if(vivienda.getId() != 0){
+                    this.llenarCamposVivienda();
                 /*vivienda.setFechaInicio(fechaYHoraInicio);
                 vivienda.setFechaRegistro(Utilitarios.getCurrentDate());
                 vivienda.setIdGrupo(usuario.getCodigoGrupo());*/
-
+                }
             }
 
         } catch (Exception e) {
@@ -122,6 +127,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         cargarUbicacionGeografica();
+        this.mallasValidacion();
 
         return item;
     }
@@ -187,8 +193,7 @@ public class ViviendaFragment extends Fragment {
      */
     private void llenarCamposVivienda() {
 
-        int posicion = Utilitarios.getPosicionByKey(
-                (ArrayAdapter<Values>) tipoLevantamientoSpinner.getAdapter(), String.valueOf(vivienda.getIdtipolevantamiento()));
+        int posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoLevantamientoSpinner.getAdapter(), String.valueOf(vivienda.getIdtipolevantamiento()));
         tipoLevantamientoSpinner.setSelection(posicion);
 
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) areaSpinner.getAdapter(), String.valueOf(vivienda.getIdarea()));
@@ -295,10 +300,7 @@ public class ViviendaFragment extends Fragment {
 
         tipoLevantamientoSpinner.setAdapter(ViviendaPreguntas.getTipoLevantamientoAdapter(getActivity()));
         areaSpinner.setAdapter(ViviendaPreguntas.getAreaAdapter(getActivity()));
-        /**
-         * hogar inicial
-         */
-        ArrayList<Values> hogarInicial = new ArrayList<Values>();
+        ArrayList<Values> hogarInicial = new ArrayList<>();
 
         hogarInicial.add(new Values(String.valueOf(Global.VALOR_SELECCIONE),
                 getString(R.string.seleccionRespuesta)));
@@ -309,17 +311,14 @@ public class ViviendaFragment extends Fragment {
             hogarInicial.add(new Values(value, value));
 
         }
-        ArrayAdapter<Values> adapterHogarInicial = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> adapterHogarInicial = new ArrayAdapter<>(
                 getActivity(), android.R.layout.simple_spinner_item,
                 hogarInicial);
         adapterHogarInicial
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hogarInicialSpinner.setAdapter(adapterHogarInicial);
 
-        /**
-         * hogar final
-         */
-        ArrayList<Values> hogarFinal = new ArrayList<Values>();
+        ArrayList<Values> hogarFinal = new ArrayList<>();
 
         hogarFinal.add(new Values(String.valueOf(Global.VALOR_SELECCIONE),
                 getString(R.string.seleccionRespuesta)));
@@ -330,7 +329,7 @@ public class ViviendaFragment extends Fragment {
             hogarFinal.add(new Values(value, value));
 
         }
-        ArrayAdapter<Values> adapterHogarFinal = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> adapterHogarFinal = new ArrayAdapter<>(
                 getActivity(), android.R.layout.simple_spinner_item,
                 hogarFinal);
         adapterHogarFinal
@@ -338,7 +337,6 @@ public class ViviendaFragment extends Fragment {
         hogarFinalSpinner.setAdapter(adapterHogarFinal);
 
         condicionOcupacionSpinner.setAdapter(ViviendaPreguntas.getCondicionOcupacionAdapter(getActivity()));
-
         tipoViviendaSpinner.setAdapter(ViviendaPreguntas.getTipoViviendaAdapter(getActivity()));
         viaAccesoPrincipalSpinner.setAdapter(ViviendaPreguntas.getViviendaViaAccesoPrincipalAdapter(getActivity()));
         materialTechoSpinner.setAdapter(ViviendaPreguntas.getViviendaMaterialTechoAdapter(getActivity()));
@@ -347,8 +345,6 @@ public class ViviendaFragment extends Fragment {
         estadoTechoSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
         estadoPisoSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
         estadoParedSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
-
-
     }
 
     /**
@@ -356,7 +352,7 @@ public class ViviendaFragment extends Fragment {
      */
     public void habilitarDeshabilitar() {
 
-        hogarInicialSpinner.setEnabled(false);
+        hogarInicialSpinner.setEnabled(true);
         hogarInicialSpinner.setSelection(1);
         parroquiaUrbanoSpinner.setEnabled(false);
 
@@ -484,10 +480,10 @@ public class ViviendaFragment extends Fragment {
         vivienda.setIdestadoviviendaPiso(Integer.parseInt(((Values) estadoPisoSpinner.getSelectedItem()).getKey()));
         vivienda.setIdestadoviviendaPared(Integer.parseInt(((Values) estadoParedSpinner.getSelectedItem()).getKey()));
 
-        vivienda.setCodigodpa(((Values) parroquiaSpinner.getSelectedItem()).getKey()+
+        vivienda.setCodigodpa(((Values) parroquiaSpinner.getSelectedItem()).getKey() +
                 ((Values) zonaSpinner.getSelectedItem()).getKey()
-                +((Values) sectorSpinner.getSelectedItem()).getKey()
-                +((Values) manzanaSpinner.getSelectedItem()).getKey());
+                + ((Values) sectorSpinner.getSelectedItem()).getKey()
+                + ((Values) manzanaSpinner.getSelectedItem()).getKey());
 
 
         if (Integer
@@ -513,15 +509,13 @@ public class ViviendaFragment extends Fragment {
         if (vivienda.getId() == 0) {
             if (vivienda.getIdocupada() != ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()) {
                 vivienda.setNumerovisitas(1);
-            }
-            else
-            {
+            } else {
                 vivienda.setNumerovisitas(0);
             }
 
             vivienda.setId(ViviendaDao.getUltimoRegistro(contentResolver, usuario));
             //vivienda.setVivcodigo(usuario.getCodigoDispositivo()+ "-" + ViviendaDao.getUltimoRegistro(contentResolver, usuario));
-            vivienda.setVivcodigo("62"+ "-" + ViviendaDao.getUltimoRegistro(contentResolver, usuario));
+            vivienda.setVivcodigo("62" + "-" + ViviendaDao.getUltimoRegistro(contentResolver, usuario));
 
             ViviendaDao.save(contentResolver, vivienda);
             hogarInicialSpinner.setEnabled(false);
@@ -599,6 +593,14 @@ public class ViviendaFragment extends Fragment {
             cancel = true;
             return cancel;
         }
+        if (localidadEditText.getText().toString().equals("")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.localidadComunidad));
+            cancel = true;
+            return cancel;
+        }
         if (((Values) zonaSpinner.getSelectedItem())
                 .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
@@ -629,6 +631,14 @@ public class ViviendaFragment extends Fragment {
             return cancel;
         }
 
+        if (viviendaEditText.getText().toString().equals("")) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.vivienda));
+            cancel = true;
+            return cancel;
+        }
         //estas validaciones se hacia dependiendo la condicion de ocupacion pero como ahora es slo ocupada entonces no se
         //hace esa validacion x ejm destruida, tempòral etc
         if (((Values) hogarFinalSpinner.getSelectedItem())
@@ -691,7 +701,7 @@ public class ViviendaFragment extends Fragment {
         if (TextUtils.isEmpty(calle1EditText.getText().toString().trim())) {
             calle1EditText
                     .setError(getString(R.string.errorCampoRequerido));
-            focusView = calle1EditText;
+//            focusView = calle1EditText;
             cancel = true;
         }
 
@@ -700,7 +710,7 @@ public class ViviendaFragment extends Fragment {
         if (TextUtils.isEmpty(calle2EditText.getText().toString().trim())) {
             calle2EditText
                     .setError(getString(R.string.errorCampoRequerido));
-            focusView = calle2EditText;
+//            focusView = calle2EditText;
             cancel = true;
         }
 
@@ -709,13 +719,13 @@ public class ViviendaFragment extends Fragment {
         if (TextUtils.isEmpty(pisoEditText.getText().toString().trim())) {
             pisoEditText
                     .setError(getString(R.string.errorCampoRequerido));
-            focusView = pisoEditText;
+//            focusView = pisoEditText;
             cancel = true;
         } else {
             if (Integer.valueOf(pisoEditText.getText().toString()) <= 0) {
                 pisoEditText
                         .setError("El numero de piso debe ser un numero entero mayor que cero");
-                focusView = pisoEditText;
+//                focusView = pisoEditText;
                 cancel = true;
             }
         }
@@ -725,7 +735,7 @@ public class ViviendaFragment extends Fragment {
         if (TextUtils.isEmpty(telefonoCelularEditText.getText().toString().trim())) {
             telefonoCelularEditText
                     .setError(getString(R.string.errorCampoRequerido));
-            focusView = telefonoCelularEditText;
+//            focusView = telefonoCelularEditText;
             cancel = true;
         }
 
@@ -734,21 +744,30 @@ public class ViviendaFragment extends Fragment {
         if (TextUtils.isEmpty(referenciaUbicacionEditText.getText().toString().trim())) {
             referenciaUbicacionEditText
                     .setError(getString(R.string.errorCampoRequerido));
-            focusView = referenciaUbicacionEditText;
+//            focusView = referenciaUbicacionEditText;
             cancel = true;
         }
 
         telefonoConvencionalEditText.setError(null);
         telefonoConvencionalEditText.clearFocus();
         if ((telefonoConvencionalEditText.getText().toString().length() > 0)
-                && (telefonoConvencionalEditText.getText().toString()
-                .length() <9)) {
-
-            telefonoConvencionalEditText
-                    .setError(getString(R.string.error_numero_fijo));
+                && telefonoConvencionalEditText.getText().toString().length() < 9) {
+            telefonoConvencionalEditText.setError(getString(R.string.error_numero_fijo));
             telefonoConvencionalEditText.requestFocus();
             cancel = true;
             return cancel;
+        }
+
+        telefonoConvencionalEditText.setError(null);
+        telefonoConvencionalEditText.clearFocus();
+        if (telefonoConvencionalEditText.getText().toString().length()>2 &&
+                !Utilitarios.validarCodigoRegion(telefonoConvencionalEditText.getText().toString()) &&
+                telefonoConvencionalEditText.getText().toString().length() == 9) {
+            telefonoConvencionalEditText.setError(getString(R.string.errorCodigoRegionFijo));
+            telefonoConvencionalEditText.requestFocus();
+            cancel = true;
+            return cancel;
+
         }
         telefonoConvencionalEditText.clearFocus();
         if (telefonoConvencionalEditText.getText().toString().equals("000000000")) {
@@ -763,11 +782,20 @@ public class ViviendaFragment extends Fragment {
 
         telefonoCelularEditText.clearFocus();
         if ((telefonoCelularEditText.getText().toString().length() > 0)
-                && (telefonoCelularEditText.getText().toString()
-                .length() <10)) {
+                && (telefonoCelularEditText.getText().toString().length() < 10)
+                ) {
 
-            telefonoCelularEditText
-                    .setError(getString(R.string.error_numero_celular));
+            telefonoCelularEditText.setError(getString(R.string.error_numero_celular));
+            telefonoCelularEditText.requestFocus();
+            cancel = true;
+            return cancel;
+        }
+        telefonoCelularEditText.clearFocus();
+        if (telefonoCelularEditText.getText().toString().length()>2 &&
+                !telefonoCelularEditText.getText().toString().substring(0, 2).equals("09") &&
+                telefonoCelularEditText.getText().toString().length() == 10
+                ) {
+            telefonoCelularEditText.setError(getString(R.string.errorDigitoNumCelular));
             telefonoCelularEditText.requestFocus();
             cancel = true;
             return cancel;
@@ -775,7 +803,6 @@ public class ViviendaFragment extends Fragment {
 
         telefonoCelularEditText.clearFocus();
         if (telefonoCelularEditText.getText().toString().equals("0000000000")) {
-
             telefonoCelularEditText
                     .setError(getString(R.string.error_numero_celularCeros));
             telefonoCelularEditText.requestFocus();
@@ -871,8 +898,8 @@ public class ViviendaFragment extends Fragment {
     /**
      * Muestra las alertas
      *
-     * @param title
-     * @param message
+     * @param title titulo del mensaje de alerta
+     * @param message contenido del mensaje de alerta
      */
     private void getAlert(String title, String message) {
 
@@ -942,9 +969,6 @@ public class ViviendaFragment extends Fragment {
             }
         });
 
-        /**
-         * Valida q no ingrese espacios en blanco al inicio o
-         */
         calle1EditText.addTextChangedListener(Utilitarios
                 .clearSpaceEditText(calle1EditText));
 
@@ -960,9 +984,6 @@ public class ViviendaFragment extends Fragment {
         localidadEditText.addTextChangedListener(Utilitarios
                 .clearSpaceEditText(localidadEditText));
 
-        /**
-         * Valida q siempre ingrese el numero cero
-         */
         telefonoConvencionalEditText.addTextChangedListener
                 (Utilitarios.numeroCeroEditText(telefonoConvencionalEditText));
 
@@ -975,6 +996,70 @@ public class ViviendaFragment extends Fragment {
      * Método que permite hacer los saltos de la pregunta
      */
     private void mallasValidacion() {
+
+        tipoLevantamientoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (((Values) tipoLevantamientoSpinner.getSelectedItem()).getKey().equals("1")) {
+                    edificioEditText.setText("1");
+                    edificioEditText.setEnabled(false);
+                } else {
+                    edificioEditText.setText("");
+                    edificioEditText.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+//        edificioEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View view, boolean b) {
+//                if(!edificioEditText.getText().toString().equals(""))
+//                {
+//                    if(Integer.parseInt(edificioEditText.getText().toString())>1 &&
+//                            ((Values)tipoLevantamientoSpinner.getSelectedItem()).getKey().equals("1")){
+//                        edificioEditText.setText("1");
+//                    }
+//                }
+//
+//            }
+//        });
+
+        hogarInicialSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (Integer.parseInt(((Values) hogarInicialSpinner.getSelectedItem()).getKey()) > Integer.parseInt(((Values) hogarFinalSpinner.getSelectedItem()).getKey())) {
+                    hogarInicialSpinner.setSelection(1);
+                    hogarFinalSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.errorInconsistenciaHogar));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        hogarFinalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (Integer.parseInt(((Values) hogarInicialSpinner.getSelectedItem()).getKey()) > Integer.parseInt(((Values) hogarFinalSpinner.getSelectedItem()).getKey())) {
+                    hogarInicialSpinner.setSelection(1);
+                    hogarFinalSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.errorInconsistenciaHogar));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
     }
 
@@ -1001,7 +1086,7 @@ public class ViviendaFragment extends Fragment {
         //ArrayList<Values> localidades = DpaManzanaDao.getDpaManzanas(cursor);
         ArrayList<Values> localidades = LocalidadDao.getLocalidades(cursor);
 
-        ArrayAdapter<Values> adapter1 = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(
                 getActivity(), android.R.layout.simple_spinner_item,
                 localidades);
 
@@ -1027,7 +1112,7 @@ public class ViviendaFragment extends Fragment {
 
                         if (!provincia.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
 
-                            ArrayList<Values> localidades = null;
+                            ArrayList<Values> localidades;
                             Cursor cursor = contentResolver.query(
                                     FormularioManuelasProvider.CONTENT_URI_LOCALIDAD, new String[]{
                                             Localidad.COLUMNA_LOC_CODIGO,
@@ -1036,13 +1121,13 @@ public class ViviendaFragment extends Fragment {
                                     Localidad.COLUMNA_LOC_DESCRIPCION);
 
                             localidades = LocalidadDao.getLocalidades(cursor);
-                            ArrayAdapter<Values> adapter1 = new ArrayAdapter<Values>(
+                            ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(
                                     getActivity(), android.R.layout.simple_spinner_item,
                                     localidades);
                             adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             cantonSpinner.setAdapter(adapter1);
 
-                            if (vivienda.getId() != 0 && aplicaMalla == true ) {
+                            if (vivienda.getId() != 0 && aplicaMalla) {
                                 int posicion = Utilitarios.getPosicionByKey(
                                         (ArrayAdapter<Values>) cantonSpinner.getAdapter(),
                                         vivienda.getIdcanton());
@@ -1085,7 +1170,7 @@ public class ViviendaFragment extends Fragment {
                 if (!canton.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
                     //new GetParroquias().execute(canton.getKey());
 
-                    ArrayList<Values> localidades = null;
+                    ArrayList<Values> localidades;
                     Cursor cursor = contentResolver.query(FormularioManuelasProvider.CONTENT_URI_LOCALIDAD,
                             new String[]{Localidad.COLUMNA_LOC_CODIGO,
                                     Localidad.COLUMNA_LOC_DESCRIPCION},
@@ -1094,14 +1179,14 @@ public class ViviendaFragment extends Fragment {
 
                     localidades = LocalidadDao.getLocalidades(cursor);
 
-                    ArrayAdapter<Values> adapter1 = new ArrayAdapter<Values>(
+                    ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(
                             getActivity(), android.R.layout.simple_spinner_item,
                             localidades);
                     adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     parroquiaSpinner.setAdapter(adapter1);
 
-                    if (vivienda.getId() != 0 && aplicaMalla == true) {
+                    if (vivienda.getId() != 0 && aplicaMalla) {
                         int posicion = Utilitarios.getPosicionByKey(
                                 (ArrayAdapter<Values>) parroquiaSpinner.getAdapter(),
                                 vivienda.getIdparroquia());
@@ -1149,7 +1234,7 @@ public class ViviendaFragment extends Fragment {
                             String[] args = {idProvincia, idCanton,
                                     idParroquia};
 
-                            ArrayList<Values> localidades = null;
+                            ArrayList<Values> localidades;
                             Cursor cursor = contentResolver.query(
                                     FormularioManuelasProvider.CONTENT_URI_DPAMANZANA,
                                     new String[]{"DISTINCT " + DpaManzana.COLUMNA_ZONA},
@@ -1158,19 +1243,19 @@ public class ViviendaFragment extends Fragment {
 
                             localidades = DpaManzanaDao.getZonaSectorManzana(cursor);
 
-                            ArrayAdapter<Values> adapter1 = new ArrayAdapter<Values>(
+                            ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(
                                     getActivity(), android.R.layout.simple_spinner_item,
                                     localidades);
                             adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             zonaSpinner.setAdapter(adapter1);
 
-                            if (vivienda.getId() != 0 && aplicaMalla == true) {
+                            if (vivienda.getId() != 0 && aplicaMalla) {
                                 int posicion = Utilitarios.getPosicionByKey(
                                         (ArrayAdapter<Values>) zonaSpinner.getAdapter(),
                                         vivienda.getZona());
                                 zonaSpinner.setSelection(posicion);
                             }
-                            /*****  Directamente y no ocupar otro hilo ******/
+
 
 
                         } else {
@@ -1210,45 +1295,42 @@ public class ViviendaFragment extends Fragment {
                     String idCanton = _idParroquia.substring(2, 4);
                     String idParroquia = _idParroquia.substring(4, 6);
 
-                    String[] args = { idProvincia, idCanton, idParroquia,
-                            zona.getKey() };
+                    String[] args = {idProvincia, idCanton, idParroquia,
+                            zona.getKey()};
 
-                    if (zona.getKey().equals("999"))
-                    {
+                    if (zona.getKey().equals("999")) {
                         manzanaSpinner.setEnabled(false);
-                    }
-                    else
-                    {
+                    } else {
                         manzanaSpinner.setEnabled(true);
                     }
 
-                    /*****  Directamente y no ocupar otro hilo ******/
 
-                    ArrayList<Values> localidades = null;
+
+                    ArrayList<Values> localidades;
 
                     Cursor cursor = contentResolver.query(
                             FormularioManuelasProvider.CONTENT_URI_DPAMANZANA,
-                            new String[] { "DISTINCT " + DpaManzana.COLUMNA_SECTOR },
+                            new String[]{"DISTINCT " + DpaManzana.COLUMNA_SECTOR},
                             DpaManzana.whereByProvinciaCantonParroquiaZona,
                             args, DpaManzana.COLUMNA_SECTOR);
 
                     localidades = DpaManzanaDao.getZonaSectorManzana(cursor);
 
 
-                    ArrayAdapter<Values> adapter1 = new ArrayAdapter<Values>(
+                    ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(
                             getActivity(), android.R.layout.simple_spinner_item,
                             localidades);
                     adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sectorSpinner.setAdapter(adapter1);
 
-                    if (vivienda.getId() != 0 && aplicaMalla == true) {
+                    if (vivienda.getId() != 0 && aplicaMalla) {
                         int posicion = Utilitarios.getPosicionByKey(
                                 (ArrayAdapter<Values>) sectorSpinner.getAdapter(),
                                 vivienda.getSector());
                         sectorSpinner.setSelection(posicion);
                     }
 
-                    /*****  Directamente y no ocupar otro hilo ******/
+
 
                 } else {
                     Utilitarios
@@ -1285,32 +1367,32 @@ public class ViviendaFragment extends Fragment {
                     String idCanton = _idParroquia.substring(2, 4);
                     String idParroquia = _idParroquia.substring(4, 6);
 
-                    String[] args = { idProvincia, idCanton, idParroquia,
-                            zona.getKey(), sector.getKey() };
+                    String[] args = {idProvincia, idCanton, idParroquia,
+                            zona.getKey(), sector.getKey()};
 
                     //taskManzanas = new GetManzanas();
                     //taskManzanas.execute(args);
 
-                    /*****  Directamente y no ocupar otro hilo ******/
 
-                    ArrayList<Values> localidades = null;
+
+                    ArrayList<Values> localidades;
 
                     Cursor cursor = contentResolver.query(
                             FormularioManuelasProvider.CONTENT_URI_DPAMANZANA,
-                            new String[] { DpaManzana.COLUMNA_MANZANA },
+                            new String[]{DpaManzana.COLUMNA_MANZANA},
                             DpaManzana.whereByProvinciaCantonParroquiaZonaSector,
-                            args, "CAST(" + DpaManzana.COLUMNA_MANZANA  + " AS INTEGER)");
+                            args, "CAST(" + DpaManzana.COLUMNA_MANZANA + " AS INTEGER)");
 
                     localidades = DpaManzanaDao.getZonaSectorManzana(cursor);
 
 
-                    ArrayAdapter<Values> adapter1 = new ArrayAdapter<Values>(
+                    ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(
                             getActivity(), android.R.layout.simple_spinner_item,
                             localidades);
                     adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     manzanaSpinner.setAdapter(adapter1);
 
-                    if (vivienda.getId() != 0 && aplicaMalla == true) {
+                    if (vivienda.getId() != 0 && aplicaMalla) {
                         int posicion = Utilitarios.getPosicionByKey(
                                 (ArrayAdapter<Values>) manzanaSpinner.getAdapter(),
                                 String.valueOf(vivienda.getManzana()));
@@ -1334,12 +1416,12 @@ public class ViviendaFragment extends Fragment {
         });
 
 
-
     }
 
     /**
      * regresa la vivienda
-     * @return
+     *
+     * @return el objeto Vivienda
      */
     public static Vivienda getVivienda() {
         return vivienda;
