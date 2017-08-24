@@ -33,7 +33,7 @@ public class Persona implements Serializable {
 	private Integer idparentesco;
 	private Integer idestadocivil;
 	private Integer madrevive;
-	private Integer ordenMadre = 99;
+	private Integer ordenMadre;
 	private Integer idnacionalidad;
 	private Integer idetnia;
 	private Integer idsegurosocial1;
@@ -42,10 +42,45 @@ public class Persona implements Serializable {
 	private Integer idsegurosalud2;
 	private Integer tienediscapacidad;
 	private Integer carnediscapacidad;
+	private Integer discapacidadintelectual;
+	private Integer porcentajeintelectual;
+	private Integer discapacidadfisica;
+	private Integer porcentajefisica;
+	private Integer discapacidadceguera;
+	private Integer porcentajeceguera;
+	private Integer discapacidadvision;
+	private Integer porcentajevision;
+	private Integer discapacidadsordera;
+	private Integer porcentajesordera;
+	private Integer discapacidadhipoacusia;
+	private Integer porcentajehipoacusia;
+	private Integer discapacidadpsicosociales;
+	private Integer porcentajepsicosociales;
 	private Integer idestablecimientoeducacion;
 	private Integer idproteccionsocial;
 	private Integer necesitaayudatecnica;
 	private Integer recibioayudatecnica;
+	private Integer sillaruedas;
+	private Integer muletas;
+	private Integer andadores;
+	private Integer bastonapoyo;
+	private Integer ortesis;
+	private Integer colchon;
+	private Integer cojin;
+	private Integer bastonrastreo;
+	private Integer abaco;
+	private Integer computadora;
+	private Integer audifonos;
+	private Integer implantes;
+	private Integer cochepostular;
+	private Integer paniales;
+	private Integer sillabaniarse;
+	private Integer camas;
+	private Integer otrasayudas;
+	private Integer gobiernocentral;
+	private Integer gobiernoautonomo;
+	private Integer organizacionprivada;
+	private Integer ningunainstitucion;
 	private Integer idtipoenfermedad;
 	private Integer enfermedaddiagnostico;
 	private Integer idenfermedadcatastrofica;
@@ -84,11 +119,46 @@ public class Persona implements Serializable {
 	public final static String COLUMNA_IDSEGUROSALUD1="idsegurosalud1";
 	public final static String COLUMNA_IDSEGUROSALUD2="idsegurosalud2";
 	public final static String COLUMNA_TIENEDISCAPACIDAD="tienediscapacidad";
-	public final static String COLUMNA_CARNEDISCAPACIDAD="carnediscapacidad";
+	public final static String COLUMNA_CARNEDISCAPACIDAD="carnetdiscapacidad";
+	public final static String COLUMNA_DISCAPACIDADINTELECTUAL="discapacidadintelectual";
+	public final static String COLUMNA_PORCENTAJEINTELECTUAL="porcentajeintelectual";
+	public final static String COLUMNA_DISCAPACIDADFISICA="discapacidadfisica";
+	public final static String COLUMNA_PORCENTAJEFISICA="porcentajefisica";
+	public final static String COLUMNA_DISCAPACIDADCEGUERA="discapacidadceguera";
+	public final static String COLUMNA_PORCENTAJECEGUERA="porcentajeceguera";
+	public final static String COLUMNA_DISCAPACIDADVISION="discapacidadvision";
+	public final static String COLUMNA_PORCENTAJEVISION="porcentajevision";
+	public final static String COLUMNA_DISCAPACIDADSORDERA="discapacidadsordera";
+	public final static String COLUMNA_PORCENTAJESORDERA="porcentajesordera";
+	public final static String COLUMNA_DISCAPACIDADHIPOACUSIA="discapacidadhipoacusia";
+	public final static String COLUMNA_PORCENTAJEHIPOACUSIA="porcentajehipoacusia";
+	public final static String COLUMNA_DISCAPACIDADPSICOSOCIALES="discapacidadpsicosociales";
+	public final static String COLUMNA_PORCENTAJEPSICOSOCIALES="porcentajepsicosociales";
 	public final static String COLUMNA_IDESTABLECIMIENTOEDUCACION="idestablecimientoeducacion";
 	public final static String COLUMNA_IDPROTECCIONSOCIAL="idproteccionsocial";
 	public final static String COLUMNA_NECESITAAYUDATECNICA="necesitaayudatecnica";
 	public final static String COLUMNA_RECIBIOAYUDATECNICA="recibioayudatecnica";
+	public final static String COLUMNA_SILLARUEDAS="sillaruedas";
+	public final static String COLUMNA_MULETAS="muletas";
+	public final static String COLUMNA_ANDADORES="andadores";
+	public final static String COLUMNA_BASTONAPOYO="bastonapoyo";
+	public final static String COLUMNA_ORTESIS="ortesis";
+	public final static String COLUMNA_COLCHON="colchon";
+	public final static String COLUMNA_COJIN="cojin";
+	public final static String COLUMNA_BASTONRASTREO="bastonrastreo";
+	public final static String COLUMNA_ABACO="abaco";
+	public final static String COLUMNA_COMPUTADORA="computadora";
+	public final static String COLUMNA_AUDIFONOS="audifonos";
+	public final static String COLUMNA_IMPLANTES="implantes";
+	public final static String COLUMNA_COCHEPOSTULAR="cochepostular";
+	public final static String COLUMNA_PANIALES="paniales";
+	public final static String COLUMNA_SILLABANIARSE="sillabaniarse";
+	public final static String COLUMNA_CAMAS="camas";
+	public final static String COLUMNA_OTRASAYUDAS="otrasayudas";
+	public final static String COLUMNA_GOBIERNOCENTRAL="gobiernocentral";
+	public final static String COLUMNA_GOBIERNOAUTONOMO="gobiernoautonomo";
+	public final static String COLUMNA_ORGANIZACIONPRIVADA="organizacionprivada";
+	public final static String COLUMNA_NINGUNAINSTITUCION="ningunainstitucion";
 	public final static String COLUMNA_IDTIPOENFERMEDAD="idtipoenfermedad";
 	public final static String COLUMNA_ENFERMEDADDIAGNOSTICO="enfermedaddiagnostico";
 	public final static String COLUMNA_IDENFERMEDADCATASTROFICA="idenfermedadcatastrofica";
@@ -125,10 +195,45 @@ public class Persona implements Serializable {
 			COLUMNA_IDSEGUROSALUD2,
 			COLUMNA_TIENEDISCAPACIDAD,
 			COLUMNA_CARNEDISCAPACIDAD,
+			COLUMNA_DISCAPACIDADINTELECTUAL,
+			COLUMNA_PORCENTAJEINTELECTUAL,
+			COLUMNA_DISCAPACIDADFISICA,
+			COLUMNA_PORCENTAJEFISICA,
+			COLUMNA_DISCAPACIDADCEGUERA,
+			COLUMNA_PORCENTAJECEGUERA,
+			COLUMNA_DISCAPACIDADVISION,
+			COLUMNA_PORCENTAJEVISION,
+			COLUMNA_DISCAPACIDADSORDERA,
+			COLUMNA_PORCENTAJESORDERA,
+			COLUMNA_DISCAPACIDADHIPOACUSIA,
+			COLUMNA_PORCENTAJEHIPOACUSIA,
+			COLUMNA_DISCAPACIDADPSICOSOCIALES,
+			COLUMNA_PORCENTAJEPSICOSOCIALES,
 			COLUMNA_IDESTABLECIMIENTOEDUCACION,
 			COLUMNA_IDPROTECCIONSOCIAL,
 			COLUMNA_NECESITAAYUDATECNICA,
 			COLUMNA_RECIBIOAYUDATECNICA,
+			COLUMNA_SILLARUEDAS,
+			COLUMNA_MULETAS,
+			COLUMNA_ANDADORES,
+			COLUMNA_BASTONAPOYO,
+			COLUMNA_ORTESIS,
+			COLUMNA_COLCHON,
+			COLUMNA_COJIN,
+			COLUMNA_BASTONRASTREO,
+			COLUMNA_ABACO,
+			COLUMNA_COMPUTADORA,
+			COLUMNA_AUDIFONOS,
+			COLUMNA_IMPLANTES,
+			COLUMNA_COCHEPOSTULAR,
+			COLUMNA_PANIALES,
+			COLUMNA_SILLABANIARSE,
+			COLUMNA_CAMAS,
+			COLUMNA_OTRASAYUDAS,
+			COLUMNA_GOBIERNOCENTRAL,
+			COLUMNA_GOBIERNOAUTONOMO,
+			COLUMNA_ORGANIZACIONPRIVADA,
+			COLUMNA_NINGUNAINSTITUCION,
 			COLUMNA_IDTIPOENFERMEDAD,
 			COLUMNA_ENFERMEDADDIAGNOSTICO,
 			COLUMNA_IDENFERMEDADCATASTROFICA,
@@ -181,10 +286,45 @@ public class Persona implements Serializable {
 		values.put(COLUMNA_IDSEGUROSALUD2, persona.getIdsegurosalud2());
 		values.put(COLUMNA_TIENEDISCAPACIDAD, persona.getTienediscapacidad());
 		values.put(COLUMNA_CARNEDISCAPACIDAD, persona.getCarnediscapacidad());
+		values.put(COLUMNA_DISCAPACIDADINTELECTUAL, persona.getDiscapacidadintelectual());
+		values.put(COLUMNA_PORCENTAJEINTELECTUAL, persona.getPorcentajeintelectual());
+		values.put(COLUMNA_DISCAPACIDADFISICA, persona.getDiscapacidadfisica());
+		values.put(COLUMNA_PORCENTAJEFISICA, persona.getPorcentajefisica());
+		values.put(COLUMNA_DISCAPACIDADCEGUERA, persona.getDiscapacidadceguera());
+		values.put(COLUMNA_PORCENTAJECEGUERA, persona.getPorcentajeceguera());
+		values.put(COLUMNA_DISCAPACIDADVISION, persona.getDiscapacidadvision());
+		values.put(COLUMNA_PORCENTAJEVISION, persona.getPorcentajevision());
+		values.put(COLUMNA_DISCAPACIDADSORDERA, persona.getDiscapacidadsordera());
+		values.put(COLUMNA_PORCENTAJESORDERA, persona.getPorcentajesordera());
+		values.put(COLUMNA_DISCAPACIDADHIPOACUSIA, persona.getDiscapacidadhipoacusia());
+		values.put(COLUMNA_PORCENTAJEHIPOACUSIA, persona.getPorcentajehipoacusia());
+		values.put(COLUMNA_DISCAPACIDADPSICOSOCIALES, persona.getDiscapacidadpsicosociales());
+		values.put(COLUMNA_PORCENTAJEPSICOSOCIALES, persona.getPorcentajepsicosociales());
 		values.put(COLUMNA_IDESTABLECIMIENTOEDUCACION, persona.getIdestablecimientoeducacion());
 		values.put(COLUMNA_IDPROTECCIONSOCIAL, persona.getIdproteccionsocial());
 		values.put(COLUMNA_NECESITAAYUDATECNICA, persona.getNecesitaayudatecnica());
 		values.put(COLUMNA_RECIBIOAYUDATECNICA, persona.getRecibioayudatecnica());
+		values.put(COLUMNA_SILLARUEDAS, persona.getSillaruedas());
+		values.put(COLUMNA_MULETAS, persona.getMuletas());
+		values.put(COLUMNA_ANDADORES, persona.getAndadores());
+		values.put(COLUMNA_BASTONAPOYO, persona.getBastonapoyo());
+		values.put(COLUMNA_ORTESIS, persona.getOrtesis());
+		values.put(COLUMNA_COLCHON, persona.getColchon());
+		values.put(COLUMNA_COJIN, persona.getCojin());
+		values.put(COLUMNA_BASTONRASTREO, persona.getBastonrastreo());
+		values.put(COLUMNA_ABACO, persona.getAbaco());
+		values.put(COLUMNA_COMPUTADORA, persona.getComputadora());
+		values.put(COLUMNA_AUDIFONOS, persona.getAudifonos());
+		values.put(COLUMNA_IMPLANTES, persona.getImplantes());
+		values.put(COLUMNA_COCHEPOSTULAR, persona.getCochepostular());
+		values.put(COLUMNA_PANIALES, persona.getPaniales());
+		values.put(COLUMNA_SILLABANIARSE, persona.getSillabaniarse());
+		values.put(COLUMNA_CAMAS, persona.getCamas());
+		values.put(COLUMNA_OTRASAYUDAS, persona.getOtrasayudas());
+		values.put(COLUMNA_GOBIERNOCENTRAL, persona.getGobiernocentral());
+		values.put(COLUMNA_GOBIERNOAUTONOMO, persona.getGobiernoautonomo());
+		values.put(COLUMNA_ORGANIZACIONPRIVADA, persona.getOrganizacionprivada());
+		values.put(COLUMNA_NINGUNAINSTITUCION, persona.getNingunainstitucion());
 		values.put(COLUMNA_IDTIPOENFERMEDAD, persona.getIdtipoenfermedad());
 		values.put(COLUMNA_ENFERMEDADDIAGNOSTICO, persona.getEnfermedaddiagnostico());
 		values.put(COLUMNA_IDENFERMEDADCATASTROFICA, persona.getIdenfermedadcatastrofica());
@@ -228,10 +368,45 @@ public class Persona implements Serializable {
 		persona.setIdsegurosalud2(result.getInt(result.getColumnIndex(COLUMNA_IDSEGUROSALUD2)));
 		persona.setTienediscapacidad(result.getInt(result.getColumnIndex(COLUMNA_TIENEDISCAPACIDAD)));
 		persona.setCarnediscapacidad(result.getInt(result.getColumnIndex(COLUMNA_CARNEDISCAPACIDAD)));
+		persona.setDiscapacidadintelectual(result.getInt(result.getColumnIndex(COLUMNA_DISCAPACIDADINTELECTUAL)));
+		persona.setPorcentajeintelectual(result.getInt(result.getColumnIndex(COLUMNA_PORCENTAJEINTELECTUAL)));
+		persona.setDiscapacidadfisica(result.getInt(result.getColumnIndex(COLUMNA_DISCAPACIDADFISICA)));
+		persona.setPorcentajefisica(result.getInt(result.getColumnIndex(COLUMNA_PORCENTAJEFISICA)));
+		persona.setDiscapacidadceguera(result.getInt(result.getColumnIndex(COLUMNA_DISCAPACIDADCEGUERA)));
+		persona.setPorcentajeceguera(result.getInt(result.getColumnIndex(COLUMNA_PORCENTAJECEGUERA)));
+		persona.setDiscapacidadvision(result.getInt(result.getColumnIndex(COLUMNA_DISCAPACIDADVISION)));
+		persona.setPorcentajevision(result.getInt(result.getColumnIndex(COLUMNA_PORCENTAJEVISION)));
+		persona.setDiscapacidadsordera(result.getInt(result.getColumnIndex(COLUMNA_DISCAPACIDADSORDERA)));
+		persona.setPorcentajesordera(result.getInt(result.getColumnIndex(COLUMNA_PORCENTAJESORDERA)));
+		persona.setDiscapacidadhipoacusia(result.getInt(result.getColumnIndex(COLUMNA_DISCAPACIDADHIPOACUSIA)));
+		persona.setPorcentajehipoacusia(result.getInt(result.getColumnIndex(COLUMNA_PORCENTAJEHIPOACUSIA)));
+		persona.setDiscapacidadpsicosociales(result.getInt(result.getColumnIndex(COLUMNA_DISCAPACIDADPSICOSOCIALES)));
+		persona.setPorcentajepsicosociales(result.getInt(result.getColumnIndex(COLUMNA_PORCENTAJEPSICOSOCIALES)));
 		persona.setIdestablecimientoeducacion(result.getInt(result.getColumnIndex(COLUMNA_IDESTABLECIMIENTOEDUCACION)));
 		persona.setIdproteccionsocial(result.getInt(result.getColumnIndex(COLUMNA_IDPROTECCIONSOCIAL)));
 		persona.setNecesitaayudatecnica(result.getInt(result.getColumnIndex(COLUMNA_NECESITAAYUDATECNICA)));
 		persona.setRecibioayudatecnica(result.getInt(result.getColumnIndex(COLUMNA_RECIBIOAYUDATECNICA)));
+		persona.setSillaruedas(result.getInt(result.getColumnIndex(COLUMNA_SILLARUEDAS)));
+		persona.setMuletas(result.getInt(result.getColumnIndex(COLUMNA_MULETAS)));
+		persona.setAndadores(result.getInt(result.getColumnIndex(COLUMNA_ANDADORES)));
+		persona.setBastonapoyo(result.getInt(result.getColumnIndex(COLUMNA_BASTONAPOYO)));
+		persona.setOrtesis(result.getInt(result.getColumnIndex(COLUMNA_ORTESIS)));
+		persona.setColchon(result.getInt(result.getColumnIndex(COLUMNA_COLCHON)));
+		persona.setCojin(result.getInt(result.getColumnIndex(COLUMNA_COJIN)));
+		persona.setBastonrastreo(result.getInt(result.getColumnIndex(COLUMNA_BASTONRASTREO)));
+		persona.setAbaco(result.getInt(result.getColumnIndex(COLUMNA_ABACO)));
+		persona.setComputadora(result.getInt(result.getColumnIndex(COLUMNA_COMPUTADORA)));
+		persona.setAudifonos(result.getInt(result.getColumnIndex(COLUMNA_AUDIFONOS)));
+		persona.setImplantes(result.getInt(result.getColumnIndex(COLUMNA_IMPLANTES)));
+		persona.setCochepostular(result.getInt(result.getColumnIndex(COLUMNA_COCHEPOSTULAR)));
+		persona.setPaniales(result.getInt(result.getColumnIndex(COLUMNA_PANIALES)));
+		persona.setSillabaniarse(result.getInt(result.getColumnIndex(COLUMNA_SILLABANIARSE)));
+		persona.setCamas(result.getInt(result.getColumnIndex(COLUMNA_CAMAS)));
+		persona.setOtrasayudas(result.getInt(result.getColumnIndex(COLUMNA_OTRASAYUDAS)));
+		persona.setGobiernocentral(result.getInt(result.getColumnIndex(COLUMNA_GOBIERNOCENTRAL)));
+		persona.setGobiernoautonomo(result.getInt(result.getColumnIndex(COLUMNA_GOBIERNOAUTONOMO)));
+		persona.setOrganizacionprivada(result.getInt(result.getColumnIndex(COLUMNA_ORGANIZACIONPRIVADA)));
+		persona.setNingunainstitucion(result.getInt(result.getColumnIndex(COLUMNA_NINGUNAINSTITUCION)));
 		persona.setIdtipoenfermedad(result.getInt(result.getColumnIndex(COLUMNA_IDTIPOENFERMEDAD)));
 		persona.setEnfermedaddiagnostico(result.getInt(result.getColumnIndex(COLUMNA_ENFERMEDADDIAGNOSTICO)));
 		persona.setIdenfermedadcatastrofica(result.getInt(result.getColumnIndex(COLUMNA_IDENFERMEDADCATASTROFICA)));
@@ -575,5 +750,286 @@ public class Persona implements Serializable {
 
 	public void setOrdenMadre(Integer ordenMadre) {
 		this.ordenMadre = ordenMadre;
+	}
+
+
+	public Integer getDiscapacidadintelectual() {
+		return discapacidadintelectual;
+	}
+
+	public void setDiscapacidadintelectual(Integer discapacidadintelectual) {
+		this.discapacidadintelectual = discapacidadintelectual;
+	}
+
+	public Integer getPorcentajeintelectual() {
+		return porcentajeintelectual;
+	}
+
+	public void setPorcentajeintelectual(Integer porcentajeintelectual) {
+		this.porcentajeintelectual = porcentajeintelectual;
+	}
+
+	public Integer getDiscapacidadfisica() {
+		return discapacidadfisica;
+	}
+
+	public void setDiscapacidadfisica(Integer discapacidadfisica) {
+		this.discapacidadfisica = discapacidadfisica;
+	}
+
+	public Integer getPorcentajefisica() {
+		return porcentajefisica;
+	}
+
+	public void setPorcentajefisica(Integer porcentajefisica) {
+		this.porcentajefisica = porcentajefisica;
+	}
+
+	public Integer getDiscapacidadceguera() {
+		return discapacidadceguera;
+	}
+
+	public void setDiscapacidadceguera(Integer discapacidadceguera) {
+		this.discapacidadceguera = discapacidadceguera;
+	}
+
+	public Integer getPorcentajeceguera() {
+		return porcentajeceguera;
+	}
+
+	public void setPorcentajeceguera(Integer porcentajeceguera) {
+		this.porcentajeceguera = porcentajeceguera;
+	}
+
+	public Integer getDiscapacidadvision() {
+		return discapacidadvision;
+	}
+
+	public void setDiscapacidadvision(Integer discapacidadvision) {
+		this.discapacidadvision = discapacidadvision;
+	}
+
+	public Integer getPorcentajevision() {
+		return porcentajevision;
+	}
+
+	public void setPorcentajevision(Integer porcentajevision) {
+		this.porcentajevision = porcentajevision;
+	}
+
+	public Integer getDiscapacidadsordera() {
+		return discapacidadsordera;
+	}
+
+	public void setDiscapacidadsordera(Integer discapacidadsordera) {
+		this.discapacidadsordera = discapacidadsordera;
+	}
+
+	public Integer getPorcentajesordera() {
+		return porcentajesordera;
+	}
+
+	public void setPorcentajesordera(Integer porcentajesordera) {
+		this.porcentajesordera = porcentajesordera;
+	}
+
+	public Integer getDiscapacidadhipoacusia() {
+		return discapacidadhipoacusia;
+	}
+
+	public void setDiscapacidadhipoacusia(Integer discapacidadhipoacusia) {
+		this.discapacidadhipoacusia = discapacidadhipoacusia;
+	}
+
+	public Integer getPorcentajehipoacusia() {
+		return porcentajehipoacusia;
+	}
+
+	public void setPorcentajehipoacusia(Integer porcentajehipoacusia) {
+		this.porcentajehipoacusia = porcentajehipoacusia;
+	}
+
+	public Integer getDiscapacidadpsicosociales() {
+		return discapacidadpsicosociales;
+	}
+
+	public void setDiscapacidadpsicosociales(Integer discapacidadpsicosociales) {
+		this.discapacidadpsicosociales = discapacidadpsicosociales;
+	}
+
+	public Integer getSillaruedas() {
+		return sillaruedas;
+	}
+
+	public void setSillaruedas(Integer sillaruedas) {
+		this.sillaruedas = sillaruedas;
+	}
+
+	public Integer getMuletas() {
+		return muletas;
+	}
+
+	public void setMuletas(Integer muletas) {
+		this.muletas = muletas;
+	}
+
+	public Integer getAndadores() {
+		return andadores;
+	}
+
+	public void setAndadores(Integer andadores) {
+		this.andadores = andadores;
+	}
+
+	public Integer getBastonapoyo() {
+		return bastonapoyo;
+	}
+
+	public void setBastonapoyo(Integer bastonapoyo) {
+		this.bastonapoyo = bastonapoyo;
+	}
+
+	public Integer getOrtesis() {
+		return ortesis;
+	}
+
+	public void setOrtesis(Integer ortesis) {
+		this.ortesis = ortesis;
+	}
+
+	public Integer getColchon() {
+		return colchon;
+	}
+
+	public void setColchon(Integer colchon) {
+		this.colchon = colchon;
+	}
+
+	public Integer getCojin() {
+		return cojin;
+	}
+
+	public void setCojin(Integer cojin) {
+		this.cojin = cojin;
+	}
+
+	public Integer getBastonrastreo() {
+		return bastonrastreo;
+	}
+
+	public void setBastonrastreo(Integer bastonrastreo) {
+		this.bastonrastreo = bastonrastreo;
+	}
+
+	public Integer getAbaco() {
+		return abaco;
+	}
+
+	public void setAbaco(Integer abaco) {
+		this.abaco = abaco;
+	}
+
+	public Integer getComputadora() {
+		return computadora;
+	}
+
+	public void setComputadora(Integer computadora) {
+		this.computadora = computadora;
+	}
+
+	public Integer getAudifonos() {
+		return audifonos;
+	}
+
+	public void setAudifonos(Integer audifonos) {
+		this.audifonos = audifonos;
+	}
+
+	public Integer getImplantes() {
+		return implantes;
+	}
+
+	public void setImplantes(Integer implantes) {
+		this.implantes = implantes;
+	}
+
+	public Integer getCochepostular() {
+		return cochepostular;
+	}
+
+	public void setCochepostular(Integer cochepostular) {
+		this.cochepostular = cochepostular;
+	}
+
+	public Integer getPaniales() {
+		return paniales;
+	}
+
+	public void setPaniales(Integer paniales) {
+		this.paniales = paniales;
+	}
+
+	public Integer getSillabaniarse() {
+		return sillabaniarse;
+	}
+
+	public void setSillabaniarse(Integer sillabaniarse) {
+		this.sillabaniarse = sillabaniarse;
+	}
+
+	public Integer getCamas() {
+		return camas;
+	}
+
+	public void setCamas(Integer camas) {
+		this.camas = camas;
+	}
+
+	public Integer getOtrasayudas() {
+		return otrasayudas;
+	}
+
+	public void setOtrasayudas(Integer otrasayudas) {
+		this.otrasayudas = otrasayudas;
+	}
+
+	public Integer getGobiernocentral() {
+		return gobiernocentral;
+	}
+
+	public void setGobiernocentral(Integer gobiernocentral) {
+		this.gobiernocentral = gobiernocentral;
+	}
+
+	public Integer getGobiernoautonomo() {
+		return gobiernoautonomo;
+	}
+
+	public void setGobiernoautonomo(Integer gobiernoautonomo) {
+		this.gobiernoautonomo = gobiernoautonomo;
+	}
+
+	public Integer getOrganizacionprivada() {
+		return organizacionprivada;
+	}
+
+	public void setOrganizacionprivada(Integer organizacionprivada) {
+		this.organizacionprivada = organizacionprivada;
+	}
+
+	public Integer getNingunainstitucion() {
+		return ningunainstitucion;
+	}
+
+	public void setNingunainstitucion(Integer ningunainstitucion) {
+		this.ningunainstitucion = ningunainstitucion;
+	}
+
+	public Integer getPorcentajepsicosociales() {
+		return porcentajepsicosociales;
+	}
+
+	public void setPorcentajepsicosociales(Integer porcentajepsicosociales) {
+		this.porcentajepsicosociales = porcentajepsicosociales;
 	}
 }

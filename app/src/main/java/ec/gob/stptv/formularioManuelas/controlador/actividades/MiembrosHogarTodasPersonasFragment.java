@@ -377,6 +377,111 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 persona.setCarnediscapacidad(Global.ENTEROS_VACIOS);
             }
         }
+        if (discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton) {
+            persona.setDiscapacidadintelectual(Global.SI);
+        } else {
+            if (discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion2RadioButton) {
+                persona.setDiscapacidadintelectual(Global.NO);
+            } else {
+                persona.setDiscapacidadintelectual(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (!TextUtils.isEmpty(porcentajeIntelectualEditText.getText().toString())) {
+            persona.setPorcentajeintelectual(Integer.parseInt(porcentajeIntelectualEditText.getText().toString()));
+        } else {
+            persona.setPorcentajeintelectual(Global.ENTEROS_VACIOS);
+        }
+
+        if (discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton) {
+            persona.setDiscapacidadfisica(Global.SI);
+        } else {
+            if (discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion2RadioButton) {
+                persona.setDiscapacidadfisica(Global.NO);
+            } else {
+                persona.setDiscapacidadfisica(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (!TextUtils.isEmpty(porcentajeFisicaEditText.getText().toString())) {
+            persona.setPorcentajefisica(Integer.parseInt(porcentajeFisicaEditText.getText().toString()));
+        } else {
+            persona.setPorcentajefisica(Global.ENTEROS_VACIOS);
+        }
+
+        if (discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton) {
+            persona.setDiscapacidadceguera(Global.SI);
+        } else {
+            if (discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion2RadioButton) {
+                persona.setDiscapacidadceguera(Global.NO);
+            } else {
+                persona.setDiscapacidadceguera(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (!TextUtils.isEmpty(porcentajeCegueraEditText.getText().toString())) {
+            persona.setPorcentajeceguera(Integer.parseInt(porcentajeCegueraEditText.getText().toString()));
+        } else {
+            persona.setPorcentajeceguera(Global.ENTEROS_VACIOS);
+        }
+
+        if (discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton) {
+            persona.setDiscapacidadvision(Global.SI);
+        } else {
+            if (discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion2RadioButton) {
+                persona.setDiscapacidadvision(Global.NO);
+            } else {
+                persona.setDiscapacidadvision(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (!TextUtils.isEmpty(porcentajeVisionEditText.getText().toString())) {
+            persona.setPorcentajevision(Integer.parseInt(porcentajeVisionEditText.getText().toString()));
+        } else {
+            persona.setPorcentajevision(Global.ENTEROS_VACIOS);
+        }
+
+        if (discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton) {
+            persona.setDiscapacidadsordera(Global.SI);
+        } else {
+            if (discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion2RadioButton) {
+                persona.setDiscapacidadsordera(Global.NO);
+            } else {
+                persona.setDiscapacidadsordera(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (!TextUtils.isEmpty(porcentajeSorderaEditText.getText().toString())) {
+            persona.setPorcentajesordera(Integer.parseInt(porcentajeSorderaEditText.getText().toString()));
+        } else {
+            persona.setPorcentajesordera(Global.ENTEROS_VACIOS);
+        }
+
+        if (discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion1RadioButton) {
+            persona.setDiscapacidadhipoacusia(Global.SI);
+        } else {
+            if (discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion2RadioButton) {
+                persona.setDiscapacidadhipoacusia(Global.NO);
+            } else {
+                persona.setDiscapacidadhipoacusia(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (!TextUtils.isEmpty(porcentajeHipoacusiaEditText.getText().toString())) {
+            persona.setPorcentajehipoacusia(Integer.parseInt(porcentajeHipoacusiaEditText.getText().toString()));
+        } else {
+            persona.setPorcentajehipoacusia(Global.ENTEROS_VACIOS);
+        }
+
+        if (discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton) {
+            persona.setDiscapacidadpsicosociales(Global.SI);
+        } else {
+            if (discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion2RadioButton) {
+                persona.setDiscapacidadpsicosociales(Global.NO);
+            } else {
+                persona.setDiscapacidadpsicosociales(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (!TextUtils.isEmpty(porcentajePsicosocialesEditText.getText().toString())) {
+            persona.setPorcentajepsicosociales(Integer.parseInt(porcentajePsicosocialesEditText.getText().toString()));
+        } else {
+            persona.setPorcentajepsicosociales(Global.ENTEROS_VACIOS);
+        }
+
         persona.setIdestablecimientoeducacion(Integer.parseInt(((Values) asistenciaEstablecimientoSpinner.getSelectedItem()).getKey()));
         persona.setIdproteccionsocial(Integer.parseInt(((Values) proteccionSocialpinner.getSelectedItem()).getKey()));
         if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton) {
@@ -397,6 +502,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 persona.setRecibioayudatecnica(Global.ENTEROS_VACIOS);
             }
         }
+
+
         persona.setIdtipoenfermedad(Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()));
         if (diagnosticoMedicoRadioGroup.getCheckedRadioButtonId() == R.id.diagnosticoMedicoOpcion1RadioButton) {
             persona.setEnfermedaddiagnostico(Global.SI);
