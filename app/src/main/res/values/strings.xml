@@ -734,11 +734,13 @@
     <!-- fin Validaciones formulario para todas las personas -->
 
     <!-- String Errores-->
+    <string name="errorTipoUno">Error Tipo Uno</string>
     <string name="errorSeguroSocialIguales">En la pregunta 14. los items seleccionados no pueden ser iguales</string>
     <string name="errorSeguroSaludIguales">En la pregunta 15. los items seleccionados no pueden ser iguales</string>
     <string name="errorInconsistenciaHogar">En la pregunta 14. El Hogar A no puede ser mayor que el Hogar B</string>
     <string name="errorCodigoRegionFijo">El código de Región no es válido</string>
     <string name="errorDigitoNumCelular">El número de celular debe comenzar con 09</string>
+    <string name="errorDocumentoPorTipoVivienda">No tiene vivienda y presenta Documento</string>
 
 
 

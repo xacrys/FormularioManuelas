@@ -370,6 +370,21 @@ public class HogarFragment extends Fragment {
             }
         });
 
+        documentoHogarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(vivienda.getIdtipovivienda()>2 && Integer.parseInt(((Values)documentoHogarSpinner.getSelectedItem()).getKey())>0
+                        && !((Values)documentoHogarSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))){
+                    getAlert(getString(R.string.errorTipoUno), getString(R.string.seleccione_pregunta) + getString(R.string.errorDocumentoPorTipoVivienda));
+                    documentoHogarSpinner.setSelection(0);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView){
+
+            }
+        });
+
     }
 
     /**
@@ -501,7 +516,7 @@ public class HogarFragment extends Fragment {
 
     /**
      * regresa la vivienda
-     * @return
+     * @return Objeto Hogar
      */
     public static Hogar getHogar() {
         return hogar;
