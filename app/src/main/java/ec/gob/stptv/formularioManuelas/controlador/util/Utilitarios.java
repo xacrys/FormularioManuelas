@@ -66,8 +66,10 @@ public class Utilitarios {
 
     private static final String UTF_8 = "UTF-8";
     private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
+
     /**
      * Método que verifica la conexión a internet
+     *
      * @param ctx
      * @return
      */
@@ -88,6 +90,7 @@ public class Utilitarios {
 
     /**
      * Método que remueve los elementos de un array
+     *
      * @param adapter
      */
     public static void removeAll(ArrayAdapter<?> adapter) {
@@ -99,43 +102,44 @@ public class Utilitarios {
 
     /**
      * Método que imprimi logs de informacion dependiendo el ambiente de desarrollo
+     *
      * @param clase
      * @param msg
      */
     public static void logInfo(String clase, String msg) {
-        if(Global.ENVIRONMENT.equals(Global.DEVELOPMENT_ENVIRONMENT))
-        {
+        if (Global.ENVIRONMENT.equals(Global.DEVELOPMENT_ENVIRONMENT)) {
             Log.i(clase, msg);
         }
     }
 
     /**
      * Método que imprimi logs de erro dependiendo el ambiente de desarrollo
+     *
      * @param clase
      * @param msg
      */
     public static void logError(String clase, String msg) {
-        if(Global.ENVIRONMENT.equals(Global.DEVELOPMENT_ENVIRONMENT))
-        {
+        if (Global.ENVIRONMENT.equals(Global.DEVELOPMENT_ENVIRONMENT)) {
             Log.e(clase, msg);
         }
     }
 
     /**
      * Método que imprime los errores capturados en un try catch
+     *
      * @param clase
      * @param msg
      * @param e
      */
     public static void logError(String clase, String msg, Exception e) {
-        if(Global.ENVIRONMENT.equals(Global.DEVELOPMENT_ENVIRONMENT))
-        {
+        if (Global.ENVIRONMENT.equals(Global.DEVELOPMENT_ENVIRONMENT)) {
             Log.e(clase, msg, e);
         }
     }
 
     /**
      * Método que permite obtener la mac address
+     *
      * @param context
      * @return
      */
@@ -145,7 +149,7 @@ public class Utilitarios {
                 .getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInf = wifiMan.getConnectionInfo();
         String macAddr = wifiInf.getMacAddress();
-		/*
+        /*
 		 * Quitar estas lineas de codigo en produccion, porque solo es para
 		 * test en el emulador
 		 */
@@ -159,12 +163,13 @@ public class Utilitarios {
 
     /**
      * Método que permite obtener el imei del dispositivo
+     *
      * @param context
      * @return
      */
     public static String getImeiDispositivo(Context context) {
 
-        TelephonyManager telephonyManager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String imei = telephonyManager.getDeviceId();
         return imei;
         //return "357103040245095";
@@ -172,6 +177,7 @@ public class Utilitarios {
 
     /**
      * Método que permite obtener la fecha en un formato establecido
+     *
      * @return
      */
     @SuppressLint("SimpleDateFormat")
@@ -185,6 +191,7 @@ public class Utilitarios {
 
     /**
      * Método que permite obtener el año dado una fecha
+     *
      * @return
      */
     @SuppressLint("SimpleDateFormat")
@@ -199,6 +206,7 @@ public class Utilitarios {
 
     /**
      * Obtiene la fecha y hora según un formato establecido
+     *
      * @return
      */
     @SuppressLint("SimpleDateFormat")
@@ -212,6 +220,7 @@ public class Utilitarios {
 
     /**
      * Metódo que permite codificar la foto a color
+     *
      * @param image
      * @param calidadFoto
      * @return
@@ -232,6 +241,7 @@ public class Utilitarios {
 
     /**
      * Método para definir el ancho y alto de una imagen
+     *
      * @param bm
      * @param newWidth
      * @param newHeight
@@ -246,6 +256,7 @@ public class Utilitarios {
 
     /**
      * Método que transforma una imagen a base64
+     *
      * @param input
      * @return
      */
@@ -257,6 +268,7 @@ public class Utilitarios {
 
     /**
      * Metódo que permite codificar la foto a blanco y negro
+     *
      * @param _image
      * @param calidadFoto
      * @return
@@ -278,24 +290,25 @@ public class Utilitarios {
 
     /**
      * Método que convierte una imagen a blanco y negro
+     *
      * @param sampleBitmap
      * @return
      */
-    public static Bitmap convertToBlackAndWhite(Bitmap sampleBitmap)
-    {
-        ColorMatrix bwMatrix =new ColorMatrix();
+    public static Bitmap convertToBlackAndWhite(Bitmap sampleBitmap) {
+        ColorMatrix bwMatrix = new ColorMatrix();
         bwMatrix.setSaturation(0);
-        final ColorMatrixColorFilter colorFilter= new ColorMatrixColorFilter(bwMatrix);
+        final ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(bwMatrix);
         Bitmap rBitmap = sampleBitmap.copy(Bitmap.Config.ARGB_8888, true);
-        Paint paint=new Paint();
+        Paint paint = new Paint();
         paint.setColorFilter(colorFilter);
-        Canvas myCanvas =new Canvas(rBitmap);
+        Canvas myCanvas = new Canvas(rBitmap);
         myCanvas.drawBitmap(rBitmap, 0, 0, paint);
         return rBitmap;
     }
 
     /**
      * Método que permite obtener la fecha en un formato establecido
+     *
      * @param year
      * @param monthOfYear
      * @param dayOfMonth
@@ -314,12 +327,13 @@ public class Utilitarios {
 
     /**
      * Método que permite obtener la posicion de la lista de un Spinner dado un valor
+     *
      * @param values
      * @param index
      * @return
      */
     public static int getPosicionByKey(ArrayAdapter<Values> values,
-                                        String index) {
+                                       String index) {
         int posicion = -1;
         for (int i = 0; i < values.getCount(); i++) {
             if (values.getItem(i).getKey().equals(index)) {
@@ -331,6 +345,7 @@ public class Utilitarios {
 
     /**
      * Método que permite obtener el valor de la lista de un Spinner dado un valor
+     *
      * @param values
      * @param index
      * @return
@@ -348,6 +363,7 @@ public class Utilitarios {
 
     /**
      * Método que permite obtener la posicion de un array list
+     *
      * @param values
      * @param index
      * @return
@@ -366,6 +382,7 @@ public class Utilitarios {
 
     /**
      * Método que permite mostrar alertas
+     *
      * @param context
      * @param title
      * @param message
@@ -386,17 +403,18 @@ public class Utilitarios {
 
     /**
      * Método que permite habilitar o deshabilitar vistas en un layout
+     *
      * @param context
-     * @param enable Parametro true o false para deshabilitar/habilitar
+     * @param enable    Parametro true o false para deshabilitar/habilitar
      * @param viewGroup El layout a deshabilitar/habilitar
      */
     public static void disableEnableViews(Context context, boolean enable, ViewGroup viewGroup) {
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
             View child = viewGroup.getChildAt(i);
-            if (child.getClass() == Button.class ) {
+            if (child.getClass() == Button.class) {
                 child.setEnabled(enable);
             }
-            if (child.getClass() == TableRow.class ) {
+            if (child.getClass() == TableRow.class) {
                 child.setClickable(enable);
             }
             if (child instanceof ViewGroup) {
@@ -407,9 +425,10 @@ public class Utilitarios {
 
     /**
      * Metodo para imprimir los valores de un objeto json
+     *
      * @param object El objeto a imprimir
      */
-        public static void printObject(Object object) {
+    public static void printObject(Object object) {
         Gson gson = new GsonBuilder().serializeNulls().create();
         String json = gson.toJson(object);
         Utilitarios.logInfo("Entidad " + object.getClass().toString(), json);
@@ -417,10 +436,11 @@ public class Utilitarios {
 
     /**
      * Metodo para validar la cedula
+     *
      * @param cedula
      * @return
      */
-    public static  boolean utiValidadorCedula(String cedula) {
+    public static boolean utiValidadorCedula(String cedula) {
         int total = 0;
         int tamanoLongitudCedula = 10;
         int[] coeficientes = {2, 1, 2, 1, 2, 1, 2, 1, 2};
@@ -436,8 +456,7 @@ public class Utilitarios {
                     total = valor >= 10 ? total + (valor - 9) : total + valor;
                 }
                 int digitoVerificardorObtenido = total >= 10 ? (total % 10) != 0 ? 10 - (total % 10) : (total % 10) : 10 - total;
-                if(digitoVerificador==digitoVerificardorObtenido)
-                {
+                if (digitoVerificador == digitoVerificardorObtenido) {
                     return true;
                 }
             }
@@ -447,6 +466,7 @@ public class Utilitarios {
 
     /**
      * Método que permite ocultar el teclado
+     *
      * @param rootView
      * @param context
      */
@@ -459,6 +479,7 @@ public class Utilitarios {
 
     /**
      * Método que valida que no ingrese espacios en blanco en un edittext al inicio
+     *
      * @param editText
      * @return
      */
@@ -469,11 +490,13 @@ public class Utilitarios {
                                       int count) {
                 // TODO Auto-generated method stub
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
                 // TODO Auto-generated method stub
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 try {
@@ -492,6 +515,7 @@ public class Utilitarios {
 
     /**
      * Método que valida que ingrese la primera letra S
+     *
      * @param editText
      * @return
      */
@@ -503,16 +527,18 @@ public class Utilitarios {
                 // TODO Auto-generated method stub
 
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
                 // TODO Auto-generated method stub
 
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    if (editText.getText().length() == 0){
+                    if (editText.getText().length() == 0) {
                         editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
                     }
                     if (editText.getText().length() == 1) {
@@ -521,7 +547,7 @@ public class Utilitarios {
                             s.clear();
                         }
                     }
-                    if (editText.getText().length() >= 1){
+                    if (editText.getText().length() >= 1) {
                         editText.setInputType(InputType.TYPE_CLASS_NUMBER);
                     }
                 } catch (NumberFormatException ex) {
@@ -533,6 +559,7 @@ public class Utilitarios {
 
     /**
      * Método que valida que ingrese el primer digito 0
+     *
      * @param editText
      * @return
      */
@@ -544,12 +571,14 @@ public class Utilitarios {
                 // TODO Auto-generated method stub
 
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
                 // TODO Auto-generated method stub
 
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 try {
@@ -569,6 +598,7 @@ public class Utilitarios {
 
     /**
      * Método que permite crear un archivo para los Log
+     *
      * @param text
      */
     public static void createFileLog(String text) {
@@ -591,6 +621,7 @@ public class Utilitarios {
 
     /**
      * Método que permite crear un archivo para los Log
+     *
      * @param text
      * @param tipo
      */
@@ -615,6 +646,7 @@ public class Utilitarios {
 
     /**
      * Método que valida si mi cadena está teniendo sólo dígitos
+     *
      * @param str
      * @return
      */
@@ -624,6 +656,7 @@ public class Utilitarios {
 
     /**
      * Método que permite comprimir
+     *
      * @param input
      * @return
      * @throws IOException
@@ -668,24 +701,24 @@ public class Utilitarios {
     }
 
     /**
-     *  Método que permite sacar el backup de una base de datos
+     * Método que permite sacar el backup de una base de datos
+     *
      * @param context
      */
     public static void backupDataBase(Context context) {
         final String BD_RUTA = "/data/data/" + Global.PACKAGE_NAME + "/databases/";
         final String BD_NOMBRE = "NombreBase.sqlite";
         String inFileName = BD_RUTA + BD_NOMBRE;
-        try
-        {
+        try {
             File dbFile = new File(inFileName);
             FileInputStream fis = new FileInputStream(dbFile);
-            String outFileName = Environment.getExternalStorageDirectory() + Global.PATH_LOGS + "/backupNombreProyecto_"  + getImeiDispositivo(context) +"_" + getCurrentDateAndHour() + ".sqlite";
+            String outFileName = Environment.getExternalStorageDirectory() + Global.PATH_LOGS + "/backupNombreProyecto_" + getImeiDispositivo(context) + "_" + getCurrentDateAndHour() + ".sqlite";
             // Open the empty db as the output stream
             OutputStream output = new FileOutputStream(outFileName);
             // Transfer bytes from the inputfile to the outputfile
             byte[] buffer = new byte[1024];
             int length;
-            while ((length = fis.read(buffer))>0){
+            while ((length = fis.read(buffer)) > 0) {
                 output.write(buffer, 0, length);
             }
             // Close the streams
@@ -700,15 +733,15 @@ public class Utilitarios {
 
     /**
      * Método que escribe en un archivo segun la ruta establecida
+     *
      * @param typeLog
      * @param date
      * @param tag
      * @param message
      */
-    public static void appendLog(String typeLog, String date, String tag, String message)
-    {
-        String stringLog = typeLog + "\t" + date + "\t" + tag + "\t" + message ;
-        File logFile = new File( Environment.getExternalStorageDirectory() + Global.PATH_LOGS + "/nombreArchivo.txt");
+    public static void appendLog(String typeLog, String date, String tag, String message) {
+        String stringLog = typeLog + "\t" + date + "\t" + tag + "\t" + message;
+        File logFile = new File(Environment.getExternalStorageDirectory() + Global.PATH_LOGS + "/nombreArchivo.txt");
         if (!logFile.exists()) {
             try {
                 logFile.createNewFile();
@@ -730,17 +763,19 @@ public class Utilitarios {
 
     /**
      * Método que permite crear una carpeta en el dispositivo
+     *
      * @param name
      */
     public static void createFolder(String name) {
         File dir = new File(Environment.getExternalStorageDirectory() + name);
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdirs();
         }
     }
 
     /**
      * Método que permite enviar un email
+     *
      * @param contex
      * @param to
      * @param subject
@@ -750,7 +785,7 @@ public class Utilitarios {
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("message/rfc822");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL  , to);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
         contex.startActivity(Intent.createChooser(emailIntent, "Email:"));
@@ -758,6 +793,7 @@ public class Utilitarios {
 
     /**
      * Método que lanza una aplicacion
+     *
      * @param context
      * @param packageName
      */
@@ -777,6 +813,7 @@ public class Utilitarios {
 
     /**
      * Método que calcula la edad años meses  y dias
+     *
      * @param fechaNacimiento
      * @return
      */
@@ -815,7 +852,7 @@ public class Utilitarios {
         Integer edadMeses = (mes);
         Integer edadAnios = (anio);
 
-        return (String.valueOf(edadAnios) +"-"+ String.valueOf(edadMeses) +"-"+ String.valueOf(edadDias));
+        return (String.valueOf(edadAnios) + "-" + String.valueOf(edadMeses) + "-" + String.valueOf(edadDias));
     }
 
     private static Integer obtenerAnio(Date date) {
@@ -850,6 +887,7 @@ public class Utilitarios {
 
     /**
      * Método que calcula la edad en años
+     *
      * @param fecha
      * @return
      */
@@ -888,6 +926,7 @@ public class Utilitarios {
 
     /**
      * Método que permite obtener la fecha dado un formato
+     *
      * @param fecha
      * @return
      */
@@ -912,6 +951,7 @@ public class Utilitarios {
 
     /**
      * Permite que se active el boton guardar dependiendo un cierto numero de caracteres
+     *
      * @param editText
      * @param numero
      * @return
@@ -924,10 +964,12 @@ public class Utilitarios {
                 // TODO Auto-generated method stub
                 textView.setText("Caracteres:" + (total - s.length()) + " de 255");
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // TODO Auto-generated method stub
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
@@ -944,13 +986,29 @@ public class Utilitarios {
 
     /**
      * Oculta el teclado
+     *
      * @param activity
      */
     public static void hideSoftKeyboard(Activity activity) {
-        if(activity.getCurrentFocus()!=null) {
+        if (activity.getCurrentFocus() != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
         }
+    }
+
+    public static Boolean validarCodigoRegion(String convencional) {
+        Integer primerNumero = Integer.parseInt(convencional.substring(0, 1));
+        Integer segundoNumero = Integer.parseInt(convencional.substring(1, 2));
+        if (primerNumero == 0) {
+            if (segundoNumero > 1 && segundoNumero < 8) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
     }
 
 }
