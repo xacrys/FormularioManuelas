@@ -293,11 +293,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         asistenciaEstablecimientoSpinner.setAdapter(PersonaPreguntas.getAsistenciaEstablecimientoAdapter(getActivity()));
         sufreEnfermedadesSpinner.setAdapter(PersonaPreguntas.getSufreEnfermedadesAdapter(getActivity()));
         enfermedadCatastroficaSpinner.setAdapter(PersonaPreguntas.getEnfermedadCatastroficaAdapter(getActivity()));
-
-        /**
-         * carga a la madre
-         */
-        String where = null;
+        String where;
         String parametros[];
         Vivienda vivienda = ViviendaFragment.getVivienda();
 
@@ -306,7 +302,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         parametros = new String[] { String.valueOf(vivienda.getId())};
 
         ArrayList<Values> seccion5CodigoMadre;
-        seccion5CodigoMadre = new ArrayList<Values>();
+        seccion5CodigoMadre = new ArrayList<>();
         seccion5CodigoMadre.add(new Values(Global.VALOR_SELECCIONE,
                 getString(R.string.seleccionRespuesta)));
 
@@ -318,7 +314,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 seccion5CodigoMadre.add(new Values(_persona.getId(), _persona.getNombresCompletos()));
             }
         }
-        ArrayAdapter<Values> adapterSeccion5CodigoMadre = new ArrayAdapter<Values>(
+        ArrayAdapter<Values> adapterSeccion5CodigoMadre = new ArrayAdapter<>(
                 getActivity(), android.R.layout.simple_spinner_item,
                 seccion5CodigoMadre);
         adapterSeccion5CodigoMadre
@@ -498,6 +494,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         } else {
             if (recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion2RadioButton) {
                 persona.setRecibioayudatecnica(Global.NO);
+
+
             } else {
                 persona.setRecibioayudatecnica(Global.ENTEROS_VACIOS);
             }
