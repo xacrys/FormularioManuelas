@@ -509,20 +509,10 @@ public class MiembrosHogarFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-
-
-                Fragment newFragment = new MiembrosHogarTodasPersonasFragment();
-                Bundle args = new Bundle();
-                //args.putParcelable("persona", persona);
-
-                newFragment.setArguments(args);
-                FragmentTransaction transaction = getFragmentManager()
-                        .beginTransaction();
-
-                transaction.replace(R.id.fragmentContainer, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-
+                tipoGestion = 1;
+                sexoSpinner.setEnabled(true);
+                aniosEditText.setEnabled(true);
+                limpiarCampos();
             }
         });
 

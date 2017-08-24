@@ -26,7 +26,6 @@ public class PersonaDao extends Persona{
     public static int update(ContentResolver cr, Persona persona) {
         ContentValues values = getValues(persona);
         values.remove(COLUMNA_ID);
-
         int result = cr.update(FormularioManuelasProvider.CONTENT_URI_PERSONA, values, whereById, new String[] { String.valueOf(persona.getId()) });
         return result;
     }

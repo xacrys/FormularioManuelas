@@ -164,7 +164,7 @@
                                         android:text="@string/opcion_si" />
 
                                     <RadioButton
-                                        android:id="@+id/seccion5ViveMadreHogarOpcion2RadioButton"
+                                        android:id="@+id/viveMadreHogarOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"

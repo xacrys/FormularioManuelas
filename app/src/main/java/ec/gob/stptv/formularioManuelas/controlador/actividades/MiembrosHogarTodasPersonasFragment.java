@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -12,17 +14,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.PersonaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
+import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
+import ec.gob.stptv.formularioManuelas.modelo.dao.PersonaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
 /***
  *  Autor:Christian Tintin
@@ -33,6 +41,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private Button nuevoButton;
     private Button atrasButton;
     private Button guardarPersonaButton;
+    private EditText cedulaEditText;
     private Spinner parentescoSpinner;
     private Spinner estadoCivilSpinner;
     private Spinner nacionalidadSpinner;
@@ -87,6 +96,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private EditText porcentajeSorderaEditText;
     private EditText porcentajeHipoacusiaEditText;
     private EditText porcentajePsicosocialesEditText;
+    private Persona persona;
+    private ContentResolver contentResolver;
 
 
     @Override
@@ -95,15 +106,26 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
         View item = inflater.inflate(R.layout.activity_main_fragment_miembros_hogar_todas_personas,
                 container, false);
-
-
-        Bundle extra = getActivity().getIntent().getExtras();
+        this.contentResolver = getActivity().getContentResolver();
         this.obtenerVistas(item);
         this.cargarPreguntas();
         this.realizarAcciones();
         this.mallasValidacion();
         return item;
     }
+
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        try {
+            persona = (Persona) getArguments().getSerializable("persona");
+            this.llenarCamposMiembrosHogar();
+        } catch (Exception e) {
+            e.toString();
+        }
+
+    }
+
 
     /**
      * Método para obtener las controles de la vista
@@ -113,6 +135,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         nuevoButton = item.findViewById(R.id.nuevoButton);
         atrasButton = item.findViewById(R.id.atrasButton);
         guardarPersonaButton = item.findViewById(R.id.guardarPersonaButton);
+        cedulaEditText = item.findViewById(R.id.cedulaEditText);
         parentescoSpinner = item.findViewById(R.id.parentescoSpinner);
         estadoCivilSpinner = item.findViewById(R.id.estadoCivilSpinner);
         nacionalidadSpinner = item.findViewById(R.id.nacionalidadSpinner);
@@ -168,14 +191,89 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         porcentajeHipoacusiaEditText = item.findViewById(R.id.porcentajeHipoacusiaEditText);
         porcentajePsicosocialesEditText = item.findViewById(R.id.porcentajePsicosocialesEditText);
 
-
     }
 
 
     /**
      * Método que llena los controles con datos de la base
      */
-    private void llenarCamposVivienda() {
+    private void llenarCamposMiembrosHogar() {
+        if (!persona.getCi().equals(Global.CADENAS_VACIAS)) {
+            cedulaEditText.setText(String.valueOf(persona.getCi()));
+        } else {
+            cedulaEditText.setText("");
+        }
+
+        int posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) parentescoSpinner.getAdapter(), String.valueOf(persona.getIdparentesco()));
+        parentescoSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoCivilSpinner.getAdapter(), String.valueOf(persona.getIdestadocivil()));
+        estadoCivilSpinner.setSelection(posicion);
+        if (persona.getMadrevive() == Global.SI) {
+            viveMadreHogarRadioGroup.check(R.id.viveMadreHogarOpcion1RadioButton);
+        } else {
+            if (persona.getMadrevive() == Global.NO) {
+                viveMadreHogarRadioGroup.check(R.id.viveMadreHogarOpcion2RadioButton);
+            }
+        }
+        if (codigoPersonaMadreSpinner.getVisibility() == View.VISIBLE && codigoPersonaMadreSpinner.getCount() > 0) {
+            posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) codigoPersonaMadreSpinner.getAdapter(), String.valueOf(persona.getOrdenMadre()));
+            codigoPersonaMadreSpinner.setSelection(posicion);
+        }
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) nacionalidadSpinner.getAdapter(), String.valueOf(persona.getIdnacionalidad()));
+        nacionalidadSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) etniaSpinner.getAdapter(), String.valueOf(persona.getIdnacionalidad()));
+        etniaSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) seguroSocial1Spinner.getAdapter(), String.valueOf(persona.getIdsegurosocial1()));
+        seguroSocial1Spinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) seguroSocial2Spinner.getAdapter(), String.valueOf(persona.getIdsegurosocial2()));
+        seguroSocial2Spinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) seguroSalud1Spinner.getAdapter(), String.valueOf(persona.getIdsegurosalud1()));
+        seguroSalud1Spinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) seguroSalud2Spinner.getAdapter(), String.valueOf(persona.getIdsegurosalud2()));
+        seguroSalud2Spinner.setSelection(posicion);
+        if (persona.getTienediscapacidad() == Global.SI) {
+            discapacidadRadioGroup.check(R.id.discapacidadOpcion1RadioButton);
+        } else {
+            if (persona.getTienediscapacidad() == Global.NO) {
+                discapacidadRadioGroup.check(R.id.discapacidadOpcion2RadioButton);
+            }
+        }
+        if (persona.getCarnediscapacidad() == Global.SI) {
+            carnetConadisRadioGroup.check(R.id.carnetConadisOpcion1RadioButton);
+        } else {
+            if (persona.getCarnediscapacidad() == Global.NO) {
+                carnetConadisRadioGroup.check(R.id.carnetConadisOpcion2RadioButton);
+            }
+        }
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) asistenciaEstablecimientoSpinner.getAdapter(), String.valueOf(persona.getIdestablecimientoeducacion()));
+        asistenciaEstablecimientoSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) proteccionSocialpinner.getAdapter(), String.valueOf(persona.getIdproteccionsocial()));
+        proteccionSocialpinner.setSelection(posicion);
+        if (persona.getNecesitaayudatecnica() == Global.SI) {
+            necesitaAyudaTecnicaRadioGroup.check(R.id.necesitaAyudaTecnicaOpcion1RadioButton);
+        } else {
+            if (persona.getNecesitaayudatecnica() == Global.NO) {
+                necesitaAyudaTecnicaRadioGroup.check(R.id.necesitaAyudaTecnicaOpcion2RadioButton);
+            }
+        }
+        if (persona.getRecibioayudatecnica() == Global.SI) {
+            recibioAyudaTecnicaRadioGroup.check(R.id.recibioAyudaTecnicaOpcion1RadioButton);
+        } else {
+            if (persona.getRecibioayudatecnica() == Global.NO) {
+                recibioAyudaTecnicaRadioGroup.check(R.id.recibioAyudaTecnicaOpcion2RadioButton);
+            }
+        }
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) sufreEnfermedadesSpinner.getAdapter(), String.valueOf(persona.getIdtipoenfermedad()));
+        sufreEnfermedadesSpinner.setSelection(posicion);
+        if (persona.getEnfermedaddiagnostico() == Global.SI) {
+            diagnosticoMedicoRadioGroup.check(R.id.diagnosticoMedicoOpcion1RadioButton);
+        } else {
+            if (persona.getEnfermedaddiagnostico() == Global.NO) {
+                diagnosticoMedicoRadioGroup.check(R.id.diagnosticoMedicoOpcion2RadioButton);
+            }
+        }
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) enfermedadCatastroficaSpinner.getAdapter(), String.valueOf(persona.getIdenfermedadcatastrofica()));
+        enfermedadCatastroficaSpinner.setSelection(posicion);
 
     }
 
@@ -196,6 +294,36 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         sufreEnfermedadesSpinner.setAdapter(PersonaPreguntas.getSufreEnfermedadesAdapter(getActivity()));
         enfermedadCatastroficaSpinner.setAdapter(PersonaPreguntas.getEnfermedadCatastroficaAdapter(getActivity()));
 
+        /**
+         * carga a la madre
+         */
+        String where = null;
+        String parametros[];
+        Vivienda vivienda = ViviendaFragment.getVivienda();
+
+        where = Persona.whereByViviendaId;
+
+        parametros = new String[] { String.valueOf(vivienda.getId())};
+
+        ArrayList<Values> seccion5CodigoMadre;
+        seccion5CodigoMadre = new ArrayList<Values>();
+        seccion5CodigoMadre.add(new Values(Global.VALOR_SELECCIONE,
+                getString(R.string.seleccionRespuesta)));
+
+        ArrayList<Persona> personas = PersonaDao.getPersonas(contentResolver,
+                where, parametros, Persona.COLUMNA_ORDEN);
+        for (Persona _persona : personas) {
+            if ((_persona.getEdadanio() >= Global.EDAD_12ANIOS)
+                    && (_persona.getSexo() == Global.GENERO_FEMENINO)) {
+                seccion5CodigoMadre.add(new Values(_persona.getId(), _persona.getNombresCompletos()));
+            }
+        }
+        ArrayAdapter<Values> adapterSeccion5CodigoMadre = new ArrayAdapter<Values>(
+                getActivity(), android.R.layout.simple_spinner_item,
+                seccion5CodigoMadre);
+        adapterSeccion5CodigoMadre
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        codigoPersonaMadreSpinner.setAdapter(adapterSeccion5CodigoMadre);
 
     }
 
@@ -211,6 +339,85 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
      */
     private void guardar() {
 
+        persona.setIdparentesco(Integer.parseInt(((Values) parentescoSpinner.getSelectedItem()).getKey()));
+        persona.setIdestadocivil(Integer.parseInt(((Values) estadoCivilSpinner.getSelectedItem()).getKey()));
+        if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion1RadioButton) {
+            persona.setMadrevive(Global.SI);
+            persona.setOrdenMadre(Integer.parseInt(((Values) codigoPersonaMadreSpinner.getSelectedItem()).getKey()));
+        } else {
+            if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion2RadioButton) {
+                persona.setMadrevive(Global.NO);
+                persona.setOrdenMadre(Global.ENTEROS_VACIOS);
+            } else {
+                persona.setMadrevive(Global.ENTEROS_VACIOS);
+                persona.setOrdenMadre(Global.ENTEROS_VACIOS);
+            }
+        }
+        persona.setIdnacionalidad(Integer.parseInt(((Values) nacionalidadSpinner.getSelectedItem()).getKey()));
+        persona.setIdetnia(Integer.parseInt(((Values) etniaSpinner.getSelectedItem()).getKey()));
+        persona.setIdsegurosocial1(Integer.parseInt(((Values) seguroSocial1Spinner.getSelectedItem()).getKey()));
+        persona.setIdsegurosocial2(Integer.parseInt(((Values) seguroSocial2Spinner.getSelectedItem()).getKey()));
+        persona.setIdsegurosalud1(Integer.parseInt(((Values) seguroSalud1Spinner.getSelectedItem()).getKey()));
+        persona.setIdsegurosalud2(Integer.parseInt(((Values) seguroSalud2Spinner.getSelectedItem()).getKey()));
+        if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton) {
+            persona.setTienediscapacidad(Global.SI);
+        } else {
+            if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion2RadioButton) {
+                persona.setTienediscapacidad(Global.NO);
+            } else {
+                persona.setTienediscapacidad(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton) {
+            persona.setCarnediscapacidad(Global.SI);
+        } else {
+            if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion2RadioButton) {
+                persona.setCarnediscapacidad(Global.NO);
+            } else {
+                persona.setCarnediscapacidad(Global.ENTEROS_VACIOS);
+            }
+        }
+        persona.setIdestablecimientoeducacion(Integer.parseInt(((Values) asistenciaEstablecimientoSpinner.getSelectedItem()).getKey()));
+        persona.setIdproteccionsocial(Integer.parseInt(((Values) proteccionSocialpinner.getSelectedItem()).getKey()));
+        if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton) {
+            persona.setNecesitaayudatecnica(Global.SI);
+        } else {
+            if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion2RadioButton) {
+                persona.setNecesitaayudatecnica(Global.NO);
+            } else {
+                persona.setNecesitaayudatecnica(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion1RadioButton) {
+            persona.setRecibioayudatecnica(Global.SI);
+        } else {
+            if (recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion2RadioButton) {
+                persona.setRecibioayudatecnica(Global.NO);
+            } else {
+                persona.setRecibioayudatecnica(Global.ENTEROS_VACIOS);
+            }
+        }
+        persona.setIdtipoenfermedad(Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()));
+        if (diagnosticoMedicoRadioGroup.getCheckedRadioButtonId() == R.id.diagnosticoMedicoOpcion1RadioButton) {
+            persona.setEnfermedaddiagnostico(Global.SI);
+        } else {
+            if (diagnosticoMedicoRadioGroup.getCheckedRadioButtonId() == R.id.diagnosticoMedicoOpcion2RadioButton) {
+                persona.setEnfermedaddiagnostico(Global.NO);
+            } else {
+                persona.setEnfermedaddiagnostico(Global.ENTEROS_VACIOS);
+            }
+        }
+        persona.setIdenfermedadcatastrofica(Integer.parseInt(((Values) enfermedadCatastroficaSpinner.getSelectedItem()).getKey()));
+
+        persona.setInformacioncompleta(Global.INFORMACION_COMPLETA);
+        int filaAfectadas = PersonaDao.update(contentResolver, persona);
+
+        if (filaAfectadas > 0)
+        {
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.popBackStack(null,
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
 
     /**
@@ -750,9 +957,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         guardarPersonaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validarCampos()) {
-                    getAlert("HogarTodasPersonas", "Guardado Exitoso");
-                }
+                if (validarCampos())
+                    return;
+                guardar();
             }
         });
     }
