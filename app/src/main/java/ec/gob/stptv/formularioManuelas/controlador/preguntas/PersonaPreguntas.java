@@ -85,7 +85,7 @@ public class PersonaPreguntas {
         CUNIADO(10),
         OTRO_FAMILIAR(11),
         NO_FAMILIAR(12),
-        SERVICIO_DOMESTICO(14);
+        SERVICIO_DOMESTICO(13);
 
 
         private int valor;

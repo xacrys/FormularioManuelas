@@ -112,4 +112,21 @@ public class Global {
      * Valor para la opcion edad parentesco
      */
     public static final int EDAD_PARENTESCO = 12;
+
+    /**
+     * Valor para la edad de 18 años
+     */
+    public static final int EDAD_18ANIOS = 18;
+
+    /**
+     * Valor para la edad de 12 años
+     */
+    public static final int EDAD_12ANIOS = 12;
+
+    /**
+     * VAlor de mujer
+     */
+    public static final int GENERO_FEMENINO = 2;
+
+
 }
