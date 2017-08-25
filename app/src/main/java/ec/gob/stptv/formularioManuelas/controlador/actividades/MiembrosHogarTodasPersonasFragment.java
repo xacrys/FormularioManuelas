@@ -133,6 +133,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             //se llena las etiquetas del encabezado
             nombresCompletosTextView.setText(persona.getNombresCompletos());
             edadAniosTextView.setText(String.valueOf(persona.getEdadCompleto()));
+            getAlert("jh",persona.getCi());
             if (persona.getEdadanio() < 5){
                 infEdadMesesTextView.setVisibility(View.VISIBLE);
                 edadMesesTextView.setText(String.valueOf(persona.getEdadmes()));
@@ -240,7 +241,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
      */
     private void llenarCamposMiembrosHogar() {
         if (!persona.getCi().equals(Global.CADENAS_VACIAS)) {
-            cedulaEditText.setText(String.valueOf(persona.getCi()));
+            cedulaEditText.setText(persona.getCi());
         } else {
             cedulaEditText.setText("");
         }
