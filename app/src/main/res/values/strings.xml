@@ -741,6 +741,11 @@
     <string name="errorCodigoRegionFijo">El código de Región no es válido</string>
     <string name="errorDigitoNumCelular">El número de celular debe comenzar con 09</string>
     <string name="errorDocumentoPorTipoVivienda">No tiene vivienda y presenta Documento</string>
+    <string name="errorNoDocumentoPorTipoVivienda">Tiene vivienda y no presenta Documento</string>
+    <string name="errorDormitoriosMayorCuartos">El número de dormitorios no puede ser mayor al número de cuartos</string>
+    <string name="errorAlumbradoCocina">Cocina con electricidad y tipo de alumbrado no corresponde</string>
+
+
 
 
 
