@@ -423,7 +423,8 @@
                                 style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:maxLength="3" />
+                                android:maxLength="3"
+                                android:enabled="false"/>
                         </LinearLayout>
                         <!-- Fin -->
 
@@ -471,7 +472,8 @@
                                 style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:maxLength="3" />
+                                android:maxLength="3"
+                                android:enabled="false"/>
                         </LinearLayout>
                         <!-- Fin -->
 
@@ -519,7 +521,8 @@
                                 style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:maxLength="3" />
+                                android:maxLength="3"
+                                android:enabled="false"/>
                         </LinearLayout>
                         <!-- Fin -->
 
@@ -567,7 +570,8 @@
                                 style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:maxLength="3" />
+                                android:maxLength="3"
+                                android:enabled="false"/>
                         </LinearLayout>
                         <!-- Fin -->
 
@@ -615,7 +619,8 @@
                                 style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:maxLength="3" />
+                                android:maxLength="3"
+                                android:enabled="false"/>
                         </LinearLayout>
                         <!-- Fin -->
 
@@ -663,7 +668,8 @@
                                 style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:maxLength="3" />
+                                android:maxLength="3"
+                                android:enabled="false"/>
                         </LinearLayout>
                         <!-- Fin -->
 
@@ -711,7 +717,8 @@
                                 style="@style/respuestaNumerosEditText"
                                 android:layout_width="100dp"
                                 android:hint="@string/tipoDiscapacidadPorcentaje"
-                                android:maxLength="3" />
+                                android:maxLength="3"
+                                android:enabled="false"/>
 
                         </LinearLayout>
                         <!-- Fin -->

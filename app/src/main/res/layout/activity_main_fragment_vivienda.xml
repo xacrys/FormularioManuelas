@@ -161,7 +161,8 @@
 
                     <Spinner
                         android:id="@+id/parroquiaUrbanoSpinner"
-                        style="@style/respuestaSpinner" />
+                        style="@style/respuestaSpinner"
+                        android:clickable="false"/>
                 </LinearLayout>
 
                 <LinearLayout
