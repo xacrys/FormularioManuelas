@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!-- Comentar el RelativeLayout para ver todo el diseño de la pantalla -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -81,7 +80,7 @@
                         <EditText
                             android:id="@+id/cedulaEditText"
                             style="@style/respuestaNumerosEditText"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:enabled="false"
@@ -291,7 +290,7 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/poseeDiscapacidadTitulo" />
 
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingBottom="10dp">
@@ -317,7 +316,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-                        </RelativeLayout>
+                        </LinearLayout>
 
                     </LinearLayout>
                     <!-- Fin pregunta -->
@@ -332,6 +331,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/borde_panel"
                     android:orientation="vertical"
@@ -344,7 +344,7 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/carneDiscapacidadTitulo" />
 
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingBottom="10dp">
@@ -370,7 +370,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-                        </RelativeLayout>
+                        </LinearLayout>
                     </LinearLayout>
                     <!-- Fin Pregunta  -->
 
