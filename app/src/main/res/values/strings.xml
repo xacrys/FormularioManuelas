@@ -746,6 +746,7 @@
     <string name="errorNoDocumentoPorTipoVivienda">Tiene vivienda y no presenta Documento</string>
     <string name="errorDormitoriosMayorCuartos">El número de dormitorios no puede ser mayor al número de cuartos</string>
     <string name="errorAlumbradoCocina">Cocina con electricidad y tipo de alumbrado no corresponde</string>
+    <string name="errorParentescoEdad">Relación de parentesco no corresponde a la diferencia de edad</string>
 
 
 
@@ -758,3 +759,4 @@
 
 
 </resources>
+
