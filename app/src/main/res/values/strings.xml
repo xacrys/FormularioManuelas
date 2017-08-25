@@ -349,6 +349,7 @@
     <string name="etiquetaCedula">Cédula</string>
 
     <!-- Seccion 5 Pregunta 9 -->
+    <string name="parentescoJefeHogar">9. PARENTESCO</string>
     <string name="controlTrabajoParentescoJefeHogar">9. PARENTESCO con relación al jefe(a) del HOGAR</string>
     <string name="controlTrabajoParentescoJefeHogarOpcion1">1. Jefe(a) del Hogar</string>
     <string name="controlTrabajoParentescoJefeHogarOpcion2">2. Esposo(a) o conviviente</string>
@@ -748,7 +749,29 @@
     <string name="errorAlumbradoCocina">Cocina con electricidad y tipo de alumbrado no corresponde</string>
     <string name="errorParentescoEdad">Relación de parentesco no corresponde a la diferencia de edad</string>
 
-
+    <!-- valores para descripciom -->
+    <string name="formularioDatosEtiqueta1">Complete la información de:</string>
+    <string name="formularioParrafo1">Registre los apellidos y nombres de todas las personas que pertenecen a este HOGAR, que comen y duermen habitualmente en esta VIVIENDA (Incluya a las personas que permanecen en el hogar más de tres meses)</string>
+    <string name="formularioDatosIndicacion1">Orden en el que se debe registrar</string>
+    <string name="formularioDatosIndicacionOpcion1">1&#8230;&#8230;&#8230;&#8230;&#8230;Jefe(a)</string>
+    <string name="formularioDatosIndicacionOpcion2">2&#8230;&#8230;&#8230;&#8230;&#8230;Cónyuge</string>
+    <string name="formularioDatosIndicacionOpcion3">3&#8230;&#8230;&#8230;&#8230;&#8230;Hijos(as)</string>
+    <string name="formularioDatosIndicacionOpcion4">4 en adelante&#8230;En orden de la pregunta 9</string>
+    <string name="formularioDatosIndicacion2">los parentescos en la pregunta 9</string>
+    <string name="formularioDatosIndicacion2Opcion1">1&#8230;.Jefe(a) del Hogar</string>
+    <string name="formularioDatosIndicacion2Opcion2">2&#8230;.Esposo(a) o conviviente</string>
+    <string name="formularioDatosIndicacion2Opcion3">3&#8230;.Hijo(a)</string>
+    <string name="formularioDatosIndicacion2Opcion4">4&#8230;.Hijastro(a)</string>
+    <string name="formularioDatosIndicacion2Opcion5">5&#8230;.Padre o madre</string>
+    <string name="formularioDatosIndicacion2Opcion6">6&#8230;.Suegro(a)</string>
+    <string name="formularioDatosIndicacion2Opcion7">7&#8230;.Yerno o nuera</string>
+    <string name="formularioDatosIndicacion2Opcion8">8&#8230;.Nieto(a)</string>
+    <string name="formularioDatosIndicacion2Opcion9">9&#8230;.Hermano(a)</string>
+    <string name="formularioDatosIndicacion2Opcion10">10&#8230;Cuñado(a)</string>
+    <string name="formularioDatosIndicacion2Opcion11">11..Otro familiar</string>
+    <string name="formularioDatosIndicacion2Opcion12">12&#8230;No familiar</string>
+    <string name="formularioDatosIndicacion2Opcion13">13&#8230;Servicio doméstico puertas adentro</string>
+    <!-- fin valores descripciom -->
 
 
 

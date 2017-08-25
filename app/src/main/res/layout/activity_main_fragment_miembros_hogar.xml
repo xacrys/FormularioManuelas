@@ -127,9 +127,8 @@
 
                     <Spinner
                         android:id="@+id/sexoSpinner"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.32" />
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="10dp"
@@ -201,7 +200,6 @@
                                 android:maxLength="2"
                                 android:maxLines="1"
                                 android:enabled="false">
-
                                 <requestFocus />
                             </EditText>
 
@@ -222,29 +220,55 @@
                                 android:maxLines="1"/>
 
                         </RelativeLayout>
-
+                        <TextView
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
                     <!-- Fin Pregunta edad -->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/correoTitulo"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/correoEditText"
-                        style="@style/respuestaEmailEditText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:enabled="false"
-                        android:hint="@string/correoElectronico"
-                        android:imeOptions="actionDone"
-                        android:inputType="textWebEmailAddress"
-                        android:lines="1"
-                        android:maxLength="64"
-                        android:maxLines="1" />
+                    <!-- INicio parentesco, correo-->
+                    <LinearLayout
+                        style="@style/contenedorPregunta"
+                        android:layout_width="800dp">
+                        <!-- INicio parentesco -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent" >
+                            <TextView
+                                style="@style/etiquetaSmallTextView"
+                                android:text="@string/parentescoJefeHogar" />
+                            <Spinner
+                                android:id="@+id/parentescoSpinner"
+                                android:layout_width="300dp"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <!-- Fin Pregunt parentesco-->
+                        <!-- INicio correo -->
+                        <LinearLayout
+                            style="@style/contenedorPregunta"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent" >
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/correoTitulo"
+                                android:textStyle="bold" />
+                            <EditText
+                                android:id="@+id/correoEditText"
+                                style="@style/respuestaEmailEditText"
+                                android:layout_width="480dp"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:hint="@string/correoElectronico"
+                                android:imeOptions="actionDone"
+                                android:inputType="textWebEmailAddress"
+                                android:lines="1"
+                                android:maxLength="64"
+                                android:maxLines="1" />
+                        </LinearLayout>
+                        <!-- FIn correo -->
+                    </LinearLayout>
                 </LinearLayout>
 
                 <!-- Botones -->
@@ -286,54 +310,153 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
-
-                <!-- Tabla -->
+                <!-- INicio Tabla -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="10dp" >
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#ffffff"
-                        android:shrinkColumns="*"
-                        android:stretchColumns="*" >
-
-                        <TableRow
-                            android:id="@+id/tableRow1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#b0b0b0" >
-
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_weight="1"
-                                android:gravity="start"
-                                android:padding="10dp"
-                                android:text="@string/listaPersonas"
-                                android:textColor="#000000" />
-                        </TableRow>
-                    </TableLayout>
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fadeScrollbars="false"
-                        android:scrollbarThumbVertical="@color/gris_suave"
-                        android:scrollbarTrackVertical="@color/gris" >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
 
                         <TableLayout
-                            android:id="@+id/personasTableLayout"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="#ffffff"
                             android:shrinkColumns="*"
-                            android:stretchColumns="*" >
-                        </TableLayout>
-                    </ScrollView>
+                            android:stretchColumns="*">
 
+                            <!-- Row 1 with single column -->
+
+                            <TableRow
+                                android:id="@+id/tableRow1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#b0b0b0">
+
+                                <TextView
+                                    android:id="@+id/TextView04"
+                                    android:layout_weight="1"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="Lista de personas"
+                                    android:textColor="#000000" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fadeScrollbars="false"
+                            android:scrollbarThumbVertical="@color/gris_suave"
+                            android:scrollbarTrackVertical="@color/gris">
+
+                            <TableLayout
+                                android:id="@+id/personasTableLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:shrinkColumns="*"
+                                android:stretchColumns="*"></TableLayout>
+                        </ScrollView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="0dp"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion3" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion4" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion5" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion6" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion7" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion9" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion10" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion11" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion12" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/formularioDatosIndicacion2Opcion13" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
+                <!-- fin tabla -->
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
