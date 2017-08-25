@@ -219,8 +219,7 @@
                                 android:inputType="number"
                                 android:lines="1"
                                 android:maxLength="2"
-                                android:maxLines="1"
-                                android:enabled="false"/>
+                                android:maxLines="1"/>
 
                         </RelativeLayout>
 
