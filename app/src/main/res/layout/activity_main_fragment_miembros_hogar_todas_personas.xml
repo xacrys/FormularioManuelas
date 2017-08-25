@@ -81,7 +81,7 @@
                         <EditText
                             android:id="@+id/cedulaEditText"
                             style="@style/respuestaNumerosEditText"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:enabled="false"
@@ -141,28 +141,33 @@
                             android:text="@string/controlMadreHogarTitulo" />
 
 
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp" >
 
-                                <RadioGroup
-                                    android:id="@+id/viveMadreHogarRadioGroup"
+                            <RadioGroup
+                                android:id="@+id/viveMadreHogarRadioGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal" >
+
+                                <RadioButton
+                                    android:id="@+id/viveMadreHogarOpcion1RadioButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_si" />
 
-                                    <RadioButton
-                                        android:id="@+id/viveMadreHogarOpcion1RadioButton"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
-
-                                    <RadioButton
-                                        android:id="@+id/viveMadreHogarOpcion2RadioButton"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
-                                </RadioGroup>
-
+                                <RadioButton
+                                    android:id="@+id/viveMadreHogarOpcion2RadioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/opcion_no" />
+                            </RadioGroup>
+                        </RelativeLayout>
 
                         <LinearLayout
                             android:id="@+id/codigoPersonaLinearLayout"
@@ -280,13 +285,17 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/poseeDiscapacidadTitulo" />
 
-
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp" >
 
                             <RadioGroup
                                 android:id="@+id/discapacidadRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal" >
 
                                 <RadioButton
                                     android:id="@+id/discapacidadOpcion1RadioButton"
@@ -302,8 +311,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-
-
+                        </RelativeLayout>
                     </LinearLayout>
                     <!-- Fin pregunta -->
 
@@ -330,13 +338,17 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/carneDiscapacidadTitulo" />
 
-
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp" >
 
                             <RadioGroup
                                 android:id="@+id/carnetConadisRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal" >
 
                                 <RadioButton
                                     android:id="@+id/carnetConadisOpcion1RadioButton"
@@ -352,7 +364,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-
+                        </RelativeLayout>
                     </LinearLayout>
                     <!-- Fin Pregunta  -->
 
@@ -373,7 +385,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/tipoDiscapacidadIntelectual" />
-
 
                                 <RadioGroup
                                     android:id="@+id/discapacidadIntelectualRadioGroup"
@@ -396,7 +407,6 @@
                                         android:text="@string/opcion_no" />
                                 </RadioGroup>
 
-
                             <EditText
                                 android:id="@+id/porcentajeIntelectualEditText"
                                 style="@style/respuestaNumerosEditText"
@@ -417,8 +427,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/tipoDiscapacidadFisica" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/discapacidadFisicaRadioGroup"
@@ -441,7 +449,6 @@
                                         android:text="@string/opcion_no" />
                                 </RadioGroup>
 
-
                             <EditText
                                 android:id="@+id/porcentajeFisicaEditText"
                                 style="@style/respuestaNumerosEditText"
@@ -462,8 +469,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/tipoDiscapacidadCeguera" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/discapacidadCegueraRadioGroup"
@@ -716,13 +721,17 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/necesitaAyudaTecnica" />
 
-
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp" >
 
                             <RadioGroup
                                 android:id="@+id/necesitaAyudaTecnicaRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal" >
 
                                 <RadioButton
                                     android:id="@+id/necesitaAyudaTecnicaOpcion1RadioButton"
@@ -738,8 +747,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-
-
+                        </RelativeLayout>
                     </LinearLayout>
                     <!-- Fin pregunta -->
 
@@ -750,13 +758,17 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/recibioAyudaTecnica" />
 
-
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp" >
 
                             <RadioGroup
                                 android:id="@+id/recibioAyudaTecnicaRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal" >
 
                                 <RadioButton
                                     android:id="@+id/recibioAyudaTecnicaOpcion1RadioButton"
@@ -772,8 +784,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-
-
+                        </RelativeLayout>
                     </LinearLayout>
                     <!-- Fin pregunta -->
 
@@ -804,8 +815,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionA" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/sillaRuedasRadioGroup"
@@ -844,8 +853,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionB" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/muletasRadioGroup"
                                     android:layout_width="wrap_content"
@@ -882,8 +889,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionC" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/andadoresRadioGroup"
@@ -922,8 +927,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionD" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/bastonApoyoRadioGroup"
                                     android:layout_width="wrap_content"
@@ -960,8 +963,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionE" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/ortesisRadioGroup"
@@ -1000,8 +1001,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionF" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/colchonRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1038,8 +1037,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionG" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/cojinRadioGroup"
@@ -1109,8 +1106,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionH" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/bastonRastreoRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1148,8 +1143,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionI" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/abacoRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1186,8 +1179,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionJ" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/computadoraRadioGroup"
@@ -1233,8 +1224,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionK" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/audifonosRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1271,8 +1260,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionL" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/implantesRadioGroup"
@@ -1318,8 +1305,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionM" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/cochePostularRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1364,8 +1349,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionN" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/panialesRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1402,8 +1385,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionO" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/sillaBaniarseRadioGroup"
@@ -1442,8 +1423,6 @@
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionP" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/camasRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1480,8 +1459,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/ayudasTecnicasOpcionQ" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/otrosRadioGroup"
@@ -1532,8 +1509,6 @@
                                 android:padding="5dp"
                                 android:text="@string/institucionAyudasTecnicasOpcionA" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/gobiernoCentralRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1570,8 +1545,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/institucionAyudasTecnicasOpcionB" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/gobiernoAutonomoRadioGroup"
@@ -1610,8 +1583,6 @@
                                 android:padding="5dp"
                                 android:text="@string/institucionAyudasTecnicasOpcionC" />
 
-
-
                                 <RadioGroup
                                     android:id="@+id/organizacionPrivadaRadioGroup"
                                     android:layout_width="wrap_content"
@@ -1648,8 +1619,6 @@
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/institucionAyudasTecnicasOpcionD" />
-
-
 
                                 <RadioGroup
                                     android:id="@+id/ningunaRadioGroup"
@@ -1697,13 +1666,17 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/diagnosticoMedico" />
 
-
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="10dp" >
 
                             <RadioGroup
                                 android:id="@+id/diagnosticoMedicoRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal" >
 
                                 <RadioButton
                                     android:id="@+id/diagnosticoMedicoOpcion1RadioButton"
@@ -1719,7 +1692,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-
+                        </RelativeLayout>
 
                     </LinearLayout>
                     <!-- Fin pregunta -->

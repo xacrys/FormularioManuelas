@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 
@@ -251,11 +252,13 @@ public class Persona implements Serializable {
 	//consultas
 	public static String whereById = COLUMNA_ID + "= ?";
 	public static String whereByViviendaId = COLUMNA_IDVIVIENDA + " = ?";
+	public static String whereByIdViviendaCedula = COLUMNA_IDVIVIENDA
+			+ "= ? AND " + COLUMNA_CI + " = ?";
 
 
 
 	public Persona() {
-		//codigo = 0;
+		idparentesco = Global.VALOR_SELECCIONE;
 	}
 	/**
 	 * Método que devuelve los valores de un registro
@@ -446,7 +449,7 @@ public class Persona implements Serializable {
 
 	public String getParentescoCompleto(Context contex) {
 
-		ArrayList<Values> parentesco = new ArrayList<Values>();
+		ArrayList<Values> parentesco = new ArrayList<>();
 
 		parentesco.add(new Values("-1", contex.getString(R.string.seleccionRespuesta)));
 		parentesco.add(new Values("1", contex.getString(R.string.controlTrabajoParentescoJefeHogarOpcion1)));

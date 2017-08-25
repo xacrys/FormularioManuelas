@@ -44,6 +44,7 @@
     <string name="confirmacion_aviso">Confirmación</string>
     <string name="listaPersonas">Lista de Personas</string>
     <string name="mensajeBotonVisitar">Abrir</string>
+    <string name="fechaSeleccione">Seleccione</string>
 
 
 
@@ -294,7 +295,7 @@
     <!-- Seccion 5 Residentes  -->
     <string name="datosEtiqueta1">Complete la informacion de:</string>
 
-    <string name="tipoResidente">TIPO DE RESIDENTE:</string>
+    <string name="tipoResidente">1. TIPO DE RESIDENTE:</string>
     <string name="tipoResidenteOpcion1">1. Residentes habituales presentes</string>
     <string name="tipoResidenteOpcion2">2. Residentes habituales ausentes (máximo por 6 meses)</string>
     <string name="tipoResidenteOpcion3">3. Residentes temporales presentes</string>
@@ -304,17 +305,17 @@
     <string name="apellidosNombres">Registre los apellidos y nombres de todas las personas que pertenecen a este HOGAR, que comen y duermen habitualmente en esta VIVIENDA (Incluya a las personas que permanecen en el hogar más de tres meses)</string>
     <string name="apellidosNombresEtiqueta1">Registre los dos apellidos</string>
     <string name="apellidosNombresEtiqueta2">Registre los dos nombres</string>
-    <string name="apellidos">APELLIDOS:</string>
-    <string name="nombres">NOMBRES:</string>
+    <string name="apellidos">2. APELLIDOS:</string>
+    <string name="nombres">3. NOMBRES:</string>
 
 
     <!-- Seccion 5 Pregunta 3 -->
-    <string name="sexoTitulo">SEXO</string>
+    <string name="sexoTitulo">4. SEXO</string>
     <string name="sexoOpcion1">1. Hombre</string>
     <string name="sexoOpcion2">2. Mujer</string>
 
     <!-- Seccion 5 Pregunta 4 y 5 -->
-    <string name="edadTitulo">EDAD</string>
+    <string name="edadTitulo">5. EDAD</string>
     <string name="edadFecha">Registre la fecha de nacimiento</string>
     <string name="edadEtiqueta1">¿Cuántos años cumplidos tiene (&#8230;)?</string>
     <string name="edadEtiqueta2">Para menores de 5 años cumplidos, anote años y meses</string>
@@ -325,7 +326,7 @@
     <string name="seleccioneFecha">Seleccione</string>
 
     <!-- Seccion 5 Pregunta 6 -->
-    <string name="correoTitulo">CORREO ELECTRÓNICO</string>
+    <string name="correoTitulo">6. CORREO ELECTRÓNICO</string>
     <string name="correoEtiqueta">¿Cuál es el correo electrónico de (&#8230;)?</string>
     <string name="correoElectronico">Registre correo electrónico</string>
 
@@ -715,6 +716,7 @@
     <string name="mvNoEditar">No se puede editar el género y la edad de un Jefe de Núcleo. Si es necesario cambiar debe eliminar a la persona.</string>
     <string name="mensajeEliminarMiembroHogar">¿Esta seguro de eliminar el registro con toda su información?</string>
     <string name="mensajeValidacionEdadParentesco">El jefe de hogar no puede ser menor de 12 años</string>
+    <string name="seccion5MensajeEliminarJefeDeHogar">No se puede eliminar el Jefe(a) de Hogar</string>
 
 
     <string name="seccion5MensajeNucleosDispersos">No puede existir nucleos dispersos</string>
