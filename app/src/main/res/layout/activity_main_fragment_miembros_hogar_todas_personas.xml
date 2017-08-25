@@ -554,7 +554,7 @@
                                         android:text="@string/opcion_si" />
 
                                     <RadioButton
-                                        android:id="@+id/discapacidadVisionOpcio2RadioButton"
+                                        android:id="@+id/discapacidadVisionOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
@@ -602,7 +602,7 @@
                                         android:text="@string/opcion_si" />
 
                                     <RadioButton
-                                        android:id="@+id/discapacidadSorderaOpcio2RadioButton"
+                                        android:id="@+id/discapacidadSorderaOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
@@ -650,7 +650,7 @@
                                         android:text="@string/opcion_si" />
 
                                     <RadioButton
-                                        android:id="@+id/discapacidadHipoacusiaOpcio2RadioButton"
+                                        android:id="@+id/discapacidadHipoacusiaOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
@@ -698,7 +698,7 @@
                                         android:text="@string/opcion_si" />
 
                                     <RadioButton
-                                        android:id="@+id/discapacidadPsicosocialesOpcio2RadioButton"
+                                        android:id="@+id/discapacidadPsicosocialesOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"

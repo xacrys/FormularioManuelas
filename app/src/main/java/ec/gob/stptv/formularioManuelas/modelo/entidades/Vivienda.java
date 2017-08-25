@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Ejemplo de entidad
@@ -64,6 +65,11 @@ public class Vivienda implements Serializable {
     private String fechasincronizacion;
     private Integer estadosincronizacion;
     private String observacion;
+
+    //para sincronizar
+    private Hogar hogar;
+    private ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+    private ArrayList<Localizacion> listaLocalizacion = new ArrayList<Localizacion>();
     private String mensaje;
 
 
