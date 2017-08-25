@@ -11,7 +11,11 @@ import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +89,7 @@ public class MiembrosHogarFragment extends Fragment {
         contentResolver = getActivity().getContentResolver();
         this.obtenerVistas(item);
         this.cargarPreguntas();
+        this.habilitarDeshabilitar();
         this.realizarAcciones();
         this.mallasValidacion();
         return item;
@@ -93,11 +98,23 @@ public class MiembrosHogarFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         vivienda = ViviendaFragment.getVivienda();
+        aniosEditText.setEnabled(true);
         if (vivienda.getId() != 0) {
             getPersonas();
         }
 
     }
+
+    /**
+     * Método para habilitar o desabilitar los controles de la vista
+     */
+    public void habilitarDeshabilitar() {
+        fechaNacimientoButton.setVisibility(View.INVISIBLE);
+        aniosEditText.setVisibility(View.INVISIBLE);
+        mesesEditText.setVisibility(View.INVISIBLE);
+
+    }
+
 
 
     /**
@@ -204,9 +221,9 @@ public class MiembrosHogarFragment extends Fragment {
     /**
      * Metdo que realiza las acciones en las persona por ejemplo completar la informacion, eliminar actualizar
      * @param title
-     * @param _persona
+     * @param ppersona
      */
-    private void getAlertActions(String title, final Persona _persona) {
+    private void getAlertActions(String title, final Persona ppersona) {
 
         final String[] acciones = {
                 getString(R.string.completarInformacion),
@@ -225,9 +242,6 @@ public class MiembrosHogarFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
 
                         switch (which) {
-                            /**
-                             * Completar información de la persona
-                             */
                             case 0:
 
                                 FragmentManager fragMgr = getFragmentManager();
@@ -236,7 +250,7 @@ public class MiembrosHogarFragment extends Fragment {
 
                                 Fragment newFragment = new MiembrosHogarTodasPersonasFragment();
                                 Bundle args = new Bundle();
-                                args.putSerializable("persona", _persona);
+                                args.putSerializable("persona", ppersona);
 
                                 newFragment.setArguments(args);
                                 FragmentTransaction transaction = getFragmentManager()
@@ -251,19 +265,14 @@ public class MiembrosHogarFragment extends Fragment {
 
                                 transaction.commit();
 
-
                                 break;
-                            /**
-                             * Editar los datos de la persona
-                             */
-
                             case 1:
 
                                 tipoGestion = 2;
 
-                                llenarCampos(_persona);
+                                llenarCampos(ppersona);
 
-                                if (_persona.getIdparentesco() == PersonaPreguntas.ControlTrabajoParentesco.JEFE.getValor()){
+                                if (ppersona.getIdparentesco() == PersonaPreguntas.ControlTrabajoParentesco.JEFE.getValor()){
 
                                     getAlert(
                                             getString(R.string.validacion_aviso),
@@ -281,11 +290,6 @@ public class MiembrosHogarFragment extends Fragment {
                                 }
 
                                 break;
-
-                            /**
-                             * Eliminar la persona
-                             */
-
                             case 2:
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(
@@ -353,29 +357,29 @@ public class MiembrosHogarFragment extends Fragment {
 
     /**
      * Método que llena los controles con datos de la base
-     * @param _persona
+     * @param ppersona
      */
     @SuppressWarnings("unchecked")
-    protected void llenarCampos(Persona _persona) {
+    protected void llenarCampos(Persona ppersona) {
 
         int posicion = Utilitarios.getPosicionByKey(
                 (ArrayAdapter<Values>) tipoResidenteSpinner.getAdapter(),
-                String.valueOf(_persona.getIdresidente()));
+                String.valueOf(ppersona.getIdresidente()));
         tipoResidenteSpinner.setSelection(posicion);
 
         posicion = Utilitarios.getPosicionByKey(
                 (ArrayAdapter<Values>) sexoSpinner.getAdapter(),
-                String.valueOf(_persona.getSexo()));
+                String.valueOf(ppersona.getSexo()));
         sexoSpinner.setSelection(posicion);
 
 
         posicion = Utilitarios.getPosicionByKey(
                 (ArrayAdapter<Values>) documentoSpinner.getAdapter(),
-                String.valueOf(_persona.getIddocumentacion()));
+                String.valueOf(ppersona.getIddocumentacion()));
         documentoSpinner.setSelection(posicion);
 
-        if(!_persona.getCi().equals(Global.CADENAS_VACIAS)){
-            cedulaEditText.setText(_persona.getCi());
+        if(!ppersona.getCi().equals(Global.CADENAS_VACIAS)){
+            cedulaEditText.setText(ppersona.getCi());
         }
         else{
             cedulaEditText.setText("");
@@ -401,7 +405,6 @@ public class MiembrosHogarFragment extends Fragment {
      * Metódo que eprmite limpiar los datos
      */
     protected void limpiarCampos() {
-
         documentoSpinner.setSelection(0);
         tipoResidenteSpinner.setSelection(0);
         sexoSpinner.setSelection(0);
@@ -413,6 +416,11 @@ public class MiembrosHogarFragment extends Fragment {
         mesesEditText.setText("");
         cedulaEditText.setText("");
         cedulaEditText.setEnabled(false);
+        correoEditText.setText("");
+        edadRadioGroup.clearCheck();
+        edadRadioGroup.setVisibility(View.VISIBLE);
+        fechaNacimientoButton.setText("Seleccione");
+        fechaNacimientoButton.setVisibility(View.INVISIBLE);
 
     }
 
@@ -473,14 +481,17 @@ public class MiembrosHogarFragment extends Fragment {
             aniosEditText.setError(null);
             aniosEditText.clearFocus();
             aniosEditText.setError(getString(R.string.errorCampoRequerido));
-        } else if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton &&
-                TextUtils.isEmpty(mesesEditText.getText().toString().trim())
+        } else
+            if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton &&
+                TextUtils.isEmpty(mesesEditText.getText().toString().trim()) &&  mesesEditText.getVisibility() == View.VISIBLE
                 ) {
             mesesEditText.setError(null);
             mesesEditText.clearFocus();
             mesesEditText.setError(getString(R.string.errorCampoRequerido));
 //            focusView = mesesEditText;
-        } else if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton &&
+        }
+
+        else if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton &&
                 fechaNacimientoButton.getText().toString().trim().equals("Seleccione")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + "Botón fecha de Nacimiento");
         } else {
@@ -535,6 +546,78 @@ public class MiembrosHogarFragment extends Fragment {
             }
         });
 
+        // /mesesEditText.setEnabled(false);
+        mesesEditText.setVisibility(View.INVISIBLE);
+        mesesEditText.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    int val = Integer.parseInt(s.toString());
+                    if (val > 11) {
+                        s.clear();
+                    }
+                } catch (NumberFormatException ex) {
+                    // Do something
+                }
+
+            }
+        });
+
+        aniosEditText.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    int val = Integer.parseInt(s.toString());
+                    if (val >= 0 && val < 5) {
+                        mesesEditText.setVisibility(View.VISIBLE);
+                        //emailEditText.setText("");
+                        //emailEditText.setEnabled(false);
+                    } else {
+                        if (val >= 5) {
+                            mesesEditText.setVisibility(View.INVISIBLE);
+                            mesesEditText.setText("");
+                            mesesEditText.setError(null);
+                            mesesEditText.clearFocus();
+                            //emailEditText.setEnabled(true);
+                        }
+                    }
+                } catch (NumberFormatException ex) {
+                    // Do something
+                }
+
+            }
+        });
+
 
     }
 
@@ -558,28 +641,34 @@ public class MiembrosHogarFragment extends Fragment {
             }
         });
 
-        edadRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton) {
-                    fechaNacimientoButton.setEnabled(true);
-                    aniosEditText.setEnabled(false);
-                    mesesEditText.setEnabled(false);
-                    aniosEditText.setText("");
-                    mesesEditText.setText("");
-                    aniosEditText.setError(null);
-                    aniosEditText.clearFocus();
-                    mesesEditText.setError(null);
-                    mesesEditText.clearFocus();
+        edadRadioGroup
+                .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-                } else {
-                    fechaNacimientoButton.setEnabled(false);
-                    fechaNacimientoButton.setText(R.string.seleccioneFecha);
-                    aniosEditText.setEnabled(true);
-                    mesesEditText.setEnabled(true);
-                }
-            }
-        });
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        // TODO Auto-generated method stub
+
+                        if (edadRadioGroup
+                                .getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton) {
+
+                            fechaNacimientoButton.setVisibility(View.VISIBLE);
+                            fechaNacimientoButton.setEnabled(true);
+                            aniosEditText.setError(null);
+                            mesesEditText.setError(null);
+                            aniosEditText.setText("");
+                            mesesEditText.setText("");
+                            aniosEditText.setVisibility(View.INVISIBLE);
+                            mesesEditText.setVisibility(View.INVISIBLE);
+                        }else{
+                            if (edadRadioGroup
+                                    .getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton) {
+                                fechaNacimientoButton.setVisibility(View.INVISIBLE);
+                                fechaNacimientoButton.setEnabled(false);
+                                fechaNacimientoButton.setText("Seleccione");
+                                aniosEditText.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }
+                });
 
     }
 
@@ -587,162 +676,178 @@ public class MiembrosHogarFragment extends Fragment {
      * Método que guarda la vivienda en la base de datos
      */
     private void guardar() {
-
         vivienda = ViviendaFragment.getVivienda();
         hogar = HogarFragment.getHogar();
+        int edadMeses;
+        int edadAnios;
 
-        int edadMeses = 0;
-        int edadAnios = Integer.valueOf((aniosEditText.getText().toString()));
-        int genero = Integer.valueOf(((Values) sexoSpinner.getSelectedItem())
-                .getKey());
+        if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton) {
+            // fecha de nacimiento
+            Date dateComponente = null;
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 
-        if (mesesEditText.getText().length() > 0
-                && mesesEditText.getVisibility() == View.VISIBLE) {
+            try {
+                dateComponente = formatoFecha.parse(fechaNacimientoButton.getText().toString());
 
-            edadMeses = Integer.valueOf(mesesEditText.getText().toString());
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            String edad = Utilitarios.calcularEdad(dateComponente);
+            String[] edadArray = edad.split("-");
+            edadAnios = Integer.parseInt(edadArray[0]);
+            edadMeses = Integer.parseInt(edadArray[1]);
+            // int edadDias = Integer.parseInt(edadArray[2]);
+
+        } else {
+            // anios cumplidos
+            edadAnios = Integer.valueOf((aniosEditText.getText().toString()));
+            if (mesesEditText.getText().length() > 0 && mesesEditText.getVisibility() == View.VISIBLE) {
+
+                edadMeses = Integer.valueOf(mesesEditText.getText().toString());
+            }else{
+                edadMeses = -1;
+            }
         }
 
-        if (mesesEditText.getVisibility() == View.INVISIBLE) {
-            edadMeses = -1;
-        }
+        int genero = Integer.valueOf(((Values) sexoSpinner.getSelectedItem()).getKey());
 
-        Utilitarios.logInfo(MiembrosHogarFragment.class.getName(), "TipoGestion: " + tipoGestion);
-        Utilitarios.logInfo(MiembrosHogarFragment.class.getName(), "edad en meses" + edadMeses);
+        Log.e(MiembrosHogarFragment.class.getName(), "TipoGestion: " + tipoGestion);
+        Log.e(MiembrosHogarFragment.class.getName(), "edad en meses" + edadMeses);
 
         // Guardar nuevo registro
         if (tipoGestion == 1) {
-            Persona persona = new Persona();
+            final Persona persona = new Persona();
             persona.setIdvivienda(vivienda.getId());
             persona.setIdhogar(hogar.getId());
-            persona.setIdresidente(Integer
-                    .valueOf(((Values) tipoResidenteSpinner.getSelectedItem())
-                            .getKey()));
+            persona.setIdresidente(Integer.valueOf(((Values) tipoResidenteSpinner.getSelectedItem()).getKey()));
             persona.setOrden(ordenPersona + 1);
 
+            persona.setNombres(nombresEditText.getText().toString().trim());
+            persona.setApellidos(apellidosEditText.getText().toString().trim());
+            persona.setSexo(Integer.valueOf(((Values) sexoSpinner.getSelectedItem()).getKey()));
 
-            persona.setApellidos(apellidosEditText.getText()
-                    .toString().trim());
-            persona.setNombres(nombresEditText.getText()
-                    .toString().trim());
+            if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton) {
 
-            /*persona.setFonetico(Fonetico.convertir(apellidosEditText.getText()
-                    .toString().trim()+ nombresEditText.getText()
-                    .toString().trim()));*/
+                persona.setTipoEdad(Global.FECHA_NACIMIENTO);
+                persona.setFechanacimiento(fechaNacimientoButton.getText().toString());
 
-            persona.setSexo(Integer.valueOf(((Values) sexoSpinner
-                    .getSelectedItem()).getKey()));
+            } else {
+                if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton) {
+
+                    persona.setTipoEdad(Global.ANIOS_CUMPLIDOS);
+                    persona.setFechanacimiento(Global.CADENAS_VACIAS);
+
+                } else {
+                    persona.setTipoEdad(edadRadioGroup.getCheckedRadioButtonId());
+                }
+            }
+
             persona.setEdadanio(edadAnios);
             persona.setEdadmes(edadMeses);
             persona.setInformacioncompleta(Global.INFORMACION_INCOMPLETA);
             persona.setFechainicio(Utilitarios.getCurrentDateAndHour());
 
-            persona.setIddocumentacion(Integer
-                    .parseInt(((Values) documentoSpinner.getSelectedItem())
-                            .getKey()));
+            persona.setCorreoelectronico(correoEditText.getText().toString().trim());
+
+            persona.setIddocumentacion(Integer.parseInt(((Values) documentoSpinner.getSelectedItem()).getKey()));
 
             if (!TextUtils.isEmpty(cedulaEditText.getText().toString())) {
                 persona.setCi(cedulaEditText.getText().toString());
-            }
-            else{
+            } else {
                 persona.setCi(Global.CADENAS_VACIAS);
             }
 
-            // if (persona.getParentescoNucleo() == 1) {
-
             if ((persona.getOrden() == 1)) {
-                if (JefeHogar(edadAnios))
+                if (validarJefeHogar(edadAnios))
                     return;
-
                 persona.setIdparentesco(1);
+
             }
-
-			/*
-			 * if (JefeNucleo(edadAnios)) return;
-			 */
-
-            // }
-
             Uri uri = PersonaDao.save(contentResolver, persona);
             String id = uri.getPathSegments().get(1);
             if (!id.equals("0")) {
-
                 persona.setId(Integer.parseInt(id));
                 addFila(persona);
                 limpiarCampos();
                 tipoGestion = 1;
                 ordenPersona++;
             }
+
         } else {
             if (tipoGestion == 2) {
-
-                persona.setIdresidente(Integer
-                        .valueOf(((Values) tipoResidenteSpinner
-                                .getSelectedItem()).getKey()));
-                persona.setApellidos(apellidosEditText.getText()
-                        .toString().trim());
-                persona.setNombres(nombresEditText.getText()
-                        .toString().trim());
-
-                /*persona.setFonetico(Fonetico.convertir(apellidosEditText.getText()
-                        .toString().trim()+ nombresEditText.getText()
-                        .toString().trim()));*/
-
-                persona.setIddocumentacion(Integer
-                        .parseInt(((Values) documentoSpinner.getSelectedItem())
-                                .getKey()));
-
+                persona.setIdresidente(Integer.valueOf(((Values) tipoResidenteSpinner.getSelectedItem()).getKey()));
+                persona.setNombres(nombresEditText.getText().toString().trim());
+                persona.setApellidos(apellidosEditText.getText().toString().trim());
+                persona.setIddocumentacion(Integer.parseInt(((Values) documentoSpinner.getSelectedItem()).getKey()));
+                persona.setCorreoelectronico(correoEditText.getText().toString().trim());
                 if (!TextUtils.isEmpty(cedulaEditText.getText().toString())) {
                     persona.setCi(cedulaEditText.getText().toString());
-                }
-                else{
+                } else {
                     persona.setCi(Global.CADENAS_VACIAS);
                 }
-
-                /*if (persona.getParentescoNucleo() == 1) {
-
+                if (persona.getIdparentesco() == 1) {
                     if ((persona.getOrden() == 1)) {
-
-                        if (JefeHogar(edadAnios))
+                        if (validarJefeHogar(edadAnios))
                             return;
                     }
-
-                    if (JefeNucleo(edadAnios))
-                        return;
-
                 }
-                if (persona.getParentescoNucleo() == 2)  {
-
-                    if (EdadConyuge(edadAnios))
+                if (persona.getIdparentesco() == 2) {
+                    if (validarEdadConyuge(edadAnios))
                         return;
-                }*/
-
+                }
                 persona.setEdadmes(edadMeses);
+                if ((persona.getEdadanio() >= Global.EDAD_12ANIOS)
+                        && (persona.getSexo() == Global.GENERO_FEMENINO)) {
+                    if (genero != Global.GENERO_FEMENINO) {
 
-                if (persona.getEdadanio() != edadAnios
-                        || persona.getSexo() != genero) {
+                        //validarMadreEHijos(persona);
 
-                    Persona personaNew = new Persona();
+                    } else {
+                        if (edadAnios < Global.EDAD_12ANIOS) {
+
+                            //validarMadreEHijos(persona);
+                        }
+                    }
+                }
+
+                if (persona.getEdadanio() != edadAnios || persona.getSexo() != genero) {
+
+                    final Persona personaNew = new Persona();
                     personaNew.setIdresidente(persona.getIdresidente());
                     personaNew.setIdvivienda(persona.getIdvivienda());
                     personaNew.setIdhogar(persona.getIdhogar());
                     personaNew.setId(persona.getId());
-                    personaNew.setApellidos(persona.getApellidos());
                     personaNew.setNombres(persona.getNombres());
+                    personaNew.setApellidos(persona.getApellidos());
                     personaNew.setSexo(genero);
+                    if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton) {
+
+                        personaNew.setTipoEdad(Global.FECHA_NACIMIENTO);
+                        personaNew.setFechanacimiento(fechaNacimientoButton.getText().toString());
+
+                    } else {
+                        if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton) {
+
+                            personaNew.setTipoEdad(Global.ANIOS_CUMPLIDOS);
+                            personaNew.setFechanacimiento(Global.CADENAS_VACIAS);
+
+                        } else {
+                            personaNew.setTipoEdad(edadRadioGroup.getCheckedRadioButtonId());
+                        }
+                    }
                     personaNew.setEdadanio(edadAnios);
                     personaNew.setEdadmes(edadMeses);
                     personaNew.setOrden(persona.getOrden());
                     personaNew.setIddocumentacion(persona.getIddocumentacion());
                     personaNew.setCi(persona.getCi());
 
-                    if (persona.getOrden()== 1){
+                    if (persona.getOrden() == 1) {
                         personaNew.setIdparentesco(persona.getIdparentesco());
-
                     }
 
-                    personaNew
-                            .setInformacioncompleta(Global.INFORMACION_INCOMPLETA);
-
+                    personaNew.setInformacioncompleta(Global.INFORMACION_INCOMPLETA);
                     PersonaDao.update(contentResolver, personaNew);
 
                 } else {
@@ -754,10 +859,43 @@ public class MiembrosHogarFragment extends Fragment {
                                     String.valueOf(persona.getId())});
 
                 }
-
                 getPersonas();
+
             }
         }
+
+    }
+
+    /**
+     * Metodo para validar la edad de la conyuge
+     * @param edad
+     * @return
+     */
+    public boolean validarEdadConyuge(Integer edad) {
+        if (edad < 12) {
+
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seccion5MensajePregunta12EdadConyugeNucleo));
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Metodo para validar el jefe de hogar
+     */
+    public boolean validarJefeHogar(Integer edad) {
+        boolean cancel = false;
+
+        if (edad < Global.EDAD_PARENTESCO) {
+
+            getAlert(getString(R.string.validacion_aviso),
+                    getString(R.string.seccion5MensajeValidacionEdadParentesco));
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -770,11 +908,9 @@ public class MiembrosHogarFragment extends Fragment {
 
             getAlert(getString(R.string.validacion_aviso),
                     getString(R.string.mensajeValidacionEdadParentesco));
-            cancel = true;
-            return cancel;
+            return true;
         }
-
-        return cancel;
+        return false;
     }
 
     /***

@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -346,7 +347,7 @@ public class FormularioManuelasProvider extends ContentProvider {
     }
 
     @Override
-    public int update(Uri uri, ContentValues values, String selection,
+    public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         int filasAfectadas = 0;
         dataBase = helperBd.getWritableDatabase();
@@ -360,45 +361,36 @@ public class FormularioManuelasProvider extends ContentProvider {
 
                 filasAfectadas = dataBase.update(Hogar.NOMBRE_TABLA, values,
                         selection, selectionArgs);
-
                 if (filasAfectadas > 0) {
-
                     Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
                             "Registro actualizado: Tabla: " + Hogar.NOMBRE_TABLA
-                                    + " Id: " + selectionArgs[0] + " Valores: "
-                                    + values.toString());
+                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
+                                    + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
                 }
                 break;
 
             case PERSONA:
                 Log.i("", "ContetProvider PERSONAS ");
-
-                filasAfectadas = dataBase.update(Persona.NOMBRE_TABLA, values,
-                        selection, selectionArgs);
-
-
+                filasAfectadas = dataBase.update(Persona.NOMBRE_TABLA, values, selection, selectionArgs);
                 if (filasAfectadas > 0) {
-
                     Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
                             "Registro actualizado: Tabla: " + Persona.NOMBRE_TABLA
                                     + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
-                                    + values.toString() + " where " + selection + " valores: " + selectionArgs[0] + "-" + selectionArgs[1]);
-
+                                    + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
                 }
                 break;
-
 
             case USUARIO:
 
                 filasAfectadas = dataBase.update(Usuario.NOMBRE_TABLA, values,
                         selection, selectionArgs);
-
                 if (filasAfectadas > 0) {
-
-                    Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
-                            "Registro actualizado: Tabla: " + Usuario.NOMBRE_TABLA
-                                    + " Id: " + selectionArgs[0] + " Valores: "
-                                    + values.toString());
+                    if (filasAfectadas > 0) {
+                        Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
+                                "Registro actualizado: Tabla: " + Usuario.NOMBRE_TABLA
+                                        + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
+                                        + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
+                    }
                 }
                 break;
 
@@ -406,12 +398,12 @@ public class FormularioManuelasProvider extends ContentProvider {
 
                 filasAfectadas = dataBase.update(Fase.NOMBRE_TABLA, values,
                         selection, selectionArgs);
-
                 if (filasAfectadas > 0) {
                     Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
                             "Registro actualizado: Tabla: " + Fase.NOMBRE_TABLA
-                                    + " Id: " + selectionArgs[0] + " Valores: "
-                                    + values.toString());
+                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
+                                    + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
+
                 }
                 break;
 
@@ -419,12 +411,11 @@ public class FormularioManuelasProvider extends ContentProvider {
 
                 filasAfectadas = dataBase.update(Localizacion.NOMBRE_TABLA, values,
                         selection, selectionArgs);
-
                 if (filasAfectadas > 0) {
                     Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
                             "Registro actualizado: Tabla: " + Localizacion.NOMBRE_TABLA
-                                    + " Id: " + selectionArgs[0] + " Valores: "
-                                    + values.toString());
+                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
+                                    + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
                 }
                 break;
         }
@@ -432,10 +423,10 @@ public class FormularioManuelasProvider extends ContentProvider {
     }
 
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
-        int filaEliminada = 0;
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
+        int filaEliminada;
         dataBase = helperBd.getWritableDatabase();
-        String tabla = "";
+        String tabla;
         switch (uriMatcher.match(uri)) {
             case VIVIENDA:
                 tabla = Vivienda.NOMBRE_TABLA;

@@ -37,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:baselineAligned="false">
 
                 <!-- Inicio de la columna 1 -->
                 <LinearLayout
@@ -80,7 +81,7 @@
                         <EditText
                             android:id="@+id/cedulaEditText"
                             style="@style/respuestaNumerosEditText"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:enabled="false"
@@ -127,7 +128,7 @@
 
                     <!-- Inicio Pregunta Menores de 18 años -->
                     <LinearLayout
-                        android:id="@+id/seccion5menores18AniosLinearLayout"
+                        android:id="@+id/menores18AniosLinearLayout"
                         style="@style/contenedorPregunta"
                         android:visibility="visible">
 
@@ -141,10 +142,11 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false">
 
                             <RelativeLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:paddingBottom="10dp">
@@ -174,7 +176,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/seccion5CodigoPersonaLinearLayout"
+                            android:id="@+id/codigoPersonaLinearLayout"
                             style="@style/contenedorPregunta"
                             android:visibility="visible">
 

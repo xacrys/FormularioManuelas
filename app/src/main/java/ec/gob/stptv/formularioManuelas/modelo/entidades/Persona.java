@@ -90,6 +90,7 @@ public class Persona implements Serializable {
 	private String fechainicio;
 	private String fechafin;
 	private Integer informacioncompleta;
+	private Integer tipoEdad;
 
 	//Nombre de la tabla
 	public final static String NOMBRE_TABLA = "persona";
@@ -166,6 +167,7 @@ public class Persona implements Serializable {
 	public final static String COLUMNA_FECHAINICIO="fechainicio";
 	public final static String COLUMNA_FECHAFIN="fechafin";
 	public final static String COLUMNA_INFORMACIONCOMPLETA="informacioncompleta";
+	public final static String COLUMNA_TIPOEDAD = "tipoedad";
 
 	//crear un string con las columnas de la tabla
 	public static final String[] columnas = new String[] {
@@ -240,7 +242,8 @@ public class Persona implements Serializable {
 			COLUMNA_ORDEN,
 			COLUMNA_FECHAINICIO,
 			COLUMNA_FECHAFIN,
-			COLUMNA_INFORMACIONCOMPLETA
+			COLUMNA_INFORMACIONCOMPLETA,
+			COLUMNA_TIPOEDAD,
 	};
 
 	private String[] generos = new String[] { "", "Hombre", "Mujer" };
@@ -332,6 +335,7 @@ public class Persona implements Serializable {
 		values.put(COLUMNA_FECHAINICIO, persona.getFechainicio());
 		values.put(COLUMNA_FECHAFIN, persona.getFechafin());
 		values.put(COLUMNA_INFORMACIONCOMPLETA, persona.getInformacioncompleta());
+		values.put(COLUMNA_TIPOEDAD, persona.getTipoEdad());
 
 		return values;
 	}
@@ -414,6 +418,7 @@ public class Persona implements Serializable {
 		persona.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
 		persona.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
 		persona.setInformacioncompleta(result.getInt(result.getColumnIndex(COLUMNA_INFORMACIONCOMPLETA)));
+		persona.setTipoEdad(result.getInt(result.getColumnIndex(COLUMNA_TIPOEDAD)));
 
 		return persona;
 	}
@@ -1031,5 +1036,14 @@ public class Persona implements Serializable {
 
 	public void setPorcentajepsicosociales(Integer porcentajepsicosociales) {
 		this.porcentajepsicosociales = porcentajepsicosociales;
+	}
+
+
+	public Integer getTipoEdad() {
+		return tipoEdad;
+	}
+
+	public void setTipoEdad(Integer tipoEdad) {
+		this.tipoEdad = tipoEdad;
 	}
 }

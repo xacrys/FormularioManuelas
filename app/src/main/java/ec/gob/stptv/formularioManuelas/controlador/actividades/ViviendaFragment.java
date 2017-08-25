@@ -552,8 +552,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.tipoLevantamiento));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) areaSpinner.getSelectedItem())
@@ -562,8 +561,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.area));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) provinciaSpinner.getSelectedItem())
@@ -572,8 +570,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.provincia));
-            cancel = true;
-            return cancel;
+            return true;
         }
         if (((Values) cantonSpinner.getSelectedItem())
                 .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
@@ -590,16 +587,18 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.parroquia));
-            cancel = true;
-            return cancel;
+            return true;
         }
+
+        localidadEditText.setError(null);
+        localidadEditText.clearFocus();
         if (localidadEditText.getText().toString().equals("")) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.localidadComunidad));
+            localidadEditText
+                    .setError(getString(R.string.errorCampoRequerido));
+            localidadEditText.requestFocus();
+
             cancel = true;
-            return cancel;
+            //return cancel;
         }
         if (((Values) zonaSpinner.getSelectedItem())
                 .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
@@ -607,8 +606,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.zona));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) sectorSpinner.getSelectedItem())
@@ -617,8 +615,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.sector));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (!((Values) zonaSpinner.getSelectedItem()).getKey().equals("999") &&
@@ -627,33 +624,11 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.manzana));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
-        if (viviendaEditText.getText().toString().equals("")) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.vivienda));
-            cancel = true;
-            return cancel;
-        }
-        //estas validaciones se hacia dependiendo la condicion de ocupacion pero como ahora es slo ocupada entonces no se
-        //hace esa validacion x ejm destruida, tempòral etc
-        if (((Values) hogarFinalSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) && Integer
-                .valueOf(((Values) condicionOcupacionSpinner
-                        .getSelectedItem()).getKey()) == ViviendaPreguntas.CondicionOcupacion.OCUPADA
-                .getValor()) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.hogar));
-            cancel = true;
-            return cancel;
-        }
-
+        viviendaEditText.setError(null);
+        viviendaEditText.clearFocus();
         if (viviendaEditText.getText().length() == 0
                 && Integer
                 .valueOf(((Values) condicionOcupacionSpinner
@@ -665,6 +640,21 @@ public class ViviendaFragment extends Fragment{
             cancel = true;
             //return cancel;
         }
+
+        //estas validaciones se hacia dependiendo la condicion de ocupacion pero como ahora es slo ocupada entonces no se
+        //hace esa validacion x ejm destruida, tempòral etc
+        if (((Values) hogarFinalSpinner.getSelectedItem())
+                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) && Integer
+                .valueOf(((Values) condicionOcupacionSpinner
+                        .getSelectedItem()).getKey()) == ViviendaPreguntas.CondicionOcupacion.OCUPADA
+                .getValor()) {
+            getAlert(
+                    getString(R.string.validacion_aviso),
+                    getString(R.string.seleccione_pregunta)
+                            + getString(R.string.hogar));
+            return true;
+        }
+
 
         if (((Values) tipoLevantamientoSpinner
                 .getSelectedItem()).getKey().equals("1")) {
@@ -754,8 +744,7 @@ public class ViviendaFragment extends Fragment{
                 && telefonoConvencionalEditText.getText().toString().length() < 9) {
             telefonoConvencionalEditText.setError(getString(R.string.error_numero_fijo));
             telefonoConvencionalEditText.requestFocus();
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         telefonoConvencionalEditText.setError(null);
@@ -765,8 +754,7 @@ public class ViviendaFragment extends Fragment{
                 telefonoConvencionalEditText.getText().toString().length() == 9) {
             telefonoConvencionalEditText.setError(getString(R.string.errorCodigoRegionFijo));
             telefonoConvencionalEditText.requestFocus();
-            cancel = true;
-            return cancel;
+            return true;
 
         }
         telefonoConvencionalEditText.clearFocus();
@@ -775,8 +763,7 @@ public class ViviendaFragment extends Fragment{
             telefonoConvencionalEditText
                     .setError(getString(R.string.error_numero_celularCeros));
             telefonoConvencionalEditText.requestFocus();
-            cancel = true;
-            return cancel;
+            return true;
         }
 
 
@@ -787,8 +774,7 @@ public class ViviendaFragment extends Fragment{
 
             telefonoCelularEditText.setError(getString(R.string.error_numero_celular));
             telefonoCelularEditText.requestFocus();
-            cancel = true;
-            return cancel;
+            return true;
         }
         telefonoCelularEditText.clearFocus();
         if (telefonoCelularEditText.getText().toString().length()>2 &&
@@ -797,8 +783,7 @@ public class ViviendaFragment extends Fragment{
                 ) {
             telefonoCelularEditText.setError(getString(R.string.errorDigitoNumCelular));
             telefonoCelularEditText.requestFocus();
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         telefonoCelularEditText.clearFocus();
@@ -806,8 +791,7 @@ public class ViviendaFragment extends Fragment{
             telefonoCelularEditText
                     .setError(getString(R.string.error_numero_celularCeros));
             telefonoCelularEditText.requestFocus();
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) tipoViviendaSpinner.getSelectedItem())
@@ -816,8 +800,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.tipoVivienda));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) viaAccesoPrincipalSpinner.getSelectedItem())
@@ -826,8 +809,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.viaAccesoPrincipal));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) materialTechoSpinner.getSelectedItem())
@@ -866,8 +848,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.estadoTecho));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) estadoPisoSpinner.getSelectedItem())
@@ -876,8 +857,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.estadoPiso));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
 
@@ -887,8 +867,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.estadoPared));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
 

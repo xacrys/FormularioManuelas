@@ -128,5 +128,15 @@ public class Global {
      */
     public static final int GENERO_FEMENINO = 2;
 
+    /**
+     * Valor para la opcion SI
+     */
+    public static final int FECHA_NACIMIENTO = 1;
+
+    /**
+     * Valor para la opcion NO
+     */
+    public static final int ANIOS_CUMPLIDOS = 2;
+
 
 }

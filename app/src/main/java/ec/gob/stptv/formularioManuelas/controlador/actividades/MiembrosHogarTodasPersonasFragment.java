@@ -17,8 +17,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -38,6 +40,11 @@ import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
 public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
+    private TextView nombresCompletosTextView;
+    private TextView edadAniosTextView;
+    private TextView  infEdadMesesTextView;
+    private TextView edadMesesTextView;
+    private TextView sexoTextView;
     private Button nuevoButton;
     private Button atrasButton;
     private Button guardarPersonaButton;
@@ -98,6 +105,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private EditText porcentajePsicosocialesEditText;
     private Persona persona;
     private ContentResolver contentResolver;
+    private LinearLayout menores18AniosLinearLayout;
+    private LinearLayout codigoPersonaLinearLayout;
+    ArrayList<Values> codigosMadres;
+
 
 
     @Override
@@ -119,6 +130,29 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
         try {
             persona = (Persona) getArguments().getSerializable("persona");
+            //se llena las etiquetas del encabezado
+            nombresCompletosTextView.setText(persona.getNombresCompletos());
+            edadAniosTextView.setText(String.valueOf(persona.getEdadCompleto()));
+            if (persona.getEdadanio() < 5){
+                infEdadMesesTextView.setVisibility(View.VISIBLE);
+                edadMesesTextView.setText(String.valueOf(persona.getEdadmes()));
+            }
+            sexoTextView.setText(String.valueOf(persona.getGeneroCompleto()));
+            //que se visualice dependiendo la edad
+            //que quede quemado 'NO'cuando no hay madres
+            if (codigosMadres.size() == 1) {
+                viveMadreHogarRadioGroup
+                        .check(R.id.viveMadreHogarOpcion2RadioButton);
+            }
+            if (persona.getEdadanio() < Global.EDAD_18ANIOS) {
+                viveMadreHogarRadioGroup
+                        .setVisibility(View.VISIBLE);
+            } else {
+                viveMadreHogarRadioGroup
+                        .setVisibility(View.INVISIBLE);
+            }
+
+
             this.llenarCamposMiembrosHogar();
         } catch (Exception e) {
             e.toString();
@@ -132,6 +166,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
      */
     private void obtenerVistas(View item) {
 
+        nombresCompletosTextView = item.findViewById(R.id.nombresCompletosTextView);
+        edadAniosTextView = item.findViewById(R.id.edadAniosTextView);
+        infEdadMesesTextView = item.findViewById(R.id.infEdadMesesTextView);
+        edadMesesTextView = item.findViewById(R.id.edadMesesTextView);
+        sexoTextView = item.findViewById(R.id.sexoTextView);
+        menores18AniosLinearLayout = item.findViewById(R.id.menores18AniosLinearLayout);
+        codigoPersonaLinearLayout = item.findViewById(R.id.codigoPersonaLinearLayout);
         nuevoButton = item.findViewById(R.id.nuevoButton);
         atrasButton = item.findViewById(R.id.atrasButton);
         guardarPersonaButton = item.findViewById(R.id.guardarPersonaButton);
@@ -245,6 +286,96 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 carnetConadisRadioGroup.check(R.id.carnetConadisOpcion2RadioButton);
             }
         }
+        if (persona.getDiscapacidadintelectual() == Global.SI) {
+            discapacidadIntelectualRadioGroup.check(R.id.discapacidadIntelectualOpcion1RadioButton);
+        } else {
+            if (persona.getDiscapacidadintelectual() == Global.NO) {
+                discapacidadIntelectualRadioGroup.check(R.id.discapacidadIntelectualOpcion2RadioButton);
+            }
+        }
+        if (!persona.getPorcentajeintelectual().equals(Global.ENTEROS_VACIOS)) {
+            porcentajeIntelectualEditText.setText(String.valueOf(persona.getPorcentajeintelectual()));
+        } else {
+            porcentajeIntelectualEditText.setText("");
+        }
+
+        if (persona.getDiscapacidadfisica() == Global.SI) {
+            discapacidadFisicaRadioGroup.check(R.id.discapacidadFisicaOpcion1RadioButton);
+        } else {
+            if (persona.getDiscapacidadfisica() == Global.NO) {
+                discapacidadFisicaRadioGroup.check(R.id.discapacidadFisicaOpcion2RadioButton);
+            }
+        }
+        if (!persona.getPorcentajefisica().equals(Global.ENTEROS_VACIOS)) {
+            porcentajeFisicaEditText.setText(String.valueOf(persona.getPorcentajefisica()));
+        } else {
+            porcentajeFisicaEditText.setText("");
+        }
+
+        if (persona.getDiscapacidadceguera() == Global.SI) {
+            discapacidadCegueraRadioGroup.check(R.id.discapacidadCegueraOpcion1RadioButton);
+        } else {
+            if (persona.getDiscapacidadceguera() == Global.NO) {
+                discapacidadCegueraRadioGroup.check(R.id.discapacidadCegueraOpcion2RadioButton);
+            }
+        }
+        if (!persona.getPorcentajeceguera().equals(Global.ENTEROS_VACIOS)) {
+            porcentajeCegueraEditText.setText(String.valueOf(persona.getPorcentajeceguera()));
+        } else {
+            porcentajeCegueraEditText.setText("");
+        }
+
+        if (persona.getDiscapacidadvision() == Global.SI) {
+            discapacidadVisionRadioGroup.check(R.id.discapacidadVisionOpcion1RadioButton);
+        } else {
+            if (persona.getDiscapacidadvision() == Global.NO) {
+                discapacidadVisionRadioGroup.check(R.id.discapacidadVisionOpcion2RadioButton);
+            }
+        }
+        if (!persona.getPorcentajevision().equals(Global.ENTEROS_VACIOS)) {
+            porcentajeVisionEditText.setText(String.valueOf(persona.getPorcentajevision()));
+        } else {
+            porcentajeVisionEditText.setText("");
+        }
+
+        if (persona.getDiscapacidadsordera() == Global.SI) {
+            discapacidadSorderaRadioGroup.check(R.id.discapacidadSorderaOpcion1RadioButton);
+        } else {
+            if (persona.getDiscapacidadsordera() == Global.NO) {
+                discapacidadSorderaRadioGroup.check(R.id.discapacidadSorderaOpcion2RadioButton);
+            }
+        }
+        if (!persona.getPorcentajesordera().equals(Global.ENTEROS_VACIOS)) {
+            porcentajeSorderaEditText.setText(String.valueOf(persona.getPorcentajesordera()));
+        } else {
+            porcentajeSorderaEditText.setText("");
+        }
+
+        if (persona.getDiscapacidadhipoacusia() == Global.SI) {
+            discapacidadHipoacusiaRadioGroup.check(R.id.discapacidadHipoacusiaOpcion1RadioButton);
+        } else {
+            if (persona.getDiscapacidadhipoacusia() == Global.NO) {
+                discapacidadHipoacusiaRadioGroup.check(R.id.discapacidadHipoacusiaOpcion2RadioButton);
+            }
+        }
+        if (!persona.getPorcentajehipoacusia().equals(Global.ENTEROS_VACIOS)) {
+            porcentajeHipoacusiaEditText.setText(String.valueOf(persona.getPorcentajehipoacusia()));
+        } else {
+            porcentajeHipoacusiaEditText.setText("");
+        }
+
+        if (persona.getDiscapacidadpsicosociales() == Global.SI) {
+            discapacidadPsicosocialesRadioGroup.check(R.id.discapacidadPsicosocialesOpcion1RadioButton);
+        } else {
+            if (persona.getDiscapacidadpsicosociales() == Global.NO) {
+                discapacidadPsicosocialesRadioGroup.check(R.id.discapacidadPsicosocialesOpcion2RadioButton);
+            }
+        }
+        if (!persona.getPorcentajepsicosociales().equals(Global.ENTEROS_VACIOS)) {
+            porcentajePsicosocialesEditText.setText(String.valueOf(persona.getPorcentajepsicosociales()));
+        } else {
+            porcentajePsicosocialesEditText.setText("");
+        }
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) asistenciaEstablecimientoSpinner.getAdapter(), String.valueOf(persona.getIdestablecimientoeducacion()));
         asistenciaEstablecimientoSpinner.setSelection(posicion);
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) proteccionSocialpinner.getAdapter(), String.valueOf(persona.getIdproteccionsocial()));
@@ -261,6 +392,153 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         } else {
             if (persona.getRecibioayudatecnica() == Global.NO) {
                 recibioAyudaTecnicaRadioGroup.check(R.id.recibioAyudaTecnicaOpcion2RadioButton);
+            }
+        }
+        if (persona.getSillaruedas() == Global.SI) {
+            sillaRuedasRadioGroup.check(R.id.sillaRuedasOpcion1RadioButton);
+        } else {
+            if (persona.getSillaruedas() == Global.NO) {
+                sillaRuedasRadioGroup.check(R.id.sillaRuedasOpcion2RadioButton);
+            }
+        }
+        if (persona.getMuletas() == Global.SI) {
+            muletasRadioGroup.check(R.id.muletasOpcion1RadioButton);
+        } else {
+            if (persona.getMuletas() == Global.NO) {
+                muletasRadioGroup.check(R.id.muletasOpcion2RadioButton);
+            }
+        }
+        if (persona.getAndadores() == Global.SI) {
+            andadoresRadioGroup.check(R.id.andadoresOpcion1RadioButton);
+        } else {
+            if (persona.getAndadores() == Global.NO) {
+                andadoresRadioGroup.check(R.id.andadoresOpcion2RadioButton);
+            }
+        }
+        if (persona.getBastonapoyo() == Global.SI) {
+            bastonApoyoRadioGroup.check(R.id.bastonApoyoOpcion1RadioButton);
+        } else {
+            if (persona.getBastonapoyo() == Global.NO) {
+                bastonApoyoRadioGroup.check(R.id.bastonApoyoOpcion2RadioButton);
+            }
+        }
+        if (persona.getOrtesis() == Global.SI) {
+            ortesisRadioGroup.check(R.id.ortesisOpcion1RadioButton);
+        } else {
+            if (persona.getOrtesis() == Global.NO) {
+                ortesisRadioGroup.check(R.id.ortesisOpcion2RadioButton);
+            }
+        }
+        if (persona.getColchon() == Global.SI) {
+            colchonRadioGroup.check(R.id.colchonOpcion1RadioButton);
+        } else {
+            if (persona.getColchon() == Global.NO) {
+                colchonRadioGroup.check(R.id.colchonOpcion2RadioButton);
+            }
+        }
+        if (persona.getCojin() == Global.SI) {
+            cojinRadioGroup.check(R.id.cojinOpcion1RadioButton);
+        } else {
+            if (persona.getColchon() == Global.NO) {
+                cojinRadioGroup.check(R.id.cojinOpcion2RadioButton);
+            }
+        }
+        if (persona.getBastonrastreo() == Global.SI) {
+            bastonRastreoRadioGroup.check(R.id.bastonRastreoOpcion1RadioButton);
+        } else {
+            if (persona.getBastonrastreo() == Global.NO) {
+                bastonRastreoRadioGroup.check(R.id.bastonRastreoOpcion2RadioButton);
+            }
+        }
+        if (persona.getAbaco() == Global.SI) {
+            abacoRadioGroup.check(R.id.abacoOpcion1RadioButton);
+        } else {
+            if (persona.getAbaco() == Global.NO) {
+                abacoRadioGroup.check(R.id.abacoOpcion2RadioButton);
+            }
+        }
+        if (persona.getComputadora() == Global.SI) {
+            computadoraRadioGroup.check(R.id.computadoraOpcion1RadioButton);
+        } else {
+            if (persona.getComputadora() == Global.NO) {
+                computadoraRadioGroup.check(R.id.computadoraOpcion2RadioButton);
+            }
+        }
+        if (persona.getAudifonos() == Global.SI) {
+            audifonosRadioGroup.check(R.id.audifonosOpcion1RadioButton);
+        } else {
+            if (persona.getAudifonos() == Global.NO) {
+                audifonosRadioGroup.check(R.id.audifonosOpcion2RadioButton);
+            }
+        }
+        if (persona.getImplantes() == Global.SI) {
+            implantesRadioGroup.check(R.id.implantesOpcion1RadioButton);
+        } else {
+            if (persona.getImplantes() == Global.NO) {
+                implantesRadioGroup.check(R.id.implantesOpcion2RadioButton);
+            }
+        }
+        if (persona.getCochepostular() == Global.SI) {
+            cochePostularRadioGroup.check(R.id.cochePostularOpcion1RadioButton);
+        } else {
+            if (persona.getCochepostular() == Global.NO) {
+                cochePostularRadioGroup.check(R.id.cochePostularOpcion2RadioButton);
+            }
+        }
+        if (persona.getPaniales() == Global.SI) {
+            panialesRadioGroup.check(R.id.panialesOpcion1RadioButton);
+        } else {
+            if (persona.getPaniales() == Global.NO) {
+                panialesRadioGroup.check(R.id.panialesOpcion2RadioButton);
+            }
+        }
+        if (persona.getSillabaniarse() == Global.SI) {
+            sillaBaniarseRadioGroup.check(R.id.sillaBaniarseOpcion1RadioButton);
+        } else {
+            if (persona.getSillabaniarse() == Global.NO) {
+                sillaBaniarseRadioGroup.check(R.id.sillaBaniarseOpcion2RadioButton);
+            }
+        }
+        if (persona.getCamas() == Global.SI) {
+            camasRadioGroup.check(R.id.camasOpcion1RadioButton);
+        } else {
+            if (persona.getCamas() == Global.NO) {
+                camasRadioGroup.check(R.id.camasOpcion2RadioButton);
+            }
+        }
+        if (persona.getOtrasayudas() == Global.SI) {
+            otrosRadioGroup.check(R.id.otrosOpcion1RadioButton);
+        } else {
+            if (persona.getOtrasayudas() == Global.NO) {
+                otrosRadioGroup.check(R.id.otrosOpcion2RadioButton);
+            }
+        }
+        if (persona.getGobiernocentral() == Global.SI) {
+            gobiernoCentralRadioGroup.check(R.id.gobiernoCentralOpcion1RadioButton);
+        } else {
+            if (persona.getGobiernocentral() == Global.NO) {
+                gobiernoCentralRadioGroup.check(R.id.gobiernoCentralOpcion2RadioButton);
+            }
+        }
+        if (persona.getGobiernoautonomo() == Global.SI) {
+            gobiernoAutonomoRadioGroup.check(R.id.gobiernoAutonomoOpcion1RadioButton);
+        } else {
+            if (persona.getGobiernoautonomo() == Global.NO) {
+                gobiernoAutonomoRadioGroup.check(R.id.gobiernoAutonomoOpcion2RadioButton);
+            }
+        }
+        if (persona.getOrganizacionprivada() == Global.SI) {
+            organizacionPrivadaRadioGroup.check(R.id.organizacionPrivadaOpcion1RadioButton);
+        } else {
+            if (persona.getOrganizacionprivada() == Global.NO) {
+                organizacionPrivadaRadioGroup.check(R.id.organizacionPrivadaOpcion2RadioButton);
+            }
+        }
+        if (persona.getNingunainstitucion() == Global.SI) {
+            ningunaRadioGroup.check(R.id.ningunaOpcion1RadioButton);
+        } else {
+            if (persona.getNingunainstitucion() == Global.NO) {
+                ningunaRadioGroup.check(R.id.ningunaOpcion2RadioButton);
             }
         }
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) sufreEnfermedadesSpinner.getAdapter(), String.valueOf(persona.getIdtipoenfermedad()));
@@ -301,9 +579,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
         parametros = new String[] { String.valueOf(vivienda.getId())};
 
-        ArrayList<Values> seccion5CodigoMadre;
-        seccion5CodigoMadre = new ArrayList<>();
-        seccion5CodigoMadre.add(new Values(Global.VALOR_SELECCIONE,
+        codigosMadres = new ArrayList<>();
+        codigosMadres.add(new Values(Global.VALOR_SELECCIONE,
                 getString(R.string.seleccionRespuesta)));
 
         ArrayList<Persona> personas = PersonaDao.getPersonas(contentResolver,
@@ -311,12 +588,12 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         for (Persona _persona : personas) {
             if ((_persona.getEdadanio() >= Global.EDAD_12ANIOS)
                     && (_persona.getSexo() == Global.GENERO_FEMENINO)) {
-                seccion5CodigoMadre.add(new Values(_persona.getId(), _persona.getNombresCompletos()));
+                codigosMadres.add(new Values(_persona.getId(), _persona.getNombresCompletos()));
             }
         }
         ArrayAdapter<Values> adapterSeccion5CodigoMadre = new ArrayAdapter<>(
                 getActivity(), android.R.layout.simple_spinner_item,
-                seccion5CodigoMadre);
+                codigosMadres);
         adapterSeccion5CodigoMadre
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         codigoPersonaMadreSpinner.setAdapter(adapterSeccion5CodigoMadre);
@@ -373,6 +650,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 persona.setCarnediscapacidad(Global.ENTEROS_VACIOS);
             }
         }
+
         if (discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton) {
             persona.setDiscapacidadintelectual(Global.SI);
         } else {
@@ -494,14 +772,202 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         } else {
             if (recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion2RadioButton) {
                 persona.setRecibioayudatecnica(Global.NO);
-
-
             } else {
                 persona.setRecibioayudatecnica(Global.ENTEROS_VACIOS);
             }
         }
 
+        if (sillaRuedasRadioGroup.getCheckedRadioButtonId() == R.id.sillaRuedasOpcion1RadioButton) {
+            persona.setSillaruedas(Global.SI);
+        } else {
+            if (sillaRuedasRadioGroup.getCheckedRadioButtonId() == R.id.sillaRuedasOpcion2RadioButton) {
+                persona.setSillaruedas(Global.NO);
+            } else {
+                persona.setSillaruedas(Global.ENTEROS_VACIOS);
+            }
+        }
 
+        if (muletasRadioGroup.getCheckedRadioButtonId() == R.id.muletasOpcion1RadioButton) {
+            persona.setMuletas(Global.SI);
+        } else {
+            if (muletasRadioGroup.getCheckedRadioButtonId() == R.id.muletasOpcion2RadioButton) {
+                persona.setMuletas(Global.NO);
+            } else {
+                persona.setMuletas(Global.ENTEROS_VACIOS);
+            }
+        }
+
+        if (andadoresRadioGroup.getCheckedRadioButtonId() == R.id.andadoresOpcion1RadioButton) {
+            persona.setAndadores(Global.SI);
+        } else {
+            if (andadoresRadioGroup.getCheckedRadioButtonId() == R.id.andadoresOpcion2RadioButton) {
+                persona.setAndadores(Global.NO);
+            } else {
+                persona.setAndadores(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (bastonApoyoRadioGroup.getCheckedRadioButtonId() == R.id.bastonApoyoOpcion1RadioButton) {
+            persona.setBastonapoyo(Global.SI);
+        } else {
+            if (bastonApoyoRadioGroup.getCheckedRadioButtonId() == R.id.bastonApoyoOpcion2RadioButton) {
+                persona.setBastonapoyo(Global.NO);
+            } else {
+                persona.setBastonapoyo(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (ortesisRadioGroup.getCheckedRadioButtonId() == R.id.ortesisOpcion1RadioButton) {
+            persona.setOrtesis(Global.SI);
+        } else {
+            if (ortesisRadioGroup.getCheckedRadioButtonId() == R.id.ortesisOpcion2RadioButton) {
+                persona.setOrtesis(Global.NO);
+            } else {
+                persona.setOrtesis(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (colchonRadioGroup.getCheckedRadioButtonId() == R.id.colchonOpcion1RadioButton) {
+            persona.setColchon(Global.SI);
+        } else {
+            if (colchonRadioGroup.getCheckedRadioButtonId() == R.id.colchonOpcion2RadioButton) {
+                persona.setColchon(Global.NO);
+            } else {
+                persona.setColchon(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (cojinRadioGroup.getCheckedRadioButtonId() == R.id.cojinOpcion1RadioButton) {
+            persona.setCojin(Global.SI);
+        } else {
+            if (cojinRadioGroup.getCheckedRadioButtonId() == R.id.cojinOpcion2RadioButton) {
+                persona.setCojin(Global.NO);
+            } else {
+                persona.setCojin(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (bastonRastreoRadioGroup.getCheckedRadioButtonId() == R.id.bastonRastreoOpcion1RadioButton) {
+            persona.setBastonrastreo(Global.SI);
+        } else {
+            if (bastonRastreoRadioGroup.getCheckedRadioButtonId() == R.id.bastonRastreoOpcion2RadioButton) {
+                persona.setBastonrastreo(Global.NO);
+            } else {
+                persona.setBastonrastreo(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (abacoRadioGroup.getCheckedRadioButtonId() == R.id.abacoOpcion1RadioButton) {
+            persona.setAbaco(Global.SI);
+        } else {
+            if (abacoRadioGroup.getCheckedRadioButtonId() == R.id.abacoOpcion2RadioButton) {
+                persona.setAbaco(Global.NO);
+            } else {
+                persona.setAbaco(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (computadoraRadioGroup.getCheckedRadioButtonId() == R.id.computadoraOpcion1RadioButton) {
+            persona.setComputadora(Global.SI);
+        } else {
+            if (computadoraRadioGroup.getCheckedRadioButtonId() == R.id.computadoraOpcion2RadioButton) {
+                persona.setComputadora(Global.NO);
+            } else {
+                persona.setComputadora(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (audifonosRadioGroup.getCheckedRadioButtonId() == R.id.audifonosOpcion1RadioButton) {
+            persona.setAudifonos(Global.SI);
+        } else {
+            if (audifonosRadioGroup.getCheckedRadioButtonId() == R.id.audifonosOpcion2RadioButton) {
+                persona.setAudifonos(Global.NO);
+            } else {
+                persona.setAudifonos(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (implantesRadioGroup.getCheckedRadioButtonId() == R.id.implantesOpcion1RadioButton) {
+            persona.setImplantes(Global.SI);
+        } else {
+            if (implantesRadioGroup.getCheckedRadioButtonId() == R.id.implantesOpcion2RadioButton) {
+                persona.setImplantes(Global.NO);
+            } else {
+                persona.setImplantes(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (cochePostularRadioGroup.getCheckedRadioButtonId() == R.id.cochePostularOpcion1RadioButton) {
+            persona.setCochepostular(Global.SI);
+        } else {
+            if (cochePostularRadioGroup.getCheckedRadioButtonId() == R.id.cochePostularOpcion2RadioButton) {
+                persona.setCochepostular(Global.NO);
+            } else {
+                persona.setCochepostular(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (panialesRadioGroup.getCheckedRadioButtonId() == R.id.panialesOpcion1RadioButton) {
+            persona.setPaniales(Global.SI);
+        } else {
+            if (panialesRadioGroup.getCheckedRadioButtonId() == R.id.panialesOpcion2RadioButton) {
+                persona.setPaniales(Global.NO);
+            } else {
+                persona.setPaniales(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (sillaBaniarseRadioGroup.getCheckedRadioButtonId() == R.id.sillaBaniarseOpcion1RadioButton) {
+            persona.setSillabaniarse(Global.SI);
+        } else {
+            if (sillaBaniarseRadioGroup.getCheckedRadioButtonId() == R.id.sillaBaniarseOpcion2RadioButton) {
+                persona.setSillabaniarse(Global.NO);
+            } else {
+                persona.setSillabaniarse(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (camasRadioGroup.getCheckedRadioButtonId() == R.id.camasOpcion1RadioButton) {
+            persona.setCamas(Global.SI);
+        } else {
+            if (camasRadioGroup.getCheckedRadioButtonId() == R.id.camasOpcion2RadioButton) {
+                persona.setCamas(Global.NO);
+            } else {
+                persona.setCamas(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (otrosRadioGroup.getCheckedRadioButtonId() == R.id.otrosOpcion1RadioButton) {
+            persona.setOtrasayudas(Global.SI);
+        } else {
+            if (otrosRadioGroup.getCheckedRadioButtonId() == R.id.otrosOpcion2RadioButton) {
+                persona.setOtrasayudas(Global.NO);
+            } else {
+                persona.setOtrasayudas(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (gobiernoCentralRadioGroup.getCheckedRadioButtonId() == R.id.gobiernoCentralOpcion1RadioButton) {
+            persona.setGobiernocentral(Global.SI);
+        } else {
+            if (gobiernoCentralRadioGroup.getCheckedRadioButtonId() == R.id.gobiernoCentralOpcion2RadioButton) {
+                persona.setGobiernocentral(Global.NO);
+            } else {
+                persona.setGobiernocentral(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (gobiernoAutonomoRadioGroup.getCheckedRadioButtonId() == R.id.gobiernoAutonomoOpcion1RadioButton) {
+            persona.setGobiernoautonomo(Global.SI);
+        } else {
+            if (gobiernoAutonomoRadioGroup.getCheckedRadioButtonId() == R.id.gobiernoAutonomoOpcion2RadioButton) {
+                persona.setGobiernoautonomo(Global.NO);
+            } else {
+                persona.setGobiernoautonomo(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (organizacionPrivadaRadioGroup.getCheckedRadioButtonId() == R.id.organizacionPrivadaOpcion1RadioButton) {
+            persona.setOrganizacionprivada(Global.SI);
+        } else {
+            if (organizacionPrivadaRadioGroup.getCheckedRadioButtonId() == R.id.organizacionPrivadaOpcion2RadioButton) {
+                persona.setOrganizacionprivada(Global.NO);
+            } else {
+                persona.setOrganizacionprivada(Global.ENTEROS_VACIOS);
+            }
+        }
+        if (ningunaRadioGroup.getCheckedRadioButtonId() == R.id.ningunaOpcion1RadioButton) {
+            persona.setNingunainstitucion(Global.SI);
+        } else {
+            if (ningunaRadioGroup.getCheckedRadioButtonId() == R.id.ningunaOpcion2RadioButton) {
+                persona.setNingunainstitucion(Global.NO);
+            } else {
+                persona.setNingunainstitucion(Global.ENTEROS_VACIOS);
+            }
+        }
         persona.setIdtipoenfermedad(Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()));
         if (diagnosticoMedicoRadioGroup.getCheckedRadioButtonId() == R.id.diagnosticoMedicoOpcion1RadioButton) {
             persona.setEnfermedaddiagnostico(Global.SI);
@@ -529,6 +995,27 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
      * Método que permite hacer los saltos de la pregunta
      */
     private void mallasValidacion() {
+
+        if (menores18AniosLinearLayout.getVisibility() == View.VISIBLE) {
+            viveMadreHogarRadioGroup
+                    .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+                        @Override
+                        public void onCheckedChanged(RadioGroup group,
+                                                     int checkedId) {
+
+                            if (viveMadreHogarRadioGroup
+                                    .getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion1RadioButton) {
+                                codigoPersonaLinearLayout.setVisibility(View.VISIBLE);
+                                codigoPersonaMadreSpinner.setEnabled(true);
+                            } else {
+                                codigoPersonaLinearLayout.setVisibility(View.INVISIBLE);
+                                codigoPersonaMadreSpinner.setSelection(0);
+                                codigoPersonaMadreSpinner.setEnabled(false);
+                            }
+                        }
+                    });
+        }
 
         discapacidadRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
