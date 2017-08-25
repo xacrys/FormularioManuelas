@@ -88,9 +88,9 @@ public class HogarFragment extends Fragment {
 
         this.vivienda = ViviendaFragment.getVivienda();
 
-        Log.e("prueba",""+vivienda.getId());
+        Log.e("prueba", "" + vivienda.getId());
 
-        parametros = new String[] { String.valueOf(vivienda.getId()) };
+        parametros = new String[]{String.valueOf(vivienda.getId())};
         hogar = HogarDao.getHogar(contentResolver, Hogar.whereByViviendaId, parametros);
         if (hogar != null) {
             this.llenarCamposHogar();
@@ -132,7 +132,7 @@ public class HogarFragment extends Fragment {
      * Método que llena los controles con datos de la base
      */
     private void llenarCamposHogar() {
-         int posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoHogarSpinner.getAdapter(), String.valueOf(hogar.getIdpropiedadvivienda()));
+        int posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoHogarSpinner.getAdapter(), String.valueOf(hogar.getIdpropiedadvivienda()));
         tipoHogarSpinner.setSelection(posicion);
 
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) documentoHogarSpinner.getAdapter(), String.valueOf(hogar.getIddocumentovivienda()));
@@ -289,7 +289,7 @@ public class HogarFragment extends Fragment {
             hogar.setId(Integer.parseInt(id));
 
         } else {
-            Utilitarios.logInfo(HogarFragment.class.getName(),"Actualiza hogar");
+            Utilitarios.logInfo(HogarFragment.class.getName(), "Actualiza hogar");
             HogarDao.update(contentResolver, hogar);
         }
 
@@ -306,13 +306,12 @@ public class HogarFragment extends Fragment {
                 if (((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("1") ||
                         ((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("2")) {
                     documentoHogarSpinner.setEnabled(true);
-                }
-                else
-                {
+                } else {
                     documentoHogarSpinner.setSelection(0);
                     documentoHogarSpinner.setEnabled(false);
                 }
             }
+
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
@@ -323,44 +322,25 @@ public class HogarFragment extends Fragment {
                 if (((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")) {
                     ubicacionSanitarioSpinner.setSelection(0);
                     ubicacionSanitarioSpinner.setEnabled(false);
-                }
-                else{
+                } else {
                     ubicacionSanitarioSpinner.setEnabled(true);
                 }
             }
+
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
 
-        //Listener para cuando cambia la elección cuenta el Hogar con Servicio Higiénico
-        tipoAlumbradoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (Integer.parseInt(((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey())== 1) {
-                    codigoElectricoEditText.setEnabled(true);
-                }
-                else{
-                    codigoElectricoEditText.setText("");
-                    codigoElectricoEditText.setEnabled(false);
-                    codigoElectricoEditText.setError(null);
-                    codigoElectricoEditText.clearFocus();
-                }
-            }
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         terrenoAgropecuario.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
 
-                if(terrenoAgropecuario.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioOpcion1rb){
+                if (terrenoAgropecuario.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioOpcion1rb) {
                     for (int cont = 0; cont < terrenoAgropecuarioSi.getChildCount(); cont++) {
                         terrenoAgropecuarioSi.getChildAt(cont).setEnabled(true);
                     }
-                }
-                else
-                {
+                } else {
                     terrenoAgropecuarioSi.check(-1);
                     for (int cont = 0; cont < terrenoAgropecuarioSi.getChildCount(); cont++) {
                         terrenoAgropecuarioSi.getChildAt(cont).setEnabled(false);
@@ -370,20 +350,96 @@ public class HogarFragment extends Fragment {
             }
         });
 
-        documentoHogarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        numCuartosSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(vivienda.getIdtipovivienda()>2 && Integer.parseInt(((Values)documentoHogarSpinner.getSelectedItem()).getKey())>0
-                        && !((Values)documentoHogarSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))){
-                    getAlert(getString(R.string.errorTipoUno), getString(R.string.seleccione_pregunta) + getString(R.string.errorDocumentoPorTipoVivienda));
-                    documentoHogarSpinner.setSelection(0);
+                if (!((Values) numCuartosSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        !((Values) numDormitoriosSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        Integer.parseInt(((Values) numCuartosSpinner.getSelectedItem()).getKey()) < Integer.parseInt(((Values) numDormitoriosSpinner.getSelectedItem()).getKey())) {
+                    numDormitoriosSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDormitoriosMayorCuartos));
                 }
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView){
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        numDormitoriosSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (!((Values) numDormitoriosSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        !((Values) numCuartosSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        Integer.parseInt(((Values) numCuartosSpinner.getSelectedItem()).getKey()) < Integer.parseInt(((Values) numDormitoriosSpinner.getSelectedItem()).getKey())) {
+                    numDormitoriosSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDormitoriosMayorCuartos));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        tipoAlumbradoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (Integer.parseInt(((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey()) == 1) {
+                    codigoElectricoEditText.setEnabled(true);
+                } else if (!((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        !((Values) energeticoCocinaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        Integer.parseInt(((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey()) > 2 &&
+                        Integer.parseInt(((Values) energeticoCocinaSpinner.getSelectedItem()).getKey()) == 3) {
+                    energeticoCocinaSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorAlumbradoCocina));
+                } else {
+                    codigoElectricoEditText.setText("");
+                    codigoElectricoEditText.setEnabled(false);
+                    codigoElectricoEditText.setError(null);
+                    codigoElectricoEditText.clearFocus();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
+        energeticoCocinaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (!((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        !((Values) energeticoCocinaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        Integer.parseInt(((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey()) > 2 &&
+                        Integer.parseInt(((Values) energeticoCocinaSpinner.getSelectedItem()).getKey()) == 3) {
+                    energeticoCocinaSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorAlumbradoCocina));
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+//        documentoHogarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                if(vivienda.getIdtipovivienda()>2 && Integer.parseInt(((Values)documentoHogarSpinner.getSelectedItem()).getKey())>0
+//                        && !((Values)documentoHogarSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))){
+//                    getAlert(getString(R.string.errorTipoUno), getString(R.string.seleccione_pregunta) + getString(R.string.errorDocumentoPorTipoVivienda));
+//                    documentoHogarSpinner.setSelection(0);
+//                }
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView){
+//
+//            }
+//        });
 
     }
 
@@ -516,6 +572,7 @@ public class HogarFragment extends Fragment {
 
     /**
      * regresa la vivienda
+     *
      * @return Objeto Hogar
      */
     public static Hogar getHogar() {
