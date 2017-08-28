@@ -181,7 +181,7 @@ public class ViviendaFragment extends Fragment {
         tabs = getActivity().findViewById(android.R.id.tabhost);
         tabs.setup();
 
-        if (vivienda.getId() == 0) {
+        /*if (vivienda.getId() == 0) {
             tabs.getTabWidget().getChildTabViewAt(1).setEnabled(false);
             tabs.getTabWidget().getChildTabViewAt(2).setEnabled(false);
             tabs.getTabWidget().getChildTabViewAt(3).setEnabled(false);
@@ -237,7 +237,7 @@ public class ViviendaFragment extends Fragment {
                     }
                 }
             }
-        }
+        }*/
 
         this.getLastLocation();
 

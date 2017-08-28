@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
         contentResolver = getContentResolver();
 
         this.obtenerVistas();
-        //this.realizarAcciones();
+        this.realizarAcciones();
     }
 
     @Override
