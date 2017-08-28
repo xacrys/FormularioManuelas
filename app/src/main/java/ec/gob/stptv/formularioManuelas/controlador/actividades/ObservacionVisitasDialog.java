@@ -71,7 +71,7 @@ public class ObservacionVisitasDialog extends DialogFragment {
 		observacionEditText = view
 				.findViewById(R.id.observacionEditText);
 
-		if (!(vivienda.getObservacion().equals(Global.CADENAS_VACIAS))) {
+		if ((vivienda.getObservacion()!= (Global.CADENAS_VACIAS))) {
 			observacionEditText.setText(vivienda.getObservacion());
 		}
 

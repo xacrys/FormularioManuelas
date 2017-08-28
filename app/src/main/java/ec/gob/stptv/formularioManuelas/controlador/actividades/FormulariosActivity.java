@@ -325,7 +325,7 @@ public class FormulariosActivity extends Activity {
 						.setText("");
 			}
 
-			if (vivienda.getNumerovisitas().equals(Global.ENTEROS_VACIOS)) {
+			if (!vivienda.getNumerovisitas().equals(Global.ENTEROS_VACIOS)) {
 				((TextView) row.findViewById(R.id.columnaNumeroVisitasTextView))
 						.setText(String.valueOf(vivienda.getNumerovisitas()));
 			} else {
