@@ -440,7 +440,7 @@ public class Utilitarios {
      * @param cedula
      * @return
      */
-    public static boolean utiValidadorCedula(String cedula) {
+    public static boolean validadorCedula(String cedula) {
         int total = 0;
         int tamanoLongitudCedula = 10;
         int[] coeficientes = {2, 1, 2, 1, 2, 1, 2, 1, 2};
@@ -1000,11 +1000,7 @@ public class Utilitarios {
         Integer primerNumero = Integer.parseInt(convencional.substring(0, 1));
         Integer segundoNumero = Integer.parseInt(convencional.substring(1, 2));
         if (primerNumero == 0) {
-            if (segundoNumero > 1 && segundoNumero < 8) {
-                return true;
-            } else {
-                return false;
-            }
+            return segundoNumero > 1 && segundoNumero < 8;
         } else {
             return false;
         }
