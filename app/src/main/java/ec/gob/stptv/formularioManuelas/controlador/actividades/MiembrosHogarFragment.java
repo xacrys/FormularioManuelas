@@ -73,6 +73,7 @@ public class MiembrosHogarFragment extends Fragment {
     private EditText aniosEditText;
     private EditText mesesEditText;
     private RadioGroup edadRadioGroup;
+    private Spinner parentescoSpinner;
     private ContentResolver contentResolver;
     private Vivienda vivienda;
     private Hogar hogar;
@@ -104,6 +105,7 @@ public class MiembrosHogarFragment extends Fragment {
         aniosEditText.setEnabled(true);
         if (vivienda.getId() != 0) {
             getPersonas();
+
         }
 
     }
@@ -112,6 +114,8 @@ public class MiembrosHogarFragment extends Fragment {
      * Método para habilitar o desabilitar los controles de la vista
      */
     public void habilitarDeshabilitar() {
+        sexoSpinner.setEnabled(true);
+        aniosEditText.setEnabled(true);
         fechaNacimientoButton.setVisibility(View.INVISIBLE);
         aniosEditText.setVisibility(View.INVISIBLE);
 
@@ -138,7 +142,10 @@ public class MiembrosHogarFragment extends Fragment {
 
             addFila(_persona);
         }
-
+        if (ordenPersona == 0){
+            parentescoSpinner.setSelection(1);
+            parentescoSpinner.setEnabled(false);
+        }
     }
 
     /**
@@ -267,10 +274,12 @@ public class MiembrosHogarFragment extends Fragment {
 
                                     sexoSpinner.setEnabled(false);
                                     aniosEditText.setEnabled(false);
+                                    parentescoSpinner.setEnabled(false);
                                 }
                                 else{
                                     sexoSpinner.setEnabled(true);
                                     aniosEditText.setEnabled(true);
+                                    parentescoSpinner.setEnabled(true);
                                 }
                                 break;
                             case 2:
@@ -397,6 +406,10 @@ public class MiembrosHogarFragment extends Fragment {
 
             }
         }
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) parentescoSpinner.getAdapter(),String.valueOf(ppersona.getIdparentesco()));
+        Log.e("parentesco", posicion+"");
+        parentescoSpinner.setSelection(posicion);
+
     }
 
     /**
@@ -420,6 +433,8 @@ public class MiembrosHogarFragment extends Fragment {
         aniosEditText.setVisibility(View.INVISIBLE);
         fechaNacimientoButton.setText(getString(R.string.fechaSeleccione));
         fechaNacimientoButton.setVisibility(View.INVISIBLE);
+        parentescoSpinner.setSelection(0);
+        parentescoSpinner.setEnabled(true);
 
     }
 
@@ -441,6 +456,7 @@ public class MiembrosHogarFragment extends Fragment {
         edadRadioGroup = item.findViewById(R.id.edadRadioGroup);
         aniosEditText = item.findViewById(R.id.aniosEditText);
         mesesEditText = item.findViewById(R.id.mesesEditText);
+        parentescoSpinner = item.findViewById(R.id.parentescoSpinner);
         personasTableLayout = item.findViewById(R.id.personasTableLayout);
 
     }
@@ -498,7 +514,10 @@ public class MiembrosHogarFragment extends Fragment {
         else if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton &&
                 fechaNacimientoButton.getText().toString().trim().equals(getString(R.string.fechaSeleccione))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + "Botón fecha de Nacimiento");
-        } else {
+        }else if (((Values) parentescoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.parentescoJefeHogar));
+        }
+        else {
             cancel = false;
         }
 
@@ -542,9 +561,17 @@ public class MiembrosHogarFragment extends Fragment {
                 }
             }
         }
+
         return cancel;
     }
 
+    /**
+     * Metodo para contar el numero de personas en la tabla
+     */
+    public static int getCountTablaPersonas() {
+
+        return personasTableLayout.getChildCount();
+    }
 
     /**
      * Método que carga las preguntas de los controles de la aplicacion por ejemplo los spinner
@@ -553,6 +580,7 @@ public class MiembrosHogarFragment extends Fragment {
         tipoResidenteSpinner.setAdapter(PersonaPreguntas.getTipoResidenteAdapter(getActivity()));
         documentoSpinner.setAdapter(PersonaPreguntas.getControlTrabajoDocumentoAdapter(getActivity()));
         sexoSpinner.setAdapter(PersonaPreguntas.getSexoPersonaAdapter(getActivity()));
+        parentescoSpinner.setAdapter(PersonaPreguntas.getControlTrabajoParentescoAdapter(getActivity()));
 
     }
 
@@ -566,8 +594,6 @@ public class MiembrosHogarFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 tipoGestion = 1;
-                sexoSpinner.setEnabled(true);
-                aniosEditText.setEnabled(true);
                 limpiarCampos();
             }
         });
@@ -720,6 +746,23 @@ public class MiembrosHogarFragment extends Fragment {
                     }
                 });
 
+        parentescoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                int parentesco = Integer.valueOf(((Values) adapterView
+                        .getAdapter().getItem(i)).getKey());
+
+                if (parentesco == 1 && getCountTablaPersonas() >0){
+                    getAlert(getString(R.string.validacion_aviso),
+                            getString(R.string.mensajeJefeHogarMasUno));
+                    parentescoSpinner.setSelection(0);
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
     }
 
     /**
@@ -764,7 +807,7 @@ public class MiembrosHogarFragment extends Fragment {
         int genero = Integer.valueOf(((Values) sexoSpinner.getSelectedItem()).getKey());
         // Guardar nuevo registro
         if (tipoGestion == 1) {
-            final Persona persona = new Persona();
+            Persona persona = new Persona();
             persona.setIdvivienda(vivienda.getId());
             persona.setIdhogar(hogar.getId());
             persona.setIdresidente(Integer.valueOf(((Values) tipoResidenteSpinner.getSelectedItem()).getKey()));
@@ -773,6 +816,7 @@ public class MiembrosHogarFragment extends Fragment {
             persona.setNombres(nombresEditText.getText().toString().trim());
             persona.setApellidos(apellidosEditText.getText().toString().trim());
             persona.setSexo(Integer.valueOf(((Values) sexoSpinner.getSelectedItem()).getKey()));
+            persona.setIdparentesco(Integer.valueOf(((Values) parentescoSpinner.getSelectedItem()).getKey()));
 
             if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton) {
 
@@ -811,6 +855,7 @@ public class MiembrosHogarFragment extends Fragment {
                 persona.setIdparentesco(1);
 
             }
+
             Uri uri = PersonaDao.save(contentResolver, persona);
             String id = uri.getPathSegments().get(1);
             if (!id.equals("0")) {
@@ -828,6 +873,7 @@ public class MiembrosHogarFragment extends Fragment {
                 persona.setApellidos(apellidosEditText.getText().toString().trim());
                 persona.setIddocumentacion(Integer.parseInt(((Values) documentoSpinner.getSelectedItem()).getKey()));
                 persona.setCorreoelectronico(correoEditText.getText().toString().trim());
+                persona.setIdparentesco(Integer.valueOf(((Values) parentescoSpinner.getSelectedItem()).getKey()));
                 if (!TextUtils.isEmpty(cedulaEditText.getText().toString())) {
                     persona.setCi(cedulaEditText.getText().toString());
                 } else {
@@ -868,6 +914,7 @@ public class MiembrosHogarFragment extends Fragment {
                     personaNew.setNombres(persona.getNombres());
                     personaNew.setApellidos(persona.getApellidos());
                     personaNew.setSexo(genero);
+                    personaNew.setIdparentesco(persona.getIdparentesco());
                     if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton) {
 
                         personaNew.setTipoEdad(Global.FECHA_NACIMIENTO);
@@ -897,7 +944,6 @@ public class MiembrosHogarFragment extends Fragment {
                     PersonaDao.update(contentResolver, personaNew);
 
                 } else {
-
                     PersonaDao.updateCabezera(
                             contentResolver,
                             persona,

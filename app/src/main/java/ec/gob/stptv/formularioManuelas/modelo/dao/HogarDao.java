@@ -20,15 +20,13 @@ public class HogarDao extends Hogar{
     public static Uri save(ContentResolver cr, Hogar hogar) {
         ContentValues values = getValues(hogar);
         values.remove(COLUMNA_ID);
-        Uri id = cr.insert(FormularioManuelasProvider.CONTENT_URI_HOGAR, values);
-        return id;
+        return cr.insert(FormularioManuelasProvider.CONTENT_URI_HOGAR, values);
     }
 
     public static int update(ContentResolver cr, Hogar hogar) {
         ContentValues values = getValues(hogar);
         values.remove(COLUMNA_ID);
-        int result = cr.update(FormularioManuelasProvider.CONTENT_URI_HOGAR, values, whereById, new String[] { String.valueOf(hogar.getId())});
-        return result;
+        return cr.update(FormularioManuelasProvider.CONTENT_URI_HOGAR, values, whereById, new String[] { String.valueOf(hogar.getId())});
     }
 
     public static ArrayList<Hogar> getHogares(ContentResolver cr, String where, String[]  parametros, String orderBy) {
@@ -37,14 +35,14 @@ public class HogarDao extends Hogar{
                 columnas, where, parametros,
                 orderBy);
 
-        ArrayList<Hogar> hogares = new ArrayList<Hogar>();
-
-        if (result.moveToFirst())
-            do {
-                hogares.add(newHogar(result));
-            } while (result.moveToNext());
-
-        result.close();
+        ArrayList<Hogar> hogares = new ArrayList<>();
+        if (result != null) {
+            if (result.moveToFirst())
+                do {
+                    hogares.add(newHogar(result));
+                } while (result.moveToNext());
+            result.close();
+        }
         return hogares;
     }
 
@@ -56,17 +54,17 @@ public class HogarDao extends Hogar{
                 columnas, where, parametros, null);
 
         Hogar hogar = null;
+        if (result!= null){
+            if ((result.getCount() == 0) || !result.moveToFirst()) {
+                hogar = null;
 
-        if ((result.getCount() == 0) || !result.moveToFirst()) {
-            hogar = null;
-
-        } else {
-            if (result.moveToFirst()) {
-                hogar = newHogar(result);
+            } else {
+                if (result.moveToFirst()) {
+                    hogar = newHogar(result);
+                }
             }
+            result.close();
         }
-
-        result.close();
         return hogar;
     }
 }
