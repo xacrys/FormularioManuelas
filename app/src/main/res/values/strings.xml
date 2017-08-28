@@ -748,6 +748,11 @@
     <string name="errorDormitoriosMayorCuartos">El número de dormitorios no puede ser mayor al número de cuartos</string>
     <string name="errorAlumbradoCocina">Cocina con electricidad y tipo de alumbrado no corresponde</string>
     <string name="errorParentescoEdad">Relación de parentesco no corresponde a la diferencia de edad</string>
+    <string name="errorCarnetConadis">Tiene carné con discapacidad y no registra el porcentaje en ningún literal</string>
+    <string name="errorCarnetConadis2">Tiene carné con discapacidad y registra el porcentaje en más de un literal</string>
+    <string name="advertenciaServicioProteccion">Persona mayor a 3 años y asiste a CIBV o CNH</string>
+
+
 
     <!-- valores para descripciom -->
     <string name="formularioDatosEtiqueta1">Complete la información de:</string>
