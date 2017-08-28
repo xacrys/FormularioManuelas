@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco" >
+
+    <LinearLayout
+        android:id="@+id/pantallaNucleosLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <!-- Titulo de la seccion I -->
+
+        <!-- Contenedor 1 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <!-- Columna 1 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="5dp" >
+
+                        <EditText
+                            android:id="@+id/certificadoEditText"
+                            style="@style/respuestaEditText"
+                           android:layout_weight="1"
+                            android:enabled="false"
+                            android:textColor="@color/negro"
+                            android:textSize="20sp"
+                            android:hint="@string/certificado_numero"
+                            android:textStyle="bold" 
+                            android:maxLength="13"
+                            android:inputType="number" >
+                        </EditText>
+
+                        <Button
+                            android:id="@+id/actualizarCertificadoButton"
+                            style="@style/actionButton"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:drawableLeft="@android:drawable/ic_menu_camera"
+                            android:text="@string/menu_capturar" />
+
+                        <Button
+                            android:id="@+id/limpiarButton"
+                            style="@style/actionButton"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="10dp"
+                            android:drawableLeft="@android:drawable/ic_menu_revert" />
+                    </LinearLayout>
+                </LinearLayout>
+                
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp" >
+
+                        <EditText
+                            android:id="@+id/certificadoVerificarEditText"
+                            style="@style/respuestaEditText"
+                           android:layout_weight="1"
+                            android:enabled="false"
+                            android:textColor="@color/negro"
+                            android:textSize="20sp"
+                            android:hint="@string/certificado_numero_repeat"
+                            android:textStyle="bold" 
+                            android:maxLength="13"
+                            android:inputType="number" >
+                        </EditText>
+
+                        <Button
+                            android:id="@+id/actualizarCertificadoVerificarButton"
+                            style="@style/actionButton"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:drawableLeft="@android:drawable/ic_menu_camera"
+                            android:text="@string/menu_capturar" />
+
+                        <Button
+                            android:id="@+id/limpiarCertificadoVerificarButton"
+                            style="@style/actionButton"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="10dp"
+                            android:drawableLeft="@android:drawable/ic_menu_revert" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false" >
+
+                    <ImageView
+                        android:id="@+id/fotoViviendaImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/fotoVivienda"
+                        android:src="@drawable/ic_imagen_no_disponible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false" >
+
+                    <TextView
+                        android:layout_width="500dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/capturarFotoViviendaButton"
+                        style="@style/actionButton"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@android:drawable/ic_menu_camera"
+                        android:text="@string/menu_capturar_vivienda" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/finalizarEntrevistaButton"
+                    style="@style/actionButtonGreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:drawableLeft="@drawable/ic_menu_terminar"
+                    android:text="@string/menu_entrevista_efectiva" />
+                <TextView
+                    android:id="@+id/avisoEncuestaCompletaTextView"
+                        style="@style/seccionTextViewSubtitulo"
+                        android:background="#b0b0b0"
+                        android:layout_margin="10dp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/red"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="@string/finalizarEntrevista"
+                        android:drawableLeft="@android:drawable/ic_dialog_alert"/>
+            </LinearLayout>
+
+            <!-- FIN Contenedor  -->
+
+        </LinearLayout>
+
+        <!-- FIN Contenedor 1 -->
+
+
+        <!-- Contenedor 1 -->
+
+
+        <!-- Contenedor 2 -->
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,41 +1,64 @@
 package ec.gob.stptv.formularioManuelas.controlador.actividades;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.servicio.LocalizacionService;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.DpaManzanaDao;
+import ec.gob.stptv.formularioManuelas.modelo.dao.HogarDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.LocalidadDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.DpaManzana;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localidad;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Localizacion;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
@@ -43,7 +66,7 @@ import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvide
 /***
  * Autor:Christian Tintin
  */
-public class ViviendaFragment extends Fragment{
+public class ViviendaFragment extends Fragment {
 
     private Spinner tipoLevantamientoSpinner;
     private Spinner areaSpinner;
@@ -88,6 +111,18 @@ public class ViviendaFragment extends Fragment{
     private TabHost tabs;
     private static Vivienda vivienda;
     public boolean aplicaMalla = true;
+    private static boolean isEnabledObervacion = true;
+    private LinearLayout pantallaControlViendaLinearLayout;
+
+    //Atriutos para la captura de puntos GPS
+    private ArrayList<Localizacion> localizaciones = new ArrayList<>();
+    private int maxNumeroLocalizaciones = 50;
+    private Location location = null;
+    private ProgressReceiver progressReceiver;
+    private LocationManager locationManager = null;
+    private TextView latitudTextView;
+    private TextView longitudTextView;
+    private Button capturarPuntoGPSbutton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,7 +143,7 @@ public class ViviendaFragment extends Fragment{
             //usuario = (Usuario) extra.getSerializable("usuario");
 
             if (!(null == vivienda)) {
-                if(vivienda.getId() != 0){
+                if (vivienda.getId() != 0) {
                     this.llenarCamposVivienda();
                 /*vivienda.setFechaInicio(fechaYHoraInicio);
                 vivienda.setFechaRegistro(Utilitarios.getCurrentDate());
@@ -135,9 +170,77 @@ public class ViviendaFragment extends Fragment{
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Global.BROADCAST_ACTION_PROGRESS);
+        filter.addAction(Global.BROADCAST_ACTION_FIN);
+        progressReceiver = new ProgressReceiver();
+        getActivity().registerReceiver(progressReceiver, filter);
+
 
         tabs = getActivity().findViewById(android.R.id.tabhost);
         tabs.setup();
+
+        if (vivienda.getId() == 0) {
+            tabs.getTabWidget().getChildTabViewAt(1).setEnabled(false);
+            tabs.getTabWidget().getChildTabViewAt(2).setEnabled(false);
+            tabs.getTabWidget().getChildTabViewAt(3).setEnabled(false);
+            isEnabledObervacion = true;
+            getActivity().invalidateOptionsMenu();
+        } else {
+            if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                    && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor()) {
+                isEnabledObervacion = true;
+                Hogar hogar = HogarDao.getHogar(contentResolver, Hogar.whereById, new String[]{String.valueOf(vivienda.getId())});
+
+                if (hogar != null){
+                    if (hogar.getId() != 0) {
+                        tabs.getTabWidget().getChildTabViewAt(1).setEnabled(true);
+                        tabs.getTabWidget().getChildTabViewAt(2).setEnabled(true);
+                        tabs.getTabWidget().getChildTabViewAt(3).setEnabled(true);
+                    } else {
+                        tabs.getTabWidget().getChildTabViewAt(1).setEnabled(true);
+                        tabs.getTabWidget().getChildTabViewAt(2).setEnabled(false);
+                        tabs.getTabWidget().getChildTabViewAt(3).setEnabled(false);
+                    }
+                }else{
+                    tabs.getTabWidget().getChildTabViewAt(1).setEnabled(true);
+                    tabs.getTabWidget().getChildTabViewAt(2).setEnabled(false);
+                    tabs.getTabWidget().getChildTabViewAt(3).setEnabled(false);
+                }
+
+                getActivity().invalidateOptionsMenu();
+            } else {
+                if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                        && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
+                    Utilitarios.disableEnableViews(getActivity(), false, pantallaControlViendaLinearLayout);
+                    condicionOcupacionSpinner.setEnabled(false);
+                    tabs.getTabWidget().getChildTabViewAt(1).setEnabled(true);
+                    tabs.getTabWidget().getChildTabViewAt(2).setEnabled(true);
+                    tabs.getTabWidget().getChildTabViewAt(3).setEnabled(true);
+
+                    isEnabledObervacion = false;
+                    getActivity().invalidateOptionsMenu();
+                } else {
+                    if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                            && (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INFORMANTE_NO_CALIFICADO.getValor()
+                            || vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.NADIE_EN_CASA.getValor()
+                            || vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.RECHAZO.getValor())) {
+                        Utilitarios.disableEnableViews(getActivity(), false, pantallaControlViendaLinearLayout);
+                        condicionOcupacionSpinner.setEnabled(false);
+                        tabs.getTabWidget().getChildTabViewAt(1).setEnabled(false);
+                        tabs.getTabWidget().getChildTabViewAt(2).setEnabled(false);
+                        tabs.getTabWidget().getChildTabViewAt(3).setEnabled(false);
+
+                        isEnabledObervacion = false;
+                        getActivity().invalidateOptionsMenu();
+                    }
+                }
+            }
+        }
+
+        this.getLastLocation();
+
 
     }
 
@@ -185,6 +288,10 @@ public class ViviendaFragment extends Fragment{
         estadoParedSpinner = item.findViewById(R.id.estadoParedSpinner);
 
         guadarButton = item.findViewById(R.id.guardarButton);
+        pantallaControlViendaLinearLayout = item.findViewById(R.id.pantallaControlViendaLinearLayout);
+        latitudTextView = item.findViewById(R.id.latitudTextView);
+        longitudTextView = item.findViewById(R.id.longitudTextView);
+        capturarPuntoGPSbutton = item.findViewById(R.id.capturarPuntoGPSbutton);
 
     }
 
@@ -578,8 +685,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.canton));
-            cancel = true;
-            return cancel;
+            return  true;
         }
         if (((Values) parroquiaSpinner.getSelectedItem())
                 .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
@@ -749,7 +855,7 @@ public class ViviendaFragment extends Fragment{
 
         telefonoConvencionalEditText.setError(null);
         telefonoConvencionalEditText.clearFocus();
-        if (telefonoConvencionalEditText.getText().toString().length()>2 &&
+        if (telefonoConvencionalEditText.getText().toString().length() > 2 &&
                 !Utilitarios.validarCodigoRegion(telefonoConvencionalEditText.getText().toString()) &&
                 telefonoConvencionalEditText.getText().toString().length() == 9) {
             telefonoConvencionalEditText.setError(getString(R.string.errorCodigoRegionFijo));
@@ -777,7 +883,7 @@ public class ViviendaFragment extends Fragment{
             return true;
         }
         telefonoCelularEditText.clearFocus();
-        if (telefonoCelularEditText.getText().toString().length()>2 &&
+        if (telefonoCelularEditText.getText().toString().length() > 2 &&
                 !telefonoCelularEditText.getText().toString().substring(0, 2).equals("09") &&
                 telefonoCelularEditText.getText().toString().length() == 10
                 ) {
@@ -818,8 +924,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.materialTecho));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) materialPisoSpinner.getSelectedItem())
@@ -828,8 +933,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.materialPiso));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) materialParedesSpinner.getSelectedItem())
@@ -838,8 +942,7 @@ public class ViviendaFragment extends Fragment{
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
                             + getString(R.string.materialParedes));
-            cancel = true;
-            return cancel;
+            return true;
         }
 
         if (((Values) estadoTechoSpinner.getSelectedItem())
@@ -948,6 +1051,50 @@ public class ViviendaFragment extends Fragment{
             }
         });
 
+        capturarPuntoGPSbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+               /*if (location != null) {
+                    if (TextUtils.isEmpty(latitudTextView.getText()) && TextUtils.isEmpty(latitudTextView.getText())) {
+                        latitudTextView.setText("" + location.getLatitude());
+                        longitudTextView.setText("" + location.getLongitude());
+                        localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
+                    }
+                } else {
+                    if (locationManager != null) {
+                        Location _locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                        if (_locationGPS != null) {
+                            latitudTextView.setText("" + _locationGPS.getLatitude());
+                            longitudTextView.setText("" + _locationGPS.getLongitude());
+                            localizaciones.add(new Localizacion(0, 0, _locationGPS.getLatitude(), _locationGPS.getLongitude(), _locationGPS.getAltitude(), _locationGPS.getAccuracy(), _locationGPS.getProvider()));
+                        }
+                        else
+                        {
+                            Location _locationNet = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                            if (_locationNet != null) {
+                                latitudTextView.setText("" + _locationNet.getLatitude());
+                                longitudTextView.setText("" + _locationNet.getLongitude());
+                                localizaciones.add(new Localizacion(0, 0, _locationNet.getLatitude(), _locationNet.getLongitude(), _locationNet.getAltitude(), _locationNet.getAccuracy(), _locationNet.getProvider()));
+                            }
+                            else
+                            {
+                                Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), "Buscando punto GPS",	Toast.LENGTH_LONG).show();
+                    }
+                }*/
+            }
+        });
+
+
+
         calle1EditText.addTextChangedListener(Utilitarios
                 .clearSpaceEditText(calle1EditText));
 
@@ -968,6 +1115,8 @@ public class ViviendaFragment extends Fragment{
 
         telefonoCelularEditText.addTextChangedListener
                 (Utilitarios.numeroCeroEditText(telefonoCelularEditText));
+
+
 
     }
 
@@ -1404,6 +1553,97 @@ public class ViviendaFragment extends Fragment{
      */
     public static Vivienda getVivienda() {
         return vivienda;
+    }
+
+    /**
+     * Habilita y deshabilita el dialogo de observaciones
+     * @return
+     */
+    public static boolean isEnabledObervaciones() {
+        return isEnabledObervacion ;
+    }
+
+    /**
+     *está destinado a recibir y responder ante eventos globales generados por el sistema,
+     */
+    public class ProgressReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Global.BROADCAST_ACTION_PROGRESS)) {
+
+
+                location = intent.getParcelableExtra("location");
+
+                if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
+                    localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
+                }
+
+                if ((TextUtils.isEmpty(latitudTextView.getText()) && TextUtils.isEmpty(latitudTextView.getText())) ) {
+                    latitudTextView.setText("" + location.getLatitude());
+                    longitudTextView.setText("" + location.getLongitude());
+                } else {
+                    if (location.getProvider().equals(LocationManager.GPS_PROVIDER)	&& vivienda.getId() == 0) {
+                        Utilitarios.logInfo(ViviendaFragment.class.getName(), "Longitud y Latitud cambiadas por el proveedor gps");
+                        latitudTextView.setText("" + location.getLatitude());
+                        longitudTextView.setText("" + location.getLongitude());
+                    }
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Cpatura puntos
+     */
+    private void getLastLocation() {
+        //permiso del usuario para la localizacion
+        /*if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        }
+        if (location != null) {
+            if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
+                localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
+                latitudTextView.setText("" + location.getLatitude());
+                longitudTextView.setText("" + location.getLongitude());
+            }
+        } else {
+            if (locationManager != null) {
+
+                Location _locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                if (_locationGPS != null) {
+                    if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
+                        localizaciones.add(new Localizacion(0, 0, _locationGPS.getLatitude(), _locationGPS.getLongitude(), _locationGPS.getAltitude(), _locationGPS.getAccuracy(), _locationGPS.getProvider()));
+                        latitudTextView.setText("" + location.getLatitude());
+                        longitudTextView.setText("" + location.getLongitude());
+                    }
+                }
+                else
+                {
+                    Location _locationNet = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                    if (_locationNet != null) {
+                        if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
+                            localizaciones.add(new Localizacion(0, 0, _locationNet.getLatitude(), _locationNet.getLongitude(), _locationNet.getAltitude(), _locationNet.getAccuracy(), _locationNet.getProvider()));
+                            latitudTextView.setText("" + location.getLatitude());
+                            longitudTextView.setText("" + location.getLongitude());
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+            else
+            {
+                Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
+            }
+        }*/
     }
 
 

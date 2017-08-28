@@ -1076,4 +1076,21 @@ public class MiembrosHogarFragment extends Fragment {
             }
         }
     };
+
+    /**
+     * Metodo para validar la informacion completa de las personas
+     */
+    public static boolean validarInformacionCompletaPersona() {
+
+        boolean isValidate = true;
+        for (int i = 0; i < personasTableLayout.getChildCount(); i++) {
+
+            TableRow row = (TableRow) personasTableLayout.getChildAt(i);
+            Persona _persona = (Persona) row.getTag();
+            if (_persona.getInformacioncompleta() == Global.INFORMACION_INCOMPLETA) {
+                isValidate = false;
+            }
+        }
+        return isValidate;
+    }
 }

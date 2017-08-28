@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/seleccionRespuesta"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp" >
+
+            <RadioGroup
+                android:id="@+id/controlEntrevistaRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical" >
+
+               <!--   <RadioButton
+                    android:id="@+id/controlEntrevistaIncompletoRadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seccion7Pregunta1Opcion2" />-->
+
+                  <RadioButton
+                    android:id="@+id/controlEntrevistaRechazadoRadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/controlEntrevistasOpcion2" />
+                  
+                   <RadioButton
+                    android:id="@+id/controlEntrevistaNadieEnCasaRadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/controlEntrevistasOpcion3" />
+                   
+                    <RadioButton
+                    android:id="@+id/controlEntrevistaInformanteNoCalificadoRadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/controlEntrevistasOpcion4" />
+              
+            </RadioGroup>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp" >
+
+            <Button
+                android:id="@+id/guardarObservacionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@android:drawable/ic_menu_save"
+                android:text="@string/menu_guardar" />
+
+            <Button
+                android:id="@+id/cerrarObservacionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+                android:text="@string/menu_cancelar" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

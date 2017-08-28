@@ -34,7 +34,13 @@ public class Global {
      * Cadena para el servicio de localizacion
      */
     public static final String BROADCAST_ACTION_PROGRESS =
-            "ec.gob.institucion.nombreAplicacion.action.PROGRESS";
+            "ec.gob.stptv.formularioManuelas.action.PROGRESS";
+
+    /**
+     * Cadena para el servicio de localizacion
+     */
+    public static final String BROADCAST_ACTION_FIN =
+            "ec.gob.stptv.formularioManuelas.action.FIN";
 
     /**
      * Tiempo mínimo entre actualizaciones, en milisegundos.

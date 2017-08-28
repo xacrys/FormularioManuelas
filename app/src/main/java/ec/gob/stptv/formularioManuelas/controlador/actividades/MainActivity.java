@@ -27,11 +27,13 @@ import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
 public class MainActivity extends Activity {
 
-    private ContentResolver cr;
+    private ContentResolver contentResolver;
+    TabHost tabs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,9 +50,10 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
 
-        cr = getContentResolver();
+        contentResolver = getContentResolver();
 
-        this.getView();
+        this.obtenerVistas();
+        //this.realizarAcciones();
     }
 
     @Override
@@ -104,8 +107,8 @@ public class MainActivity extends Activity {
             public void onClick(DialogInterface dialog, int id) {
 
 
-                /*vivienda.setNumerovisitas(vivienda.getNumerovisitas() + 1);
-                int filasAfectadas = ViviendaDao.update(cr, vivienda);
+                vivienda.setNumerovisitas(vivienda.getNumerovisitas() + 1);
+                int filasAfectadas = ViviendaDao.update(contentResolver, vivienda);
 
                 if(vivienda.getNumerovisitas() < Global.NUMERO_VISITAS_MAXIMO)
                 {
@@ -115,18 +118,16 @@ public class MainActivity extends Activity {
                 }
 
 
-                if(vivienda.getVisitas() == SeccionIPreguntas.NUMERO_VISITAS_MAXIMO)
+                if(vivienda.getNumerovisitas() == Global.NUMERO_VISITAS_MAXIMO)
                 {
-                    if(vivienda.getCondicionOcupacion() == SeccionIIPreguntas.CondicionOcupacion.OCUPADA.getValor()
-                            && vivienda.getControlEntrevista() == SeccionVIIPreguntas.ControlEntrevista.INCOMPLETA.getValor()
-                            )
-                    {
-
-                        vivienda.setVisitas(2);
-                        filasAfectadas = ViviendaDao.update(cr, vivienda);
+                    if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                            && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor()
+                            ) {
+                        vivienda.setNumerovisitas(2);
+                        filasAfectadas = ViviendaDao.update(contentResolver, vivienda);
                         getEditControlEntrevista(vivienda);
                     }
-                }*/
+                }
 
             }
         });
@@ -136,11 +137,41 @@ public class MainActivity extends Activity {
             }
         });
 
-        AlertDialog dialog = builder.create();
+        return builder.create();
 
-        return dialog;
     }
 
+    /**
+     * Métdo para llamar al dialogo de control de entrevsita cuando ya es tercera visita
+     * @param vivienda
+     */
+    private void getEditControlEntrevista(Vivienda vivienda) {
+
+        if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()) {
+            FragmentManager ft = getFragmentManager();
+            ControlEntrevistaDialog controlEntrevistaDialog = ControlEntrevistaDialog
+                    .newInstance(ViviendaFragment.getVivienda());
+
+            controlEntrevistaDialog
+                    .show(ft, "fragment_edit_control_entrevista");
+        } else {
+            finish();
+        }
+
+    }
+
+    /**
+     * Métdo para llamar al dialogo de visitas
+     * @param vivienda
+     */
+    private void getEditVisitasObservacion(Vivienda vivienda) {
+        FragmentManager fm = getFragmentManager();
+        ObservacionVisitasDialog observacionVisitasDialog = new ObservacionVisitasDialog();
+        Bundle parametros = new Bundle();
+        parametros.putSerializable("vivienda", ViviendaFragment.getVivienda());
+        observacionVisitasDialog.setArguments(parametros);
+        observacionVisitasDialog.show(fm, "fragment_observaciones");
+    }
 
 
     /**
@@ -193,10 +224,13 @@ public class MainActivity extends Activity {
 
     }
 
-    public void getView() {
+    /**
+     * Obtiene los tabs de la actividad
+     */
+    public void obtenerVistas() {
         Resources res = getResources();
 
-        TabHost tabs = findViewById(android.R.id.tabhost);
+        tabs = findViewById(android.R.id.tabhost);
         tabs.setup();
 
         TabHost.TabSpec spec = tabs.newTabSpec("mitab1");
@@ -218,16 +252,92 @@ public class MainActivity extends Activity {
                 res.getDrawable(android.R.drawable.ic_dialog_map));
         tabs.addTab(spec);
 
+        spec = tabs.newTabSpec("mitab4");
+        spec.setContent(R.id.tab4);
+        spec.setIndicator(getString(R.string.seccionCertificadoImagen),
+                res.getDrawable(android.R.drawable.ic_dialog_map));
+        tabs.addTab(spec);
 
         tabs.setCurrentTab(0);
+    }
 
+    /**
+     * Método para realizar las acciones
+     */
+    private void realizarAcciones() {
+        tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+
+                int currentTab = tabs.getCurrentTab();
+
+                switch (currentTab) {
+                    case 1:
+                        Vivienda vivienda = ViviendaFragment.getVivienda();
+                        if (vivienda.getId() ==0){
+                                getAlert("Aviso", "Debe llenar los campos de la sección vivienda");
+                                tabs.setCurrentTab(0);
+                        }
+                        break;
+
+                    case 2:
+                        Hogar hogar = HogarFragment.getHogar();
+                        if (hogar.getId() == 0) {
+                            getAlert("Aviso", "Debe llenar los campos de la sección hogar");
+                            tabs.setCurrentTab(1);
+                        }
+                        break;
+
+                    case 3:
+
+                        if (MiembrosHogarFragment.getCountTablaPersonas() > 0) {
+
+                            if (!MiembrosHogarFragment
+                                    .validarInformacionCompletaPersona()) {
+                                tabs.setCurrentTab(2);
+                                getAlert("Aviso",
+                                        "Informacion incompleta de personas");
+                                return;
+                            }
+
+                        } else {
+                            tabs.setCurrentTab(2);
+                            getAlert("Aviso", "Debe existir al menos un miembro del hogar");
+                            return;
+                        }
+
+                        break;
+                }
+            }
+        });
+    }
+
+    /**
+     * MUestra mensjaes de alerta
+     * @param title
+     * @param message
+     */
+    private void getAlert(String title, String message) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(message).setTitle(title);
+
+        builder.setPositiveButton("Aceptar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
+
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
-        //menu.findItem(R.id.menu_observacion).setEnabled(ViviendaFragment.isEnabledObervaciones());
-
+        menu.findItem(R.id.menu_observacion).setEnabled(ViviendaFragment.isEnabledObervaciones());
         return super.onPrepareOptionsMenu(menu);
     }
 

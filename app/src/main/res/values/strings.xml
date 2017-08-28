@@ -33,6 +33,7 @@
     <string name="seccionVivienda">Sección Vivienda</string>
     <string name="seccionHogar">Sección Hogar</string>
     <string name="seccionMiembrosHogar">Sección Miembros del Hogar</string>
+    <string name="seccionCertificadoImagen">Sección Certificado e Imagen</string>
     <string name="seleccionRespuesta">Seleccione&#8230;</string>
     <string name="menu_salir">Salir</string>
     <string name="menu_buscar">Buscar/Actualizar</string>
@@ -45,6 +46,16 @@
     <string name="listaPersonas">Lista de Personas</string>
     <string name="mensajeBotonVisitar">Abrir</string>
     <string name="fechaSeleccione">Seleccione</string>
+    <string name="menu_cancelar">Cancelar</string>
+    <string name="certificado_numero">N° Certificado</string>
+    <string name="menu_capturar">Capturar</string>
+    <string name="menu_actualizar_certificado">Capturar Nº certificado</string>
+    <string name="certificado_numero_repeat">Repetir el Nº Certificado </string>
+    <string name="menu_capturar_vivienda">Vivienda</string>
+    <string name="menu_entrevista_efectiva">Guardar - Entrevista Completa Efectiva</string>
+    <string name="finalizarEntrevista">Para finalizar la entrevista como completa usted debe dar clic en el botón de color naranja *Guardar - Entrevista Completa Efectiva*</string>
+    <string name="fotoVivienda"> Foto de la vivienda</string>
+
 
 
 
@@ -642,6 +653,10 @@
     <string name="mvServicioDucha">El servicio de ducha con el que cuenta el hogar no corresponde a tipo de vivienda.</string>
     <!-- FIN Mensajes de validacion Seccion III y IV -->
 
+    <!-- Mensajes de validacion Seccion VI -->
+    <string name="mv_control_entrevista">Seleccione el estado de control de entrevistas efectivas</string>
+
+    <!-- Fin de validacion Seccion VI-->
 
     <!-- Mensajes de alerta tipo dos  -->
     <string name="mvTipoViviendaUbicacionAguaAlerta">Departamento y ubicación de agua no corresponde, coloque en observación.</string>

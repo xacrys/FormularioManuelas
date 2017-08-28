@@ -20,6 +20,7 @@ import ec.gob.stptv.formularioManuelas.modelo.bd.BaseDatosHelper;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.DpaManzana;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Imagen;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localidad;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localizacion;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
@@ -50,6 +51,8 @@ public class FormularioManuelasProvider extends ContentProvider {
     private static final String uri_localizacion = ESQUEMA + AUTORIDAD + "/localizaciones";
     private static final String uri_dpamanzana = ESQUEMA + AUTORIDAD + "/dpamanzanas";
     private static final String uri_localidad = ESQUEMA + AUTORIDAD	+ "/localidades";
+    private static final String uri_imagen = ESQUEMA + AUTORIDAD + "/imagenes";
+
 
     public static final Uri CONTENT_URI_VIVIENDA = Uri.parse(uri_vivienda);
     public static final Uri CONTENT_URI_HOGAR = Uri.parse(uri_hogar);
@@ -59,6 +62,7 @@ public class FormularioManuelasProvider extends ContentProvider {
     public static final Uri CONTENT_URI_LOCALIZACION = Uri.parse(uri_localizacion);
     public static final Uri CONTENT_URI_DPAMANZANA = Uri.parse(uri_dpamanzana);
     public static final Uri CONTENT_URI_LOCALIDAD = Uri.parse(uri_localidad);
+    public static final Uri CONTENT_URI_IMAGEN = Uri.parse(uri_imagen);
 
 
 
@@ -91,6 +95,9 @@ public class FormularioManuelasProvider extends ContentProvider {
 
     private static final int LOCALIDAD = 15;
     private static final int LOCALIDAD_ID = 16;
+
+    private static final int IMAGEN = 17;
+    private static final int IMAGEN_ID = 18;
 
 
     // Inicializamos el UriMatcher
@@ -127,7 +134,7 @@ public class FormularioManuelasProvider extends ContentProvider {
      * @return
      */
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
         int match = uriMatcher.match(uri);
         switch (match) {
             //Lista de registros como resultado
@@ -169,7 +176,7 @@ public class FormularioManuelasProvider extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection,
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         // Construye un nuevo generador de consultas
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
@@ -206,6 +213,10 @@ public class FormularioManuelasProvider extends ContentProvider {
             case LOCALIDAD:
                 qb.setTables(Localidad.NOMBRE_TABLA);
                 break;
+            case IMAGEN:
+                qb.setTables(Imagen.NOMBRE_TABLA);
+                break;
+
 
             default:
                 // Si el URI no coincide con ninguno de los patrones conocidos, lanza una excepcion
@@ -244,7 +255,7 @@ public class FormularioManuelasProvider extends ContentProvider {
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
         long id;
         Uri nuevaUri = null;
         try {
@@ -336,6 +347,21 @@ public class FormularioManuelasProvider extends ContentProvider {
                     }
                     break;
 
+                case IMAGEN:
+
+                    id = dataBase.insertOrThrow(Imagen.NOMBRE_TABLA, null, values);
+                    if (id > 0) {
+
+                        Utilitarios.logInfo(
+                                FormularioManuelasProvider.class.getName(),
+                                "Registro insertado: Tabla: " + Imagen.NOMBRE_TABLA
+                                        + " Id: " + id + " Valores: "
+                                        + values.toString());
+                        nuevaUri = ContentUris.withAppendedId(CONTENT_URI_IMAGEN,
+                                id);
+                    }
+                    break;
+
                 default:
                     throw new IllegalArgumentException("URI desconocida " + uri);
             }
@@ -416,6 +442,17 @@ public class FormularioManuelasProvider extends ContentProvider {
                             "Registro actualizado: Tabla: " + Localizacion.NOMBRE_TABLA
                                     + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
                                     + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
+                }
+                break;
+
+            case IMAGEN:
+                filasAfectadas = dataBase.update(Imagen.NOMBRE_TABLA, values,
+                        selection, selectionArgs);
+                if (filasAfectadas > 0) {
+                    Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
+                            "Registro actualizado: Tabla: " + Imagen.NOMBRE_TABLA
+                                    + " Id: " + selectionArgs[0] + " Valores: "
+                                    + values.toString());
                 }
                 break;
         }

@@ -65,11 +65,12 @@ public class Vivienda implements Serializable {
     private String fechasincronizacion;
     private Integer estadosincronizacion;
     private String observacion;
+    private String certificado;
 
     //para sincronizar
     private Hogar hogar;
-    private ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
-    private ArrayList<Localizacion> listaLocalizacion = new ArrayList<Localizacion>();
+    private ArrayList<Persona> listaPersonas = new ArrayList<>();
+    private ArrayList<Localizacion> listaLocalizacion = new ArrayList<>();
     private String mensaje;
 
 
@@ -130,6 +131,7 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_FECHASINCRONIZACION = "fechasincronizacion";
     public final static String COLUMNA_ESTADOSINCRONIZACION = "estadosincronizacion";
     public final static String COLUMNA_OBSERVACION = "observacion";
+    public final static String COLUMNA_CERTIFICADO = "certificado";
 
 
     //crear un string con las columnas de la tabla
@@ -186,7 +188,8 @@ public class Vivienda implements Serializable {
             COLUMNA_FECHAFIN,
             COLUMNA_FECHASINCRONIZACION,
             COLUMNA_ESTADOSINCRONIZACION,
-            COLUMNA_OBSERVACION
+            COLUMNA_OBSERVACION,
+            COLUMNA_CERTIFICADO
     };
 
     //consultas
@@ -265,6 +268,7 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_FECHAFIN, vivienda.getFechafin());
         values.put(Vivienda.COLUMNA_ESTADOSINCRONIZACION, vivienda.getEstadosincronizacion());
         values.put(Vivienda.COLUMNA_OBSERVACION, vivienda.getObservacion());
+        values.put(Vivienda.COLUMNA_CERTIFICADO, vivienda.getCertificado());
 
         return values;
     }
@@ -329,6 +333,7 @@ public class Vivienda implements Serializable {
         vivienda.setFechasincronizacion(result.getString(result.getColumnIndex(COLUMNA_FECHASINCRONIZACION)));
         vivienda.setEstadosincronizacion(result.getInt(result.getColumnIndex(COLUMNA_ESTADOSINCRONIZACION)));
         vivienda.setObservacion(result.getString(result.getColumnIndex(COLUMNA_OBSERVACION)));
+        vivienda.setCertificado(result.getString(result.getColumnIndex(COLUMNA_CERTIFICADO)));
         return vivienda;
     }
 
@@ -769,5 +774,14 @@ public class Vivienda implements Serializable {
 
     public void setDivision(String division) {
         this.division = division;
+    }
+
+
+    public String getCertificado() {
+        return certificado;
+    }
+
+    public void setCertificado(String certificado) {
+        this.certificado = certificado;
     }
 }
