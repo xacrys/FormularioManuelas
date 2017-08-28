@@ -19,15 +19,13 @@ public class PersonaDao extends Persona{
     public static Uri save(ContentResolver cr, Persona persona) {
         ContentValues values = getValues(persona);
         values.remove(COLUMNA_ID);
-        Uri id = cr.insert(FormularioManuelasProvider.CONTENT_URI_PERSONA, values);
-        return id;
+        return cr.insert(FormularioManuelasProvider.CONTENT_URI_PERSONA, values);
     }
 
     public static int update(ContentResolver cr, Persona persona) {
         ContentValues values = getValues(persona);
         values.remove(COLUMNA_ID);
-        int result = cr.update(FormularioManuelasProvider.CONTENT_URI_PERSONA, values, whereById, new String[] { String.valueOf(persona.getId()) });
-        return result;
+        return cr.update(FormularioManuelasProvider.CONTENT_URI_PERSONA, values, whereById, new String[] { String.valueOf(persona.getId()) });
     }
     public static int delete(ContentResolver cr, Persona persona) {
         int filaEliminada;
@@ -55,10 +53,10 @@ public class PersonaDao extends Persona{
         values.put(COLUMNA_SEXO, persona.getSexo());
         values.put(COLUMNA_EDADANIO, persona.getEdadanio());
         values.put(COLUMNA_EDADMES, persona.getEdadmes());
+        values.put(COLUMNA_IDPARENTESCO, persona.getIdparentesco());
 
-        int result = cr.update(FormularioManuelasProvider.CONTENT_URI_PERSONA,
+        return cr.update(FormularioManuelasProvider.CONTENT_URI_PERSONA,
                 values, whereById, selectionArgs);
-        return result;
     }
 
     public static ArrayList<Persona> getPersonas(ContentResolver cr, String where, String[]  parametros, String orderBy) {
@@ -68,12 +66,14 @@ public class PersonaDao extends Persona{
 
         ArrayList<Persona> personas = new ArrayList<>();
 
-        if (result.moveToFirst())
-            do {
-                personas.add(newPersona(result));
-            } while (result.moveToNext());
-
-        result.close();
+        if (result!= null){
+            if (result.moveToFirst())
+                do {
+                    personas.add(newPersona(result));
+                }
+                while (result.moveToNext());
+            result.close();
+        }
         return personas;
     }
 
@@ -84,19 +84,19 @@ public class PersonaDao extends Persona{
                 columnas, where, id, null);
 
         Persona persona = null;
+        if (result != null) {
+            if ((result.getCount() == 0) || !result.moveToFirst()) {
+                persona = null;
 
-        if ((result.getCount() == 0) || !result.moveToFirst()) {
-            persona = null;
+            } else {
+                if (result.moveToFirst()) {
 
-        } else {
-            if (result.moveToFirst()) {
+                    persona = newPersona(result);
 
-                persona = newPersona(result);
-
+                }
             }
+            result.close();
         }
-
-        result.close();
         return persona;
     }
 
@@ -105,7 +105,7 @@ public class PersonaDao extends Persona{
      * @param cr
      * @param viviendaId
      */
-    public static void ordenar(ContentResolver cr, int viviendaId) {
+    private static void ordenar(ContentResolver cr, int viviendaId) {
 
         ArrayList<Persona> personas = getPersonas(cr, Persona.whereByViviendaId, new String[] { String.valueOf(viviendaId) }, Persona.COLUMNA_ORDEN);
 

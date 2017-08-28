@@ -19,16 +19,16 @@ import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvide
 public class ViviendaDao  extends Vivienda{
 
     public static Uri save(ContentResolver cr, Vivienda vivienda) {
-        Uri id = cr.insert(FormularioManuelasProvider.CONTENT_URI_VIVIENDA, getValues(vivienda));
-        return id;
+        return cr.insert(FormularioManuelasProvider.CONTENT_URI_VIVIENDA, getValues(vivienda));
+
     }
 
     public static int update(ContentResolver cr, Vivienda vivienda) {
         ContentValues values = getValues(vivienda);
         values.remove(COLUMNA_ID);
 
-        int result = cr.update(FormularioManuelasProvider.CONTENT_URI_VIVIENDA, values, whereById, new String[] { String.valueOf(vivienda.getId()) });
-        return result;
+        return cr.update(FormularioManuelasProvider.CONTENT_URI_VIVIENDA, values, whereById, new String[] { String.valueOf(vivienda.getId()) });
+
     }
 
     public static int getUltimoRegistro(ContentResolver cr, Usuario usuario) {
@@ -38,23 +38,25 @@ public class ViviendaDao  extends Vivienda{
                         new String[] { "ifnull(max(CAST(id as integer)),0)" },
                         null, null, null);
 
-        if ((result.getCount() == 0) || !result.moveToFirst()) {
+        if (result != null){
+            if ((result.getCount() == 0) || !result.moveToFirst()) {
 
-            ultimaVivienda = 0;
+                ultimaVivienda = 0;
 
-        } else {
-            if (result.moveToFirst()) {
+            } else {
+                if (result.moveToFirst()) {
 
-                Utilitarios.logInfo(ViviendaDao.class.getName(), "getUltimoRegistro de Tabla Vivienda");
+                    Utilitarios.logInfo(ViviendaDao.class.getName(), "getUltimoRegistro de Tabla Vivienda");
 
-                ultimaVivienda = result.getInt(0);
+                    ultimaVivienda = result.getInt(0);
+                }
             }
+            result.close();
         }
-        result.close();
 
-        /**
-         * Si ultimaVivienda == 0, busca el maxVivCodigo que trajo del servidor para empezar desde este id
-         */
+
+        //Si ultimaVivienda == 0, busca el maxVivCodigo que trajo del servidor para empezar desde este id
+
         if(ultimaVivienda == 0)
         {
             /*Cursor cursor = cr.query(FormularioManuelasProvider.CONTENT_URI_USUARIO,
@@ -97,14 +99,14 @@ public class ViviendaDao  extends Vivienda{
                 columnas, where, parametros,
                 orderBy);
 
-        ArrayList<Vivienda> viviendas = new ArrayList<Vivienda>();
-
-        if (result.moveToFirst())
-            do {
-                viviendas.add(newVivienda(result));
-            } while (result.moveToNext());
-
-        result.close();
+        ArrayList<Vivienda> viviendas = new ArrayList<>();
+        if (result!= null){
+            if (result.moveToFirst())
+                do {
+                    viviendas.add(newVivienda(result));
+                } while (result.moveToNext());
+            result.close();
+        }
         return viviendas;
     }
 }

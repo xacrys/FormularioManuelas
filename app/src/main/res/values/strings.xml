@@ -733,6 +733,8 @@
     <string name="seccion5MensajeDiscapacidad">No hay registro en discapacidad (Prg. 18)</string>
     <string name="seccion5MensajeCarnetConadis">Tiene discapacidad y no responde P19</string>
     <string name="seccion5MensajePorcentajeConadis">Tiene carnet de discapacidad y no hay dato en porcentaje (Prg. 19)</string>
+    <string name="mensajeJefeHogarMasUno">No puede existir más de un Jefe de Hogar</string>
+
 
     <!-- fin Validaciones formulario para todas las personas -->
 

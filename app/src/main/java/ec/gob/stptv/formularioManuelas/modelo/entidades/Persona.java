@@ -464,7 +464,7 @@ public class Persona implements Serializable {
 		parentesco.add(new Values("10", contex.getString(R.string.controlTrabajoParentescoJefeHogarOpcion10)));
 		parentesco.add(new Values("11", contex.getString(R.string.controlTrabajoParentescoJefeHogarOpcion11)));
 		parentesco.add(new Values("12", contex.getString(R.string.controlTrabajoParentescoJefeHogarOpcion12)));
-		parentesco.add(new Values("12", contex.getString(R.string.controlTrabajoParentescoJefeHogarOpcion13)));
+		parentesco.add(new Values("13", contex.getString(R.string.controlTrabajoParentescoJefeHogarOpcion13)));
 
 		int posicion = Utilitarios.getPosicionByKey(
 				parentesco, String.valueOf(idparentesco));
