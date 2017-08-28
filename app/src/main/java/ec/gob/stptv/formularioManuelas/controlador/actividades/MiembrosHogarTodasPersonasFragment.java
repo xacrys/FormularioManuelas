@@ -130,43 +130,42 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         try {
             persona = (Persona) getArguments().getSerializable("persona");
             //se llena las etiquetas del encabezado
-            if(persona!=null)
-            {
-            nombresCompletosTextView.setText(persona.getNombresCompletos());
-            edadAniosTextView.setText(String.valueOf(persona.getEdadCompleto()));
-            if (persona!= null && persona.getEdadanio() < 5) {
-                infEdadMesesTextView.setVisibility(View.VISIBLE);
-                edadMesesTextView.setText(String.valueOf(persona.getEdadmes()));
-                etniaSpinner.setSelection(0);
-                etniaSpinner.setEnabled(false);
-            }
-            if(persona!= null && persona.getEdadanio()<12){
-                estadoCivilSpinner.setSelection(0);
-                estadoCivilSpinner.setEnabled(false);
-            }
-            if(persona!= null && persona.getEdadanio()<15){
-                seguroSocial1Spinner.setSelection(0);
-                seguroSocial1Spinner.setEnabled(false);
-                seguroSocial2Spinner.setSelection(0);
-                seguroSocial2Spinner.setEnabled(false);
-            }
-            sexoTextView.setText(String.valueOf(persona.getGeneroCompleto()));
-            //que se visualice dependiendo la edad
-            //que quede quemado 'NO'cuando no hay madres
-            if (codigosMadres.size() == 1) {
-                viveMadreHogarRadioGroup
-                        .check(R.id.viveMadreHogarOpcion2RadioButton);
-            }
-            if (persona.getEdadanio() < Global.EDAD_18ANIOS) {
-                viveMadreHogarRadioGroup
-                        .setVisibility(View.VISIBLE);
-            } else {
-                viveMadreHogarRadioGroup
-                        .setVisibility(View.INVISIBLE);
-            }
+            if (persona != null) {
+                nombresCompletosTextView.setText(persona.getNombresCompletos());
+                edadAniosTextView.setText(String.valueOf(persona.getEdadCompleto()));
+                if (persona != null && persona.getEdadanio() < 5) {
+                    infEdadMesesTextView.setVisibility(View.VISIBLE);
+                    edadMesesTextView.setText(String.valueOf(persona.getEdadmes()));
+                    etniaSpinner.setSelection(0);
+                    etniaSpinner.setEnabled(false);
+                }
+                if (persona != null && persona.getEdadanio() < 12) {
+                    estadoCivilSpinner.setSelection(0);
+                    estadoCivilSpinner.setEnabled(false);
+                }
+                if (persona != null && persona.getEdadanio() < 15) {
+                    seguroSocial1Spinner.setSelection(0);
+                    seguroSocial1Spinner.setEnabled(false);
+                    seguroSocial2Spinner.setSelection(0);
+                    seguroSocial2Spinner.setEnabled(false);
+                }
+                sexoTextView.setText(String.valueOf(persona.getGeneroCompleto()));
+                //que se visualice dependiendo la edad
+                //que quede quemado 'NO'cuando no hay madres
+                if (codigosMadres.size() == 1) {
+                    viveMadreHogarRadioGroup
+                            .check(R.id.viveMadreHogarOpcion2RadioButton);
+                }
+                if (persona.getEdadanio() < Global.EDAD_18ANIOS) {
+                    viveMadreHogarRadioGroup
+                            .setVisibility(View.VISIBLE);
+                } else {
+                    viveMadreHogarRadioGroup
+                            .setVisibility(View.INVISIBLE);
+                }
 
 
-            this.llenarCamposMiembrosHogar();
+                this.llenarCamposMiembrosHogar();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1031,7 +1030,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         }
 
 
-
         discapacidadRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
@@ -1140,6 +1138,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     }
                     enfermedadCatastroficaSpinner.setSelection(0);
                     enfermedadCatastroficaSpinner.setEnabled(false);
+                } else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 2 ||
+                        Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 3) {
+                    enfermedadCatastroficaSpinner.setEnabled(false);
                 } else {
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
@@ -1157,7 +1158,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         seguroSocial1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(!((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))){
+                if (!((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
                     seguroSocial2Spinner.setClickable(true);
                 }
                 if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial2Spinner.getSelectedItem()).getKey())
@@ -1192,7 +1193,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         seguroSalud1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(!((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))){
+                if (!((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
                     seguroSalud2Spinner.setClickable(true);
                 }
                 if (((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSalud2Spinner.getSelectedItem()).getKey())
@@ -1228,11 +1229,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadIntelectualRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                if (discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton) {
+                if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+                        discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton) {
                     porcentajeIntelectualEditText.setEnabled(true);
                 } else {
                     porcentajeIntelectualEditText.setEnabled(false);
                     porcentajeIntelectualEditText.setText("");
+                    porcentajeIntelectualEditText.setError(null);
                 }
             }
         });
@@ -1240,11 +1243,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadFisicaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                if (discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton) {
+                if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+                        discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton) {
                     porcentajeFisicaEditText.setEnabled(true);
                 } else {
                     porcentajeFisicaEditText.setEnabled(false);
                     porcentajeFisicaEditText.setText("");
+                    porcentajeFisicaEditText.setError(null);
                 }
             }
         });
@@ -1252,11 +1257,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadCegueraRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                if (discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton) {
+                if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+                        discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton) {
                     porcentajeCegueraEditText.setEnabled(true);
                 } else {
                     porcentajeCegueraEditText.setEnabled(false);
                     porcentajeCegueraEditText.setText("");
+                    porcentajeCegueraEditText.setError(null);
                 }
             }
         });
@@ -1264,11 +1271,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadVisionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                if (discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton) {
+                if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+                        discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton) {
                     porcentajeVisionEditText.setEnabled(true);
                 } else {
                     porcentajeVisionEditText.setEnabled(false);
                     porcentajeVisionEditText.setText("");
+                    porcentajeVisionEditText.setError(null);
                 }
             }
         });
@@ -1276,11 +1285,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadSorderaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                if (discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton) {
+                if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+                        discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton) {
                     porcentajeSorderaEditText.setEnabled(true);
                 } else {
                     porcentajeSorderaEditText.setEnabled(false);
                     porcentajeSorderaEditText.setText("");
+                    porcentajeSorderaEditText.setError(null);
                 }
             }
         });
@@ -1288,11 +1299,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadHipoacusiaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                if (discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion1RadioButton) {
+                if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+                        discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion1RadioButton) {
                     porcentajeHipoacusiaEditText.setEnabled(true);
                 } else {
                     porcentajeHipoacusiaEditText.setEnabled(false);
                     porcentajeHipoacusiaEditText.setText("");
+                    porcentajeHipoacusiaEditText.setError(null);
                 }
             }
         });
@@ -1300,11 +1313,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadPsicosocialesRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                if (discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton) {
+                if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+                        discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton) {
                     porcentajePsicosocialesEditText.setEnabled(true);
                 } else {
                     porcentajePsicosocialesEditText.setEnabled(false);
                     porcentajePsicosocialesEditText.setText("");
+                    porcentajePsicosocialesEditText.setError(null);
                 }
             }
         });
@@ -1339,9 +1354,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 if ((((Values) parentescoSpinner.getSelectedItem()).getKey().equals("5") ||
                         ((Values) parentescoSpinner.getSelectedItem()).getKey().equals("6") ||
                         ((Values) parentescoSpinner.getSelectedItem()).getKey().equals("7")) &&
-                        persona!=null && persona.getEdadanio()<12) {
-                        parentescoSpinner.setSelection(0);
-                        getAlert(getString(R.string.validacion_aviso), getString(R.string.errorParentescoEdad));
+                        persona != null && persona.getEdadanio() < 12) {
+                    parentescoSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorParentescoEdad));
                 }
             }
 
@@ -1351,9 +1366,32 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             }
         });
 
+        carnetConadisRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton) {
+                    habilitarPorcentajes();
+                } else {
+                    deshabilitarPorcentajes();
+                }
+            }
+        });
 
+        proteccionSocialpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (persona != null && persona.getEdadanio() > 3 &&
+                        Integer.parseInt(((Values) proteccionSocialpinner.getSelectedItem()).getKey()) > 0 &&
+                        Integer.parseInt(((Values) proteccionSocialpinner.getSelectedItem()).getKey()) < 3) {
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.advertenciaServicioProteccion));
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
 
 
     }
@@ -1367,9 +1405,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         if (((Values) parentescoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.controlTrabajoParentescoJefeHogar));
         } else if (((Values) estadoCivilSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))
-                && persona!=null && persona.getEdadanio()>11) {
+                && persona != null && persona.getEdadanio() > 11) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.controlTrabajoEstadoCivilTitulo));
-        }else if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == -1) {
+        } else if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.controlMadreHogarTitulo));
         } else if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion1RadioButton &&
                 ((Values) estadoCivilSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
@@ -1377,11 +1415,11 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         } else if (((Values) nacionalidadSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.nacionalidad));
         } else if (((Values) etniaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))
-                && persona!=null && persona.getEdadanio()>4) {
+                && persona != null && persona.getEdadanio() > 4) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.autodefinicionEtnica));
         } else if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
                 ((Values) seguroSocial2Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))
-                && persona!=null && persona.getEdadanio()>14) {
+                && persona != null && persona.getEdadanio() > 14) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.aporteSeguro));
         } else if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial2Spinner.getSelectedItem()).getKey())
                 &&
@@ -1404,6 +1442,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadIntelectual));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton &&
+                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 TextUtils.isEmpty(porcentajeIntelectualEditText.getText().toString().trim())) {
             porcentajeIntelectualEditText.setError(null);
             porcentajeIntelectualEditText.clearFocus();
@@ -1462,6 +1501,17 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajePsicosocialesEditText.setError(null);
             porcentajePsicosocialesEditText.clearFocus();
             porcentajePsicosocialesEditText.setError(getString(R.string.errorCampoRequerido));
+        } else if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+                porcentajeIntelectualEditText.getText().toString().equals("") &&
+                porcentajeFisicaEditText.getText().toString().equals("") &&
+                porcentajeCegueraEditText.getText().toString().equals("") &&
+                porcentajeVisionEditText.getText().toString().equals("") &&
+                porcentajeSorderaEditText.getText().toString().equals("") &&
+                porcentajeHipoacusiaEditText.getText().toString().equals("") &&
+                porcentajePsicosocialesEditText.getText().toString().equals("")) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.errorCarnetConadis));
+        } else if (!validarNumPorcentajes()) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.errorCarnetConadis2));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 ((Values) asistenciaEstablecimientoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.asistenciaEstablecimiento));
@@ -1567,6 +1617,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 diagnosticoMedicoRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.diagnosticoMedico));
         } else if (!((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals("4") &&
+                !((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals("2") &&
+                !((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals("3") &&
                 ((Values) enfermedadCatastroficaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.enfermedadCatastrofica));
         } else {
@@ -1794,6 +1846,82 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         for (int cont = 0; cont < ningunaRadioGroup.getChildCount(); cont++) {
             ningunaRadioGroup.getChildAt(cont).setEnabled(true);
         }
+    }
+
+    private void habilitarPorcentajes() {
+        if (discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton) {
+            porcentajeIntelectualEditText.setEnabled(true);
+        }
+        if (discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton) {
+            porcentajeFisicaEditText.setEnabled(true);
+        }
+        if (discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton) {
+            porcentajeCegueraEditText.setEnabled(true);
+        }
+        if (discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton) {
+            porcentajeVisionEditText.setEnabled(true);
+        }
+
+        if (discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton) {
+            porcentajeSorderaEditText.setEnabled(true);
+        }
+        if (discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton) {
+            porcentajeHipoacusiaEditText.setEnabled(true);
+        }
+        if (discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton) {
+            porcentajePsicosocialesEditText.setEnabled(true);
+        }
+    }
+
+    private void deshabilitarPorcentajes() {
+        porcentajeFisicaEditText.setEnabled(false);
+        porcentajeIntelectualEditText.setEnabled(false);
+        porcentajePsicosocialesEditText.setEnabled(false);
+        porcentajeHipoacusiaEditText.setEnabled(false);
+        porcentajeSorderaEditText.setEnabled(false);
+        porcentajeVisionEditText.setEnabled(false);
+        porcentajeCegueraEditText.setEnabled(false);
+        porcentajeFisicaEditText.setText("");
+        porcentajeIntelectualEditText.setText("");
+        porcentajePsicosocialesEditText.setText("");
+        porcentajeHipoacusiaEditText.setText("");
+        porcentajeSorderaEditText.setText("");
+        porcentajeVisionEditText.setText("");
+        porcentajeCegueraEditText.setText("");
+        porcentajeFisicaEditText.setError(null);
+        porcentajeIntelectualEditText.setError(null);
+        porcentajePsicosocialesEditText.setError(null);
+        porcentajeHipoacusiaEditText.setError(null);
+        porcentajeSorderaEditText.setError(null);
+        porcentajeVisionEditText.setError(null);
+        porcentajeCegueraEditText.setError(null);
+    }
+
+    public Boolean validarNumPorcentajes() {
+        int contador = 0;
+        if (!porcentajeIntelectualEditText.getText().toString().equals("")) {
+            contador++;
+        }
+        if (!porcentajeFisicaEditText.getText().toString().equals("")) {
+            contador++;
+        }
+        if (!porcentajeCegueraEditText.getText().toString().equals("")) {
+            contador++;
+        }
+        if (!porcentajeVisionEditText.getText().toString().equals("")) {
+            contador++;
+        }
+        if (!porcentajeSorderaEditText.getText().toString().equals("")) {
+            contador++;
+        }
+        if (!porcentajeVisionEditText.getText().toString().equals("")) {
+            contador++;
+        }
+        if (!porcentajePsicosocialesEditText.getText().toString().equals("")) {
+            contador++;
+        }
+
+        return contador <= 0;
     }
 
 }
