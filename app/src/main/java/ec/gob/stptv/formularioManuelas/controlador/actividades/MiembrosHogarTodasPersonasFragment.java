@@ -1920,7 +1920,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         if (!porcentajePsicosocialesEditText.getText().toString().equals("")) {
             contador++;
         }
-
         return contador <= 0;
     }
 

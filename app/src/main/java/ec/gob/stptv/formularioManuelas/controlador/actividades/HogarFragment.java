@@ -23,10 +23,12 @@ import android.widget.TabHost;
 
 import ec.gob.stptv.formularioManuelas.*;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.HogarDao;
+import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
@@ -36,6 +38,9 @@ import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
 public class HogarFragment extends Fragment {
 
+    private EditText codigoElectricoEditText;
+    private Button guardarPersonaButton;
+    private Button atrasButton;
     private Spinner tipoHogarSpinner;
     private Spinner documentoHogarSpinner;
     private Spinner fuenteAguaSpinner;
@@ -47,11 +52,8 @@ public class HogarFragment extends Fragment {
     private Spinner eliminaBasuraSpinner;
     private Spinner tipoAlumbradoSpinner;
     private Spinner energeticoCocinaSpinner;
-    private EditText codigoElectricoEditText;
     private Spinner numCuartosSpinner;
     private Spinner numDormitoriosSpinner;
-    private Button guardarPersonaButton;
-    private Button atrasButton;
     private RadioGroup gasParaCalefonOpcion;
     private RadioGroup terrenoAgropecuario;
     private RadioGroup terrenoAgropecuarioSi;
@@ -59,6 +61,16 @@ public class HogarFragment extends Fragment {
     private TabHost tabs;
     private Vivienda vivienda;
     private ContentResolver contentResolver;
+
+
+    private Spinner tipoViviendaSpinner;
+    private Spinner viaAccesoPrincipalSpinner;
+    private Spinner materialTechoSpinner;
+    private Spinner materialPisoSpinner;
+    private Spinner materialParedesSpinner;
+    private Spinner estadoTechoSpinner;
+    private Spinner estadoPisoSpinner;
+    private Spinner estadoParedSpinner;
 
 
     @Override
@@ -124,6 +136,15 @@ public class HogarFragment extends Fragment {
         terrenoAgropecuario = item.findViewById(R.id.terrenoAgropecuario);
         terrenoAgropecuarioSi = item.findViewById(R.id.terrenoAgropecuarioSi);
         atrasButton = item.findViewById(R.id.atrasButton);
+
+        tipoViviendaSpinner = item.findViewById(R.id.tipoViviendaSpinner);
+        viaAccesoPrincipalSpinner = item.findViewById(R.id.viaAccesoPrincipalSpinner);
+        materialTechoSpinner = item.findViewById(R.id.materialTechoSpinner);
+        materialPisoSpinner = item.findViewById(R.id.materialPisoSpinner);
+        materialParedesSpinner = item.findViewById(R.id.materialParedesSpinner);
+        estadoTechoSpinner = item.findViewById(R.id.estadoTechoSpinner);
+        estadoPisoSpinner = item.findViewById(R.id.estadoPisoSpinner);
+        estadoParedSpinner = item.findViewById(R.id.estadoParedSpinner);
 
 
     }
@@ -192,6 +213,23 @@ public class HogarFragment extends Fragment {
             }
         }
 
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoViviendaSpinner.getAdapter(), String.valueOf(vivienda.getIdtipovivienda()));
+        tipoViviendaSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) viaAccesoPrincipalSpinner.getAdapter(), String.valueOf(vivienda.getIdviacceso()));
+        viaAccesoPrincipalSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) materialTechoSpinner.getAdapter(), String.valueOf(vivienda.getIdmaterialtecho()));
+        materialTechoSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) materialPisoSpinner.getAdapter(), String.valueOf(vivienda.getIdmaterialpiso()));
+        materialPisoSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) materialParedesSpinner.getAdapter(), String.valueOf(vivienda.getIdmaterialpared()));
+        materialParedesSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoTechoSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaTecho()));
+        estadoTechoSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoPisoSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaPiso()));
+        estadoPisoSpinner.setSelection(posicion);
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoParedSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaPared()));
+        estadoParedSpinner.setSelection(posicion);
+
     }
 
     /**
@@ -213,6 +251,15 @@ public class HogarFragment extends Fragment {
         numCuartosSpinner.setAdapter(HogarPreguntas.getNumCuartosAdapter(getActivity()));
         numDormitoriosSpinner.setAdapter(HogarPreguntas.getNumDormitoriosAdapter(getActivity()));
 
+        tipoViviendaSpinner.setAdapter(ViviendaPreguntas.getTipoViviendaAdapter(getActivity()));
+        viaAccesoPrincipalSpinner.setAdapter(ViviendaPreguntas.getViviendaViaAccesoPrincipalAdapter(getActivity()));
+        materialTechoSpinner.setAdapter(ViviendaPreguntas.getViviendaMaterialTechoAdapter(getActivity()));
+        materialPisoSpinner.setAdapter(ViviendaPreguntas.getViviendaMaterialPisoAdapter(getActivity()));
+        materialParedesSpinner.setAdapter(ViviendaPreguntas.getViviendaMaterialParedesAdapter(getActivity()));
+        estadoTechoSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
+        estadoPisoSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
+        estadoParedSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
+
     }
 
     /**
@@ -226,6 +273,16 @@ public class HogarFragment extends Fragment {
      * Método que guarda la vivienda en la base de datos
      */
     private void guardar() {
+
+        vivienda.setIdtipovivienda(Integer.parseInt(((Values) tipoViviendaSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdviacceso(Integer.parseInt(((Values) viaAccesoPrincipalSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdmaterialtecho(Integer.parseInt(((Values) materialTechoSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdmaterialpiso(Integer.parseInt(((Values) materialPisoSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdmaterialpared(Integer.parseInt(((Values) materialParedesSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdestadoviviendaTecho(Integer.parseInt(((Values) estadoTechoSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdestadoviviendaPiso(Integer.parseInt(((Values) estadoPisoSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdestadoviviendaPared(Integer.parseInt(((Values) estadoParedSpinner.getSelectedItem()).getKey()));
+        ViviendaDao.update(contentResolver,vivienda);
 
         hogar.setIdpropiedadvivienda(Integer.parseInt(((Values) tipoHogarSpinner.getSelectedItem()).getKey()));
         hogar.setIddocumentovivienda(Integer.parseInt(((Values) documentoHogarSpinner.getSelectedItem()).getKey()));
@@ -449,7 +506,24 @@ public class HogarFragment extends Fragment {
     protected boolean validarCampos() {
         boolean cancel = true;
         View focusView = null;
-        if (((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+
+        if (((Values) tipoViviendaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoVivienda));
+        } else if (((Values) viaAccesoPrincipalSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.viaAccesoPrincipal));
+        } else if (((Values) materialTechoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.materialTecho));
+        } else if (((Values) materialPisoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.materialPiso));
+        } else if (((Values) materialParedesSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.materialParedes));
+        } else if (((Values) estadoTechoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.estadoTecho));
+        } else if (((Values) estadoPisoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.estadoPiso));
+        } else if (((Values) estadoParedSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.estadoPared));
+        } else if (((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tenenciaHogar));
         } else if ((((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("1") ||
                 ((Values) tipoHogarSpinner.getSelectedItem()).getKey().equals("2")) &&

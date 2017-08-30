@@ -75,15 +75,16 @@ public class ViviendaFragment extends Fragment {
     private Spinner cantonSpinner;
     private Spinner parroquiaSpinner;
     private Spinner parroquiaUrbanoSpinner;
-    private EditText localidadEditText;
     private Spinner zonaSpinner;
     private Spinner sectorSpinner;
     private Spinner manzanaSpinner;
+    private Spinner hogarInicialSpinner;
+    private Spinner hogarFinalSpinner;
+
     private EditText divisionEditText;
     private EditText edificioEditText;
     private EditText viviendaEditText;
-    private Spinner hogarInicialSpinner;
-    private Spinner hogarFinalSpinner;
+    private EditText localidadEditText;
     private EditText calle1EditText;
     private EditText numeroCasaEditText;
     private EditText calle2EditText;
@@ -97,14 +98,7 @@ public class ViviendaFragment extends Fragment {
 
 
     private Spinner condicionOcupacionSpinner;
-    private Spinner tipoViviendaSpinner;
-    private Spinner viaAccesoPrincipalSpinner;
-    private Spinner materialTechoSpinner;
-    private Spinner materialPisoSpinner;
-    private Spinner materialParedesSpinner;
-    private Spinner estadoTechoSpinner;
-    private Spinner estadoPisoSpinner;
-    private Spinner estadoParedSpinner;
+
 
     private Button guadarButton;
     private ContentResolver contentResolver;
@@ -277,16 +271,6 @@ public class ViviendaFragment extends Fragment {
         telefonoCelularEditText = item.findViewById(R.id.telefonoCelularEditText);
         referenciaUbicacionEditText = item.findViewById(R.id.referenciaUbicacionEditText);
         condicionOcupacionSpinner = item.findViewById(R.id.condicionOcupacionSpinner);
-
-        tipoViviendaSpinner = item.findViewById(R.id.tipoViviendaSpinner);
-        viaAccesoPrincipalSpinner = item.findViewById(R.id.viaAccesoPrincipalSpinner);
-        materialTechoSpinner = item.findViewById(R.id.materialTechoSpinner);
-        materialPisoSpinner = item.findViewById(R.id.materialPisoSpinner);
-        materialParedesSpinner = item.findViewById(R.id.materialParedesSpinner);
-        estadoTechoSpinner = item.findViewById(R.id.estadoTechoSpinner);
-        estadoPisoSpinner = item.findViewById(R.id.estadoPisoSpinner);
-        estadoParedSpinner = item.findViewById(R.id.estadoParedSpinner);
-
         guadarButton = item.findViewById(R.id.guardarButton);
         pantallaControlViendaLinearLayout = item.findViewById(R.id.pantallaControlViendaLinearLayout);
         latitudTextView = item.findViewById(R.id.latitudTextView);
@@ -391,22 +375,7 @@ public class ViviendaFragment extends Fragment {
         }
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) condicionOcupacionSpinner.getAdapter(), String.valueOf(vivienda.getIdocupada()));
         condicionOcupacionSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoViviendaSpinner.getAdapter(), String.valueOf(vivienda.getIdtipovivienda()));
-        tipoViviendaSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) viaAccesoPrincipalSpinner.getAdapter(), String.valueOf(vivienda.getIdviacceso()));
-        viaAccesoPrincipalSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) materialTechoSpinner.getAdapter(), String.valueOf(vivienda.getIdmaterialtecho()));
-        materialTechoSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) materialPisoSpinner.getAdapter(), String.valueOf(vivienda.getIdmaterialpiso()));
-        materialPisoSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) materialParedesSpinner.getAdapter(), String.valueOf(vivienda.getIdmaterialpared()));
-        materialParedesSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoTechoSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaTecho()));
-        estadoTechoSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoPisoSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaPiso()));
-        estadoPisoSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoParedSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaPared()));
-        estadoParedSpinner.setSelection(posicion);
+
 
     }
 
@@ -454,14 +423,7 @@ public class ViviendaFragment extends Fragment {
         hogarFinalSpinner.setAdapter(adapterHogarFinal);
 
         condicionOcupacionSpinner.setAdapter(ViviendaPreguntas.getCondicionOcupacionAdapter(getActivity()));
-        tipoViviendaSpinner.setAdapter(ViviendaPreguntas.getTipoViviendaAdapter(getActivity()));
-        viaAccesoPrincipalSpinner.setAdapter(ViviendaPreguntas.getViviendaViaAccesoPrincipalAdapter(getActivity()));
-        materialTechoSpinner.setAdapter(ViviendaPreguntas.getViviendaMaterialTechoAdapter(getActivity()));
-        materialPisoSpinner.setAdapter(ViviendaPreguntas.getViviendaMaterialPisoAdapter(getActivity()));
-        materialParedesSpinner.setAdapter(ViviendaPreguntas.getViviendaMaterialParedesAdapter(getActivity()));
-        estadoTechoSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
-        estadoPisoSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
-        estadoParedSpinner.setAdapter(ViviendaPreguntas.getEstadoTechoPisoParedAdapter(getActivity()));
+
     }
 
     /**
@@ -588,15 +550,6 @@ public class ViviendaFragment extends Fragment {
         }
 
         vivienda.setIdocupada(Integer.parseInt(((Values) condicionOcupacionSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdtipovivienda(Integer.parseInt(((Values) tipoViviendaSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdviacceso(Integer.parseInt(((Values) viaAccesoPrincipalSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdmaterialtecho(Integer.parseInt(((Values) materialTechoSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdmaterialpiso(Integer.parseInt(((Values) materialPisoSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdmaterialpared(Integer.parseInt(((Values) materialParedesSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdestadoviviendaTecho(Integer.parseInt(((Values) estadoTechoSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdestadoviviendaPiso(Integer.parseInt(((Values) estadoPisoSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdestadoviviendaPared(Integer.parseInt(((Values) estadoParedSpinner.getSelectedItem()).getKey()));
-
         vivienda.setCodigodpa(((Values) parroquiaSpinner.getSelectedItem()).getKey() +
                 ((Values) zonaSpinner.getSelectedItem()).getKey()
                 + ((Values) sectorSpinner.getSelectedItem()).getKey()
@@ -909,78 +862,7 @@ public class ViviendaFragment extends Fragment {
             return true;
         }
 
-        if (((Values) tipoViviendaSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.tipoVivienda));
-            return true;
-        }
 
-        if (((Values) viaAccesoPrincipalSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.viaAccesoPrincipal));
-            return true;
-        }
-
-        if (((Values) materialTechoSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.materialTecho));
-            return true;
-        }
-
-        if (((Values) materialPisoSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.materialPiso));
-            return true;
-        }
-
-        if (((Values) materialParedesSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.materialParedes));
-            return true;
-        }
-
-        if (((Values) estadoTechoSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.estadoTecho));
-            return true;
-        }
-
-        if (((Values) estadoPisoSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.estadoPiso));
-            return true;
-        }
-
-
-        if (((Values) estadoParedSpinner.getSelectedItem())
-                .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.estadoPared));
-            return true;
-        }
 
         if(TextUtils.isEmpty(latitudTextView.getText().toString())
                 && TextUtils.isEmpty(longitudTextView.getText().toString()))
