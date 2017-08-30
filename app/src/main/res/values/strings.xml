@@ -750,6 +750,19 @@
     <string name="seccion5MensajeCodigoPersonaMadre">Registre la pregunta 11</string>
     <string name="seccion5MensajeCodigoPersonaMadreIgual">No debe seleccionar como madre a la misma persona.</string>
 
+    <!-- Validaciones formulario para Hogar -->
+
+    <string name="seccion3MensajeNoCorrespondeTecho">El tipo de vivienda no corresponde al material de techo</string>
+    <string name="seccion3MensajeNoCorrespondeCuartos">El número de cuartos no corresponde al tipo de vivienda</string>
+    <string name="seccion3MensajeNoCorrespondePiso">El tipo de vivienda no corresponde al material del piso seleccionado</string>
+    <string name="seccion3MensajeNoCorrespondePared">El tipo de vivienda no corresponde al material de la pared  seleccionada</string>
+    <string name="seccion3MensajeNoCorrespondeLetrina">Letrina no puede estar dentro de la vivienda</string>
+    <string name="seccion3MensajeNoCorrespondeDepartamento">Tiene departamento y registra que no tiene servicio higiénico</string>
+
+
+
+    <!-- FIN Validaciones formulario paraHogar -->
+
     <!-- Validaciones formulario para todas las personas -->
     <string name="seccion5MensajeCedulaExistente">Cédula repetida dentro del mismo formulario</string>
     <string name="seccion5MensajeSeguro">No hay registro en Seguro Social (Prg. 16)</string>
