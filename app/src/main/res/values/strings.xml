@@ -769,8 +769,16 @@
     <string name="errorCarnetConadis">Tiene carné con discapacidad y no registra el porcentaje en ningún literal</string>
     <string name="errorCarnetConadis2">Tiene carné con discapacidad y registra el porcentaje en más de un literal</string>
     <string name="advertenciaServicioProteccion">Persona mayor a 3 años y asiste a CIBV o CNH</string>
+    <string name="errorCodigoBarra">No se pudo leer el código de barras. Inténtelo nuevamente</string>
+    <string name="errorLectorBarra">Se debe instalar el aplicativo BarCode Scanner</string>
+    <string name="errorLectorFoto">La imagen de la Vivienda no puede ser capturado. Intentelo más tarde</string>
 
+    <!-- valores para seccion capturar certificado -->
 
+    <string name="seccionCodigoBarraVacio">Capture el código de barras del certificado. El número de certificado no puede ser vacío</string>}
+    <string name="seccionCodigoBarraVerificadorVacio">Capture el código de barras del certificado. El número de verificación de certificado no puede ser vacío</string>
+    <string name="seccionImagenViviendaVacio">Capture la imagen de la Vivienda. No puede ser vacía</string>
+    <string name="seccionCodigoBarrasDiferentes">Los códigos de barras no coinciden</string>
 
     <!-- valores para descripciom -->
     <string name="formularioDatosEtiqueta1">Complete la información de:</string>
