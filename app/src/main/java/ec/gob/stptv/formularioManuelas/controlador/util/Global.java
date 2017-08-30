@@ -144,5 +144,10 @@ public class Global {
      */
     public static final int ANIOS_CUMPLIDOS = 2;
 
+    /**
+     * Calidad de la foto entre 0-100
+     */
+    public static final int CALIDAD_FOTO_VIVIENDA = 40;
+
 
 }
