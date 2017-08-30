@@ -99,8 +99,8 @@
 
                         <Spinner
                             android:id="@+id/parentescoSpinner"
-                            style="@style/respuestaSpinner" />
-
+                            style="@style/respuestaSpinner"
+                            android:clickable="false"/>
                     </LinearLayout>
                     <!-- Fin Pregunta -->
 
@@ -141,16 +141,12 @@
                             android:text="@string/controlMadreHogarTitulo" />
 
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingBottom="10dp" >
+
 
                             <RadioGroup
                                 android:id="@+id/viveMadreHogarRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:orientation="horizontal" >
 
                                 <RadioButton
@@ -167,7 +163,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-                        </RelativeLayout>
+
 
                         <LinearLayout
                             android:id="@+id/codigoPersonaLinearLayout"
@@ -287,16 +283,12 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/poseeDiscapacidadTitulo" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingBottom="10dp" >
+
 
                             <RadioGroup
                                 android:id="@+id/discapacidadRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:orientation="horizontal" >
 
                                 <RadioButton
@@ -313,7 +305,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-                        </RelativeLayout>
+
                     </LinearLayout>
                     <!-- Fin pregunta -->
 
@@ -340,16 +332,12 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/carneDiscapacidadTitulo" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingBottom="10dp" >
+
 
                             <RadioGroup
                                 android:id="@+id/carnetConadisRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:orientation="horizontal" >
 
                                 <RadioButton
@@ -366,7 +354,7 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-                        </RelativeLayout>
+
 
                     </LinearLayout>
                     <!-- Fin Pregunta  -->
@@ -724,16 +712,11 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/necesitaAyudaTecnica" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingBottom="10dp" >
 
                             <RadioGroup
                                 android:id="@+id/necesitaAyudaTecnicaRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:orientation="horizontal" >
 
                                 <RadioButton
@@ -750,7 +733,6 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-                        </RelativeLayout>
 
                     </LinearLayout>
                     <!-- Fin pregunta -->
@@ -762,16 +744,11 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/recibioAyudaTecnica" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingBottom="10dp" >
 
                             <RadioGroup
                                 android:id="@+id/recibioAyudaTecnicaRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:orientation="horizontal" >
 
                                 <RadioButton
@@ -788,7 +765,6 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-                        </RelativeLayout>
 
                     </LinearLayout>
                     <!-- Fin pregunta -->
@@ -1661,26 +1637,17 @@
                         <Spinner
                             android:id="@+id/sufreEnfermedadesSpinner"
                             style="@style/respuestaSpinner" />
-
                     </LinearLayout>
-
                     <!-- Inicio Pregunta diagnosticoMedico -->
                     <LinearLayout style="@style/contenedorPregunta">
-
                         <TextView
                             style="@style/areaPreguntaTextView"
                             android:text="@string/diagnosticoMedico" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingBottom="10dp" >
 
                             <RadioGroup
                                 android:id="@+id/diagnosticoMedicoRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:orientation="horizontal" >
 
                                 <RadioButton
@@ -1697,7 +1664,6 @@
                                     android:layout_margin="10dp"
                                     android:text="@string/opcion_no" />
                             </RadioGroup>
-                        </RelativeLayout>
                     </LinearLayout>
                     <!-- Fin pregunta -->
 
