@@ -28,6 +28,12 @@
     <string name="columna_numero_vivitas">N° Visitas</string>
     <string name="columna_observacion">Observaciones</string>
     <string name="mv_numero_visitas">¿Esta seguro que desea realizar una nueva visita?</string>
+    <string name="menu_reporte">Reporte</string>
+    <string name="menu_sincronizar_formularios">Sincronizar Formularios</string>
+    <string name="menu_sincronizar_imagenes">Sincronizar Imagenes</string>
+
+    <!-- Formulario de IMagenes -->
+    <string name="title_activity_imagenes">Imagenes</string>
 
     <!-- Etiquetas comunes -->
     <string name="seccionVivienda">Sección Vivienda</string>

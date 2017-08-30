@@ -288,7 +288,7 @@ public class FormulariosActivity extends Activity {
 
 
 			((TextView) row.findViewById(R.id.columnaFechaRegistroTextView))
-					.setText(vivienda.getFechacreacion());
+					.setText(vivienda.getFechaencuesta());
 
 			((TextView) row.findViewById(R.id.columnaZonaTextView))
 					.setText(vivienda.getZona());
@@ -495,6 +495,12 @@ public class FormulariosActivity extends Activity {
 
 				getExitAlert();
 
+			case R.id.menu_sincronizar_imagenes:
+
+				Intent intentImagenes = new Intent(FormulariosActivity.this,
+						ImagenesActivity.class);
+				//intentImagenes.putExtra("usuario", usuario);
+				startActivity(intentImagenes);
 				break;
 
 			default:

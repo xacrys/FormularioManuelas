@@ -49,6 +49,11 @@
         </activity>
 
         <activity
+            android:name="ec.gob.stptv.formularioManuelas.controlador.actividades.ImagenesActivity"
+            android:label="@string/title_activity_imagenes">
+        </activity>
+
+        <activity
             android:name="ec.gob.stptv.formularioManuelas.controlador.actividades.LoginActivity"
             android:label="@string/tituloFormulario"
             android:screenOrientation="landscape" >

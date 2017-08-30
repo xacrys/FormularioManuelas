@@ -149,7 +149,7 @@ public class ViviendaFragment extends Fragment {
 
             vivienda = new Vivienda();
             //vivienda.setFechainicio(fechaYHoraInicio);
-            vivienda.setFechacreacion(Utilitarios.getCurrentDate());
+            vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
             //vivienda.setIdgrupo(usuario.getCodigoGrupo();
 
             Utilitarios.logInfo(ViviendaFragment.class.getName(), "Formulario nuevo");
@@ -570,7 +570,7 @@ public class ViviendaFragment extends Fragment {
         //vivienda.setIdusuario(usuario.getCedula());
         //vivienda.setCodigounicodispositivo(usuario.getCodigoDispositivo());
         vivienda.setImei(Utilitarios.getImeiDispositivo(getActivity()));
-        vivienda.setFechacreacion(Utilitarios.getCurrentDate());
+        vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
         vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
         vivienda.setFechafin(Utilitarios.getCurrentDateAndHour());
         vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);

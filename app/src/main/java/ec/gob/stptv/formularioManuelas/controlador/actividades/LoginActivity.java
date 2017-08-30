@@ -36,9 +36,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.sincronizacion.WebService;
 import ec.gob.stptv.formularioManuelas.controlador.util.ClaveEncriptada;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
+import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.FaseDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.UsuarioDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
@@ -83,8 +86,8 @@ public class LoginActivity extends Activity {
             e.printStackTrace();
         }
         contentResolver = getContentResolver();
-        obtenerVistas();
-        realizarAcciones();
+        this.obtenerVistas();
+        this.realizarAcciones();
 
         // Set up the login form.
         mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -110,6 +113,40 @@ public class LoginActivity extends Activity {
         mLoginStatusMessageView = findViewById(R.id.login_status_message);
         sign_in_button = findViewById(R.id.guardarButton);
 
+    }
+
+    /**
+     * valida campos obligatorios, numeros de telefonos etc.
+     */
+    protected boolean validarCampos() {
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Reset errors.
+        mEmailView.setError(null);
+        mPasswordView.setError(null);
+        mEmail = mEmailView.getText().toString();
+        mPassword = mPasswordView.getText().toString();
+        // valida usuario.
+        if (TextUtils.isEmpty(mEmail)) {
+            mEmailView.setError(getString(R.string.errorCampoRequerido));
+            mEmailView.requestFocus();
+           return true;
+        }
+        //valida password.
+        if (TextUtils.isEmpty(mPassword)) {
+            mPasswordView.setError(getString(R.string.errorCampoRequerido));
+            mPasswordView.requestFocus();
+            return true;
+        } else if (mPassword.length() < 4) {
+            mPasswordView.setError(getString(R.string.errorPasswordInvalido));
+            focusView = mPasswordView;
+            mPasswordView.requestFocus();
+            return true;
+        }
+
+        return cancel;
     }
 
     /**
@@ -147,109 +184,73 @@ public class LoginActivity extends Activity {
         if (mAuthTask != null) {
             return;
         }
+        if (validarCampos())
+            return;
 
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        mEmail = mEmailView.getText().toString();
-        mPassword = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password.
-        if (TextUtils.isEmpty(mPassword)) {
-            mPasswordView.setError(getString(R.string.errorCampoRequerido));
-            focusView = mPasswordView;
-            cancel = true;
-        } else if (mPassword.length() < 4) {
-            mPasswordView.setError(getString(R.string.errorPasswordInvalido));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(mEmail)) {
-            mEmailView.setError(getString(R.string.errorCampoRequerido));
-            focusView = mEmailView;
-            cancel = true;
-        }
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-            showProgress(true);
-            mAuthTask = new UserLoginTask();
+        // Show a progress spinner, and kick off a background task to
+        // perform the user login attempt.
+        mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
+        showProgress(true);
+        mAuthTask = new UserLoginTask();
 
 
-            if (!Utilitarios.verificarConexion(this))
-            {
-                Toast toast = Toast.makeText(this,getString(R.string.error_conectar_servidor),Toast.LENGTH_LONG);
-                toast.show();
+        if (!Utilitarios.verificarConexion(this)) {
+            Toast toast = Toast.makeText(this, getString(R.string.error_conectar_servidor), Toast.LENGTH_LONG);
+            toast.show();
 
-                String[] parametros = new String[] {
-                        mEmailView.getText().toString(),
-                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-                };
-                String where = Usuario.whereByUsuarioYPassword;
-                Usuario usuario = UsuarioDao.getUsuario(contentResolver,where,parametros );
+            String[] parametros = new String[]{
+                    mEmailView.getText().toString(),
+                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+            };
+            String where = Usuario.whereByUsuarioYPassword;
+            Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
 
-                if (usuario != null) {
+            if (usuario != null) {
 
-                    Intent intent = new Intent(LoginActivity.this,
-                            FormulariosActivity.class);
-                    finish();
-                    intent.putExtra("usuario",usuario);
-                    startActivity(intent);
-                }
-                else
-                {
+                Intent intent = new Intent(LoginActivity.this,
+                        FormulariosActivity.class);
+                finish();
+                intent.putExtra("usuario", usuario);
+                startActivity(intent);
+            } else {
 //                    mEmailView.setError(getString(R.string.in));
-                    mEmailView.requestFocus();
-                    mAuthTask = null;
-                    showProgress(false);
-                }
-
+                mEmailView.requestFocus();
+                mAuthTask = null;
+                showProgress(false);
             }
-            else
-            {
 
-                httpClient = new DefaultHttpClient();
-                new Thread(new Runnable() {
+        } else {
+
+            httpClient = new DefaultHttpClient();
+            new Thread(new Runnable() {
 
 
-                    public void run() {
-                        try {
+                public void run() {
+                    try {
 
-                            mAuthTask.execute(Global.URL_WEB_SERVICE_USUARIOS).get(Global.ASYNCTASK_TIMEROUT_LOGIN, TimeUnit.MILLISECONDS);
+                        mAuthTask.execute(Global.URL_WEB_SERVICE_USUARIOS).get(Global.ASYNCTASK_TIMEROUT_LOGIN, TimeUnit.MILLISECONDS);
 
-                        } catch (InterruptedException e1) {
-                            // TODO Auto-generated catch block
-                            e1.printStackTrace();
-                        } catch (ExecutionException e1) {
-                            // TODO Auto-generated catch block
-                            e1.printStackTrace();
-                        } catch (TimeoutException e1) {
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    } catch (ExecutionException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    } catch (TimeoutException e1) {
 
-                            Log.e("", "Termino el tiempo de coneccion");
-                            httpClient.getConnectionManager().shutdown();
+                        Log.e("", "Termino el tiempo de coneccion");
+                        httpClient.getConnectionManager().shutdown();
 
-                            if(!mAuthTask.isCancelled()){
-                                mAuthTask.cancel(true);
-                            }
-                            e1.printStackTrace();
+                        if (!mAuthTask.isCancelled()) {
+                            mAuthTask.cancel(true);
                         }
+                        e1.printStackTrace();
                     }
-                }).start();
-            }
-
+                }
+            }).start();
         }
+
+
     }
 
     /**
@@ -308,7 +309,7 @@ public class LoginActivity extends Activity {
             Object respuesta = null;
             contentResolver = getContentResolver();
             JSONObject values = new JSONObject();
-            /*try {
+            try {
 
                 String user = mEmailView.getText().toString();
                 String password = mPasswordView.getText().toString();
@@ -366,7 +367,7 @@ public class LoginActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
 
-            }*/
+            }
 
             return respuesta;
         }

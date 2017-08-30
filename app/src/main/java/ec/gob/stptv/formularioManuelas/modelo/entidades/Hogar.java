@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Ejemplo de entidad
@@ -37,6 +38,8 @@ public class Hogar implements Serializable {
 
 	private String fechainicio;
 	private String fechafin;
+
+	private ArrayList<Persona> listaPersonas = new ArrayList<>();
 
 	//Nombre de la tabla
 	public final static String NOMBRE_TABLA = "hogar";

@@ -40,7 +40,7 @@ public class HogarFragment extends Fragment {
 
     private EditText codigoElectricoEditText;
     private Button guardarPersonaButton;
-    private Button atrasButton;
+    //private Button atrasButton;
     private Spinner tipoHogarSpinner;
     private Spinner documentoHogarSpinner;
     private Spinner fuenteAguaSpinner;
@@ -131,11 +131,11 @@ public class HogarFragment extends Fragment {
         tipoAlumbradoSpinner = item.findViewById(R.id.tipoAlumbradoSpinner);
         codigoElectricoEditText = item.findViewById(R.id.codigoElectricoEditText);
         energeticoCocinaSpinner = item.findViewById(R.id.energeticoCocinaSpinner);
-        guardarPersonaButton = item.findViewById(R.id.guardarPersonaButton);
+        guardarPersonaButton = item.findViewById(R.id.guardarButton);
         gasParaCalefonOpcion = item.findViewById(R.id.gasParaCalefon);
         terrenoAgropecuario = item.findViewById(R.id.terrenoAgropecuario);
         terrenoAgropecuarioSi = item.findViewById(R.id.terrenoAgropecuarioSi);
-        atrasButton = item.findViewById(R.id.atrasButton);
+        //atrasButton = item.findViewById(R.id.atrasButton);
 
         tipoViviendaSpinner = item.findViewById(R.id.tipoViviendaSpinner);
         viaAccesoPrincipalSpinner = item.findViewById(R.id.viaAccesoPrincipalSpinner);
@@ -627,19 +627,19 @@ public class HogarFragment extends Fragment {
             }
         });
 
-        atrasButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment newFragment = new ViviendaFragment();
-                Bundle args = new Bundle();
-                newFragment.setArguments(args);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmentContainer, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-            }
-        });
+//        atrasButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Fragment newFragment = new ViviendaFragment();
+//                Bundle args = new Bundle();
+//                newFragment.setArguments(args);
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragmentContainer, newFragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+//
+//            }
+//        });
 
 
     }

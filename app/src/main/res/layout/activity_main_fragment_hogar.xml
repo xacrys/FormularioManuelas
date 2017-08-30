@@ -12,26 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="1dp" >
+        android:padding="10dp" >
 
+        <!-- Fin Titulo de la seccion I -->
+
+        <!-- Contenedor 1-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp" >
-
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/seccionTextView"
-                android:text="@string/seccion3" />
-        </LinearLayout>
-
-        <!-- Contenedor 3 -->
-        <LinearLayout
+            android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp">
+            android:padding="10dp">
 
             <!-- Columna 1 -->
             <LinearLayout
@@ -41,6 +32,11 @@
                 android:background="@drawable/borde_panel"
                 android:orientation="vertical"
                 android:padding="0dp">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/seccionTextView"
+                    android:text="@string/seccion3" />
 
                 <!-- 3 -1 Tipo de Vivienda -->
                 <LinearLayout style="@style/contenedorPregunta">
@@ -66,18 +62,6 @@
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
 
-            </LinearLayout>
-            <!-- FIN Columna 1 -->
-
-            <!-- Columna 2 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/borde_panel"
-                android:orientation="vertical">
-
                 <!-- 3 -3 Vivienda Material Techo -->
                 <LinearLayout style="@style/contenedorPregunta">
 
@@ -101,16 +85,6 @@
                         android:id="@+id/materialPisoSpinner"
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
-            </LinearLayout>
-            <!-- FIN Columna 2 -->
-            <!-- Columna 3 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/borde_panel"
-                android:orientation="vertical">
 
                 <!-- 3 -5 Vivienda Material Paredes -->
                 <LinearLayout style="@style/contenedorPregunta">
@@ -174,44 +148,11 @@
                             style="@style/respuestaSpinner" />
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-            <!-- FIN Columna 3 -->
 
-        </LinearLayout>
-        <!-- FIN Contenedor 3 -->
-
-        <!-- Titulo de la seccion I -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp" >
-
-            <TextView
-                android:id="@+id/textView1"
-                style="@style/seccionTextView"
-                android:text="@string/seccionHogar" />
-        </LinearLayout>
-
-        <!-- Fin Titulo de la seccion I -->
-
-        <!-- Contenedor 1-->
-        <LinearLayout
-            android:baselineAligned="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="0dp">
-
-            <!-- Columna 1 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/borde_panel"
-                android:orientation="vertical"
-                android:padding="0dp">
+                <TextView
+                    android:id="@+id/textView1"
+                    style="@style/seccionTextView"
+                    android:text="@string/seccion4" />
 
                 <!-- 3 -1 Tipo de Hogar -->
                 <LinearLayout style="@style/contenedorPregunta">
@@ -224,6 +165,18 @@
                         android:id="@+id/tipoHogarSpinner"
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
+            </LinearLayout>
+            <!-- FIN Columna 1 -->
+
+            <!-- Columna 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/borde_panel"
+                android:orientation="vertical">
 
                 <!-- 4 -2 Documento Hogar -->
                 <LinearLayout style="@style/contenedorPregunta">
@@ -292,20 +245,6 @@
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
 
-
-            </LinearLayout>
-            <!-- FIN Columna 1 -->
-
-            <!-- Columna 2 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/borde_panel"
-                android:orientation="vertical">
-
                 <!-- 4 -6 Ubicacion Agua -->
                 <LinearLayout style="@style/contenedorPregunta">
 
@@ -341,6 +280,18 @@
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
 
+            </LinearLayout>
+            <!-- FIN Columna 2 -->
+            <!-- Columna 3 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/borde_panel"
+                android:orientation="vertical"
+                >
                 <!-- 4 -9  Servicio Higiénico -->
                 <LinearLayout style="@style/contenedorPregunta">
 
@@ -376,19 +327,6 @@
                         android:id="@+id/eliminaBasuraSpinner"
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
-
-            </LinearLayout>
-            <!-- FIN Columna 2 -->
-            <!-- Columna 3 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/borde_panel"
-                android:orientation="vertical"
-                >
 
                 <!-- 4 -12  Tipo de Alumbrado-->
                 <LinearLayout style="@style/contenedorPregunta">
@@ -493,13 +431,8 @@
                     </RadioGroup>
                 </LinearLayout>
 
-
-
             </LinearLayout>
             <!-- FIN Columna 3 -->
-
-
-
         </LinearLayout>
         <!-- FIN Contenedor 3 -->
 
@@ -508,12 +441,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
-            <include layout="@layout/reusable_bottom_actionbar_navigation" />
+            <include layout="@layout/reusable_bottom_actionbar" />
         </LinearLayout>
     </LinearLayout>
-
-
-
-
 
 </ScrollView>

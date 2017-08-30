@@ -4,6 +4,7 @@
     <color name="negro">#000000</color>
     <color name="blanco">#ffffff</color>
     <color name="azul">#0099CC</color>
+    <color name="azul_light">#33B5E5</color>
     <color name="azul_suave_claro">#6dcaec</color>
     <color name="azul_suave">#0099CC</color>
     <color name="azul_fuerte">#0379b6</color>

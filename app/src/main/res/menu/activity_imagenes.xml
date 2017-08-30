@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_sincronizar_imagenes"
+        android:showAsAction="never"
+        android:title="@string/menu_sincronizar_imagenes"/>
+    <item
+        android:id="@+id/menu_exit"
+        android:showAsAction="never"
+        android:title="@string/menu_salir"/>
+    
+     <!-- <item
+        android:id="@+id/menu_cambiar_estado"
+        android:showAsAction="ifRoom|withText"
+        android:title="Cambiar a NO sincronizado"/> -->
+
+</menu>

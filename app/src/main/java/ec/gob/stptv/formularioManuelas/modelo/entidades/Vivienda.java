@@ -50,7 +50,7 @@ public class Vivienda implements Serializable {
     private Integer idestadoviviendaPared;
     private Integer formulario;
     private String fechaactualizacion;
-    private String fechacreacion;
+    private String fechaencuesta;
     private Integer numerovisitas;
     private Integer idcontrolentrevista;
     private boolean flag;
@@ -69,7 +69,6 @@ public class Vivienda implements Serializable {
 
     //para sincronizar
     private Hogar hogar;
-    private ArrayList<Persona> listaPersonas = new ArrayList<>();
     private ArrayList<Localizacion> listaLocalizacion = new ArrayList<>();
     private String mensaje;
 
@@ -257,7 +256,7 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_IDESTADOVIVIENDAPARED, vivienda.getIdestadoviviendaPared());
         values.put(Vivienda.COLUMNA_FORMULARIO, vivienda.getFormulario());
         values.put(Vivienda.COLUMNA_FECHAACTUALIZACION, vivienda.getFechaactualizacion());
-        values.put(Vivienda.COLUMNA_FECHACREACION, vivienda.getFechacreacion());
+        values.put(Vivienda.COLUMNA_FECHACREACION, vivienda.getFechaencuesta());
         values.put(Vivienda.COLUMNA_NUMEROVISITAS, vivienda.getNumerovisitas());
         values.put(Vivienda.COLUMNA_IDCONTROLENTREVISTA, vivienda.getIdcontrolentrevista());
         values.put(Vivienda.COLUMNA_VIVCODIGO, vivienda.getVivcodigo());
@@ -320,7 +319,7 @@ public class Vivienda implements Serializable {
         vivienda.setIdestadoviviendaPared(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDAPARED)));
         vivienda.setFormulario(result.getInt(result.getColumnIndex(COLUMNA_FORMULARIO)));
         vivienda.setFechaactualizacion(result.getString(result.getColumnIndex(COLUMNA_FECHAACTUALIZACION)));
-        vivienda.setFechacreacion(result.getString(result.getColumnIndex(COLUMNA_FECHACREACION)));
+        vivienda.setFechaencuesta(result.getString(result.getColumnIndex(COLUMNA_FECHACREACION)));
         vivienda.setNumerovisitas(result.getInt(result.getColumnIndex(COLUMNA_NUMEROVISITAS)));
         vivienda.setIdcontrolentrevista(result.getInt(result.getColumnIndex(COLUMNA_IDCONTROLENTREVISTA)));
         vivienda.setVivcodigo(result.getString(result.getColumnIndex(COLUMNA_VIVCODIGO)));
@@ -580,13 +579,6 @@ public class Vivienda implements Serializable {
         this.fechaactualizacion = fechaactualizacion;
     }
 
-    public String getFechacreacion() {
-        return fechacreacion;
-    }
-
-    public void setFechacreacion(String fechacreacion) {
-        this.fechacreacion = fechacreacion;
-    }
 
     public Integer getNumerovisitas() {
         return numerovisitas;
@@ -783,5 +775,13 @@ public class Vivienda implements Serializable {
 
     public void setCertificado(String certificado) {
         this.certificado = certificado;
+    }
+
+    public String getFechaencuesta() {
+        return fechaencuesta;
+    }
+
+    public void setFechaencuesta(String fechaencuesta) {
+        this.fechaencuesta = fechaencuesta;
     }
 }
