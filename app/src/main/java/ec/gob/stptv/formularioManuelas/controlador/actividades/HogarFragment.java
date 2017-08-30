@@ -453,6 +453,11 @@ public class HogarFragment extends Fragment {
                     ubicacionSanitarioSpinner.setSelection(0);
                     getAlert(getString(R.string.validacion_aviso), getString(R.string.seccion3MensajeNoCorrespondeLetrina));
                 }
+                else if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
+                        ((Values)servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")){
+                    servicioSanitarioSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondeDepartamento));
+                }
                 else {
                     ubicacionSanitarioSpinner.setEnabled(true);
                 }
