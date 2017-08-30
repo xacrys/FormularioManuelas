@@ -57,6 +57,7 @@ import ec.gob.stptv.formularioManuelas.modelo.dao.LocalidadDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.LocalizacionDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.DpaManzana;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localidad;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localizacion;
@@ -118,6 +119,7 @@ public class ViviendaFragment extends Fragment {
     private TextView latitudTextView;
     private TextView longitudTextView;
     private Button capturarPuntoGPSbutton;
+    private Fase fase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -134,24 +136,21 @@ public class ViviendaFragment extends Fragment {
         this.realizarAcciones();
         try {
             vivienda = (Vivienda) extra.getSerializable("vivienda");
-            //usuario = (Usuario) extra.getSerializable("usuario");
+            usuario = (Usuario) extra.getSerializable("usuario");
+            fase = extra.getParcelable("fase");
+            if (vivienda.getId() != 0) {
+                this.llenarCamposVivienda();
+                vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
+                vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
 
-            if (!(null == vivienda)) {
-                if (vivienda.getId() != 0) {
-                    this.llenarCamposVivienda();
-                /*vivienda.setFechaInicio(fechaYHoraInicio);
-                vivienda.setFechaRegistro(Utilitarios.getCurrentDate());
-                vivienda.setIdGrupo(usuario.getCodigoGrupo());*/
-                }
             }
+
 
         } catch (Exception e) {
 
             vivienda = new Vivienda();
-            //vivienda.setFechainicio(fechaYHoraInicio);
+            vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
             vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
-            //vivienda.setIdgrupo(usuario.getCodigoGrupo();
-
             Utilitarios.logInfo(ViviendaFragment.class.getName(), "Formulario nuevo");
         }
 
@@ -319,9 +318,9 @@ public class ViviendaFragment extends Fragment {
         } else {
             viviendaEditText.setText("");
         }
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) hogarInicialSpinner.getAdapter(), String.valueOf(vivienda.getHogarinicial()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) hogarInicialSpinner.getAdapter(), String.valueOf(vivienda.getHogar1()));
         hogarInicialSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) hogarFinalSpinner.getAdapter(), String.valueOf(vivienda.getHogarfinal()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) hogarFinalSpinner.getAdapter(), String.valueOf(vivienda.getHogart()));
         hogarFinalSpinner.setSelection(posicion);
         if (!vivienda.getCalle1().equals(Global.CADENAS_VACIAS)) {
             calle1EditText.setText(vivienda.getCalle1());
@@ -483,10 +482,10 @@ public class ViviendaFragment extends Fragment {
             vivienda.setVivienda(Global.CADENAS_VACIAS);
         }
 
-        vivienda.setHogarinicial(Integer.parseInt(((Values) hogarInicialSpinner
+        vivienda.setHogar1(Integer.parseInt(((Values) hogarInicialSpinner
                 .getSelectedItem()).getKey()));
 
-        vivienda.setHogarfinal(Integer.parseInt(((Values) hogarFinalSpinner
+        vivienda.setHogart(Integer.parseInt(((Values) hogarFinalSpinner
                 .getSelectedItem()).getKey()));
         if (!TextUtils.isEmpty(calle1EditText.getText().toString())) {
             vivienda.setCalle1(calle1EditText.getText().toString().trim());
@@ -550,7 +549,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         vivienda.setIdocupada(Integer.parseInt(((Values) condicionOcupacionSpinner.getSelectedItem()).getKey()));
-        vivienda.setCodigodpa(((Values) parroquiaSpinner.getSelectedItem()).getKey() +
+        vivienda.setIddpa(((Values) parroquiaSpinner.getSelectedItem()).getKey() +
                 ((Values) zonaSpinner.getSelectedItem()).getKey()
                 + ((Values) sectorSpinner.getSelectedItem()).getKey()
                 + ((Values) manzanaSpinner.getSelectedItem()).getKey());
@@ -565,11 +564,9 @@ public class ViviendaFragment extends Fragment {
             vivienda.setIdcontrolentrevista(ControlPreguntas.ControlEntrevista.INCOMPLETA
                     .getValor());
         }
-        //vivienda.setIdfase(fase.getId());
+        vivienda.setIdfase(fase.getId());
         vivienda.setIdfase(1);
-        //vivienda.setIdusuario(usuario.getCedula());
-        //vivienda.setCodigounicodispositivo(usuario.getCodigoDispositivo());
-        vivienda.setImei(Utilitarios.getImeiDispositivo(getActivity()));
+        vivienda.setIdentificadorequipo(Integer.parseInt(Utilitarios.getImeiDispositivo(getActivity())));
         vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
         vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
         vivienda.setFechafin(Utilitarios.getCurrentDateAndHour());
@@ -584,15 +581,12 @@ public class ViviendaFragment extends Fragment {
             }
 
             vivienda.setId(ViviendaDao.getUltimoRegistro(contentResolver, usuario));
-            //vivienda.setVivcodigo(usuario.getCodigoDispositivo()+ "-" + ViviendaDao.getUltimoRegistro(contentResolver, usuario));
-            vivienda.setVivcodigo("62" + "-" + ViviendaDao.getUltimoRegistro(contentResolver, usuario));
-
+            vivienda.setVivcodigo(usuario.getIddispositivo()+ "-" + ViviendaDao.getUltimoRegistro(contentResolver, usuario));
             ViviendaDao.save(contentResolver, vivienda);
             hogarInicialSpinner.setEnabled(false);
 
             ArrayList<Localizacion> localizacionesTemp = Utilitarios.getLocalizacionesPorPresicion(localizaciones, 5);
             for (Localizacion localizacion : localizacionesTemp) {
-                Utilitarios.logError("", "localizacion final PROVEEDOR: " + localizacion.getProveedor() + " PRESICION: " + localizacion.getPresicion());
                 localizacion.setViviendaId(vivienda.getId());
                 LocalizacionDao.save(contentResolver, localizacion);
             }
@@ -603,8 +597,6 @@ public class ViviendaFragment extends Fragment {
             }
             ViviendaDao.update(contentResolver, vivienda);
         }
-
-
     }
 
     /**
@@ -1520,8 +1512,8 @@ public class ViviendaFragment extends Fragment {
                     if (_locationGPS != null) {
                         if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
                             localizaciones.add(new Localizacion(0, 0, _locationGPS.getLatitude(), _locationGPS.getLongitude(), _locationGPS.getAltitude(), _locationGPS.getAccuracy(), _locationGPS.getProvider()));
-                            latitudTextView.setText("" + _locationGPS.getLatitude());
-                            longitudTextView.setText("" + _locationGPS.getLongitude());
+                            latitudTextView.setText(String.valueOf(_locationGPS.getLatitude()));
+                            longitudTextView.setText(String.valueOf(_locationGPS.getLongitude()));
                         }
                     }
                     else
@@ -1531,8 +1523,8 @@ public class ViviendaFragment extends Fragment {
                         if (_locationNet != null) {
                             if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
                                 localizaciones.add(new Localizacion(0, 0, _locationNet.getLatitude(), _locationNet.getLongitude(), _locationNet.getAltitude(), _locationNet.getAccuracy(), _locationNet.getProvider()));
-                                latitudTextView.setText("" + _locationNet.getLatitude());
-                                longitudTextView.setText("" + _locationNet.getLongitude());
+                                latitudTextView.setText(String.valueOf(_locationNet.getLatitude()));
+                                longitudTextView.setText(String.valueOf(_locationNet.getLongitude()));
                             }
                         }
                         else

@@ -31,14 +31,8 @@ public class Hogar implements Serializable {
 	private Integer gascalefon;
 	private Integer terreno;
 	private Integer terrenoservicios;
-
-	private String fechaactualizacion;
-	private String fechacreacion;
-	private boolean flag;
-
 	private String fechainicio;
 	private String fechafin;
-
 	private ArrayList<Persona> listaPersonas = new ArrayList<>();
 
 	//Nombre de la tabla
@@ -64,10 +58,6 @@ public class Hogar implements Serializable {
 	public final static String COLUMNA_GASCALEFON= "gascalefon";
 	public final static String COLUMNA_TERRENO= "terreno";
 	public final static String COLUMNA_TERRENOSERVICIOS= "terrenoservicios";
-
-	public final static String COLUMNA_FECHAACTUALIZACION= "fechaactualizacion";
-	public final static String COLUMNA_FECHACREACION= "fechacreacion";
-
 	public final static String COLUMNA_FECHAINICIO= "fechainicio";
 	public final static String COLUMNA_FECHAFIN= "fechafin";
 
@@ -92,10 +82,6 @@ public class Hogar implements Serializable {
 			COLUMNA_GASCALEFON,
 			COLUMNA_TERRENO,
 			COLUMNA_TERRENOSERVICIOS,
-
-			COLUMNA_FECHAACTUALIZACION,
-			COLUMNA_FECHACREACION,
-
 			COLUMNA_FECHAINICIO,
 			COLUMNA_FECHAFIN
 	};
@@ -134,8 +120,6 @@ public class Hogar implements Serializable {
 		values.put(COLUMNA_GASCALEFON, hogar.getGascalefon());
 		values.put(COLUMNA_TERRENO, hogar.getTerreno());
 		values.put(COLUMNA_TERRENOSERVICIOS, hogar.getTerrenoservicios());
-		values.put(COLUMNA_FECHAACTUALIZACION, hogar.getFechaactualizacion());
-		values.put(COLUMNA_FECHACREACION, hogar.getFechacreacion());
 		values.put(COLUMNA_FECHAINICIO, hogar.getFechainicio());
 		values.put(COLUMNA_FECHAFIN, hogar.getFechafin());
 
@@ -168,8 +152,6 @@ public class Hogar implements Serializable {
 		vivienda.setGascalefon(result.getInt(result.getColumnIndex(COLUMNA_GASCALEFON)));
 		vivienda.setTerreno(result.getInt(result.getColumnIndex(COLUMNA_TERRENO)));
 		vivienda.setTerrenoservicios(result.getInt(result.getColumnIndex(COLUMNA_TERRENOSERVICIOS)));
-		vivienda.setFechaactualizacion(result.getString(result.getColumnIndex(COLUMNA_FECHAACTUALIZACION)));
-		vivienda.setFechacreacion(result.getString(result.getColumnIndex(COLUMNA_FECHACREACION)));
 		vivienda.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
 		vivienda.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
 
@@ -327,22 +309,6 @@ public class Hogar implements Serializable {
 
 	public void setTerrenoservicios(Integer terrenoservicios) {
 		this.terrenoservicios = terrenoservicios;
-	}
-
-	public String getFechaactualizacion() {
-		return fechaactualizacion;
-	}
-
-	public void setFechaactualizacion(String fechaactualizacion) {
-		this.fechaactualizacion = fechaactualizacion;
-	}
-
-	public String getFechacreacion() {
-		return fechacreacion;
-	}
-
-	public void setFechacreacion(String fechacreacion) {
-		this.fechacreacion = fechacreacion;
 	}
 
 	public String getFechainicio() {

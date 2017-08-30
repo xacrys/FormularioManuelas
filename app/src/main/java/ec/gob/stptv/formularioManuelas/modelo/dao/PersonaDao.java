@@ -35,7 +35,7 @@ public class PersonaDao extends Persona{
                 new String[] { String.valueOf(persona.getId()) });
 
         if (filaEliminada > 0) {
-            ordenar(cr, persona.getIdvivienda());
+            ordenar(cr, persona.getIdhogar());
         }
 
         return filaEliminada;
@@ -77,6 +77,13 @@ public class PersonaDao extends Persona{
         return personas;
     }
 
+    /**
+     * Método que obtiene la persona por id
+     * @param cr
+     * @param where
+     * @param id
+     * @return
+     */
     public static Persona getPersona(ContentResolver cr, String where, String[] id) {
 
         Cursor result = cr.query(

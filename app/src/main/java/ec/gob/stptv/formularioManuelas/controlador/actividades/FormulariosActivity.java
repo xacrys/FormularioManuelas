@@ -25,11 +25,13 @@ import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Pageable;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
+import ec.gob.stptv.formularioManuelas.modelo.dao.FaseDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
+import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -125,9 +127,8 @@ public class FormulariosActivity extends Activity {
 		
 		//sincronizacionVivenda = new SincronizacionVivienda(this);
 		
-		//this.usuario = (Usuario) extra.getSerializable("usuario");
-		//this.faseActual = FaseDao.getFase(cr, Fase.whereFaseEnabled, null, null);
-		
+		this.usuario = (Usuario) extra.getSerializable("usuario");
+		this.faseActual = FaseDao.getFase(contentResolver, Fase.whereFaseEnabled, null);
 		this.obtenerVistas();
 		this.cargarPreguntas();
 		this.realizarAcciones();
@@ -172,7 +173,7 @@ public class FormulariosActivity extends Activity {
 		paginationInfo.setText("" );
 
 		String estado = ((Values) estadoSpinner.getSelectedItem()).getKey();
-		//int idFase = ((Fase) faseSpinner.getSelectedItem()).getId();
+		int idFase = ((Fase) faseSpinner.getSelectedItem()).getId();
 		//String isSincronizado = sincronizadoSwitch.isChecked() ? "1": "0";
 
 		String where = null;
@@ -187,16 +188,14 @@ public class FormulariosActivity extends Activity {
 		{
 
 			where = Vivienda.whereByFechasControlEntrevistaFormularios;
-			parametros = new String[]{String.valueOf(1), fechaInicioButton.getText().toString(),
+			parametros = new String[]{String.valueOf(idFase), fechaInicioButton.getText().toString(),
 					fechaFinButton.getText().toString(), String.valueOf(estado)};
 
 		}else{
-			if (estado.equals(String.valueOf(ControlPreguntas.ControlEntrevista.TODOS.getValor())))
-			{
+			if (estado.equals(String.valueOf(ControlPreguntas.ControlEntrevista.TODOS.getValor()))) {
 
 				where = Vivienda.whereByFechasFormularios;
-				//parametros = new String[] { String.valueOf(idFase), fechaInicioButton.getText().toString(),
-				parametros = new String[] { String.valueOf(1), fechaInicioButton.getText().toString(),
+				parametros = new String[]{String.valueOf(idFase), fechaInicioButton.getText().toString(),
 						fechaFinButton.getText().toString(), String.valueOf(ControlPreguntas.ControlEntrevista.ELIMINADO.getValor())};
 			}
 		}
@@ -317,9 +316,9 @@ public class FormulariosActivity extends Activity {
 						.setText("");
 			}
 
-			if (!vivienda.getHogarinicial().equals(Global.ENTEROS_VACIOS)) {
+			if (!vivienda.getHogar1().equals(Global.ENTEROS_VACIOS)) {
 				((TextView) row.findViewById(R.id.columnaHogarInicialFinalTextView))
-						.setText(String.valueOf(vivienda.getHogarinicial())+ "-"+ String.valueOf(vivienda.getHogarfinal()));
+						.setText(String.valueOf(vivienda.getHogar1())+ "-"+ String.valueOf(vivienda.getHogart()));
 			} else {
 				((TextView) row.findViewById(R.id.columnaHogarInicialFinalTextView))
 						.setText("");
@@ -367,19 +366,17 @@ public class FormulariosActivity extends Activity {
 												DialogInterface dialog,
 												int id) {
 
-
-
-											//Fase fase = FaseDao.getFase(contentResolver, Fase.whereById, new String[]{String.valueOf(((Vivienda) v.getTag()).getFase())}, null);
+											String where;
+											String parametros[];
+											where = Fase.whereById;
+											parametros = new String[] {String.valueOf(((Vivienda) v.getTag()).getIdfase())};
+											Fase fase = FaseDao.getFase(contentResolver, where, parametros);
 											Intent intent = new Intent(FormulariosActivity.this,
 													MainActivity.class);
 											intent.putExtra("vivienda", (Vivienda) v.getTag());
-											//intent.putExtra("usuario", usuario);
-											//intent.putExtra("fase", fase);
+											intent.putExtra("usuario", usuario);
+											intent.putExtra("fase", fase);
 											startActivity(intent);
-
-
-
-
 										}
 									});
 
@@ -428,6 +425,12 @@ public class FormulariosActivity extends Activity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 
+						String where;
+						String parametros[];
+						where = Fase.whereById;
+						parametros = new String[] {String.valueOf(_vivienda.getIdfase())};
+						Fase fase = FaseDao.getFase(contentResolver,where, parametros);
+
 						switch (which) {
 							/**
 							 * Completar información de la vivienda
@@ -436,8 +439,8 @@ public class FormulariosActivity extends Activity {
 								Intent intent = new Intent(FormulariosActivity.this,
 										MainActivity.class);
 								intent.putExtra("vivienda", _vivienda);
-								//intent.putExtra("usuario", usuario);
-								//intent.putExtra("fase", fase);
+								intent.putExtra("usuario", usuario);
+								intent.putExtra("fase", fase);
 								startActivity(intent);
 								dialog.dismiss();
 								break;
@@ -484,10 +487,9 @@ public class FormulariosActivity extends Activity {
 			case R.id.menu_nuevo:
 
 				Intent intent = new Intent(FormulariosActivity.this,MainActivity.class);
-				//intent.putExtra("usuario", usuario);
-				//intent.putExtra("fase", faseActual);
+				intent.putExtra("usuario", usuario);
+				intent.putExtra("fase", faseActual);
 				startActivity(intent);
-
 				break;
 
 
@@ -499,7 +501,7 @@ public class FormulariosActivity extends Activity {
 
 				Intent intentImagenes = new Intent(FormulariosActivity.this,
 						ImagenesActivity.class);
-				//intentImagenes.putExtra("usuario", usuario);
+				intentImagenes.putExtra("usuario", usuario);
 				startActivity(intentImagenes);
 				break;
 
@@ -567,12 +569,15 @@ public class FormulariosActivity extends Activity {
 	private void cargarPreguntas() {
 		estadoSpinner.setAdapter(ControlPreguntas.getControlEntrevistaAdapter(this));
 		faseSpinner.setAdapter(ViviendaPreguntas.getAreaAdapter(this));
-		/*ArrayList<Fase> fases= FaseDao.getFases(cr, null, null, Fase.COLUMNA_ESTADO + " desc");
 
+		String where;
+		String parametros[];
+		where = Fase.whereById;
+		parametros = new String[] {String.valueOf(1)};
+		ArrayList<Fase> fases= FaseDao.getFases(contentResolver, where, parametros, Fase.COLUMNA_ESTADO + " desc");
 		ArrayAdapter<Fase> fasesAdapter = new ArrayAdapter<Fase>(this, android.R.layout.simple_spinner_item,fases);
 		fasesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-		faseSpinner.setAdapter(fasesAdapter);*/
+		faseSpinner.setAdapter(fasesAdapter);
 		fechaInicioButton.setText(Utilitarios.getCurrentDate());
 		fechaFinButton.setText(Utilitarios.getCurrentDate());
 

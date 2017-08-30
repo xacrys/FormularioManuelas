@@ -349,7 +349,7 @@ public class MiembrosHogarFragment extends Fragment {
     /**
      * Recorrer tabla para ver si la madre que ingresa como aprametro tiene hijos y si tiene elimina
      * la pregunta 11 y pone en informacion incompleta
-     * @return
+     *
      */
     protected void validarMadreEHijos(Persona madre) {
         for (int i = 0; i < personasTableLayout.getChildCount(); i++) {
@@ -808,7 +808,6 @@ public class MiembrosHogarFragment extends Fragment {
         // Guardar nuevo registro
         if (tipoGestion == 1) {
             Persona persona = new Persona();
-            persona.setIdvivienda(vivienda.getId());
             persona.setIdhogar(hogar.getId());
             persona.setIdresidente(Integer.valueOf(((Values) tipoResidenteSpinner.getSelectedItem()).getKey()));
             persona.setOrden(ordenPersona + 1);
@@ -908,7 +907,6 @@ public class MiembrosHogarFragment extends Fragment {
 
                     final Persona personaNew = new Persona();
                     personaNew.setIdresidente(persona.getIdresidente());
-                    personaNew.setIdvivienda(persona.getIdvivienda());
                     personaNew.setIdhogar(persona.getIdhogar());
                     personaNew.setId(persona.getId());
                     personaNew.setNombres(persona.getNombres());

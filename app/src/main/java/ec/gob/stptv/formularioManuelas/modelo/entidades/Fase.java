@@ -24,10 +24,10 @@ public class Fase implements Serializable {
 
 	//Atributos de la Tabla
 	public final static String COLUMNA_ID = "id";
-	public final static String COLUMNA_FECHAINICIO = "fecha_inicio";
-	public final static String COLUMNA_FECHAFIN = "fecha_fin";
-	public final static String COLUMNA_NOMBREFASE= "nombre_fase";
-	public final static String COLUMNA_NOMBREOPERATIVO= "nombre_operativo";
+	public final static String COLUMNA_FECHAINICIO = "fechainicio";
+	public final static String COLUMNA_FECHAFIN = "fechafin";
+	public final static String COLUMNA_NOMBREFASE= "nombrefase";
+	public final static String COLUMNA_NOMBREOPERATIVO= "nombreoperativo";
 	public final static String COLUMNA_ESTADO = "estado";
 
 	//crear un string con las columnas de la tabla
@@ -56,21 +56,21 @@ public class Fase implements Serializable {
 
 	@Override
 	public String toString() {
-		String name = "";
+		String name;
 		if(getEstado() == 1)
 		{
-			name = getNombreoperativo() + " - " + getNombrefase() + " (Actual)";
+			name = getNombrefase() + " (Actual)";
 		}
 		else
 		{
-			name = getNombreoperativo() + " - " + getNombrefase();
+			name = getNombrefase();
 		}
 
 		return name;
 	}
 
 	public Fase() {
-		this.setId(0);
+		this.id = 0;
 	}
 
 
@@ -103,11 +103,11 @@ public class Fase implements Serializable {
 	}
 
 	/**
-	 * Método que crea una nueva vivienda
+	 * Método que crea una nueva fase
 	 * @param result
 	 * @return
 	 */
-	public static Fase newVivienda(Cursor result) {
+	public static Fase newFase(Cursor result) {
 		Fase fase = new Fase();
 		fase.setId(result.getInt(result.getColumnIndex(COLUMNA_ID)));
 		fase.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));

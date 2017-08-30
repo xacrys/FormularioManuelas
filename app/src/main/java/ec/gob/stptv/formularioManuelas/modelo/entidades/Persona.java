@@ -19,7 +19,6 @@ public class Persona implements Serializable {
 
 	//Definicion de campos
 	private Integer id;
-	private Integer idvivienda;
 	private Integer idhogar;
 	private Integer idresidente;
 	private String apellidos;
@@ -43,6 +42,19 @@ public class Persona implements Serializable {
 	private Integer idsegurosalud2;
 	private Integer tienediscapacidad;
 	private Integer carnediscapacidad;
+	private Integer idestablecimientoeducacion;
+	private Integer idproteccionsocial;
+	private Integer necesitaayudatecnica;
+	private Integer recibioayudatecnica;
+	private Integer idtipoenfermedad;
+	private Integer enfermedaddiagnostico;
+	private Integer idenfermedadcatastrofica;
+	private Integer orden;
+	private boolean flag;
+	private String fechainicio;
+	private String fechafin;
+
+	//inicio campos especiales
 	private Integer discapacidadintelectual;
 	private Integer porcentajeintelectual;
 	private Integer discapacidadfisica;
@@ -57,10 +69,6 @@ public class Persona implements Serializable {
 	private Integer porcentajehipoacusia;
 	private Integer discapacidadpsicosociales;
 	private Integer porcentajepsicosociales;
-	private Integer idestablecimientoeducacion;
-	private Integer idproteccionsocial;
-	private Integer necesitaayudatecnica;
-	private Integer recibioayudatecnica;
 	private Integer sillaruedas;
 	private Integer muletas;
 	private Integer andadores;
@@ -82,23 +90,17 @@ public class Persona implements Serializable {
 	private Integer gobiernoautonomo;
 	private Integer organizacionprivada;
 	private Integer ningunainstitucion;
-	private Integer idtipoenfermedad;
-	private Integer enfermedaddiagnostico;
-	private Integer idenfermedadcatastrofica;
-	private Integer orden;
-	private boolean flag;
-
-	private String fechainicio;
-	private String fechafin;
+	//fin campos
+	//locales
 	private Integer informacioncompleta;
 	private Integer tipoEdad;
+
 
 	//Nombre de la tabla
 	public final static String NOMBRE_TABLA = "persona";
 
 	//Atributos de la Tabla
 	public final static String COLUMNA_ID="id";
-	public final static String COLUMNA_IDVIVIENDA="idvivienda";
 	public final static String COLUMNA_IDHOGAR="idhogar";
 	public final static String COLUMNA_IDRESIDENTE="idresidente";
 	public final static String COLUMNA_APELLIDOS="apellidos";
@@ -173,7 +175,6 @@ public class Persona implements Serializable {
 	//crear un string con las columnas de la tabla
 	public static final String[] columnas = new String[] {
 			COLUMNA_ID,
-			COLUMNA_IDVIVIENDA,
 			COLUMNA_IDHOGAR,
 			COLUMNA_IDRESIDENTE,
 			COLUMNA_APELLIDOS,
@@ -251,8 +252,8 @@ public class Persona implements Serializable {
 
 	//consultas
 	public static String whereById = COLUMNA_ID + "= ?";
-	public static String whereByViviendaId = COLUMNA_IDVIVIENDA + " = ?";
-	public static String whereByIdViviendaCedula = COLUMNA_IDVIVIENDA
+	public static String whereByViviendaId = COLUMNA_IDHOGAR + " = ?";
+	public static String whereByIdViviendaCedula = COLUMNA_IDHOGAR
 			+ "= ? AND " + COLUMNA_CI + " = ?";
 
 
@@ -268,7 +269,6 @@ public class Persona implements Serializable {
 	public static ContentValues getValues(Persona persona) {
 		ContentValues values = new ContentValues();
 		values.put(COLUMNA_ID, persona.getId());
-		values.put(COLUMNA_IDVIVIENDA, persona.getIdvivienda());
 		values.put(COLUMNA_IDHOGAR, persona.getIdhogar());
 		values.put(COLUMNA_IDRESIDENTE, persona.getIdresidente());
 		values.put(COLUMNA_APELLIDOS, persona.getApellidos());
@@ -351,7 +351,6 @@ public class Persona implements Serializable {
 	public static Persona newPersona(Cursor result) {
 		Persona persona = new Persona();
 		persona.setId(result.getInt(result.getColumnIndex(COLUMNA_ID)));
-		persona.setIdvivienda(result.getInt(result.getColumnIndex(COLUMNA_IDVIVIENDA)));
 		persona.setIdhogar(result.getInt(result.getColumnIndex(COLUMNA_IDHOGAR)));
 		persona.setIdresidente(result.getInt(result.getColumnIndex(COLUMNA_IDRESIDENTE)));
 		persona.setApellidos(result.getString(result.getColumnIndex(COLUMNA_APELLIDOS)));
@@ -478,14 +477,6 @@ public class Persona implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getIdvivienda() {
-		return idvivienda;
-	}
-
-	public void setIdvivienda(Integer idvivienda) {
-		this.idvivienda = idvivienda;
 	}
 
 	public Integer getIdhogar() {

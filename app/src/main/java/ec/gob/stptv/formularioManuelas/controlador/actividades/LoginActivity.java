@@ -6,14 +6,18 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -37,6 +41,7 @@ import java.util.concurrent.TimeoutException;
 
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.servicio.LocalizacionService;
 import ec.gob.stptv.formularioManuelas.controlador.sincronizacion.WebService;
 import ec.gob.stptv.formularioManuelas.controlador.util.ClaveEncriptada;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
@@ -45,6 +50,7 @@ import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.FaseDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.UsuarioDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
 import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
 
@@ -111,7 +117,7 @@ public class LoginActivity extends Activity {
         mLoginFormView = findViewById(R.id.login_form);
         mLoginStatusView = findViewById(R.id.login_status);
         mLoginStatusMessageView = findViewById(R.id.login_status_message);
-        sign_in_button = findViewById(R.id.guardarButton);
+        sign_in_button = findViewById(R.id.sign_in_button);
 
     }
 
@@ -348,6 +354,7 @@ public class LoginActivity extends Activity {
                 }
                 else
                 {
+                    String d = mEmailView.getText().toString();
                     String[] parametros = new String[] {
                             mEmailView.getText().toString(),
                             mPasswordView.getText().toString(),
@@ -376,27 +383,41 @@ public class LoginActivity extends Activity {
         protected void onPostExecute(final Object _respuesta) {
 
             // Usuario de pruebas
+            Usuario usuario = new Usuario();
+            usuario.setUsuario("0503380164");
+            usuario.setPassword("0503380164");
+            usuario.setIdusuario("12");
+            usuario.setNombres("Lorena");
+            usuario.setApellidos("Morales");
+            usuario.setCedula("050338014");
+            usuario.setIddispositivo(62);
+            usuario.setCodigo(1);
+            usuario.setMaxvivcodigo("62-1");
+            finish();
+            Intent intent = new Intent(LoginActivity.this,
+                    FormulariosActivity.class);
+            intent.putExtra("usuario", usuario);
 
-			/*
-			 * Usuario usuario = new Usuario();
-			 *
-			 * usuario.setUsuario("2100511829");
-			 * usuario.setCodido("2100511829"); usuario.setIdUsuario(12);
-			 * usuario.setNombres("Christian"); usuario.setApellidos("Sasig");
-			 * usuario.setCedula("2100511829"); usuario.setCodigoGrupo(14);
-			 * usuario.setCodigoDispositivo(45); usuario.setRol("user");
-			 * usuario.setEstado(1);
-			 * usuario.setDireccionFisica(getMacAddress());
-			 *
-			 * usuario.setMaxVivCodigo("13-7");
-			 *
-			 * finish(); Intent intent = new Intent(LoginActivity.this,
-			 * FormulariosActivity.class); intent.putExtra("usuario", usuario);
-			 *
-			 * startActivity(intent);
-			 */
+            /**
+             * Gestion de la Fase
+             */
 
-
+            //Log.e("fdfdsf",  "idFase" + idFase);
+            String where;
+            String parametros[];
+            where = Fase.whereById;
+            parametros = new String[] {String.valueOf(1)};
+            Fase fase = FaseDao.getFase(contentResolver, where, parametros);
+            if (fase == null){
+                fase = new Fase();
+                fase.setId(1);
+                fase.setFechainicio(Utilitarios.getCurrentDate());
+                fase.setFechafin(Utilitarios.getCurrentDate());
+                fase.setNombrefase("FASE MANUELAS");
+                fase.setEstado(1);
+                FaseDao.save(contentResolver, fase);
+            }
+            startActivity(intent);
         }
 
         @Override
@@ -442,6 +463,57 @@ public class LoginActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        /**
+         * Iniciar el servicio de localizacion
+         */
+        try {
+            LocationManager locationManager = (LocationManager) getApplicationContext()
+                    .getSystemService(LOCATION_SERVICE);
+
+            boolean isGPSEnabled = locationManager
+                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+            if (!isGPSEnabled) {
+                showSettingsAlert();
+            } else {
+                msgIntent = new Intent(LoginActivity.this,
+                        LocalizacionService.class);
+                msgIntent.putExtra("intervalo", "Intervalo 10s");
+                startService(msgIntent);
+            }
+        } catch (Exception e) {
+
+        }
+        super.onResume();
+    }
+
+    /**
+     * muestra una alerta q no esta habiliadp gps
+     */
+    public void showSettingsAlert() {
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        alertDialog.setTitle("Configuracion del GPS");
+        alertDialog
+                .setMessage("GPS no esta habilitado. Puede habilitar el GPS en configuraciones?");
+
+        alertDialog.setPositiveButton("Configuracion",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(
+                                Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(intent);
+                        dialog.cancel();
+
+                    }
+                });
+
+        alertDialog.show();
+    }
 
 
 

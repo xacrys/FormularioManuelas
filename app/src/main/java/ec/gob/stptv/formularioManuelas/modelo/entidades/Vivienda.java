@@ -15,20 +15,11 @@ public class Vivienda implements Serializable {
     private Integer idtipolevantamiento;
     private Integer idfase;
     private Integer idarea;
-    private String idprovincia;
-    private String idcanton;
-    private String idparroquia;
-    private String codigodpa;
-    private Integer aniodpa;
-    private String zona;
-    private String sector;
-    private String manzana;
+    private String manzana; //local
     private String localidad;
-    private String division;
     private String edificio;
     private String vivienda;
-    private Integer hogarinicial;
-    private Integer hogarfinal;
+    private Integer hogar1;
     private String calle1;
     private String calle2;
     private String conjuntohabitacional;
@@ -45,26 +36,32 @@ public class Vivienda implements Serializable {
     private Integer idmaterialtecho;
     private Integer idmaterialpiso;
     private Integer idmaterialpared;
-    private Integer idestadoviviendaTecho;
-    private Integer idestadoviviendaPiso;
-    private Integer idestadoviviendaPared;
-    private Integer formulario;
-    private String fechaactualizacion;
+    private Integer idestadoviviendatecho;
+    private Integer idestadoviviendapiso;
+    private Integer idestadoviviendapared;
+    private Integer formulario;//registr numero//certificado
     private String fechaencuesta;
+    private String fechasincronizacion;
     private Integer numerovisitas;
     private Integer idcontrolentrevista;
     private boolean flag;
-
-    private String vivcodigo;
-    private String imei;
-    private Integer idusuario;
-    private Integer idgrupo;
-    private Integer codigounicodispositivo;
+    private String iddpa;
+    private String observacion;
     private String fechainicio;
     private String fechafin;
-    private String fechasincronizacion;
+    private String vivcodigo;
+    private Integer idusuario;
+    private Integer identificadorequipo;//imei
+    private Integer hogart;
+    private String division;
+    private String idprovincia;//local
+    private String idcanton;//local
+    private String idparroquia;//local
+    private Integer aniodpa;//local
+    private String zona;
+    private String sector;
+    private Integer idgrupo;
     private Integer estadosincronizacion;
-    private String observacion;
     private String certificado;
 
     //para sincronizar
@@ -121,7 +118,6 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_IDCONTROLENTREVISTA = "idcontrolentrevista";
     public final static String COLUMNA_FLAG = "flag";
     public final static String COLUMNA_VIVCODIGO = "vivcodigo";
-    public final static String COLUMNA_IMEI = "imei";
     public final static String COLUMNA_IDUSUARIO = "idusuario";
     public final static String COLUMNA_IDGRUPO = "idgrupo";
     public final static String COLUMNA_CODIGOUNICODISPOSITIVO = "codigounicoequipo";
@@ -179,7 +175,6 @@ public class Vivienda implements Serializable {
             COLUMNA_IDCONTROLENTREVISTA,
             COLUMNA_FLAG,
             COLUMNA_VIVCODIGO,
-            COLUMNA_IMEI,
             COLUMNA_IDUSUARIO,
             COLUMNA_IDGRUPO,
             COLUMNA_CODIGOUNICODISPOSITIVO,
@@ -223,7 +218,7 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_IDPROVINCIA, vivienda.getIdprovincia());
         values.put(Vivienda.COLUMNA_IDCANTON, vivienda.getIdcanton());
         values.put(Vivienda.COLUMNA_IDPARROQUIA, vivienda.getIdparroquia());
-        values.put(Vivienda.COLUMNA_CODIGODPA, vivienda.getCodigodpa());
+        values.put(Vivienda.COLUMNA_CODIGODPA, vivienda.getIddpa());
         values.put(Vivienda.COLUMNA_ANIODPA, vivienda.getAniodpa());
         values.put(Vivienda.COLUMNA_ZONA, vivienda.getZona());
         values.put(Vivienda.COLUMNA_SECTOR, vivienda.getSector());
@@ -233,8 +228,8 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_EDIFICIO, vivienda.getEdificio());
         values.put(Vivienda.COLUMNA_IDCANTON, vivienda.getIdcanton());
         values.put(Vivienda.COLUMNA_VIVIENDA, vivienda.getVivienda());
-        values.put(Vivienda.COLUMNA_HOGAR_INICIAL, vivienda.getHogarinicial());
-        values.put(Vivienda.COLUMNA_HOGAR_FINAL, vivienda.getHogarfinal());
+        values.put(Vivienda.COLUMNA_HOGAR_INICIAL, vivienda.getHogar1());
+        values.put(Vivienda.COLUMNA_HOGAR_FINAL, vivienda.getHogart());
         values.put(Vivienda.COLUMNA_CALLE1, vivienda.getCalle1());
         values.put(Vivienda.COLUMNA_CALLE2, vivienda.getCalle2());
         values.put(Vivienda.COLUMNA_CONJUNTOHABITACIONAL, vivienda.getConjuntohabitacional());
@@ -251,16 +246,14 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_IDMATERIALTECHO, vivienda.getIdmaterialtecho());
         values.put(Vivienda.COLUMNA_IDMATERIALPISO, vivienda.getIdmaterialpiso());
         values.put(Vivienda.COLUMNA_IDMATERIALPARED, vivienda.getIdmaterialpared());
-        values.put(Vivienda.COLUMNA_IDESTADOVIVIENDATECHO, vivienda.getIdestadoviviendaTecho());
-        values.put(Vivienda.COLUMNA_IDESTADOVIVIENDAPISO, vivienda.getIdestadoviviendaPiso());
-        values.put(Vivienda.COLUMNA_IDESTADOVIVIENDAPARED, vivienda.getIdestadoviviendaPared());
+        values.put(Vivienda.COLUMNA_IDESTADOVIVIENDATECHO, vivienda.getIdestadoviviendatecho());
+        values.put(Vivienda.COLUMNA_IDESTADOVIVIENDAPISO, vivienda.getIdestadoviviendapiso());
+        values.put(Vivienda.COLUMNA_IDESTADOVIVIENDAPARED, vivienda.getIdestadoviviendapared());
         values.put(Vivienda.COLUMNA_FORMULARIO, vivienda.getFormulario());
-        values.put(Vivienda.COLUMNA_FECHAACTUALIZACION, vivienda.getFechaactualizacion());
         values.put(Vivienda.COLUMNA_FECHACREACION, vivienda.getFechaencuesta());
         values.put(Vivienda.COLUMNA_NUMEROVISITAS, vivienda.getNumerovisitas());
         values.put(Vivienda.COLUMNA_IDCONTROLENTREVISTA, vivienda.getIdcontrolentrevista());
         values.put(Vivienda.COLUMNA_VIVCODIGO, vivienda.getVivcodigo());
-        values.put(Vivienda.COLUMNA_IMEI, vivienda.getImei());
         values.put(Vivienda.COLUMNA_IDGRUPO, vivienda.getIdgrupo());
         values.put(Vivienda.COLUMNA_FECHASINCRONIZACION, vivienda.getFechasincronizacion());
         values.put(Vivienda.COLUMNA_FECHAINICIO, vivienda.getFechainicio());
@@ -287,7 +280,7 @@ public class Vivienda implements Serializable {
         vivienda.setIdprovincia(result.getString(result.getColumnIndex(COLUMNA_IDPROVINCIA)));
         vivienda.setIdcanton(result.getString(result.getColumnIndex(COLUMNA_IDCANTON)));
         vivienda.setIdparroquia(result.getString(result.getColumnIndex(COLUMNA_IDPARROQUIA)));
-        vivienda.setCodigodpa(result.getString(result.getColumnIndex(COLUMNA_CODIGODPA)));
+        vivienda.setIddpa(result.getString(result.getColumnIndex(COLUMNA_CODIGODPA)));
         vivienda.setAniodpa(result.getInt(result.getColumnIndex(COLUMNA_ANIODPA)));
         vivienda.setZona(result.getString(result.getColumnIndex(COLUMNA_ZONA)));
         vivienda.setSector(result.getString(result.getColumnIndex(COLUMNA_SECTOR)));
@@ -296,8 +289,8 @@ public class Vivienda implements Serializable {
         vivienda.setLocalidad(result.getString(result.getColumnIndex(COLUMNA_LOCALIDAD)));
         vivienda.setEdificio(result.getString(result.getColumnIndex(COLUMNA_EDIFICIO)));
         vivienda.setVivienda(result.getString(result.getColumnIndex(COLUMNA_VIVIENDA)));
-        vivienda.setHogarinicial(result.getInt(result.getColumnIndex(COLUMNA_HOGAR_INICIAL)));
-        vivienda.setHogarfinal(result.getInt(result.getColumnIndex(COLUMNA_HOGAR_FINAL)));
+        vivienda.setHogar1(result.getInt(result.getColumnIndex(COLUMNA_HOGAR_INICIAL)));
+        vivienda.setHogart(result.getInt(result.getColumnIndex(COLUMNA_HOGAR_FINAL)));
         vivienda.setCalle1(result.getString(result.getColumnIndex(COLUMNA_CALLE1)));
         vivienda.setCalle2(result.getString(result.getColumnIndex(COLUMNA_CALLE2)));
         vivienda.setConjuntohabitacional(result.getString(result.getColumnIndex(COLUMNA_CONJUNTOHABITACIONAL)));
@@ -314,19 +307,17 @@ public class Vivienda implements Serializable {
         vivienda.setIdmaterialtecho(result.getInt(result.getColumnIndex(COLUMNA_IDMATERIALTECHO)));
         vivienda.setIdmaterialpiso(result.getInt(result.getColumnIndex(COLUMNA_IDMATERIALPISO)));
         vivienda.setIdmaterialpared(result.getInt(result.getColumnIndex(COLUMNA_IDMATERIALPARED)));
-        vivienda.setIdestadoviviendaTecho(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDATECHO)));
-        vivienda.setIdestadoviviendaPiso(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDAPISO)));
-        vivienda.setIdestadoviviendaPared(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDAPARED)));
+        vivienda.setIdestadoviviendatecho(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDATECHO)));
+        vivienda.setIdestadoviviendapiso(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDAPISO)));
+        vivienda.setIdestadoviviendapared(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDAPARED)));
         vivienda.setFormulario(result.getInt(result.getColumnIndex(COLUMNA_FORMULARIO)));
-        vivienda.setFechaactualizacion(result.getString(result.getColumnIndex(COLUMNA_FECHAACTUALIZACION)));
         vivienda.setFechaencuesta(result.getString(result.getColumnIndex(COLUMNA_FECHACREACION)));
         vivienda.setNumerovisitas(result.getInt(result.getColumnIndex(COLUMNA_NUMEROVISITAS)));
         vivienda.setIdcontrolentrevista(result.getInt(result.getColumnIndex(COLUMNA_IDCONTROLENTREVISTA)));
         vivienda.setVivcodigo(result.getString(result.getColumnIndex(COLUMNA_VIVCODIGO)));
-        vivienda.setImei(result.getString(result.getColumnIndex(COLUMNA_IMEI)));
         vivienda.setIdusuario(result.getInt(result.getColumnIndex(COLUMNA_IDUSUARIO)));
         vivienda.setIdgrupo(result.getInt(result.getColumnIndex(COLUMNA_IDGRUPO)));
-        vivienda.setCodigounicodispositivo(result.getInt(result.getColumnIndex(COLUMNA_CODIGOUNICODISPOSITIVO)));
+        vivienda.setIdentificadorequipo(result.getInt(result.getColumnIndex(COLUMNA_CODIGOUNICODISPOSITIVO)));
         vivienda.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
         vivienda.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
         vivienda.setFechasincronizacion(result.getString(result.getColumnIndex(COLUMNA_FECHASINCRONIZACION)));
@@ -393,13 +384,6 @@ public class Vivienda implements Serializable {
         this.idparroquia = idparroquia;
     }
 
-    public String getCodigodpa() {
-        return codigodpa;
-    }
-
-    public void setCodigodpa(String codigodpa) {
-        this.codigodpa = codigodpa;
-    }
 
     public Integer getAniodpa() {
         return aniodpa;
@@ -539,28 +523,28 @@ public class Vivienda implements Serializable {
         this.idmaterialpared = idmaterialpared;
     }
 
-    public Integer getIdestadoviviendaTecho() {
-        return idestadoviviendaTecho;
+    public Integer getIdestadoviviendatecho() {
+        return idestadoviviendatecho;
     }
 
-    public void setIdestadoviviendaTecho(Integer idestadoviviendaTecho) {
-        this.idestadoviviendaTecho = idestadoviviendaTecho;
+    public void setIdestadoviviendatecho(Integer idestadoviviendaTecho) {
+        this.idestadoviviendatecho = idestadoviviendatecho;
     }
 
-    public Integer getIdestadoviviendaPiso() {
-        return idestadoviviendaPiso;
+    public Integer getIdestadoviviendapiso() {
+        return idestadoviviendapiso;
     }
 
-    public void setIdestadoviviendaPiso(Integer idestadoviviendaPiso) {
-        this.idestadoviviendaPiso = idestadoviviendaPiso;
+    public void setIdestadoviviendapiso(Integer idestadoviviendapiso) {
+        this.idestadoviviendapiso = idestadoviviendapiso;
     }
 
-    public Integer getIdestadoviviendaPared() {
-        return idestadoviviendaPared;
+    public Integer getIdestadoviviendapared() {
+        return idestadoviviendapared;
     }
 
-    public void setIdestadoviviendaPared(Integer idestadoviviendaPared) {
-        this.idestadoviviendaPared = idestadoviviendaPared;
+    public void setIdestadoviviendapared(Integer idestadoviviendapared) {
+        this.idestadoviviendapared = idestadoviviendapared;
     }
 
     public Integer getFormulario() {
@@ -570,15 +554,6 @@ public class Vivienda implements Serializable {
     public void setFormulario(Integer formulario) {
         this.formulario = formulario;
     }
-
-    public String getFechaactualizacion() {
-        return fechaactualizacion;
-    }
-
-    public void setFechaactualizacion(String fechaactualizacion) {
-        this.fechaactualizacion = fechaactualizacion;
-    }
-
 
     public Integer getNumerovisitas() {
         return numerovisitas;
@@ -606,14 +581,6 @@ public class Vivienda implements Serializable {
         this.vivcodigo = vivcodigo;
     }
 
-    public String getImei() {
-        return imei;
-    }
-
-    public void setImei(String imei) {
-        this.imei = imei;
-    }
-
     public Integer getIdusuario() {
         return idusuario;
     }
@@ -628,14 +595,6 @@ public class Vivienda implements Serializable {
 
     public void setIdgrupo(Integer idgrupo) {
         this.idgrupo = idgrupo;
-    }
-
-    public Integer getCodigounicodispositivo() {
-        return codigounicodispositivo;
-    }
-
-    public void setCodigounicodispositivo(Integer codigounicodispositivo) {
-        this.codigounicodispositivo = codigounicodispositivo;
     }
 
     public String getFechainicio() {
@@ -710,23 +669,6 @@ public class Vivienda implements Serializable {
         this.manzana = manzana;
     }
 
-
-    public Integer getHogarinicial() {
-        return hogarinicial;
-    }
-
-    public void setHogarinicial(Integer hogarinicial) {
-        this.hogarinicial = hogarinicial;
-    }
-
-    public Integer getHogarfinal() {
-        return hogarfinal;
-    }
-
-    public void setHogarfinal(Integer hogarfinal) {
-        this.hogarfinal = hogarfinal;
-    }
-
     public String getLote() {
         return lote;
     }
@@ -783,5 +725,38 @@ public class Vivienda implements Serializable {
 
     public void setFechaencuesta(String fechaencuesta) {
         this.fechaencuesta = fechaencuesta;
+    }
+
+    public String getIddpa() {
+        return iddpa;
+    }
+
+    public void setIddpa(String iddpa) {
+        this.iddpa = iddpa;
+    }
+
+
+    public Integer getHogar1() {
+        return hogar1;
+    }
+
+    public void setHogar1(Integer hogar1) {
+        this.hogar1 = hogar1;
+    }
+
+    public Integer getHogart() {
+        return hogart;
+    }
+
+    public void setHogart(Integer hogart) {
+        this.hogart = hogart;
+    }
+
+    public Integer getIdentificadorequipo() {
+        return identificadorequipo;
+    }
+
+    public void setIdentificadorequipo(Integer identificadorequipo) {
+        this.identificadorequipo = identificadorequipo;
     }
 }

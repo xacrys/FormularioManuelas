@@ -223,11 +223,11 @@ public class HogarFragment extends Fragment {
         materialPisoSpinner.setSelection(posicion);
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) materialParedesSpinner.getAdapter(), String.valueOf(vivienda.getIdmaterialpared()));
         materialParedesSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoTechoSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaTecho()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoTechoSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendatecho()));
         estadoTechoSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoPisoSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaPiso()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoPisoSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendapiso()));
         estadoPisoSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoParedSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendaPared()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) estadoParedSpinner.getAdapter(), String.valueOf(vivienda.getIdestadoviviendapared()));
         estadoParedSpinner.setSelection(posicion);
 
     }
@@ -279,9 +279,9 @@ public class HogarFragment extends Fragment {
         vivienda.setIdmaterialtecho(Integer.parseInt(((Values) materialTechoSpinner.getSelectedItem()).getKey()));
         vivienda.setIdmaterialpiso(Integer.parseInt(((Values) materialPisoSpinner.getSelectedItem()).getKey()));
         vivienda.setIdmaterialpared(Integer.parseInt(((Values) materialParedesSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdestadoviviendaTecho(Integer.parseInt(((Values) estadoTechoSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdestadoviviendaPiso(Integer.parseInt(((Values) estadoPisoSpinner.getSelectedItem()).getKey()));
-        vivienda.setIdestadoviviendaPared(Integer.parseInt(((Values) estadoParedSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdestadoviviendatecho(Integer.parseInt(((Values) estadoTechoSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdestadoviviendapiso(Integer.parseInt(((Values) estadoPisoSpinner.getSelectedItem()).getKey()));
+        vivienda.setIdestadoviviendapared(Integer.parseInt(((Values) estadoParedSpinner.getSelectedItem()).getKey()));
         ViviendaDao.update(contentResolver,vivienda);
 
         hogar.setIdpropiedadvivienda(Integer.parseInt(((Values) tipoHogarSpinner.getSelectedItem()).getKey()));
