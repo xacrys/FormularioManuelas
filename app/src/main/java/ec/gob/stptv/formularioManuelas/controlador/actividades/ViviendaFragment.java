@@ -54,6 +54,7 @@ import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.DpaManzanaDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.HogarDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.LocalidadDao;
+import ec.gob.stptv.formularioManuelas.modelo.dao.LocalizacionDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.DpaManzana;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
@@ -137,7 +138,6 @@ public class ViviendaFragment extends Fragment {
         this.cargarPreguntas();
         this.habilitarDeshabilitar();
         this.realizarAcciones();
-
         try {
             vivienda = (Vivienda) extra.getSerializable("vivienda");
             //usuario = (Usuario) extra.getSerializable("usuario");
@@ -171,12 +171,12 @@ public class ViviendaFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        getLastLocation();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Global.BROADCAST_ACTION_PROGRESS);
         filter.addAction(Global.BROADCAST_ACTION_FIN);
         progressReceiver = new ProgressReceiver();
         getActivity().registerReceiver(progressReceiver, filter);
-
 
         tabs = getActivity().findViewById(android.R.id.tabhost);
         tabs.setup();
@@ -239,7 +239,7 @@ public class ViviendaFragment extends Fragment {
             }
         }*/
 
-        this.getLastLocation();
+
 
 
     }
@@ -305,6 +305,16 @@ public class ViviendaFragment extends Fragment {
 
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) areaSpinner.getAdapter(), String.valueOf(vivienda.getIdarea()));
         areaSpinner.setSelection(posicion);
+
+        ArrayList<Localizacion> localizaciones = LocalizacionDao.getLocalizaciones(contentResolver, Localizacion.whereByViviendaId, new String[]{String.valueOf(vivienda.getId())}, null);
+        if(localizaciones.size() > 0)
+        {
+            Double latitud = localizaciones.get(0).getLatitud();
+            Double longitud = localizaciones.get(0).getLongitud();
+            latitudTextView.setText(String.valueOf(latitud));
+            longitudTextView.setText(String.valueOf(longitud));
+        }
+
         if (!vivienda.getLocalidad().equals(Global.CADENAS_VACIAS)) {
             localidadEditText.setText(vivienda.getLocalidad());
         } else {
@@ -627,13 +637,12 @@ public class ViviendaFragment extends Fragment {
             ViviendaDao.save(contentResolver, vivienda);
             hogarInicialSpinner.setEnabled(false);
 
-            /*ArrayList<Localizacion> localizacionesTemp = Utilitarios.getLocalizacionesPorPresicion(localizaciones, 5);
+            ArrayList<Localizacion> localizacionesTemp = Utilitarios.getLocalizacionesPorPresicion(localizaciones, 5);
             for (Localizacion localizacion : localizacionesTemp) {
-                Log.e("", "localizacion final PROVEEDOR: " + localizacion.getProveedor() + " PRESICION: " + localizacion.getPresicion());
+                Utilitarios.logError("", "localizacion final PROVEEDOR: " + localizacion.getProveedor() + " PRESICION: " + localizacion.getPresicion());
                 localizacion.setViviendaId(vivienda.getId());
-                LocalizacionDao.save(cr, localizacion);
-            }*/
-
+                LocalizacionDao.save(contentResolver, localizacion);
+            }
 
         } else {
             if (vivienda.getIdocupada() != ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()) {
@@ -973,6 +982,15 @@ public class ViviendaFragment extends Fragment {
             return true;
         }
 
+        if(TextUtils.isEmpty(latitudTextView.getText().toString())
+                && TextUtils.isEmpty(longitudTextView.getText().toString()))
+        {
+            getAlert(getString(R.string.validacion_aviso),
+                    getString(R.string.mv_no_punto_gps));
+            return  true;
+        }
+
+
 
         return cancel;
     }
@@ -1055,41 +1073,46 @@ public class ViviendaFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-               /*if (location != null) {
-                    if (TextUtils.isEmpty(latitudTextView.getText()) && TextUtils.isEmpty(latitudTextView.getText())) {
-                        latitudTextView.setText("" + location.getLatitude());
-                        longitudTextView.setText("" + location.getLongitude());
-                        localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
-                    }
+
+                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
                 } else {
-                    if (locationManager != null) {
-                        Location _locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                        if (_locationGPS != null) {
-                            latitudTextView.setText("" + _locationGPS.getLatitude());
-                            longitudTextView.setText("" + _locationGPS.getLongitude());
-                            localizaciones.add(new Localizacion(0, 0, _locationGPS.getLatitude(), _locationGPS.getLongitude(), _locationGPS.getAltitude(), _locationGPS.getAccuracy(), _locationGPS.getProvider()));
+                    if (location != null) {
+                        if (TextUtils.isEmpty(latitudTextView.getText()) && TextUtils.isEmpty(latitudTextView.getText())) {
+                            latitudTextView.setText("" + location.getLatitude());
+                            longitudTextView.setText("" + location.getLongitude());
+                            localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
                         }
-                        else
-                        {
-                            Location _locationNet = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    } else {
+                        if (locationManager != null) {
+                            Location _locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-                            if (_locationNet != null) {
-                                latitudTextView.setText("" + _locationNet.getLatitude());
-                                longitudTextView.setText("" + _locationNet.getLongitude());
-                                localizaciones.add(new Localizacion(0, 0, _locationNet.getLatitude(), _locationNet.getLongitude(), _locationNet.getAltitude(), _locationNet.getAccuracy(), _locationNet.getProvider()));
+                            if (_locationGPS != null) {
+                                latitudTextView.setText("" + _locationGPS.getLatitude());
+                                longitudTextView.setText("" + _locationGPS.getLongitude());
+                                localizaciones.add(new Localizacion(0, 0, _locationGPS.getLatitude(), _locationGPS.getLongitude(), _locationGPS.getAltitude(), _locationGPS.getAccuracy(), _locationGPS.getProvider()));
                             }
                             else
                             {
-                                Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
+                                Location _locationNet = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                                if (_locationNet != null) {
+                                    latitudTextView.setText("" + _locationNet.getLatitude());
+                                    longitudTextView.setText("" + _locationNet.getLongitude());
+                                    localizaciones.add(new Localizacion(0, 0, _locationNet.getLatitude(), _locationNet.getLongitude(), _locationNet.getAltitude(), _locationNet.getAccuracy(), _locationNet.getProvider()));
+                                }
+                                else
+                                {
+                                    Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
+                        else
+                        {
+                            Toast.makeText(getActivity(), "Buscando punto GPS",	Toast.LENGTH_LONG).show();
+                        }
                     }
-                    else
-                    {
-                        Toast.makeText(getActivity(), "Buscando punto GPS",	Toast.LENGTH_LONG).show();
-                    }
-                }*/
+                }
             }
         });
 
@@ -1570,15 +1593,12 @@ public class ViviendaFragment extends Fragment {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            Utilitarios.logError("onReceive", "onReceive " + location);
             if (intent.getAction().equals(Global.BROADCAST_ACTION_PROGRESS)) {
-
-
                 location = intent.getParcelableExtra("location");
-
                 if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
                     localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
                 }
-
                 if ((TextUtils.isEmpty(latitudTextView.getText()) && TextUtils.isEmpty(latitudTextView.getText())) ) {
                     latitudTextView.setText("" + location.getLatitude());
                     longitudTextView.setText("" + location.getLongitude());
@@ -1590,61 +1610,60 @@ public class ViviendaFragment extends Fragment {
                     }
                 }
             }
+
         }
     }
 
 
     /**
-     * Cpatura puntos
+     * Captura puntos cuando es una vivienda nueva al crear al actividad(carga de la seccion vivienda)
+     * sino encuentra los puntos dar clic en el boton capturar.
      */
     private void getLastLocation() {
-        //permiso del usuario para la localizacion
-        /*if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-        }
-        if (location != null) {
-            if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
-                localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
-                latitudTextView.setText("" + location.getLatitude());
-                longitudTextView.setText("" + location.getLongitude());
-            }
+        Utilitarios.logError("Metodo getLastLocation","getLastLocation");
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
-            if (locationManager != null) {
-
-                Location _locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                if (_locationGPS != null) {
-                    if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
-                        localizaciones.add(new Localizacion(0, 0, _locationGPS.getLatitude(), _locationGPS.getLongitude(), _locationGPS.getAltitude(), _locationGPS.getAccuracy(), _locationGPS.getProvider()));
-                        latitudTextView.setText("" + location.getLatitude());
-                        longitudTextView.setText("" + location.getLongitude());
-                    }
+            if (location != null) {
+                if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
+                    localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
+                    latitudTextView.setText("" + location.getLatitude());
+                    longitudTextView.setText("" + location.getLongitude());
                 }
-                else
-                {
-                    Location _locationNet = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            } else {
+                if (locationManager != null) {
 
-                    if (_locationNet != null) {
+                    Location _locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                    if (_locationGPS != null) {
                         if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
-                            localizaciones.add(new Localizacion(0, 0, _locationNet.getLatitude(), _locationNet.getLongitude(), _locationNet.getAltitude(), _locationNet.getAccuracy(), _locationNet.getProvider()));
-                            latitudTextView.setText("" + location.getLatitude());
-                            longitudTextView.setText("" + location.getLongitude());
+                            localizaciones.add(new Localizacion(0, 0, _locationGPS.getLatitude(), _locationGPS.getLongitude(), _locationGPS.getAltitude(), _locationGPS.getAccuracy(), _locationGPS.getProvider()));
+                            latitudTextView.setText("" + _locationGPS.getLatitude());
+                            longitudTextView.setText("" + _locationGPS.getLongitude());
                         }
                     }
                     else
                     {
-                        Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
+                        Location _locationNet = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                        if (_locationNet != null) {
+                            if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
+                                localizaciones.add(new Localizacion(0, 0, _locationNet.getLatitude(), _locationNet.getLongitude(), _locationNet.getAltitude(), _locationNet.getAccuracy(), _locationNet.getProvider()));
+                                latitudTextView.setText("" + _locationNet.getLatitude());
+                                longitudTextView.setText("" + _locationNet.getLongitude());
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
+                else
+                {
+                    Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
+                }
             }
-            else
-            {
-                Toast.makeText(getActivity(), "Buscando punto GPS", Toast.LENGTH_LONG).show();
-            }
-        }*/
+        }
     }
-
-
 }

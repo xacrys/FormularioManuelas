@@ -14,6 +14,7 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
@@ -54,9 +55,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.zip.GZIPOutputStream;
+
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Localizacion;
 
 /**
  * Created by lmorales on 14/07/17.
@@ -741,7 +746,7 @@ public class Utilitarios {
      */
     public static void appendLog(String typeLog, String date, String tag, String message) {
         String stringLog = typeLog + "\t" + date + "\t" + tag + "\t" + message;
-        File logFile = new File(Environment.getExternalStorageDirectory() + Global.PATH_LOGS + "/nombreArchivo.txt");
+        File logFile = new File(Environment.getExternalStorageDirectory() + Global.PATH_LOGS + "/formularioManuelas.txt");
         if (!logFile.exists()) {
             try {
                 logFile.createNewFile();
@@ -1005,6 +1010,75 @@ public class Utilitarios {
             return false;
         }
 
+    }
+
+    /**
+     * Metodo para obtener los puntos mas exactos de una ubicacion
+     * @param localizaciones Puntos capturados
+     * @param max numeros de puntos a obtener
+     * @return Retorna un ArrayList filtrado con los puntos mas exactos
+     */
+    public static ArrayList<Localizacion> getLocalizacionesPorPresicion(ArrayList<Localizacion> localizaciones, int max) {
+
+        ArrayList<Localizacion> localizacinesGPS = new ArrayList<Localizacion>();
+        ArrayList<Localizacion> localizacinesNetwork = new ArrayList<Localizacion>();
+        ArrayList<Localizacion> localizacinesFinal = new ArrayList<Localizacion>();
+
+        //Primero buscamos los puntos del proveedor GPS
+        for (Localizacion localizacion : localizaciones)
+        {
+            if(localizacion.getProveedor().equals(LocationManager.GPS_PROVIDER))
+            {
+                localizacinesGPS.add(localizacion);
+            }
+        }
+        //Ordenamos de forma ascendente por la presicion
+        Collections.sort(localizacinesGPS, new Comparator<Localizacion>() {
+            @Override
+            public int compare(Localizacion  localizacion1, Localizacion  localizacion2)
+            {
+                return  localizacion1.getPresicion().compareTo(localizacion2.getPresicion());
+            }
+        });
+
+        // Escogemos los n primeros valores
+        if(localizacinesGPS.size() > 0)
+        {
+            int i = 0;
+            while (i < localizacinesGPS.size() && i < max) {
+                localizacinesFinal.add(localizacinesGPS.get(i));
+                i++;
+            }
+        }
+        else
+        {// Sino buscamos los puntos del proveedor Network
+            for (Localizacion localizacion : localizaciones)
+            {
+                if(localizacion.getProveedor().equals(LocationManager.NETWORK_PROVIDER))
+                {
+                    localizacinesNetwork.add(localizacion);
+                }
+            }
+
+            //Ordenamos de forma ascendente por la presicion
+            Collections.sort(localizacinesNetwork, new Comparator<Localizacion>() {
+                @Override
+                public int compare(Localizacion  localizacion1, Localizacion  localizacion2)
+                {
+                    return  localizacion1.getPresicion().compareTo(localizacion2.getPresicion());
+                }
+            });
+
+            if(localizacinesNetwork.size() > 0)
+            {
+                int i = 0;
+                while (i < localizacinesNetwork.size() && i < max) {
+                    localizacinesFinal.add(localizacinesNetwork.get(i));
+                    i++;
+                }
+            }
+        }
+        return localizacinesFinal;
     }
 
 }

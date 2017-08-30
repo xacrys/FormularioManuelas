@@ -23,7 +23,7 @@ public class Global {
      */
     public static final String INFO = "I";
     public static final String ERROR = "E";
-    public static final String PATH_LOGS = "/logs/NombreProyecto";
+    public static final String PATH_LOGS = "/logs/formularioManuelas";
 
     /**
      * Ancho de la foto de vivienda y certificado

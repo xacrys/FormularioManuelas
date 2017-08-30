@@ -583,6 +583,7 @@
     <string name="mv_campo_hogar_mayor_cero">El campo 13 "Hogar de" debe ser un número entero mayor que cero</string>
     <string name="error_numero_celularCeros">No es campo obligatorio</string>
     <string name="error_numero_celular">Ingrese 10 dígitos</string>
+    <string name="mv_no_punto_gps">Capturando punto GPS  espere por favor&#8230;</string>
 
     <!-- FIN Mensajes de validacion Seccion I y II -->
 

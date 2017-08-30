@@ -33,6 +33,8 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name="ec.gob.stptv.formularioManuelas.controlador.actividades.ViviendaFragment$ProgressReceiver" >
+        </receiver>
         <provider
             android:name="ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider"
             android:authorities="ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelas"
@@ -54,10 +56,11 @@
 
         <service
             android:name="ec.gob.stptv.formularioManuelas.controlador.servicio.LocalizacionService"
-            android:exported="false"
-            android:icon="@mipmap/ic_launcher"
-            android:label="Mi primer servicio"
-            android:logo="@mipmap/ic_launcher"
+            android:exported="true"
+            android:enabled="true"
+            android:icon="@drawable/ic_menu_observacion"
+            android:label="Servicio captura de localizacion"
+            android:logo="@drawable/ic_menu_observacion"
             android:process=":my_service" >
         </service>
 
