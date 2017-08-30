@@ -126,6 +126,9 @@ public class FormularioManuelasProvider extends ContentProvider {
 
         uriMatcher.addURI(AUTORIDAD, "localidades", LOCALIDAD);
         uriMatcher.addURI(AUTORIDAD, "localidades/#", LOCALIDAD_ID);
+
+        uriMatcher.addURI(AUTORIDAD, "imagenes", IMAGEN);
+        uriMatcher.addURI(AUTORIDAD, "imagenes/#", IMAGEN_ID);
     }
 
     /**

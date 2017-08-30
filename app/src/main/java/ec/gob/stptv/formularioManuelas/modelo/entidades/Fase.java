@@ -11,32 +11,32 @@ import java.io.Serializable;
 public class Fase implements Serializable {
 
 	//Definicion de campos
-	private int id;
-	private String fechaInicio;
-	private String fechaFin;
-	private String nombreFase;
-	private String nombreOperativo;
+	private Integer id;
+	private String fechainicio;
+	private String fechafin;
+	private String nombrefase;
+	private String nombreoperativo;
 
-	private int estado;
+	private Integer estado;
 
 	//Nombre de la tabla
 	public final static String NOMBRE_TABLA = "fase";
 
 	//Atributos de la Tabla
 	public final static String COLUMNA_ID = "id";
-	public final static String COLUMNA_FECHA_INICIO = "fecha_inicio";
-	public final static String COLUMNA_FECHA_FIN = "fecha_fin";
-	public final static String COLUMNA_NOMBRE_FASE= "nombre_fase";
-	public final static String COLUMNA_NOMBRE_OPERATIVO= "nombre_operativo";
+	public final static String COLUMNA_FECHAINICIO = "fecha_inicio";
+	public final static String COLUMNA_FECHAFIN = "fecha_fin";
+	public final static String COLUMNA_NOMBREFASE= "nombre_fase";
+	public final static String COLUMNA_NOMBREOPERATIVO= "nombre_operativo";
 	public final static String COLUMNA_ESTADO = "estado";
 
 	//crear un string con las columnas de la tabla
 	public static final String[] columnas = new String[] {
 			COLUMNA_ID,
-			COLUMNA_FECHA_INICIO,
-			COLUMNA_FECHA_FIN,
-			COLUMNA_NOMBRE_FASE,
-			COLUMNA_NOMBRE_OPERATIVO,
+			COLUMNA_FECHAINICIO,
+			COLUMNA_FECHAFIN,
+			COLUMNA_NOMBREFASE,
+			COLUMNA_NOMBREOPERATIVO,
 			COLUMNA_ESTADO
 	};
 
@@ -45,12 +45,12 @@ public class Fase implements Serializable {
 	public static String whereByIdDistinto = COLUMNA_ID + " <> ?";
 	public static String whereDates =
 
-			"( ? BETWEEN " + COLUMNA_FECHA_INICIO
-					+ " AND " + COLUMNA_FECHA_FIN + ")";
+			"( ? BETWEEN " + COLUMNA_FECHAINICIO
+					+ " AND " + COLUMNA_FECHAFIN + ")";
 	public static String whereDatesEnabled =
 
-			"( ? BETWEEN " + COLUMNA_FECHA_INICIO
-					+ " AND " + COLUMNA_FECHA_FIN + ") AND " + COLUMNA_ESTADO + "= 1";
+			"( ? BETWEEN " + COLUMNA_FECHAINICIO
+					+ " AND " + COLUMNA_FECHAFIN + ") AND " + COLUMNA_ESTADO + "= 1";
 	public static String whereFaseEnabled = COLUMNA_ESTADO + "= 1";
 
 
@@ -59,11 +59,11 @@ public class Fase implements Serializable {
 		String name = "";
 		if(getEstado() == 1)
 		{
-			name = getNombreOperativo() + " - " + getNombreFase() + " (Actual)";
+			name = getNombreoperativo() + " - " + getNombrefase() + " (Actual)";
 		}
 		else
 		{
-			name = getNombreOperativo() + " - " + getNombreFase();
+			name = getNombreoperativo() + " - " + getNombrefase();
 		}
 
 		return name;
@@ -78,21 +78,27 @@ public class Fase implements Serializable {
 				String nombreOperativo, int estado) {
 		super();
 		this.setId(id);
-		this.setFechaInicio(fechaInicio);
-		this.setFechaFin(fechaFin);
-		this.setNombreFase(nombreFase);
-		this.setNombreOperativo(nombreOperativo);
+		this.setFechainicio(fechaInicio);
+		this.setFechafin(fechaFin);
+		this.setNombrefase(nombreFase);
+		this.setNombreoperativo(nombreOperativo);
 		this.setEstado(estado);
 	}
 
 	/**
 	 * Método que devuelve los valores de un registro
-	 * @param vivienda
+	 * @param fase
 	 * @return
 	 */
-	public static ContentValues getValues(Fase vivienda) {
+	public static ContentValues getValues(Fase fase) {
 		ContentValues values = new ContentValues();
-		values.put(Fase.COLUMNA_ID, vivienda.getId());
+		values.put(Fase.COLUMNA_ID, fase.getId());
+		values.put(Fase.COLUMNA_FECHAINICIO, fase.getFechainicio());
+		values.put(Fase.COLUMNA_FECHAFIN, fase.getFechafin());
+		values.put(Fase.COLUMNA_NOMBREFASE, fase.getNombrefase());
+		values.put(Fase.COLUMNA_NOMBREOPERATIVO, fase.getNombreoperativo());
+		values.put(Fase.COLUMNA_ESTADO, fase.getEstado());
+
 		return values;
 	}
 
@@ -102,57 +108,62 @@ public class Fase implements Serializable {
 	 * @return
 	 */
 	public static Fase newVivienda(Cursor result) {
-		Fase vivienda = new Fase();
-		vivienda.setId(result.getInt(result.getColumnIndex(COLUMNA_ID)));
-		return vivienda;
+		Fase fase = new Fase();
+		fase.setId(result.getInt(result.getColumnIndex(COLUMNA_ID)));
+		fase.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
+		fase.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
+		fase.setNombrefase(result.getString(result.getColumnIndex(COLUMNA_NOMBREFASE)));
+		fase.setNombreoperativo(result.getString(result.getColumnIndex(COLUMNA_NOMBREOPERATIVO)));
+		fase.setEstado(result.getInt(result.getColumnIndex(COLUMNA_ESTADO)));
+
+		return fase;
 	}
 
-
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getFechaInicio() {
-		return fechaInicio;
+	public String getFechainicio() {
+		return fechainicio;
 	}
 
-	public void setFechaInicio(String fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	public void setFechainicio(String fechainicio) {
+		this.fechainicio = fechainicio;
 	}
 
-	public String getFechaFin() {
-		return fechaFin;
+	public String getFechafin() {
+		return fechafin;
 	}
 
-	public void setFechaFin(String fechaFin) {
-		this.fechaFin = fechaFin;
+	public void setFechafin(String fechafin) {
+		this.fechafin = fechafin;
 	}
 
-	public String getNombreFase() {
-		return nombreFase;
+	public String getNombrefase() {
+		return nombrefase;
 	}
 
-	public void setNombreFase(String nombreFase) {
-		this.nombreFase = nombreFase;
+	public void setNombrefase(String nombrefase) {
+		this.nombrefase = nombrefase;
 	}
 
-	public String getNombreOperativo() {
-		return nombreOperativo;
+	public String getNombreoperativo() {
+		return nombreoperativo;
 	}
 
-	public void setNombreOperativo(String nombreOperativo) {
-		this.nombreOperativo = nombreOperativo;
+	public void setNombreoperativo(String nombreoperativo) {
+		this.nombreoperativo = nombreoperativo;
 	}
 
-	public int getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 }

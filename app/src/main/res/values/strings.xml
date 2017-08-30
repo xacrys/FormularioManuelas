@@ -64,6 +64,8 @@
     <string name="errorCampoRequerido">Este campo es requerido</string>
     <string name="errorPasswordInvalido">La contraseña es muy corta</string>
     <string name="errorConectarServidor">No se puede conectar al servidor</string>
+    <string name="error_conectar_servidor">No se puede conectar al servidor</string>
+    <string name="error_incorrect_password">Usuario o contraseña incorrectos</string>
 
 
     <!-- Seccion Vivienda -->

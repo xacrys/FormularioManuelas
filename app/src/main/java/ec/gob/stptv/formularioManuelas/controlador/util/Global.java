@@ -19,6 +19,22 @@ public class Global {
     public static final String ENVIRONMENT = DEVELOPMENT_ENVIRONMENT;
 
     /**
+     * IPS de produccion
+     */
+    public static final String IP_SERVIDOR = "http://www.rips.gob.ec";
+
+    /**
+     * WEB SERVICES
+     */
+    public static final String URL_WEB_SERVICES = "/FichaMSPWeb/webresources";
+    public static final String URL_WEB_SERVICE_USUARIOS= IP_SERVIDOR + URL_WEB_SERVICES + "/logeoFichaMSP";
+
+    /**
+     * Tiempo de ejecucion de Login
+     */
+    public static final int ASYNCTASK_TIMEROUT_LOGIN =  120000; // 1min
+
+    /**
      * Atributos para el manejo de logs
      */
     public static final String INFO = "I";

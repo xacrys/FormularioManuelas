@@ -294,7 +294,7 @@ public class CertificadoImagenFragment extends Fragment {
                 .encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO_VIVIENDA));
         imagen.setFecha(Utilitarios.getCurrentDate());
         Uri uri = ImagenDao.save(cr, imagen);
-        String idIMagen = uri.getPathSegments().get(1);
+        //String idIMagen = uri.getPathSegments().get(1);
     }
 
 }

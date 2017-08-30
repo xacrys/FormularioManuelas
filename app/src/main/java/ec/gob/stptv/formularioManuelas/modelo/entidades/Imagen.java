@@ -22,10 +22,9 @@ public class Imagen implements Serializable{
 	
 	private String mensaje;
 	private String codigoFormulario;
-	
 
 
-	public final static String NOMBRE_TABLA = "imagenes";
+	public final static String NOMBRE_TABLA = "imagen";
 
 	public final static String COLUMNA_ID = "id";
 	public final static String COLUMNA_IDVIVIENDA = "idvivienda";
@@ -33,15 +32,15 @@ public class Imagen implements Serializable{
 	public final static String COLUMNA_TIPO = "tipo";
 	public final static String COLUMNA_IMAGEN = "imagen";
 	public final static String COLUMNA_FECHA = "fecha";
-	public final static String COLUMNA_ESTADOSINCRONIZACION = "estado_sincronizacion";
-	public final static String COLUMNA_FECHASINCRONIZACION = "fecha_sincronizacion";
+	public final static String COLUMNA_ESTADOSINCRONIZACION = "estadosincronizacion";
+	public final static String COLUMNA_FECHASINCRONIZACION = "fechasincronizacion";
 
-	public static final String[] columnas_imagen = new String[] { 
-		NOMBRE_TABLA + "." + COLUMNA_ID, 
+	public static final String[] columnas_imagen = new String[] {
+		NOMBRE_TABLA + "." + COLUMNA_ID,
 		NOMBRE_TABLA + "." + COLUMNA_IDVIVIENDA,
 		NOMBRE_TABLA + "." + COLUMNA_CODIGOEQUIPO,
-		NOMBRE_TABLA + "." + COLUMNA_TIPO, 
-		NOMBRE_TABLA + "." + COLUMNA_IMAGEN, 
+		NOMBRE_TABLA + "." + COLUMNA_TIPO,
+		NOMBRE_TABLA + "." + COLUMNA_IMAGEN,
 		NOMBRE_TABLA + "." + COLUMNA_FECHA,
 		NOMBRE_TABLA + "." + COLUMNA_ESTADOSINCRONIZACION,
 		NOMBRE_TABLA + "." + COLUMNA_FECHASINCRONIZACION };
