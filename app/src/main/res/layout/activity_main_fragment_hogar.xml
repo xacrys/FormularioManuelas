@@ -23,7 +23,7 @@
             <TextView
                 android:id="@+id/textView2"
                 style="@style/seccionTextView"
-                android:text="@string/seccionVivienda" />
+                android:text="@string/seccion3" />
         </LinearLayout>
 
         <!-- Contenedor 3 -->

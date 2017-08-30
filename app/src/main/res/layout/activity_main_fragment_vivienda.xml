@@ -531,9 +531,6 @@
                 android:id="@+id/condicionOcupacionSpinner"
                 style="@style/respuestaSpinner" />
 
-            <TextView
-                style="@style/seccionTextView"
-                android:text="@string/seccion3" />
 
         </LinearLayout>
         <!-- FIN Contenedor 2 -->
