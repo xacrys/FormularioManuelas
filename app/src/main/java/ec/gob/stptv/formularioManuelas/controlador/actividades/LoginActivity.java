@@ -147,7 +147,6 @@ public class LoginActivity extends Activity {
             return true;
         } else if (mPassword.length() < 4) {
             mPasswordView.setError(getString(R.string.errorPasswordInvalido));
-            focusView = mPasswordView;
             mPasswordView.requestFocus();
             return true;
         }
@@ -193,6 +192,8 @@ public class LoginActivity extends Activity {
         if (validarCampos())
             return;
 
+        Utilitarios.logError("calveeeeeeeeeeeee",ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()+""));
+
         // Show a progress spinner, and kick off a background task to
         // perform the user login attempt.
         mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
@@ -208,6 +209,7 @@ public class LoginActivity extends Activity {
                     mEmailView.getText().toString(),
                     ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
             };
+
             String where = Usuario.whereByUsuarioYPassword;
             Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
 
@@ -268,37 +270,30 @@ public class LoginActivity extends Activity {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(
-                    android.R.integer.config_shortAnimTime);
+        int shortAnimTime = getResources().getInteger(
+                android.R.integer.config_shortAnimTime);
 
-            mLoginStatusView.setVisibility(View.VISIBLE);
-            mLoginStatusView.animate().setDuration(shortAnimTime)
-                    .alpha(show ? 1 : 0)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            mLoginStatusView.setVisibility(show ? View.VISIBLE
-                                    : View.GONE);
-                        }
-                    });
+        mLoginStatusView.setVisibility(View.VISIBLE);
+        mLoginStatusView.animate().setDuration(shortAnimTime)
+                .alpha(show ? 1 : 0)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mLoginStatusView.setVisibility(show ? View.VISIBLE
+                                : View.GONE);
+                    }
+                });
 
-            mLoginFormView.setVisibility(View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime)
-                    .alpha(show ? 0 : 1)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            mLoginFormView.setVisibility(show ? View.GONE
-                                    : View.VISIBLE);
-                        }
-                    });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
+        mLoginFormView.setVisibility(View.VISIBLE);
+        mLoginFormView.animate().setDuration(shortAnimTime)
+                .alpha(show ? 0 : 1)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mLoginFormView.setVisibility(show ? View.GONE
+                                : View.VISIBLE);
+                    }
+                });
     }
 
 
@@ -381,6 +376,7 @@ public class LoginActivity extends Activity {
 
         @Override
         protected void onPostExecute(final Object _respuesta) {
+
 
             // Usuario de pruebas
             Usuario usuario = new Usuario();

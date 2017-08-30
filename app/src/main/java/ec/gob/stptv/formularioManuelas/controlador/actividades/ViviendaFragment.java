@@ -137,7 +137,7 @@ public class ViviendaFragment extends Fragment {
         try {
             vivienda = (Vivienda) extra.getSerializable("vivienda");
             usuario = (Usuario) extra.getSerializable("usuario");
-            fase = extra.getParcelable("fase");
+            fase = (Fase) extra.getSerializable("fase");
             if (vivienda.getId() != 0) {
                 this.llenarCamposVivienda();
                 vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
@@ -566,7 +566,7 @@ public class ViviendaFragment extends Fragment {
         }
         vivienda.setIdfase(fase.getId());
         vivienda.setIdfase(1);
-        vivienda.setIdentificadorequipo(Integer.parseInt(Utilitarios.getImeiDispositivo(getActivity())));
+        vivienda.setIdentificadorequipo(Utilitarios.getImeiDispositivo(getActivity()));
         vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
         vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
         vivienda.setFechafin(Utilitarios.getCurrentDateAndHour());
@@ -953,8 +953,8 @@ public class ViviendaFragment extends Fragment {
                 } else {
                     if (location != null) {
                         if (TextUtils.isEmpty(latitudTextView.getText()) && TextUtils.isEmpty(latitudTextView.getText())) {
-                            latitudTextView.setText("" + location.getLatitude());
-                            longitudTextView.setText("" + location.getLongitude());
+                            latitudTextView.setText(String.valueOf(location.getLatitude()));
+                            longitudTextView.setText(String.valueOf(location.getLongitude()));
                             localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
                         }
                     } else {
@@ -962,8 +962,8 @@ public class ViviendaFragment extends Fragment {
                             Location _locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
                             if (_locationGPS != null) {
-                                latitudTextView.setText("" + _locationGPS.getLatitude());
-                                longitudTextView.setText("" + _locationGPS.getLongitude());
+                                latitudTextView.setText(String.valueOf(_locationGPS.getLatitude()));
+                                longitudTextView.setText(String.valueOf(_locationGPS.getLongitude()));
                                 localizaciones.add(new Localizacion(0, 0, _locationGPS.getLatitude(), _locationGPS.getLongitude(), _locationGPS.getAltitude(), _locationGPS.getAccuracy(), _locationGPS.getProvider()));
                             }
                             else
@@ -971,8 +971,8 @@ public class ViviendaFragment extends Fragment {
                                 Location _locationNet = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
                                 if (_locationNet != null) {
-                                    latitudTextView.setText("" + _locationNet.getLatitude());
-                                    longitudTextView.setText("" + _locationNet.getLongitude());
+                                    latitudTextView.setText(String.valueOf(_locationNet.getLatitude()));
+                                    longitudTextView.setText(String.valueOf(_locationNet.getLongitude()));
                                     localizaciones.add(new Localizacion(0, 0, _locationNet.getLatitude(), _locationNet.getLongitude(), _locationNet.getAltitude(), _locationNet.getAccuracy(), _locationNet.getProvider()));
                                 }
                                 else
@@ -1474,13 +1474,13 @@ public class ViviendaFragment extends Fragment {
                     localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
                 }
                 if ((TextUtils.isEmpty(latitudTextView.getText()) && TextUtils.isEmpty(latitudTextView.getText())) ) {
-                    latitudTextView.setText("" + location.getLatitude());
-                    longitudTextView.setText("" + location.getLongitude());
+                    latitudTextView.setText(String.valueOf(location.getLatitude()));
+                    longitudTextView.setText(String.valueOf(location.getLongitude()));
                 } else {
                     if (location.getProvider().equals(LocationManager.GPS_PROVIDER)	&& vivienda.getId() == 0) {
                         Utilitarios.logInfo(ViviendaFragment.class.getName(), "Longitud y Latitud cambiadas por el proveedor gps");
-                        latitudTextView.setText("" + location.getLatitude());
-                        longitudTextView.setText("" + location.getLongitude());
+                        latitudTextView.setText(String.valueOf(location.getLatitude()));
+                        longitudTextView.setText(String.valueOf(location.getLongitude()));
                     }
                 }
             }
@@ -1501,8 +1501,8 @@ public class ViviendaFragment extends Fragment {
             if (location != null) {
                 if (vivienda.getId() == 0 && localizaciones.size() <= maxNumeroLocalizaciones) {
                     localizaciones.add(new Localizacion(0, 0, location.getLatitude(), location.getLongitude(), location.getAltitude(), location.getAccuracy(), location.getProvider()));
-                    latitudTextView.setText("" + location.getLatitude());
-                    longitudTextView.setText("" + location.getLongitude());
+                    latitudTextView.setText(String.valueOf(location.getLatitude()));
+                    longitudTextView.setText(String.valueOf(location.getLongitude()));
                 }
             } else {
                 if (locationManager != null) {

@@ -51,7 +51,7 @@ public class Vivienda implements Serializable {
     private String fechafin;
     private String vivcodigo;
     private Integer idusuario;
-    private Integer identificadorequipo;//imei
+    private String identificadorequipo;//imei
     private Integer hogart;
     private String division;
     private String idprovincia;//local
@@ -206,7 +206,7 @@ public class Vivienda implements Serializable {
     /**
      * Método que devuelve los valores de un registro
      *
-     * @param vivienda
+     * @param vivienda regresa la vivienda
      * @return
      */
     public static ContentValues getValues(Vivienda vivienda) {
@@ -317,7 +317,7 @@ public class Vivienda implements Serializable {
         vivienda.setVivcodigo(result.getString(result.getColumnIndex(COLUMNA_VIVCODIGO)));
         vivienda.setIdusuario(result.getInt(result.getColumnIndex(COLUMNA_IDUSUARIO)));
         vivienda.setIdgrupo(result.getInt(result.getColumnIndex(COLUMNA_IDGRUPO)));
-        vivienda.setIdentificadorequipo(result.getInt(result.getColumnIndex(COLUMNA_CODIGOUNICODISPOSITIVO)));
+        vivienda.setIdentificadorequipo(result.getString(result.getColumnIndex(COLUMNA_CODIGOUNICODISPOSITIVO)));
         vivienda.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
         vivienda.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
         vivienda.setFechasincronizacion(result.getString(result.getColumnIndex(COLUMNA_FECHASINCRONIZACION)));
@@ -527,7 +527,7 @@ public class Vivienda implements Serializable {
         return idestadoviviendatecho;
     }
 
-    public void setIdestadoviviendatecho(Integer idestadoviviendaTecho) {
+    public void setIdestadoviviendatecho(Integer idestadoviviendatecho) {
         this.idestadoviviendatecho = idestadoviviendatecho;
     }
 
@@ -752,11 +752,12 @@ public class Vivienda implements Serializable {
         this.hogart = hogart;
     }
 
-    public Integer getIdentificadorequipo() {
+
+    public String getIdentificadorequipo() {
         return identificadorequipo;
     }
 
-    public void setIdentificadorequipo(Integer identificadorequipo) {
+    public void setIdentificadorequipo(String identificadorequipo) {
         this.identificadorequipo = identificadorequipo;
     }
 }
