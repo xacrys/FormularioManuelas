@@ -4,6 +4,7 @@ package ec.gob.stptv.formularioManuelas.controlador.actividades;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,8 +29,12 @@ import android.widget.TextView;
 import java.io.File;
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.IntentIntegrator;
 import ec.gob.stptv.formularioManuelas.controlador.util.IntentResult;
+import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
+import ec.gob.stptv.formularioManuelas.modelo.dao.ImagenDao;
+import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Imagen;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
@@ -59,6 +64,10 @@ public class CertificadoImagenFragment extends Fragment {
     protected Uri mImagenViviendaUri;
     private Boolean botonCapturar;
     private Boolean botonCapturarVerificar;
+    private ContentResolver cr;
+    private Imagen imagen = new Imagen();
+
+
 
 
     public static final String PRODUCT_MODE = "PRODUCT_MODE";
@@ -71,7 +80,7 @@ public class CertificadoImagenFragment extends Fragment {
                 R.layout.activity_main_fragment_certificado_imagen, container,
                 false);
 
-//        contentResolver = getActivity().getContentResolver();
+        cr = getActivity().getContentResolver();
         this.obtenerVistas(item);
         this.capturarCertificado();
         return item;
@@ -221,6 +230,7 @@ public class CertificadoImagenFragment extends Fragment {
             public void onClick(View view) {
                 if (!validarCampos()) {
                     actualizarVivienda();
+                    guardarImagen();
                 }
             }
         });
@@ -270,7 +280,21 @@ public class CertificadoImagenFragment extends Fragment {
     }
 
     private void actualizarVivienda() {
-        getAlert(getString(R.string.validacion_aviso), "Actualizacion Exitosa");
+        vivienda.setCertificado(certificadoEditText.getText().toString());
+        ViviendaDao.update(cr,vivienda);
+    }
+
+    private void guardarImagen(){
+        Utilitarios.logInfo(CertificadoImagenFragment.class.getName(),
+                "Entra al NUEVO de la foto del formulario");
+        vivienda = ViviendaFragment.getVivienda();
+        imagen.setIdvivienda(vivienda.getId());
+        imagen.setTipo(1);
+        imagen.setImagen(Utilitarios
+                .encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO_VIVIENDA));
+        imagen.setFecha(Utilitarios.getCurrentDate());
+        Uri uri = ImagenDao.save(cr, imagen);
+        String idIMagen = uri.getPathSegments().get(1);
     }
 
 }
