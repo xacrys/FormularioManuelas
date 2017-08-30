@@ -382,7 +382,6 @@ public class HogarFragment extends Fragment {
                 }
                 else if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
                         ((Values)servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")){
-                    servicioSanitarioSpinner.setSelection(0);
                     getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondeDepartamento));
 
                 }
@@ -413,17 +412,40 @@ public class HogarFragment extends Fragment {
             }
         });
 
-        materialPisoSpinner.setOnClickListener(new View.OnClickListener() {
+        materialPisoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(!((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
                         !((Values)materialPisoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
                         Integer.parseInt(((Values)tipoViviendaSpinner.getSelectedItem()).getKey())>4 &&
-                        Integer.parseInt(((Values)materialPisoSpinner.getSelectedItem()).getKey())<3){
+                        Integer.parseInt(((Values)materialPisoSpinner.getSelectedItem()).getKey())<4){
                     materialPisoSpinner.setSelection(0);
                     getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondePiso));
 
                 }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        materialParedesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(!((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        !((Values)materialParedesSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
+                        Integer.parseInt(((Values)tipoViviendaSpinner.getSelectedItem()).getKey())>4 &&
+                        Integer.parseInt(((Values)materialParedesSpinner.getSelectedItem()).getKey())<3){
+                    materialParedesSpinner.setSelection(0);
+                    getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondePared));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
@@ -448,21 +470,20 @@ public class HogarFragment extends Fragment {
                 if (((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")) {
                     ubicacionSanitarioSpinner.setSelection(0);
                     ubicacionSanitarioSpinner.setEnabled(false);
-                } else if(((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("5") &&
+                }
+                else {
+                    ubicacionSanitarioSpinner.setEnabled(true);
+                }
+                if(((Values) servicioSanitarioSpinner.getSelectedItem()).getKey().equals("5") &&
                         ((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey().equals("1")){
                     ubicacionSanitarioSpinner.setSelection(0);
                     getAlert(getString(R.string.validacion_aviso), getString(R.string.seccion3MensajeNoCorrespondeLetrina));
                 }
                 else if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
                         ((Values)servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")){
-                    servicioSanitarioSpinner.setSelection(0);
                     getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondeDepartamento));
                 }
-                else {
-                    ubicacionSanitarioSpinner.setEnabled(true);
-                }
             }
-
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
@@ -669,7 +690,11 @@ public class HogarFragment extends Fragment {
                 terrenoAgropecuario.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioOpcion1rb
                 ) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.terrenoAgropecuarioSi));
-        } else {
+        } else if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
+                ((Values)servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")){
+            getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondeDepartamento));
+
+        }else {
             cancel = false;
         }
         return cancel;
