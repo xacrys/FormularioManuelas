@@ -159,9 +159,12 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 if (persona.getEdadanio() < Global.EDAD_18ANIOS) {
                     viveMadreHogarRadioGroup
                             .setVisibility(View.VISIBLE);
+                    codigoPersonaLinearLayout.setVisibility(View.VISIBLE);
+
                 } else {
                     viveMadreHogarRadioGroup
                             .setVisibility(View.INVISIBLE);
+                    codigoPersonaLinearLayout.setVisibility(View.INVISIBLE);
                 }
 
 
@@ -1008,26 +1011,25 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
      */
     private void mallasValidacion() {
 
-        if (menores18AniosLinearLayout.getVisibility() == View.VISIBLE) {
-            viveMadreHogarRadioGroup
-                    .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        viveMadreHogarRadioGroup
+                .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-                        @Override
-                        public void onCheckedChanged(RadioGroup group,
-                                                     int checkedId) {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group,
+                                                 int checkedId) {
 
-                            if (viveMadreHogarRadioGroup
-                                    .getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion1RadioButton) {
-                                codigoPersonaLinearLayout.setVisibility(View.VISIBLE);
-                                codigoPersonaMadreSpinner.setEnabled(true);
-                            } else {
-                                codigoPersonaLinearLayout.setVisibility(View.INVISIBLE);
-                                codigoPersonaMadreSpinner.setSelection(0);
-                                codigoPersonaMadreSpinner.setEnabled(false);
-                            }
+                        if (viveMadreHogarRadioGroup
+                                .getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion1RadioButton) {
+                            codigoPersonaLinearLayout.setVisibility(View.VISIBLE);
+                            codigoPersonaMadreSpinner.setEnabled(true);
+                        } else {
+                            codigoPersonaLinearLayout.setVisibility(View.INVISIBLE);
+                            codigoPersonaMadreSpinner.setSelection(0);
+                            codigoPersonaMadreSpinner.setEnabled(false);
                         }
-                    });
-        }
+                    }
+                });
+
 
 
         discapacidadRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
