@@ -565,7 +565,7 @@ public class ViviendaFragment extends Fragment {
                     .getValor());
         }
         vivienda.setIdfase(fase.getId());
-        vivienda.setIdfase(1);
+        //vivienda.setIdfase(1);
         vivienda.setIdentificadorequipo(Utilitarios.getImeiDispositivo(getActivity()));
         vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
         vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());

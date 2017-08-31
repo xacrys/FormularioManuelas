@@ -464,7 +464,7 @@ public class LoginActivity extends Activity {
         /**
          * Iniciar el servicio de localizacion
          */
-        try {
+        /*try {
             LocationManager locationManager = (LocationManager) getApplicationContext()
                     .getSystemService(LOCATION_SERVICE);
 
@@ -481,7 +481,7 @@ public class LoginActivity extends Activity {
             }
         } catch (Exception e) {
 
-        }
+        }*/
         super.onResume();
     }
 

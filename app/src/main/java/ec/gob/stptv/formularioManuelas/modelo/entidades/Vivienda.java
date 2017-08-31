@@ -60,7 +60,6 @@ public class Vivienda implements Serializable {
     private Integer aniodpa;//local
     private String zona;
     private String sector;
-    private Integer idgrupo;
     private Integer estadosincronizacion;
     private String certificado;
 
@@ -82,7 +81,6 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_IDCANTON = "idcanton";
     public final static String COLUMNA_IDPARROQUIA = "idparroquia";
     public final static String COLUMNA_CODIGODPA = "codigodpa";
-    public final static String COLUMNA_ANIODPA = "aniodpa";
     public final static String COLUMNA_ZONA = "zona";
     public final static String COLUMNA_SECTOR = "sector";
     public final static String COLUMNA_MANZANA = "manzana";
@@ -90,8 +88,8 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_LOCALIDAD = "localidad";
     public final static String COLUMNA_EDIFICIO = "edificio";
     public final static String COLUMNA_VIVIENDA = "vivienda";
-    public final static String COLUMNA_HOGAR_INICIAL = "hogarinicial";
-    public final static String COLUMNA_HOGAR_FINAL = "hogarfinal";
+    public final static String COLUMNA_HOGAR_INICIAL = "hogar1";
+    public final static String COLUMNA_HOGAR_FINAL = "hogart";
     public final static String COLUMNA_CALLE1 = "calle1";
     public final static String COLUMNA_CALLE2 = "calle2";
     public final static String COLUMNA_CONJUNTOHABITACIONAL = "conjuntohabitacional";
@@ -112,15 +110,13 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_IDESTADOVIVIENDAPISO = "idestadovivienda_piso";
     public final static String COLUMNA_IDESTADOVIVIENDAPARED = "idestadovivienda_pared";
     public final static String COLUMNA_FORMULARIO = "formulario";
-    public final static String COLUMNA_FECHAACTUALIZACION = "fechaactualizacion";
-    public final static String COLUMNA_FECHACREACION = "fechacreacion";
+    public final static String COLUMNA_FECHACREACION = "fechaencuesta";
     public final static String COLUMNA_NUMEROVISITAS = "numerovisitas";
     public final static String COLUMNA_IDCONTROLENTREVISTA = "idcontrolentrevista";
     public final static String COLUMNA_FLAG = "flag";
     public final static String COLUMNA_VIVCODIGO = "vivcodigo";
     public final static String COLUMNA_IDUSUARIO = "idusuario";
-    public final static String COLUMNA_IDGRUPO = "idgrupo";
-    public final static String COLUMNA_CODIGOUNICODISPOSITIVO = "codigounicoequipo";
+    public final static String COLUMNA_CODIGOUNICODISPOSITIVO = "identificadorequipo";
     public final static String COLUMNA_FECHAINICIO = "fechainicio";
     public final static String COLUMNA_FECHAFIN = "fechafin";
     public final static String COLUMNA_FECHASINCRONIZACION = "fechasincronizacion";
@@ -139,7 +135,6 @@ public class Vivienda implements Serializable {
             COLUMNA_IDCANTON,
             COLUMNA_IDPARROQUIA,
             COLUMNA_CODIGODPA,
-            COLUMNA_ANIODPA,
             COLUMNA_ZONA,
             COLUMNA_SECTOR,
             COLUMNA_MANZANA,
@@ -169,14 +164,12 @@ public class Vivienda implements Serializable {
             COLUMNA_IDESTADOVIVIENDAPISO,
             COLUMNA_IDESTADOVIVIENDAPARED,
             COLUMNA_FORMULARIO,
-            COLUMNA_FECHAACTUALIZACION,
             COLUMNA_FECHACREACION,
             COLUMNA_NUMEROVISITAS,
             COLUMNA_IDCONTROLENTREVISTA,
             COLUMNA_FLAG,
             COLUMNA_VIVCODIGO,
             COLUMNA_IDUSUARIO,
-            COLUMNA_IDGRUPO,
             COLUMNA_CODIGOUNICODISPOSITIVO,
             COLUMNA_FECHAINICIO,
             COLUMNA_FECHAFIN,
@@ -219,7 +212,6 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_IDCANTON, vivienda.getIdcanton());
         values.put(Vivienda.COLUMNA_IDPARROQUIA, vivienda.getIdparroquia());
         values.put(Vivienda.COLUMNA_CODIGODPA, vivienda.getIddpa());
-        values.put(Vivienda.COLUMNA_ANIODPA, vivienda.getAniodpa());
         values.put(Vivienda.COLUMNA_ZONA, vivienda.getZona());
         values.put(Vivienda.COLUMNA_SECTOR, vivienda.getSector());
         values.put(Vivienda.COLUMNA_MANZANA, vivienda.getManzana());
@@ -254,7 +246,6 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_NUMEROVISITAS, vivienda.getNumerovisitas());
         values.put(Vivienda.COLUMNA_IDCONTROLENTREVISTA, vivienda.getIdcontrolentrevista());
         values.put(Vivienda.COLUMNA_VIVCODIGO, vivienda.getVivcodigo());
-        values.put(Vivienda.COLUMNA_IDGRUPO, vivienda.getIdgrupo());
         values.put(Vivienda.COLUMNA_FECHASINCRONIZACION, vivienda.getFechasincronizacion());
         values.put(Vivienda.COLUMNA_FECHAINICIO, vivienda.getFechainicio());
         values.put(Vivienda.COLUMNA_FECHAFIN, vivienda.getFechafin());
@@ -281,7 +272,6 @@ public class Vivienda implements Serializable {
         vivienda.setIdcanton(result.getString(result.getColumnIndex(COLUMNA_IDCANTON)));
         vivienda.setIdparroquia(result.getString(result.getColumnIndex(COLUMNA_IDPARROQUIA)));
         vivienda.setIddpa(result.getString(result.getColumnIndex(COLUMNA_CODIGODPA)));
-        vivienda.setAniodpa(result.getInt(result.getColumnIndex(COLUMNA_ANIODPA)));
         vivienda.setZona(result.getString(result.getColumnIndex(COLUMNA_ZONA)));
         vivienda.setSector(result.getString(result.getColumnIndex(COLUMNA_SECTOR)));
         vivienda.setManzana(result.getString(result.getColumnIndex(COLUMNA_MANZANA)));
@@ -316,7 +306,6 @@ public class Vivienda implements Serializable {
         vivienda.setIdcontrolentrevista(result.getInt(result.getColumnIndex(COLUMNA_IDCONTROLENTREVISTA)));
         vivienda.setVivcodigo(result.getString(result.getColumnIndex(COLUMNA_VIVCODIGO)));
         vivienda.setIdusuario(result.getInt(result.getColumnIndex(COLUMNA_IDUSUARIO)));
-        vivienda.setIdgrupo(result.getInt(result.getColumnIndex(COLUMNA_IDGRUPO)));
         vivienda.setIdentificadorequipo(result.getString(result.getColumnIndex(COLUMNA_CODIGOUNICODISPOSITIVO)));
         vivienda.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
         vivienda.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
@@ -587,14 +576,6 @@ public class Vivienda implements Serializable {
 
     public void setIdusuario(Integer idusuario) {
         this.idusuario = idusuario;
-    }
-
-    public Integer getIdgrupo() {
-        return idgrupo;
-    }
-
-    public void setIdgrupo(Integer idgrupo) {
-        this.idgrupo = idgrupo;
     }
 
     public String getFechainicio() {
