@@ -118,6 +118,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 container, false);
         this.contentResolver = getActivity().getContentResolver();
         this.obtenerVistas(item);
+        persona = (Persona) getArguments().getSerializable("persona");
         this.cargarPreguntas();
         this.realizarAcciones();
         this.mallasValidacion();
@@ -128,7 +129,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         try {
-            persona = (Persona) getArguments().getSerializable("persona");
+            //persona = (Persona) getArguments().getSerializable("persona");
             //se llena las etiquetas del encabezado
             if (persona != null) {
                 nombresCompletosTextView.setText(persona.getNombresCompletos());
@@ -600,7 +601,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 where, parametros, Persona.COLUMNA_ORDEN);
         for (Persona _persona : personas) {
             if ((_persona.getEdadanio() >= Global.EDAD_12ANIOS)
-                    && (_persona.getSexo() == Global.GENERO_FEMENINO)) {
+                    && (_persona.getSexo() == Global.GENERO_FEMENINO)
+                    && (_persona.getId() != persona.getId())) {
                 codigosMadres.add(new Values(_persona.getId(), _persona.getNombresCompletos()));
             }
         }
