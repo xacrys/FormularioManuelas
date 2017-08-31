@@ -179,9 +179,21 @@ public class ViviendaFragment extends Fragment {
                 Utilitarios.disableEnableViews(getActivity(), false, pantallaControlViendaLinearLayout);
                 isEnabledObervacion = false;
                 getActivity().invalidateOptionsMenu();
-            }else{
-                isEnabledObervacion = true;
-                getActivity().invalidateOptionsMenu();
+            } else {
+                if ((vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INFORMANTE_NO_CALIFICADO.getValor()
+                        || vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.NADIE_EN_CASA.getValor()
+                        || vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.RECHAZO.getValor())) {
+                    Utilitarios.disableEnableViews(getActivity(), false, pantallaControlViendaLinearLayout);
+                    isEnabledObervacion = false;
+                    getActivity().invalidateOptionsMenu();
+                    tabs.getTabWidget().getChildTabViewAt(1).setEnabled(false);
+                    tabs.getTabWidget().getChildTabViewAt(2).setEnabled(false);
+                    tabs.getTabWidget().getChildTabViewAt(3).setEnabled(false);
+
+                } else {
+                    isEnabledObervacion = true;
+                    getActivity().invalidateOptionsMenu();
+                }
             }
         }
 
