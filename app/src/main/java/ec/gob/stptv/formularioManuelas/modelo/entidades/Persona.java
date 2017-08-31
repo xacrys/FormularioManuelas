@@ -260,6 +260,13 @@ public class Persona implements Serializable {
 
 	public Persona() {
 		idparentesco = Global.VALOR_SELECCIONE;
+		porcentajeintelectual = Global.ENTEROS_VACIOS;
+		porcentajefisica = Global.ENTEROS_VACIOS;
+		porcentajeceguera = Global.ENTEROS_VACIOS;
+		porcentajevision = Global.ENTEROS_VACIOS;
+		porcentajesordera = Global.ENTEROS_VACIOS;
+		porcentajehipoacusia = Global.ENTEROS_VACIOS;
+		porcentajepsicosociales = Global.ENTEROS_VACIOS;
 	}
 	/**
 	 * Método que devuelve los valores de un registro
