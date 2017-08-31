@@ -140,9 +140,6 @@
                             style="@style/areaPreguntaTextView"
                             android:text="@string/controlMadreHogarTitulo" />
 
-
-
-
                             <RadioGroup
                                 android:id="@+id/viveMadreHogarRadioGroup"
                                 android:layout_width="wrap_content"
@@ -338,21 +335,23 @@
                                 android:id="@+id/carnetConadisRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal" >
+                                android:orientation="horizontal">
 
                                 <RadioButton
                                     android:id="@+id/carnetConadisOpcion1RadioButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="@string/opcion_si" />
+                                    android:text="@string/opcion_si"
+                                    android:enabled="false"/>
 
                                 <RadioButton
                                     android:id="@+id/carnetConadisOpcion2RadioButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="@string/opcion_no" />
+                                    android:text="@string/opcion_no"
+                                    android:enabled="false"/>
                             </RadioGroup>
 
 
@@ -388,14 +387,16 @@
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/discapacidadIntelectualOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                             <EditText
@@ -430,14 +431,16 @@
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/discapacidadFisicaOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                             <EditText
@@ -472,14 +475,16 @@
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/discapacidadCegueraOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
 
@@ -517,14 +522,16 @@
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/discapacidadVisionOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
 
@@ -562,14 +569,16 @@
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/discapacidadSorderaOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
 
@@ -607,14 +616,16 @@
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/discapacidadHipoacusiaOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
 
@@ -652,14 +663,16 @@
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/discapacidadPsicosocialesOpcion2RadioButton"
                                         android:layout_width="60dp"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
 
@@ -685,7 +698,8 @@
 
                         <Spinner
                             android:id="@+id/asistenciaEstablecimientoSpinner"
-                            style="@style/respuestaSpinner" />
+                            style="@style/respuestaSpinner"
+                            android:clickable="false"/>
 
                     </LinearLayout>
                     <!-- Fin Pregunta -->
@@ -699,7 +713,8 @@
 
                         <Spinner
                             android:id="@+id/proteccionSocialpinner"
-                            style="@style/respuestaSpinner" />
+                            style="@style/respuestaSpinner"
+                            android:clickable="false"/>
 
                     </LinearLayout>
                     <!-- Fin Pregunta -->
@@ -724,14 +739,16 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="@string/opcion_si" />
+                                    android:text="@string/opcion_si"
+                                    android:enabled="false"/>
 
                                 <RadioButton
                                     android:id="@+id/necesitaAyudaTecnicaOpcion2RadioButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="@string/opcion_no" />
+                                    android:text="@string/opcion_no"
+                                    android:enabled="false"/>
                             </RadioGroup>
 
                     </LinearLayout>
@@ -756,14 +773,16 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="@string/opcion_si" />
+                                    android:text="@string/opcion_si"
+                                    android:enabled="false"/>
 
                                 <RadioButton
                                     android:id="@+id/recibioAyudaTecnicaOpcion2RadioButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="@string/opcion_no" />
+                                    android:text="@string/opcion_no"
+                                    android:enabled="false"/>
                             </RadioGroup>
 
                     </LinearLayout>
@@ -808,14 +827,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/sillaRuedasOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -845,14 +866,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/muletasOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -882,14 +905,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/andadoresOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -919,14 +944,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/bastonApoyoOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -956,14 +983,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/ortesisOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -993,14 +1022,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/colchonOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1030,14 +1061,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/cojinOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1098,14 +1131,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/bastonRastreoOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1135,14 +1170,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/abacoOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1172,14 +1209,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/computadoraOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1216,14 +1255,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/audifonosOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1253,14 +1294,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/implantesOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1297,14 +1340,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/cochePostularOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1341,14 +1386,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/panialesOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1378,14 +1425,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/sillaBaniarseOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1415,14 +1464,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/camasOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1452,14 +1503,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/otrosOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1501,14 +1554,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/gobiernoCentralOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1538,14 +1593,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/gobiernoAutonomoOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1575,14 +1632,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/organizacionPrivadaOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
@@ -1612,14 +1671,16 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_si" />
+                                        android:text="@string/opcion_si"
+                                        android:enabled="false"/>
 
                                     <RadioButton
                                         android:id="@+id/ningunaOpcion2RadioButton"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:text="@string/opcion_no" />
+                                        android:text="@string/opcion_no"
+                                        android:enabled="false"/>
                                 </RadioGroup>
 
                         </LinearLayout>
