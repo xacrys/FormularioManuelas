@@ -179,6 +179,9 @@ public class ViviendaFragment extends Fragment {
                 Utilitarios.disableEnableViews(getActivity(), false, pantallaControlViendaLinearLayout);
                 isEnabledObervacion = false;
                 getActivity().invalidateOptionsMenu();
+            }else{
+                isEnabledObervacion = true;
+                getActivity().invalidateOptionsMenu();
             }
         }
 
