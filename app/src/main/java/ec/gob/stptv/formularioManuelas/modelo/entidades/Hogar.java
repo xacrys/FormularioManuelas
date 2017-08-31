@@ -326,4 +326,13 @@ public class Hogar implements Serializable {
 	public void setFechafin(String fechafin) {
 		this.fechafin = fechafin;
 	}
+
+
+    public ArrayList<Persona> getListaPersonas() {
+        return listaPersonas;
+    }
+
+    public void setListaPersonas(ArrayList<Persona> listaPersonas) {
+        this.listaPersonas = listaPersonas;
+    }
 }

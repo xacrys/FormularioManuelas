@@ -37,7 +37,7 @@ public class Usuario implements Serializable {
 	public final static String COLUMNA_IMEI = "imei";
 	public final static String COLUMNA_MAXVIVCODIGO = "maxvivcodigo";
 	public final static String COLUMNA_FECHAREGISTRO = "fechaingreso";
-	public final static String COLUMNA_CODIGO = "codigo;";
+	public final static String COLUMNA_CODIGO = "codigo";
 
 
 	//crear un string con las columnas de la tabla

@@ -166,7 +166,7 @@ public class FormulariosActivity extends Activity {
 
 	}
 
-	protected void buscarFormularios() {
+	public void buscarFormularios() {
 
 		paginationLinearLayout.removeAllViews();
 		formulariosTableLayout.removeAllViews();
@@ -333,10 +333,62 @@ public class FormulariosActivity extends Activity {
 			}
 
 			//falta estado
+			String estadoSincronizacion = "";
+			if(vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_COMPLETA)
+			{
+				estadoSincronizacion = "Sincronizado";
+			}
+			else
+			{
+				if(vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_INCOMPLETA)
+				{
+					estadoSincronizacion = "No Sincronizado";
+				}
+				else
+				{
+					if(vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO)
+					{
+						estadoSincronizacion = "Certificado Duplicado";
+					}
+				}
+			}
+			int posicionCondicion = Utilitarios.getPosicionByKey(ViviendaPreguntas.getCondicionOcupacionAdapter(this), String.valueOf(vivienda.getIdocupada()));
+			if(vivienda.getIdcontrolentrevista() != ControlPreguntas.ControlEntrevista.SIN_ESTADO.getValor())
+			{
+				int posicion = Utilitarios.getPosicionByKey(ControlPreguntas.getControlEntrevistaAdapter(this), String.valueOf(vivienda.getIdcontrolentrevista()));
+				String cE = "";
+				if(posicion > -1)
+				{
+					cE = ControlPreguntas.getControlEntrevistaAdapter(this).getItem(posicion).getValue();
+				}
+				((TextView) row.findViewById(R.id.columnaEstadoTextView))
+						.setText("Sinc: "
+								+ estadoSincronizacion
+								+ "\nCE: "
+								+ cE
+								+ "\nCO: "
+								+  ViviendaPreguntas.getCondicionOcupacionAdapter(this).getItem(posicionCondicion).getValue());
+			}
+			else
+			{
 
+				((TextView) row.findViewById(R.id.columnaEstadoTextView))
+						.setText("Sinc: "
+								+ estadoSincronizacion
+								+ "\n CE: "
+								+ "SIN ESTADO"
+								+ "\nCO: "
+								+ ViviendaPreguntas.getCondicionOcupacionAdapter(this).getItem(posicionCondicion).getValue());
+			}
+			if (!(vivienda.getObservacion().equals(Global.CADENAS_VACIAS))) {
 
-			//falta observacion
-
+				((TextView) row.findViewById(R.id.columnaObservacionTextView))
+						.setText(vivienda.getObservacion());
+			}
+			else{
+				((TextView) row.findViewById(R.id.columnaObservacionTextView))
+						.setText("");
+			}
 
 
 			if (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA
@@ -688,5 +740,19 @@ public class FormulariosActivity extends Activity {
 	protected void onDestroy() {
 
 		super.onDestroy();
+	}
+
+	/**
+	 * Cierra el progreso
+	 */
+	public void closeProgressBar() {
+
+		contadorSincronizacion = contadorSincronizacion + 1;
+		if (contadorSincronizacion == totalViviendasASincronizar) {
+			mProgressDialog.dismiss();
+			contadorSincronizacion = 0;
+			totalViviendasASincronizar = 0;
+		}
+
 	}
 }

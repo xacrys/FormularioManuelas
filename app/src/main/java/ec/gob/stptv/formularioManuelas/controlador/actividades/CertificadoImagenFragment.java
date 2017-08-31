@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -19,22 +20,30 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.io.File;
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.sincronizacion.SincronizacionVivienda;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.IntentIntegrator;
 import ec.gob.stptv.formularioManuelas.controlador.util.IntentResult;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
+import ec.gob.stptv.formularioManuelas.controlador.util.Values;
+import ec.gob.stptv.formularioManuelas.modelo.dao.FaseDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ImagenDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Imagen;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
@@ -65,9 +74,9 @@ public class CertificadoImagenFragment extends Fragment {
     private Boolean botonCapturar;
     private Boolean botonCapturarVerificar;
     private ContentResolver cr;
-    private Imagen imagen = new Imagen();
-
-
+    private Imagen imagenVivienda;
+    private File photoVivienda;
+    private LinearLayout pantallaCertificadoImagenLinearLayout;
 
 
     public static final String PRODUCT_MODE = "PRODUCT_MODE";
@@ -82,8 +91,23 @@ public class CertificadoImagenFragment extends Fragment {
 
         cr = getActivity().getContentResolver();
         this.obtenerVistas(item);
-        this.capturarCertificado();
+        this.realizarAcciones();
         return item;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+//        linlaHeaderProgress = getActivity().findViewById(R.id.linlaHeaderProgress);
+        vivienda = ViviendaFragment.getVivienda();
+        Utilitarios.logError("eeeeeeeeeeeeeeeeeeeeee",""+vivienda.getId());
+        if (vivienda.getId() != 0) {
+            this.llenarCampos();
+            if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                    && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
+                Utilitarios.disableEnableViews(getActivity(), false, pantallaCertificadoImagenLinearLayout);
+            }
+        }
     }
 
     /**
@@ -103,6 +127,7 @@ public class CertificadoImagenFragment extends Fragment {
         finalizarEntrevistaButton = item.findViewById(R.id.finalizarEntrevistaButton);
         botonCapturar = false;
         botonCapturarVerificar = false;
+        pantallaCertificadoImagenLinearLayout = item.findViewById(R.id.pantallaCertificadoImagenLinearLayout);
     }
 
     @Override
@@ -111,26 +136,48 @@ public class CertificadoImagenFragment extends Fragment {
         super.onResume();
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        linlaHeaderProgress = getActivity().findViewById(R.id.linlaHeaderProgress);
-        vivienda = ViviendaFragment.getVivienda();
-    }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_PICTURE_VIVIENDA
-                && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_PICTURE_VIVIENDA && resultCode == Activity.RESULT_OK) {
             if (imagenViviendaBitmap != null) {
                 imagenViviendaBitmap.recycle();
             }
 
             imagenViviendaBitmap = BitmapFactory.decodeFile(mImagenViviendaUri.getPath());
             fotoViviendaImageView.setImageBitmap(imagenViviendaBitmap);
+
+            if (imagenViviendaBitmap != null) {
+
+                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByViviendaIdAndTipo,
+                        new String[] { String.valueOf(vivienda.getId()),  String.valueOf(REQUEST_PICTURE_VIVIENDA)});
+
+                if (_imagen == null){
+                    Imagen imagen = new Imagen();
+                    imagen.setIdvivienda(vivienda.getId());
+                    imagen.setTipo(REQUEST_PICTURE_VIVIENDA);
+                    imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
+                    imagen.setFecha(Utilitarios.getCurrentDate());
+                    Uri uri = ImagenDao.save(cr, imagen);
+                    if(uri != null)
+                    {
+                        imagenVivienda = imagen;
+                    }
+                }else
+                {
+                    _imagen.setFecha(Utilitarios.getCurrentDate());
+                    _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                    _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
+                    int result = ImagenDao.update(cr, _imagen);
+                    if(result > 0)
+                    {
+                        imagenVivienda = _imagen;
+                    }
+                }
+            }
+            photoVivienda.delete();
 
         } else if (requestCode == REQUEST_CODE) {
             IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -159,7 +206,7 @@ public class CertificadoImagenFragment extends Fragment {
     }
 
 
-    public void capturarCertificado() {
+    public void realizarAcciones() {
 
         actualizarCertificadoButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -208,12 +255,11 @@ public class CertificadoImagenFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-
-                File photo;
+                photoVivienda = null;
 
                 try {
-                    photo = createTemporaryFile("imagenVivienda", ".jpg");
-                    mImagenViviendaUri = Uri.fromFile(photo);
+                    photoVivienda = createTemporaryFile("imagenVivienda", ".jpg");
+                    mImagenViviendaUri = Uri.fromFile(photoVivienda);
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImagenViviendaUri);
                     startActivityForResult(cameraIntent, REQUEST_PICTURE_VIVIENDA);
@@ -221,17 +267,18 @@ public class CertificadoImagenFragment extends Fragment {
                 } catch (Exception e) {
                     getAlert(getString(R.string.validacion_aviso), getString(R.string.errorLectorFoto));
                 }
-
             }
         });
 
         finalizarEntrevistaButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validarCampos()) {
-                    actualizarVivienda();
-                    guardarImagen();
-                }
+
+                if (validarCampos())
+                    return;
+                actualizarVivienda();
+
+
             }
         });
     }
@@ -279,22 +326,105 @@ public class CertificadoImagenFragment extends Fragment {
         return validacion;
     }
 
+    /**
+     * actualiza los campos de la vivienda
+     */
     private void actualizarVivienda() {
+
         vivienda.setCertificado(certificadoEditText.getText().toString());
-        ViviendaDao.update(cr,vivienda);
+        vivienda.setIdcontrolentrevista(ControlPreguntas.ControlEntrevista.COMPLETA.getValor());
+
+        if (vivienda.getEstadosincronizacion() != Global.SINCRONIZACION_CERTIFICADO_REPETIDO){
+            vivienda.setNumerovisitas(vivienda.getNumerovisitas() + 1);
+        }
+        ViviendaDao.update(cr, vivienda);
+        SincronizacionVivienda sincronizacionVivienda = new SincronizacionVivienda(getActivity());
+        if (Utilitarios.verificarConexion(getActivity())) {
+            sincronizacionVivienda.sincronizar(vivienda, getActivity());
+        } else {
+            Toast.makeText(getActivity(), "No existe conexión a internet", Toast.LENGTH_LONG).show();
+            //ojo: cuando no hay inter vuelve a capturar otro certificado y pasa la cvalidaciond e duplicados entonces le pone en estado sincronizado incompleto
+            if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
+                vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                ViviendaDao.update(cr, vivienda);
+            }
+            getActivity().finish();
+        }
+
     }
 
+    /**
+     * Método que permite guardar la imagen
+     */
     private void guardarImagen(){
-        Utilitarios.logInfo(CertificadoImagenFragment.class.getName(),
-                "Entra al NUEVO de la foto del formulario");
         vivienda = ViviendaFragment.getVivienda();
+        Imagen imagen = new Imagen();
         imagen.setIdvivienda(vivienda.getId());
-        imagen.setTipo(1);
-        imagen.setImagen(Utilitarios
-                .encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO_VIVIENDA));
+        imagen.setTipo(REQUEST_PICTURE_VIVIENDA);
+        imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
         imagen.setFecha(Utilitarios.getCurrentDate());
         Uri uri = ImagenDao.save(cr, imagen);
-        //String idIMagen = uri.getPathSegments().get(1);
+        if(uri != null)
+        {
+            imagenVivienda = imagen;
+        }
+
+    }
+
+    /**
+     * Método que llena los controles con datos de la base
+     */
+    private void llenarCampos() {
+        if (!vivienda.getCertificado().equals(Global.CADENAS_VACIAS)) {
+            certificadoEditText.setText(vivienda.getCertificado());
+        } else {
+            certificadoEditText.setText("");
+        }
+
+        if (!vivienda.getCertificado().equals(Global.CADENAS_VACIAS)) {
+            certificadoVerificarEditText.setText(vivienda.getCertificado());
+        } else {
+            certificadoVerificarEditText.setText("");
+        }
+
+        this.imagenVivienda = ImagenDao.getImagen(cr,	Imagen.whereByViviendaIdAndTipo, new String[] { String.valueOf(vivienda.getId()), String.valueOf(REQUEST_PICTURE_VIVIENDA) });
+        if(imagenVivienda != null)
+        {
+            new GetImagen().execute(
+                    String.valueOf(vivienda.getId()),
+                    String.valueOf(REQUEST_PICTURE_VIVIENDA));
+        }
+    }
+
+    /**
+     * Clase para retornar la imagen
+     */
+    private class GetImagen extends AsyncTask<String, Void, Bitmap> {
+
+        String tipo = "";
+
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+
+            tipo = params[1];
+
+            Imagen imagen = ImagenDao.getImagen(cr, Imagen.whereByViviendaIdAndTipo, params);
+
+            Bitmap _imagen = Utilitarios.decodeBase64(imagen.getImagen());
+
+            return _imagen;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap imagen) {
+            imagenViviendaBitmap = imagen;
+            fotoViviendaImageView.setImageBitmap(imagen);
+        }
+
     }
 
 }

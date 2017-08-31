@@ -38,7 +38,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.PersonaPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.DatePickerFragment;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
@@ -47,11 +49,9 @@ import ec.gob.stptv.formularioManuelas.modelo.dao.PersonaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
-import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
 
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-import android.content.DialogInterface;
 
 /***
  *  Autor: Christian Tintin
@@ -75,13 +75,14 @@ public class MiembrosHogarFragment extends Fragment {
     private RadioGroup edadRadioGroup;
     private Spinner parentescoSpinner;
     private ContentResolver contentResolver;
-    private Vivienda vivienda;
     private Hogar hogar;
+    private Vivienda vivienda;
     private static TableLayout personasTableLayout;
     private int ordenPersona = 0;
     private Persona persona;
     private int tipoGestion = 1;
     private int cantidaPersonas = 0;
+    private LinearLayout pantallaMiembrosHogarLinearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,11 +102,17 @@ public class MiembrosHogarFragment extends Fragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        hogar = HogarFragment.getHogar();
         vivienda = ViviendaFragment.getVivienda();
+        if (vivienda.getId()!= 0){
+            if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA
+                    .getValor() && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
+                Utilitarios.disableEnableViews(getActivity(), false, pantallaMiembrosHogarLinearLayout);
+            }
+        }
         aniosEditText.setEnabled(true);
-        if (vivienda.getId() != 0) {
+        if (hogar.getId() != 0) {
             getPersonas();
-
         }
 
     }
@@ -131,8 +138,8 @@ public class MiembrosHogarFragment extends Fragment {
         personasTableLayout.removeAllViews();
 
         ArrayList<Persona> personas = PersonaDao.getPersonas(contentResolver,
-                Persona.whereByViviendaId,
-                new String[] { String.valueOf(vivienda.getId()) },
+                Persona.whereByIdHogar,
+                new String[] { String.valueOf(hogar.getId()) },
                 Persona.COLUMNA_ORDEN);
         ordenPersona = personas.size();
 
@@ -458,6 +465,8 @@ public class MiembrosHogarFragment extends Fragment {
         mesesEditText = item.findViewById(R.id.mesesEditText);
         parentescoSpinner = item.findViewById(R.id.parentescoSpinner);
         personasTableLayout = item.findViewById(R.id.personasTableLayout);
+        pantallaMiembrosHogarLinearLayout = item
+                .findViewById(R.id.pantallaMiembrosHogarLinearLayout);
 
     }
 
@@ -536,8 +545,8 @@ public class MiembrosHogarFragment extends Fragment {
 
             String where;
             String parametros[];
-            where = Persona.whereByIdViviendaCedula;
-            parametros = new String[] {String.valueOf(vivienda.getId()), cedulaEditText.getText().toString()};
+            where = Persona.whereByIdHogarCedula;
+            parametros = new String[] {String.valueOf(hogar.getId()), cedulaEditText.getText().toString()};
             Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);
             if (tipoGestion == 1){
                 if (_persona != null){
@@ -581,7 +590,10 @@ public class MiembrosHogarFragment extends Fragment {
         documentoSpinner.setAdapter(PersonaPreguntas.getControlTrabajoDocumentoAdapter(getActivity()));
         sexoSpinner.setAdapter(PersonaPreguntas.getSexoPersonaAdapter(getActivity()));
         parentescoSpinner.setAdapter(PersonaPreguntas.getControlTrabajoParentescoAdapter(getActivity()));
-
+        if (ordenPersona == 0){
+            parentescoSpinner.setSelection(1);
+            parentescoSpinner.setEnabled(false);
+        }
     }
 
     /**
@@ -752,10 +764,12 @@ public class MiembrosHogarFragment extends Fragment {
                 int parentesco = Integer.valueOf(((Values) adapterView
                         .getAdapter().getItem(i)).getKey());
 
-                if (parentesco == 1 && getCountTablaPersonas() >0){
-                    getAlert(getString(R.string.validacion_aviso),
-                            getString(R.string.mensajeJefeHogarMasUno));
-                    parentescoSpinner.setSelection(0);
+                if (getCountTablaPersonas() > 1){
+                    if (parentesco == 1 && getCountTablaPersonas() >0){
+                        getAlert(getString(R.string.validacion_aviso),
+                                getString(R.string.mensajeJefeHogarMasUno));
+                        parentescoSpinner.setSelection(0);
+                    }
                 }
             }
 
@@ -769,7 +783,6 @@ public class MiembrosHogarFragment extends Fragment {
      * Método que guarda la vivienda en la base de datos
      */
     private void guardar() {
-        vivienda = ViviendaFragment.getVivienda();
         hogar = HogarFragment.getHogar();
         int edadMeses;
         int edadAnios;

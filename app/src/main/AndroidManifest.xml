@@ -17,7 +17,6 @@
 
     <uses-feature android:name="android.hardware.camera" />
 
-
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -25,8 +24,10 @@
         android:allowClearUserData="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
-        <activity android:name="ec.gob.stptv.formularioManuelas.controlador.actividades.LoginActivity">
+        <activity android:name="ec.gob.stptv.formularioManuelas.controlador.actividades.LoginActivity"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

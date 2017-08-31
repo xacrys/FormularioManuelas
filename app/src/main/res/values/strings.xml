@@ -61,6 +61,9 @@
     <string name="menu_entrevista_efectiva">Guardar - Entrevista Completa Efectiva</string>
     <string name="finalizarEntrevista">Para finalizar la entrevista como completa usted debe dar clic en el botón de color naranja *Guardar - Entrevista Completa Efectiva*</string>
     <string name="fotoVivienda"> Foto de la vivienda</string>
+    <string name="sinronizacion_correcta">Formulario sincronizado</string>
+    <string name="sinronizacion_incorrecta">Formulario no sincronizado</string>
+    <string name="sinronizacion_duplicado">Formulario con certificado duplicado</string>
 
 
 
