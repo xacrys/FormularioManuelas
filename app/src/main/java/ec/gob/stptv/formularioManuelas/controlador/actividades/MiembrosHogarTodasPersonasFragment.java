@@ -1084,6 +1084,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     asistenciaEstablecimientoSpinner.setEnabled(false);
                     proteccionSocialpinner.setSelection(0);
                     proteccionSocialpinner.setEnabled(false);
+                    asistenciaEstablecimientoSpinner.setClickable(false);
+                    proteccionSocialpinner.setClickable(false);
                     necesitaAyudaTecnicaRadioGroup.check(-1);
                     for (int cont = 0; cont < necesitaAyudaTecnicaRadioGroup.getChildCount(); cont++) {
                         necesitaAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(false);
@@ -1118,6 +1120,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     }
                     asistenciaEstablecimientoSpinner.setEnabled(true);
                     proteccionSocialpinner.setEnabled(true);
+                    asistenciaEstablecimientoSpinner.setClickable(true);
+                    proteccionSocialpinner.setClickable(true);
                     for (int cont = 0; cont < necesitaAyudaTecnicaRadioGroup.getChildCount(); cont++) {
                         necesitaAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(true);
                     }
