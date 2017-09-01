@@ -21,13 +21,13 @@ public class Global {
     /**
      * IPS de produccion
      */
-    public static final String IP_SERVIDOR = "http://www.rips.gob.ec";
+    public static final String IP_SERVIDOR = "http://192.168.10.151:8080";
 
     /**
      * WEB SERVICES
      */
-    public static final String URL_WEB_SERVICES = "/FichaMSPWeb/webresources";
-    public static final String URL_WEB_SERVICE_USUARIOS= IP_SERVIDOR + URL_WEB_SERVICES + "/logeoFichaMSP";
+    public static final String URL_WEB_SERVICES = "/SeguridadSptuvWeb/webresources";
+    public static final String URL_WEB_SERVICE_USUARIOS= IP_SERVIDOR + URL_WEB_SERVICES + "/logeoManuela";
     public static final String URL_WEB_SERVICE_INGRESO_FORMULARIO= IP_SERVIDOR + URL_WEB_SERVICES +"/ingresoFicha";
 
 
