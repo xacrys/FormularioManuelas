@@ -1150,17 +1150,20 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     }
                     enfermedadCatastroficaSpinner.setSelection(0);
                     enfermedadCatastroficaSpinner.setEnabled(false);
+                    enfermedadCatastroficaSpinner.setClickable(false);
                 } else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 2 ||
                         Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 3) {
                     enfermedadCatastroficaSpinner.setEnabled(false);
+                    enfermedadCatastroficaSpinner.setClickable(false);
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                } else {
+                }
+                else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 1 ) {
+                    enfermedadCatastroficaSpinner.setClickable(true);
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
                     }
-                    enfermedadCatastroficaSpinner.setEnabled(true);
                 }
             }
 
