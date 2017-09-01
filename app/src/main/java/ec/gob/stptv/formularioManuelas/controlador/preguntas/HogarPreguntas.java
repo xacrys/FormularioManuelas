@@ -460,6 +460,7 @@ public class HogarPreguntas {
         ArrayList<Values> listaNumDormitorios = new ArrayList<>();
 
         listaNumDormitorios.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
+        listaNumDormitorios.add(new Values(1,"0"));
         listaNumDormitorios.add(new Values(1,"1"));
         listaNumDormitorios.add(new Values(2,"2"));
         listaNumDormitorios.add(new Values(3,"3"));
