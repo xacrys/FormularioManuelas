@@ -143,7 +143,7 @@ public class MiembrosHogarFragment extends Fragment {
                 Persona.COLUMNA_ORDEN);
         ordenPersona = personas.size();
 
-        Utilitarios.logInfo(MiembrosHogarFragment.class.getName(),"cantidad fde personas"+personas.size() + "");
+        Utilitarios.logInfo(MiembrosHogarFragment.class.getName(),"cantidad de personas"+personas.size() + "");
 
         for (Persona _persona : personas) {
 
