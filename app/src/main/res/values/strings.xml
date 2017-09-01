@@ -714,6 +714,8 @@
     <string name="seccion5MensajeValidacionRelacionNucleosJefesNucleosOrden">Existe más de un jefe de núcleo</string>
     <string name="seccion5MensajeValidacionEdadParentescoConviviente">El/La esposo(a) o conviviente no puede ser menor de 12 años</string>
     <string name="seccion5MensajeValidacionMatrimonioMismoSexo">No puede existir la relación Jefe Hogar/Esposo(a) o conviviente del mismo sexo </string>
+    <string name="seccion5MensajeValidacionEdadDocumentacion">Es mayor de 5 años no debe elegir esa opción </string>
+
 
     <!-- fin Validaciones formulario miembros del hogar -->
     <string name="seccion5MensajePregunta7ParentescoEdad">Los menores de edad no pueden ser (Padre/madre, Suegro(a), Yerno o Nuera) </string>
@@ -741,7 +743,7 @@
     <string name="completarInformacion">Completar información</string>
     <string name="editar">Editar[Nombres, Apellidos, Sexo, Edad]</string>
     <string name="eliminarRegistro">Eliminar registro</string>
-    <string name="mvNoEditar">No se puede editar el género y la edad de un Jefe de Núcleo. Si es necesario cambiar debe eliminar a la persona.</string>
+    <string name="mvNoEditar">No se puede editar el género la edad y el parentesco de un Jefe de Hogar. Si es necesario cambiar debe eliminar a la persona.</string>
     <string name="mensajeEliminarMiembroHogar">¿Esta seguro de eliminar el registro con toda su información?</string>
     <string name="mensajeValidacionEdadParentesco">El jefe de hogar no puede ser menor de 12 años</string>
     <string name="seccion5MensajeEliminarJefeDeHogar">No se puede eliminar el Jefe(a) de Hogar</string>
