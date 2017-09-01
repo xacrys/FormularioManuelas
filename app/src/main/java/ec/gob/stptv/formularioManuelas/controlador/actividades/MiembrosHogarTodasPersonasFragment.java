@@ -3,8 +3,6 @@ package ec.gob.stptv.formularioManuelas.controlador.actividades;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -26,15 +24,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ec.gob.stptv.formularioManuelas.R;
-import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.PersonaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.InputFilterMinMax;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.PersonaDao;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
-import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
 /***
  *  Autor:Christian Tintin
@@ -47,7 +44,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private TextView infEdadMesesTextView;
     private TextView edadMesesTextView;
     private TextView sexoTextView;
-    private Button nuevoButton;
     private Button atrasButton;
     private Button guardarPersonaButton;
     private EditText cedulaEditText;
@@ -110,6 +106,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private LinearLayout menores18AniosLinearLayout;
     private LinearLayout codigoPersonaLinearLayout;
     ArrayList<Values> codigosMadres;
+    private Hogar hogar;
     private int contador;
 
 
@@ -122,6 +119,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         this.contentResolver = getActivity().getContentResolver();
         this.obtenerVistas(item);
         persona = (Persona) getArguments().getSerializable("persona");
+        hogar = HogarFragment.getHogar();
         this.cargarPreguntas();
         this.realizarAcciones();
         this.mallasValidacion();
@@ -193,7 +191,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         sexoTextView = item.findViewById(R.id.sexoTextView);
         menores18AniosLinearLayout = item.findViewById(R.id.menores18AniosLinearLayout);
         codigoPersonaLinearLayout = item.findViewById(R.id.codigoPersonaLinearLayout);
-        nuevoButton = item.findViewById(R.id.nuevoButton);
         atrasButton = item.findViewById(R.id.atrasButton);
         guardarPersonaButton = item.findViewById(R.id.guardarPersonaButton);
         cedulaEditText = item.findViewById(R.id.cedulaEditText);
@@ -600,11 +597,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         enfermedadCatastroficaSpinner.setAdapter(PersonaPreguntas.getEnfermedadCatastroficaAdapter(getActivity()));
         String where;
         String parametros[];
-        Vivienda vivienda = ViviendaFragment.getVivienda();
-
-        where = Persona.whereByViviendaId;
-
-        parametros = new String[]{String.valueOf(vivienda.getId())};
+        where = Persona.whereByIdHogar;
+        parametros = new String[]{String.valueOf(hogar.getId())};
 
         codigosMadres = new ArrayList<>();
         codigosMadres.add(new Values(Global.VALOR_SELECCIONE,

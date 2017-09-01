@@ -110,11 +110,11 @@ public class PersonaDao extends Persona{
     /**
      * Metodo que ordena a als personas cuando elimina
      * @param cr
-     * @param viviendaId
+     * @param idhogar
      */
-    private static void ordenar(ContentResolver cr, int viviendaId) {
+    private static void ordenar(ContentResolver cr, int idhogar) {
 
-        ArrayList<Persona> personas = getPersonas(cr, Persona.whereByViviendaId, new String[] { String.valueOf(viviendaId) }, Persona.COLUMNA_ORDEN);
+        ArrayList<Persona> personas = getPersonas(cr, Persona.whereByIdHogar, new String[] { String.valueOf(idhogar) }, Persona.COLUMNA_ORDEN);
 
         int orden = 1;
         for (Persona _persona : personas) {

@@ -6,6 +6,8 @@ import android.database.Cursor;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
+
 /**
  * Ejemplo de entidad
  */
@@ -194,6 +196,8 @@ public class Vivienda implements Serializable {
 
     public Vivienda() {
         id = 0;
+        observacion = Global.CADENAS_VACIAS;
+        certificado = Global.CADENAS_VACIAS;
     }
 
     /**
@@ -740,5 +744,21 @@ public class Vivienda implements Serializable {
 
     public void setIdentificadorequipo(String identificadorequipo) {
         this.identificadorequipo = identificadorequipo;
+    }
+    public Hogar getHogar() {
+        return hogar;
+    }
+
+    public void setHogar(Hogar hogar) {
+        this.hogar = hogar;
+    }
+
+
+    public ArrayList<Localizacion> getListaLocalizacion() {
+        return listaLocalizacion;
+    }
+
+    public void setListaLocalizacion(ArrayList<Localizacion> listaLocalizacion) {
+        this.listaLocalizacion = listaLocalizacion;
     }
 }

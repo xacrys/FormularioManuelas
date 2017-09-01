@@ -70,6 +70,7 @@ import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvide
  */
 public class ViviendaFragment extends Fragment {
 
+    private TextView faseTextView;
     private Spinner tipoLevantamientoSpinner;
     private Spinner areaSpinner;
     private Spinner provinciaSpinner;
@@ -142,12 +143,8 @@ public class ViviendaFragment extends Fragment {
                 this.llenarCamposVivienda();
                 vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
                 vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
-
             }
-
-
         } catch (Exception e) {
-
             vivienda = new Vivienda();
             vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
             vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
@@ -163,6 +160,9 @@ public class ViviendaFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        faseTextView.setText(fase.getNombrefase());
+
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         getLastLocation();
         IntentFilter filter = new IntentFilter();
@@ -173,8 +173,32 @@ public class ViviendaFragment extends Fragment {
 
         tabs = getActivity().findViewById(android.R.id.tabhost);
         tabs.setup();
+        if (vivienda.getId() != 0) {
+            if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                    && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
+                Utilitarios.disableEnableViews(getActivity(), false, pantallaControlViendaLinearLayout);
+                isEnabledObervacion = false;
+                getActivity().invalidateOptionsMenu();
+            } else {
+                if ((vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INFORMANTE_NO_CALIFICADO.getValor()
+                        || vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.NADIE_EN_CASA.getValor()
+                        || vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.RECHAZO.getValor())) {
+                    Utilitarios.disableEnableViews(getActivity(), false, pantallaControlViendaLinearLayout);
+                    isEnabledObervacion = false;
+                    getActivity().invalidateOptionsMenu();
+                    tabs.getTabWidget().getChildTabViewAt(1).setEnabled(false);
+                    tabs.getTabWidget().getChildTabViewAt(2).setEnabled(false);
+                    tabs.getTabWidget().getChildTabViewAt(3).setEnabled(false);
 
-        /*if (vivienda.getId() == 0) {
+                } else {
+                    isEnabledObervacion = true;
+                    getActivity().invalidateOptionsMenu();
+                }
+            }
+        }
+
+        /*
+        if (vivienda.getId() == 0) {
             tabs.getTabWidget().getChildTabViewAt(1).setEnabled(false);
             tabs.getTabWidget().getChildTabViewAt(2).setEnabled(false);
             tabs.getTabWidget().getChildTabViewAt(3).setEnabled(false);
@@ -231,10 +255,6 @@ public class ViviendaFragment extends Fragment {
                 }
             }
         }*/
-
-
-
-
     }
 
 
@@ -243,6 +263,7 @@ public class ViviendaFragment extends Fragment {
      */
     private void obtenerVistas(View item) {
 
+        faseTextView = item.findViewById(R.id.faseTextView);
         tipoLevantamientoSpinner = item.findViewById(R.id.tipoLevantamientoSpinner);
         areaSpinner = item.findViewById(R.id.areaSpinner);
         provinciaSpinner = item.findViewById(R.id.provinciaSpinner);

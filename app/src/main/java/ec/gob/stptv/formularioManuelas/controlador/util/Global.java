@@ -28,11 +28,19 @@ public class Global {
      */
     public static final String URL_WEB_SERVICES = "/FichaMSPWeb/webresources";
     public static final String URL_WEB_SERVICE_USUARIOS= IP_SERVIDOR + URL_WEB_SERVICES + "/logeoFichaMSP";
+    public static final String URL_WEB_SERVICE_INGRESO_FORMULARIO= IP_SERVIDOR + URL_WEB_SERVICES +"/ingresoFicha";
+
 
     /**
      * Tiempo de ejecucion de Login
      */
     public static final int ASYNCTASK_TIMEROUT_LOGIN =  120000; // 1min
+
+    /**
+     * Tiempo de ejecucion de sincronizacion
+     */
+    //public static final int ASYNCTASK_TIMROUT =  420000;
+    public static final int ASYNCTASK_TIMEOUT =  120000; //2 minutos
 
     /**
      * Atributos para el manejo de logs
@@ -163,7 +171,8 @@ public class Global {
     /**
      * Calidad de la foto entre 0-100
      */
-    public static final int CALIDAD_FOTO_VIVIENDA = 40;
+    public static final int CALIDAD_FOTO = 70;
+
 
 
 }

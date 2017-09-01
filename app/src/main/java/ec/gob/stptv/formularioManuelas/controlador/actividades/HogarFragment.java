@@ -17,11 +17,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TabHost;
 
 import ec.gob.stptv.formularioManuelas.*;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
@@ -71,6 +73,7 @@ public class HogarFragment extends Fragment {
     private Spinner estadoTechoSpinner;
     private Spinner estadoPisoSpinner;
     private Spinner estadoParedSpinner;
+    private LinearLayout pantallaHogarLinearLayout;
 
 
     @Override
@@ -100,8 +103,12 @@ public class HogarFragment extends Fragment {
 
         this.vivienda = ViviendaFragment.getVivienda();
 
-        Log.e("prueba", "" + vivienda.getId());
-
+        if (vivienda.getId()!= 0){
+            if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                    && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
+                Utilitarios.disableEnableViews(getActivity(), false, pantallaHogarLinearLayout);
+            }
+        }
         parametros = new String[]{String.valueOf(vivienda.getId())};
         hogar = HogarDao.getHogar(contentResolver, Hogar.whereByViviendaId, parametros);
         if (hogar != null) {
@@ -145,6 +152,7 @@ public class HogarFragment extends Fragment {
         estadoTechoSpinner = item.findViewById(R.id.estadoTechoSpinner);
         estadoPisoSpinner = item.findViewById(R.id.estadoPisoSpinner);
         estadoParedSpinner = item.findViewById(R.id.estadoParedSpinner);
+        pantallaHogarLinearLayout = item.findViewById(R.id.pantallaHogarLinearLayout);
 
 
     }
