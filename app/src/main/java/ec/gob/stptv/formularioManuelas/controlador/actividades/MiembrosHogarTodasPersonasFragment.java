@@ -1178,6 +1178,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 }
                 else{
                     seguroSocial2Spinner.setClickable(false);
+                    seguroSocial2Spinner.setSelection(0);
                 }
                 if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial2Spinner.getSelectedItem()).getKey())
                         &&
@@ -1216,6 +1217,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 }
                 else{
                     seguroSalud2Spinner.setClickable(false);
+                    seguroSalud2Spinner.setSelection(0);
                 }
                 if (((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSalud2Spinner.getSelectedItem()).getKey())
                         &&
