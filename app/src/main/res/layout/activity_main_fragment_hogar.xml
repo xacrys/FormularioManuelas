@@ -352,7 +352,8 @@
                         android:id="@+id/codigoElectricoEditText"
                         style="@style/respuestaTextosEditText"
                         android:maxLength="10"
-                        android:digits="0123456789"/>
+                        android:digits="0123456789"
+                        android:inputType="number"/>
                 </LinearLayout>
 
                 <!-- 4 -14  Como se cocina-->
