@@ -363,12 +363,10 @@ public class ViviendaPreguntas {
     public static ArrayAdapter<Values> getEstadoTechoPisoParedAdapter(Context context) {
 
         ArrayList<Values> estadoTechoPisoPared = new ArrayList<>();
-
         estadoTechoPisoPared.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         estadoTechoPisoPared.add(new Values(EstadoTechoPisoPared.BUENO.getValor(),context.getString(R.string.techoPisoParedOpcion1)));
         estadoTechoPisoPared.add(new Values(EstadoTechoPisoPared.REGULAR.getValor(),context.getString(R.string.techoPisoParedOpcion2)));
         estadoTechoPisoPared.add(new Values(EstadoTechoPisoPared.MALO.getValor(),context.getString(R.string.techoPisoParedOpcion3)));
-
         ArrayAdapter<Values> estadoTechoPisoParedAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, estadoTechoPisoPared);
         estadoTechoPisoParedAdapter

@@ -288,7 +288,7 @@
     <string name="terrenoAgropecuarioOpcion2">2. NO</string>
 
     <!-- Seccion 4 Pregunta 16.1 -->
-    <string name="terrenoAgropecuarioSi">Uno o mas terrenos cuenta con servicios básicos?</string>
+    <string name="terrenoAgropecuarioSi">Uno o más terrenos cuenta con servicios básicos?</string>
     <string name="terrenoAgropecuarioSiOpcion1">1. SI</string>
     <string name="terrenoAgropecuarioSiOpcion2">2. NO</string>
 
@@ -512,7 +512,7 @@
     <string name="diagnosticoMedico">26. Por (&#8230;), (&#8230;) tiene diagnóstico médico:</string>
 
     <!-- Seccion 5 Pregunta 27-->
-    <string name="enfermedadCatastrofica">27. Cuál es la enfermdad catastrófica:</string>
+    <string name="enfermedadCatastrofica">27. Cuál es la enfermedad catastrófica:</string>
     <string name="enfermedadCatastroficaOpcion1">1. Malformaciones congénitas del corazón y valvulopatías cardiacas(todo tipo)?</string>
     <string name="enfermedadCatastroficaOpcion2">2. Cancér (todo tipo)?</string>
     <string name="enfermedadCatastroficaOpcion3">3. Tumor cerebral?</string>
