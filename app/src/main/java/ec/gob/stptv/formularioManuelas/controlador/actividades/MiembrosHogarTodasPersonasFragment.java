@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.HogarPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.PersonaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
+import ec.gob.stptv.formularioManuelas.controlador.util.InputFilterMinMax;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.PersonaDao;
@@ -108,6 +110,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private LinearLayout menores18AniosLinearLayout;
     private LinearLayout codigoPersonaLinearLayout;
     ArrayList<Values> codigosMadres;
+    private int contador;
 
 
     @Override
@@ -213,8 +216,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadFisicaRadioGroup = item.findViewById(R.id.discapacidadFisicaRadioGroup);
         discapacidadIntelectualRadioGroup = item.findViewById(R.id.discapacidadIntelectualRadioGroup);
         discapacidadHipoacusiaRadioGroup = item.findViewById(R.id.discapacidadHipoacusiaRadioGroup);
-        porcentajeIntelectualEditText = item.findViewById(R.id.porcentajeIntelectualEditText);
-        porcentajeFisicaEditText = item.findViewById(R.id.porcentajeFisicaEditText);
         discapacidadCegueraRadioGroup = item.findViewById(R.id.discapacidadCegueraRadioGroup);
         discapacidadVisionRadioGroup = item.findViewById(R.id.discapacidadVisionRadioGroup);
         discapacidadSorderaRadioGroup = item.findViewById(R.id.discapacidadSorderaRadioGroup);
@@ -243,11 +244,20 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         organizacionPrivadaRadioGroup = item.findViewById(R.id.organizacionPrivadaRadioGroup);
         ningunaRadioGroup = item.findViewById(R.id.ningunaRadioGroup);
         diagnosticoMedicoRadioGroup = item.findViewById(R.id.diagnosticoMedicoRadioGroup);
+        porcentajeIntelectualEditText = item.findViewById(R.id.porcentajeIntelectualEditText);
+        porcentajeIntelectualEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
+        porcentajeFisicaEditText = item.findViewById(R.id.porcentajeFisicaEditText);
+        porcentajeFisicaEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         porcentajeCegueraEditText = item.findViewById(R.id.porcentajeCegueraEditText);
+        porcentajeCegueraEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         porcentajeVisionEditText = item.findViewById(R.id.porcentajeVisionEditText);
+        porcentajeVisionEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         porcentajeSorderaEditText = item.findViewById(R.id.porcentajeSorderaEditText);
+        porcentajeSorderaEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         porcentajeHipoacusiaEditText = item.findViewById(R.id.porcentajeHipoacusiaEditText);
+        porcentajeHipoacusiaEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         porcentajePsicosocialesEditText = item.findViewById(R.id.porcentajePsicosocialesEditText);
+        porcentajePsicosocialesEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
 
     }
 
@@ -1149,6 +1159,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 } else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 2 ||
                         Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 3) {
                     enfermedadCatastroficaSpinner.setEnabled(false);
+                    for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+                        diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
+                    }
                 } else {
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
@@ -1168,6 +1181,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
                     seguroSocial2Spinner.setClickable(true);
+                }
+                else{
+                    seguroSocial2Spinner.setClickable(false);
                 }
                 if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial2Spinner.getSelectedItem()).getKey())
                         &&
@@ -1203,6 +1219,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
                     seguroSalud2Spinner.setClickable(true);
+                }
+                else{
+                    seguroSalud2Spinner.setClickable(false);
                 }
                 if (((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSalud2Spinner.getSelectedItem()).getKey())
                         &&
@@ -1455,6 +1474,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeIntelectualEditText.setError(null);
             porcentajeIntelectualEditText.clearFocus();
             porcentajeIntelectualEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeIntelectualEditText.requestFocus();
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadFisica));
@@ -1464,6 +1484,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeFisicaEditText.setError(null);
             porcentajeFisicaEditText.clearFocus();
             porcentajeFisicaEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeFisicaEditText.requestFocus();
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadCeguera));
@@ -1473,6 +1494,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeCegueraEditText.setError(null);
             porcentajeCegueraEditText.clearFocus();
             porcentajeCegueraEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeCegueraEditText.requestFocus();
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadVisionRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadBajaVision));
@@ -1482,6 +1504,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeVisionEditText.setError(null);
             porcentajeVisionEditText.clearFocus();
             porcentajeVisionEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeVisionEditText.requestFocus();
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadSordera));
@@ -1491,6 +1514,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeSorderaEditText.setError(null);
             porcentajeSorderaEditText.clearFocus();
             porcentajeSorderaEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeSorderaEditText.requestFocus();
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadHipoacusia));
@@ -1500,6 +1524,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeHipoacusiaEditText.setError(null);
             porcentajeHipoacusiaEditText.clearFocus();
             porcentajeHipoacusiaEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeHipoacusiaEditText.requestFocus();
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadPsicosociales));
@@ -1509,6 +1534,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajePsicosocialesEditText.setError(null);
             porcentajePsicosocialesEditText.clearFocus();
             porcentajePsicosocialesEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajePsicosocialesEditText.requestFocus();
         } else if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 porcentajeIntelectualEditText.getText().toString().equals("") &&
                 porcentajeFisicaEditText.getText().toString().equals("") &&
@@ -1517,9 +1543,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 porcentajeSorderaEditText.getText().toString().equals("") &&
                 porcentajeHipoacusiaEditText.getText().toString().equals("") &&
                 porcentajePsicosocialesEditText.getText().toString().equals("")) {
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.errorCarnetConadis));
-        } else if (!validarNumPorcentajes()) {
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.errorCarnetConadis2));
+            getAlert(getString(R.string.validacion_aviso),  getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.errorCarnetConadis));
+        } else if (validarNumPorcentajes()) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.errorCarnetConadis2));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 ((Values) asistenciaEstablecimientoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.asistenciaEstablecimiento));
@@ -1906,7 +1932,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     }
 
     public Boolean validarNumPorcentajes() {
-        int contador = 0;
+        contador = 0;
         if (!porcentajeIntelectualEditText.getText().toString().equals("")) {
             contador++;
         }
@@ -1928,7 +1954,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         if (!porcentajePsicosocialesEditText.getText().toString().equals("")) {
             contador++;
         }
-        return contador <= 0;
+        return contador > 1;
     }
 
 }
