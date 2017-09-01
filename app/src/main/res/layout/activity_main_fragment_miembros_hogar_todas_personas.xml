@@ -1599,19 +1599,16 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal"
                             android:padding="0dp">
-
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
                                 android:text="@string/institucionAyudasTecnicasOpcionB" />
-
                                 <RadioGroup
                                     android:id="@+id/gobiernoAutonomoRadioGroup"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
-
                                     <RadioButton
                                         android:id="@+id/gobiernoAutonomoOpcion1RadioButton"
                                         android:layout_width="wrap_content"
@@ -1619,7 +1616,6 @@
                                         android:layout_margin="10dp"
                                         android:text="@string/opcion_si"
                                         android:enabled="false"/>
-
                                     <RadioButton
                                         android:id="@+id/gobiernoAutonomoOpcion2RadioButton"
                                         android:layout_width="wrap_content"
@@ -1628,7 +1624,6 @@
                                         android:text="@string/opcion_no"
                                         android:enabled="false"/>
                                 </RadioGroup>
-
                         </LinearLayout>
                         <!-- FIn -->
 
@@ -1738,7 +1733,6 @@
                                 android:id="@+id/diagnosticoMedicoRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:orientation="horizontal" >
 
                                 <RadioButton
