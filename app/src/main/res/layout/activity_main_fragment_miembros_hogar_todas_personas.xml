@@ -1746,14 +1746,16 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="@string/opcion_si" />
+                                    android:text="@string/opcion_si"
+                                    android:enabled="false"/>
 
                                 <RadioButton
                                     android:id="@+id/diagnosticoMedicoOpcion2RadioButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="@string/opcion_no" />
+                                    android:text="@string/opcion_no"
+                                    android:enabled="false"/>
                             </RadioGroup>
                         </RelativeLayout>
                     </LinearLayout>
@@ -1761,18 +1763,14 @@
 
                     <!-- Inicio Pregunta enfermedadCatastrofica -->
                     <LinearLayout style="@style/contenedorPregunta">
-
                         <TextView
                             style="@style/areaPreguntaTextView"
                             android:text="@string/enfermedadCatastrofica" />
-
                         <Spinner
                             android:id="@+id/enfermedadCatastroficaSpinner"
-                            style="@style/respuestaSpinner" />
-
+                            style="@style/respuestaSpinner"
+                            android:clickable="false"/>
                     </LinearLayout>
-
-
                 </LinearLayout>
                 <!-- Fin de la columna 3 -->
 
@@ -1783,7 +1781,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp">
-
                 <include layout="@layout/reusable_bottom_actionbar_navigation" />
             </LinearLayout>
         </LinearLayout>
