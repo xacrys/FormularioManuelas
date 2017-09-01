@@ -1151,7 +1151,7 @@ public class MiembrosHogarFragment extends Fragment {
         if (((Values) documentoSpinner
                 .getSelectedItem()).getKey().equals("6") && edad>=5) {
             getAlert(getString(R.string.validacion_aviso),
-                    getString(R.string.seccion5MensajeValidacionEdadDocumentacion));
+                    getString(R.string.mensajeValidacionEdadDocumentacionMayor));
             return true;
 
         }
@@ -1159,7 +1159,7 @@ public class MiembrosHogarFragment extends Fragment {
         if (((Values) documentoSpinner
                 .getSelectedItem()).getKey().equals("4") && edad<5) {
             getAlert(getString(R.string.validacion_aviso),
-                    getString(R.string.seccion5MensajeValidacionEdadDocumentacion));
+                    getString(R.string.mensajeValidacionEdadDocumentacionMenor));
             return true;
 
         }

@@ -157,9 +157,12 @@ public class CertificadoImagenFragment extends Fragment {
                 if (_imagen == null){
                     Imagen imagen = new Imagen();
                     imagen.setIdvivienda(vivienda.getId());
-                    imagen.setTipo(REQUEST_PICTURE_VIVIENDA);
+                    //imagen.setCodigoequipo(vivienda.getIdentificadorequipo());pendiente
                     imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
+                    imagen.setTipo(REQUEST_PICTURE_VIVIENDA);
                     imagen.setFecha(Utilitarios.getCurrentDate());
+                    imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                    imagen.setFechasincronizacion("");
                     Uri uri = ImagenDao.save(cr, imagen);
                     if(uri != null)
                     {

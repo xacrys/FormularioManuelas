@@ -178,7 +178,7 @@ public class ImagenesActivity extends Activity {
 				String where = Imagen.whereByFechasEstadoSincronizacion;
 				String parametros[] = new String[] {fechaInicioButton.getText().toString(),  fechaFinButton.getText().toString(), String.valueOf(Global.SINCRONIZACION_INCOMPLETA)};
 				
-				ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.NOMBRE_TABLA +  "." + Imagen.COLUMNA_IDVIVIENDA);
+				ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_IDVIVIENDA);
 				
 				totalImagenesASincronizar = imagenes.size();
 				if(totalImagenesASincronizar > 0)

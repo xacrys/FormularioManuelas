@@ -21,7 +21,8 @@ public class Global {
     /**
      * IPS de produccion
      */
-    public static final String IP_SERVIDOR = "http://192.168.10.151:8080";
+    //public static final String IP_SERVIDOR = "http://192.168.10.151:8080";
+    public static final String IP_SERVIDOR = "http://200.125.208.21:8080";
 
     /**
      * WEB SERVICES
@@ -34,7 +35,7 @@ public class Global {
     /**
      * Tiempo de ejecucion de Login
      */
-    public static final int ASYNCTASK_TIMEROUT_LOGIN =  120000; // 1min
+    public static final int ASYNCTASK_TIMEOUT_LOGIN =  120000; // 1min
 
     /**
      * Tiempo de ejecucion de sincronizacion

@@ -8,7 +8,6 @@ import android.net.Uri;
 import java.util.ArrayList;
 
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
-import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
 import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
 
 /**
@@ -20,6 +19,12 @@ public class FaseDao extends Fase{
     public static Uri save(ContentResolver cr, Fase fase) {
         ContentValues values = getValues(fase);
         return cr.insert(FormularioManuelasProvider.CONTENT_URI_FASE, values);
+    }
+
+    public static int update(ContentResolver cr, Fase fase) {
+        ContentValues values = getValues(fase);
+        values.remove(COLUMNA_ID);
+        return cr.update(FormularioManuelasProvider.CONTENT_URI_FASE, values, whereById, new String[] { String.valueOf(fase.getId()) });
     }
 
     /**
@@ -77,6 +82,21 @@ public class FaseDao extends Fase{
         return fases;
     }
 
+    /**
+     * Método que actualiza el estado de las fases
+     * @param fase
+     * @param cr
+     * @return
+     */
+    public static int updateEstadoFases(ContentResolver cr, Fase fase) {
+
+        ContentValues values = new ContentValues();
+
+        values.put(Fase.COLUMNA_ESTADO, 0);
+
+        int result = cr.update(FormularioManuelasProvider.CONTENT_URI_FASE, values, whereByIdDistinto, new String[] { String.valueOf(fase.getId()) });
+        return result;
+    }
 
 
 }

@@ -69,12 +69,13 @@
 
 
 
-    <!-- Etiquetas de error -->
+    <!-- Etiquetas de error Login -->
     <string name="errorCampoRequerido">Este campo es requerido</string>
     <string name="errorPasswordInvalido">La contraseña es muy corta</string>
     <string name="errorConectarServidor">No se puede conectar al servidor</string>
     <string name="error_conectar_servidor">No se puede conectar al servidor</string>
     <string name="error_incorrect_password">Usuario o contraseña incorrectos</string>
+    <string name="error_asignacion_tablet">Usuario sin dispositivo asignado</string>
 
 
     <!-- Seccion Vivienda -->
@@ -714,7 +715,8 @@
     <string name="seccion5MensajeValidacionRelacionNucleosJefesNucleosOrden">Existe más de un jefe de núcleo</string>
     <string name="seccion5MensajeValidacionEdadParentescoConviviente">El/La esposo(a) o conviviente no puede ser menor de 12 años</string>
     <string name="seccion5MensajeValidacionMatrimonioMismoSexo">No puede existir la relación Jefe Hogar/Esposo(a) o conviviente del mismo sexo </string>
-    <string name="seccion5MensajeValidacionEdadDocumentacion">Es mayor de 5 años no debe elegir esa opción </string>
+    <string name="mensajeValidacionEdadDocumentacionMayor">Mayor de 5 años y documentación no corresponde</string>
+    <string name="mensajeValidacionEdadDocumentacionMenor">Menor de 5 años y documentación no corresponde</string>
 
 
     <!-- fin Validaciones formulario miembros del hogar -->

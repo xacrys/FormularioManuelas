@@ -192,51 +192,45 @@ public class LoginActivity extends Activity {
         if (validarCampos())
             return;
 
-        Utilitarios.logError("calveeeeeeeeeeeee",ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()+""));
-
         // Show a progress spinner, and kick off a background task to
         // perform the user login attempt.
         mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
         showProgress(true);
         mAuthTask = new UserLoginTask();
 
-
-        if (!Utilitarios.verificarConexion(this)) {
-            Toast toast = Toast.makeText(this, getString(R.string.error_conectar_servidor), Toast.LENGTH_LONG);
+        if (!Utilitarios.verificarConexion(this))
+        {
+            Toast toast = Toast.makeText(this,getString(R.string.error_conectar_servidor),Toast.LENGTH_LONG);
             toast.show();
-
             String[] parametros = new String[]{
                     mEmailView.getText().toString(),
                     ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
             };
-
             String where = Usuario.whereByUsuarioYPassword;
             Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
-
             if (usuario != null) {
 
                 Intent intent = new Intent(LoginActivity.this,
                         FormulariosActivity.class);
                 finish();
-                intent.putExtra("usuario", usuario);
+                intent.putExtra("usuario",usuario);
                 startActivity(intent);
-            } else {
-//                    mEmailView.setError(getString(R.string.in));
+            }
+            else
+            {
+                mEmailView.setError(getString(R.string.error_incorrect_password));
                 mEmailView.requestFocus();
                 mAuthTask = null;
                 showProgress(false);
             }
-
-        } else {
-
+        }
+        else
+        {
             httpClient = new DefaultHttpClient();
             new Thread(new Runnable() {
-
-
                 public void run() {
                     try {
-
-                        mAuthTask.execute(Global.URL_WEB_SERVICE_USUARIOS).get(Global.ASYNCTASK_TIMEROUT_LOGIN, TimeUnit.MILLISECONDS);
+                        mAuthTask.execute(Global.URL_WEB_SERVICE_USUARIOS).get(Global.ASYNCTASK_TIMEOUT_LOGIN, TimeUnit.MILLISECONDS);
 
                     } catch (InterruptedException e1) {
                         // TODO Auto-generated catch block
@@ -249,7 +243,7 @@ public class LoginActivity extends Activity {
                         Log.e("", "Termino el tiempo de coneccion");
                         httpClient.getConnectionManager().shutdown();
 
-                        if (!mAuthTask.isCancelled()) {
+                        if(!mAuthTask.isCancelled()){
                             mAuthTask.cancel(true);
                         }
                         e1.printStackTrace();
@@ -303,21 +297,21 @@ public class LoginActivity extends Activity {
      */
     @SuppressLint("SimpleDateFormat")
     public class UserLoginTask extends AsyncTask<String, Void, Object> {
-        @Override
         protected Object doInBackground(String... params) {
 
             // Primero busca en la web luego localmente
+
             Object respuesta = null;
             contentResolver = getContentResolver();
+
             JSONObject values = new JSONObject();
+
             try {
 
                 String user = mEmailView.getText().toString();
-                String password = mPasswordView.getText().toString();
+                String password = ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString());
                 String imei = Utilitarios.getImeiDispositivo(getApplicationContext());
-
                 if (TextUtils.isEmpty(imei)) {
-
                     String[] parametros = new String[] {user, password};
                     String where= Usuario.whereByUsuarioYPassword;
                     Usuario usuarioBD = UsuarioDao.getUsuario(contentResolver,where, parametros );
@@ -349,16 +343,16 @@ public class LoginActivity extends Activity {
                 }
                 else
                 {
-                    String d = mEmailView.getText().toString();
+                    String where= Usuario.whereByUsuarioYPassword;
                     String[] parametros = new String[] {
                             mEmailView.getText().toString(),
-                            mPasswordView.getText().toString(),
+                            ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
                     };
-
-                    String where= Usuario.whereByUsuarioYPassword;
                     Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
                     if (usuario != null) {
+
                         respuesta = usuario;
+
                         Utilitarios.logInfo(Usuario.class.getName(), usuario.toString());
                     } else
                     {
@@ -378,7 +372,7 @@ public class LoginActivity extends Activity {
         protected void onPostExecute(final Object _respuesta) {
 
 
-            // Usuario de pruebas
+             //Usuario de pruebas
             Usuario usuario = new Usuario();
             usuario.setUsuario("0503380164");
             usuario.setPassword("0503380164");
@@ -393,12 +387,6 @@ public class LoginActivity extends Activity {
             Intent intent = new Intent(LoginActivity.this,
                     FormulariosActivity.class);
             intent.putExtra("usuario", usuario);
-
-            /**
-             * Gestion de la Fase
-             */
-
-            //Log.e("fdfdsf",  "idFase" + idFase);
             String where;
             String parametros[];
             where = Fase.whereById;
@@ -413,49 +401,230 @@ public class LoginActivity extends Activity {
                 fase.setEstado(1);
                 FaseDao.save(contentResolver, fase);
             }
+
+            Utilitarios.logError("resouesta del login", ""+_respuesta);
             startActivity(intent);
+
+//            if (_respuesta != null) {
+//                if (_respuesta.getClass() == Usuario.class)
+//                {
+//                    Intent intent = new Intent(LoginActivity.this, FormulariosActivity.class);
+//                    finish();
+//                    intent.putExtra("usuario", (Usuario) _respuesta);
+//                    startActivity(intent);
+//                }
+//                if (_respuesta.getClass() == JSONObject.class) {
+//                    try {
+//                        JSONObject respuesta = (JSONObject) _respuesta;
+//                        Utilitarios.logError("id usuario", respuesta.getString("idUsuario"));
+//                        String codigoUsuario = respuesta.getString("idUsuario");
+//                        String codigoDispositivo = respuesta.getString("idDispositivo");
+//                        String version = respuesta.getString("version");
+//                        String idFase = respuesta.getString("idFase");
+//                        if(version.equals("SI"))
+//                        {
+//                            if(!codigoDispositivo.equals("0"))
+//                            {
+//                                if ( !codigoUsuario.equals("0"))
+//                                {
+//                                    Date fechaActual = new Date();
+//                                    DateFormat formato = new SimpleDateFormat(
+//                                            "yyyy-MM-dd");
+//
+//                                    String[] parametros = new String[] {
+//                                            respuesta.getString("login"),
+//                                            respuesta.getString("password") };
+//
+//                                    String where= Usuario.whereByUsuarioYPassword;
+//                                    Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+//                                    if (usuario != null)
+//                                    {
+//
+//                                        usuario.setIdusuario(respuesta.getString("idUsuario"));
+//                                        usuario.setNombres(respuesta.getString("nombres"));
+//                                        usuario.setApellidos(respuesta.getString("apellidos"));
+//                                        usuario.setCedula(respuesta.getString("cedula"));
+//                                        //usuario.setCodigoGrupo(respuesta.getInt("codigoGrupo"));
+//                                        usuario.setIddispositivo(respuesta.getInt("idDispositivo"));
+//                                        //usuario.setEstado(respuesta.getInt("estado"));
+//                                        //usuario.setMaxVivCodigo(respuesta.getString("maxVivCodigo"));
+//                                        UsuarioDao.update(contentResolver,usuario);
+//                                    }
+//                                    else
+//                                    {
+//                                        Log.e("", "Entra a crear el usuario");
+//                                        Usuario _usuario = new Usuario();
+//                                        _usuario.setUsuario(respuesta.getString("usuario"));
+//                                        _usuario.setPassword(respuesta.getString("contrasenia"));
+//                                        _usuario.setIdusuario(respuesta.getString("idUsuario"));
+//                                        _usuario.setNombres(respuesta.getString("nombres"));
+//                                        _usuario.setApellidos(respuesta.getString("apellidos"));
+//                                        _usuario.setCedula(respuesta.getString("cedula"));
+//                                        //_usuario.setCodigoGrupo(respuesta.getInt("codigoGrupo"));
+//                                        _usuario.setIddispositivo(respuesta.getInt("idDispositivo"));
+//                                        //_usuario.setRol("user");
+//                                        //_usuario.setEstado(respuesta.getInt("estado"));
+//                                        _usuario.setImei(Utilitarios.getImeiDispositivo(getApplicationContext()));
+//                                        //_usuario.setMaxVivCodigo(respuesta.getString("maxVivCodigo"));
+//                                        _usuario.setFecharegistro(formato.format(fechaActual));
+//                                        UsuarioDao.save(contentResolver,_usuario);
+//                                        usuario = _usuario;
+//                                    }
+//
+//                                    parametros = new String[] {idFase};
+//                                    Fase fase = FaseDao.getFase(contentResolver, Fase.whereById,parametros );
+//                                    Utilitarios.printObject(fase);
+//                                    if(fase.getId() == 0)
+//                                    {
+//                                        fase = new Fase();
+//                                        fase.setId(Integer.parseInt(idFase));
+//                                        fase.setFechainicio(respuesta.getString("fechaInicio"));
+//                                        fase.setFechafin(respuesta.getString("fechaInicio"));
+//                                        fase.setNombrefase(respuesta.getString("nombres"));
+//                                        //fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
+//                                        fase.setEstado(1);
+//                                        FaseDao.save(contentResolver,fase);
+//                                        FaseDao.updateEstadoFases(contentResolver,fase);
+//                                    }
+//                                    else
+//                                    {
+//                                        fase.setId(Integer.parseInt(idFase));
+//                                        fase.setFechainicio(respuesta.getString("fechaInicio"));
+//                                        fase.setFechafin(respuesta.getString("fechaInicio"));
+//                                        fase.setNombrefase(respuesta.getString("nombres"));
+//                                        //fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
+//                                        fase.setEstado(1);
+//                                        FaseDao.update(contentResolver, fase);
+//                                        FaseDao.updateEstadoFases(contentResolver,fase);
+//                                        Utilitarios.printObject(fase);
+//                                    }
+//
+//                                    finish();
+//                                    Intent intent = new Intent(LoginActivity.this,	FormulariosActivity.class);
+//                                    intent.putExtra("usuario", usuario);
+//                                    startActivity(intent);
+//                                }
+//                                else
+//                                {
+//                                    mAuthTask = null;
+//                                    showProgress(false);
+//                                    mEmailView.setError(getString(R.string.error_incorrect_password));
+//                                    mEmailView.requestFocus();
+//                                    getAlert(getString(R.string.validacion_aviso), getString(R.string.error_incorrect_password));
+//
+//                                }
+//                            }
+//                            else
+//                            {
+//                                mAuthTask = null;
+//                                showProgress(false);
+//                                getAlert(getString(R.string.validacion_aviso), getString(R.string.error_asignacion_tablet));
+//                            }
+//                        }
+//                        else
+//                        {
+//                            if(version.equals("NO"))
+//                            {
+//                                mAuthTask = null;
+//                                showProgress(false);
+//
+//                                getAlert(getString(R.string.validacion_aviso), "Actualice de version de la aplicacion");
+//                            }
+//                            else
+//                            {
+//
+//                                if(version.equals(""))
+//                                {
+//                                    mAuthTask = null;
+//                                    showProgress(false);
+//
+//                                    getAlert(getString(R.string.validacion_aviso), getString(R.string.error_incorrect_password));
+//                                }
+//                                else
+//                                {
+//                                    mAuthTask = null;
+//                                    showProgress(false);
+//                                }
+//
+//                            }
+//                        }
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//            } else
+//            {
+//
+//                Log.e("ddddddddddd", "Login - Error en el servidor");
+//
+//                String[] parametros = new String[] {
+//                        mEmailView.getText().toString(),
+//                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+//                };
+//
+//                String where= Usuario.whereByUsuarioYPassword;
+//                Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+//
+//                if (usuario != null) {
+//
+//                    Intent intent = new Intent(LoginActivity.this,
+//                            FormulariosActivity.class);
+//                    finish();
+//                    intent.putExtra("usuario",usuario);
+//                    startActivity(intent);
+//                }
+//                else
+//                {
+//                    mEmailView.setError(getString(R.string.error_incorrect_password));
+//                    mEmailView.requestFocus();
+//                    mAuthTask = null;
+//                    showProgress(false);
+//                }
+//
+//                //mAuthTask = null;
+//                //showProgress(false);
+//
+//                Toast toast = Toast.makeText(getApplicationContext(),
+//                        getString(R.string.error_conectar_servidor),
+//                        Toast.LENGTH_LONG);
+//                toast.show();
+//            }
         }
 
         @Override
         protected void onCancelled() {
 
-//            Log.e("ddddddddddd", "Login onCancelled");
-//
-//            String[] parametros = new String[] {
-//                    mEmailView.getText().toString(),
-//                    mPasswordView.getText().toString(),
-//            };
-//
-//            Cursor cursor = cr.query(
-//                    RegistroSocialProvider.CONTENT_URI_USUARIO,
-//                    Usuario.COLUMNAS, Usuario.whereByUsuarioYPassword,
-//                    parametros, Usuario.COLUMNA_ID_USUARIO);
-//
-//            Usuario usuario = UsuarioDao.getUsuarioPorId(cursor);
-//
-//            if (usuario != null) {
-//
-//                Intent intent = new Intent(LoginActivity.this,
-//                        FormulariosActivity.class);
-//                finish();
-//                intent.putExtra("usuario",usuario);
-//                startActivity(intent);
-//            }
-//            else
-//            {
-//                mEmailView.setError(getString(R.string.error_incorrect_password));
-//                mEmailView.requestFocus();
-//                mAuthTask = null;
-//                showProgress(false);
-//            }
-//
-//            Toast toast = Toast.makeText(getApplicationContext(),
-//                    getString(R.string.error_conectar_servidor),
-//                    Toast.LENGTH_LONG);
-//            toast.show();
+            Log.e("ddddddddddd", "Login onCancelled");
+            String[] parametros = new String[] {
+                    mEmailView.getText().toString(),
+                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+            };
 
-            //mAuthTask = null;
-            //showProgress(false);
+            String where= Usuario.whereByUsuarioYPassword;
+            Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+
+            if (usuario != null) {
+
+                Intent intent = new Intent(LoginActivity.this,
+                        FormulariosActivity.class);
+                finish();
+                intent.putExtra("usuario",usuario);
+                startActivity(intent);
+            }
+            else
+            {
+                mEmailView.setError(getString(R.string.error_incorrect_password));
+                mEmailView.requestFocus();
+                mAuthTask = null;
+                showProgress(false);
+            }
+
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    getString(R.string.error_conectar_servidor),
+                    Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 
@@ -511,7 +680,27 @@ public class LoginActivity extends Activity {
         alertDialog.show();
     }
 
+    /**
+     * muestra mensajes de alerta
+     * @param title
+     * @param message
+     */
+    private void getAlert(String title, String message) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(message).setTitle(title);
+
+        builder.setPositiveButton("Aceptar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 
 
 
