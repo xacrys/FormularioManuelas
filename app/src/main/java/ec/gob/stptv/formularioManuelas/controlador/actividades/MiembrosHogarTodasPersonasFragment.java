@@ -1161,6 +1161,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 }
                 else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 1 ) {
                     enfermedadCatastroficaSpinner.setClickable(true);
+                    enfermedadCatastroficaSpinner.setEnabled(true);
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
                     }
@@ -1480,6 +1481,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadFisica));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton &&
+                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 TextUtils.isEmpty(porcentajeFisicaEditText.getText().toString().trim())) {
             porcentajeFisicaEditText.setError(null);
             porcentajeFisicaEditText.clearFocus();
@@ -1490,6 +1492,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadCeguera));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton &&
+                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 TextUtils.isEmpty(porcentajeCegueraEditText.getText().toString().trim())) {
             porcentajeCegueraEditText.setError(null);
             porcentajeCegueraEditText.clearFocus();
@@ -1500,6 +1503,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadBajaVision));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton &&
+                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 TextUtils.isEmpty(porcentajeVisionEditText.getText().toString().trim())) {
             porcentajeVisionEditText.setError(null);
             porcentajeVisionEditText.clearFocus();
@@ -1510,6 +1514,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadSordera));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton &&
+                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 TextUtils.isEmpty(porcentajeSorderaEditText.getText().toString().trim())) {
             porcentajeSorderaEditText.setError(null);
             porcentajeSorderaEditText.clearFocus();
@@ -1520,6 +1525,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadHipoacusia));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion1RadioButton &&
+                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 TextUtils.isEmpty(porcentajeHipoacusiaEditText.getText().toString().trim())) {
             porcentajeHipoacusiaEditText.setError(null);
             porcentajeHipoacusiaEditText.clearFocus();
@@ -1530,6 +1536,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadPsicosociales));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton &&
+                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 TextUtils.isEmpty(porcentajePsicosocialesEditText.getText().toString().trim())) {
             porcentajePsicosocialesEditText.setError(null);
             porcentajePsicosocialesEditText.clearFocus();
@@ -1630,6 +1637,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.ayudasTecnicas) + " " + getString(R.string.ayudasTecnicasOpcionQ));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+                recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion1RadioButton &&
                 gobiernoCentralRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.institucionAyudasTecnicas) + " " + getString(R.string.institucionAyudasTecnicasOpcionA));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
@@ -1639,10 +1647,12 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.institucionAyudasTecnicas) + " " + getString(R.string.institucionAyudasTecnicasOpcionB));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+                recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion1RadioButton &&
                 organizacionPrivadaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.institucionAyudasTecnicas) + " " + getString(R.string.institucionAyudasTecnicasOpcionC));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion1RadioButton &&
+                recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion1RadioButton &&
                 ningunaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.institucionAyudasTecnicas) + " " + getString(R.string.institucionAyudasTecnicasOpcionD));
         } else if (((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
