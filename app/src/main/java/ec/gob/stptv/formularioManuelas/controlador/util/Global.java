@@ -27,10 +27,12 @@ public class Global {
     /**
      * WEB SERVICES
      */
-    public static final String URL_WEB_SERVICES = "/SeguridadSptuvWeb/webresources";
-    public static final String URL_WEB_SERVICE_USUARIOS= IP_SERVIDOR + URL_WEB_SERVICES + "/logeoManuela";
-    public static final String URL_WEB_SERVICE_INGRESO_FORMULARIO= IP_SERVIDOR + URL_WEB_SERVICES +"/ingresoFicha";
-
+    public static final String URL_WEB_SERVICES_LOGEO = "/SeguridadSptuvWeb/webresources";
+    public static final String URL_WEB_SERVICES_INGRESO = "/Formulario-Discapacidades-war/webresources";
+    public static final String URL_WEB_SERVICE_USUARIOS= IP_SERVIDOR + URL_WEB_SERVICES_LOGEO + "/logeoManuela";
+    public static final String URL_WEB_SERVICE_INGRESO_FORMULARIO= IP_SERVIDOR + URL_WEB_SERVICES_INGRESO +"/vivienda";
+    public static final String URL_WEB_SERVICE_VIVCODIGO= IP_SERVIDOR + URL_WEB_SERVICES_INGRESO +"/vivcodigo";
+    public static final String URL_WEB_SERVICE_IMAGENES= IP_SERVIDOR + URL_WEB_SERVICES_INGRESO + "/ingresoImagenes";
 
     /**
      * Tiempo de ejecucion de Login
@@ -90,12 +92,12 @@ public class Global {
     /**
      * Valor para la sincronizacion incompleta
      */
-    public static final int SINCRONIZACION_INCOMPLETA = 0;
+    public static final int SINCRONIZACION_INCOMPLETA = -1;
 
     /**
      * Valor para la sincronizacion con certificado duplicado
      */
-    public static final int SINCRONIZACION_CERTIFICADO_REPETIDO = 2;
+    public static final int SINCRONIZACION_CERTIFICADO_REPETIDO = -2;
 
     /**
      * Valor para la opcion seleccione

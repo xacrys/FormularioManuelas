@@ -6,6 +6,9 @@ import java.util.StringTokenizer;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.DpaManzana;
+import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
+
+import android.content.ContentResolver;
 import android.database.Cursor;
 
 /**
@@ -32,5 +35,32 @@ public class DpaManzanaDao extends DpaManzana {
 
         result.close();
         return dpaManzanas;
+    }
+
+    /**
+     * Método que obtiene la persona por id
+     * @param cr
+     * @param where
+     * @param id
+     * @return
+     */
+    public static DpaManzana  getDpaManzana(ContentResolver cr, String where, String[] id) {
+
+        Cursor result = cr.query(
+                FormularioManuelasProvider.CONTENT_URI_DPAMANZANA,
+                columnas, where, id, null);
+
+        DpaManzana dpaManzana = null;
+        if (result != null) {
+            if ((result.getCount() == 0) || !result.moveToFirst()) {
+                dpaManzana = null;
+            } else {
+                if (result.moveToFirst()) {
+                    dpaManzana = newDpaManzana(result);
+                }
+            }
+            result.close();
+        }
+        return dpaManzana;
     }
 }

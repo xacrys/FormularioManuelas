@@ -54,12 +54,11 @@ public class ViviendaDao  extends Vivienda{
             result.close();
         }
 
-
         //Si ultimaVivienda == 0, busca el maxVivCodigo que trajo del servidor para empezar desde este id
 
         if(ultimaVivienda == 0)
         {
-            /*Cursor cursor = cr.query(FormularioManuelasProvider.CONTENT_URI_USUARIO,
+            Cursor cursor = cr.query(FormularioManuelasProvider.CONTENT_URI_USUARIO,
                     new String[]{Usuario.COLUMNA_MAXVIVCODIGO}, Usuario.whereById,
                     new String[] {usuario.getUsuario() }, null);
 
@@ -87,7 +86,7 @@ public class ViviendaDao  extends Vivienda{
                     }
                 }
             }
-            cursor.close();*/
+            cursor.close();
         }
 
         return ultimaVivienda + 1;

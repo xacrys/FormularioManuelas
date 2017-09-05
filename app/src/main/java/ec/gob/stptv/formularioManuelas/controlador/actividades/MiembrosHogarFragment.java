@@ -884,9 +884,16 @@ public class MiembrosHogarFragment extends Fragment {
                 if (validarParentesco(persona))
                     return;
             }
+            if (persona.getIdparentesco() == 2) {
+                if (validarEdadConyuge(edadAnios))
+                    return;
+            }
 
-            if (validarJefeHogarConyuge())
-                return;
+            if (persona.getIdparentesco() == 2) {
+                if (validarJefeHogarConyuge(persona))
+                    return;
+            }
+
 
             if (validarJefeHogarConyugeSexo())
                 return;
@@ -925,6 +932,12 @@ public class MiembrosHogarFragment extends Fragment {
                     if (validarEdadConyuge(edadAnios))
                         return;
                 }
+
+                if (persona.getIdparentesco() == 2) {
+                    if (validarJefeHogarConyuge(persona))
+                        return;
+                }
+
                 persona.setEdadmes(edadMeses);
                 if ((persona.getEdadanio() >= Global.EDAD_12ANIOS)
                         && (persona.getSexo() == Global.GENERO_FEMENINO)) {
@@ -1003,50 +1016,33 @@ public class MiembrosHogarFragment extends Fragment {
      * Metodo para validar Jefe de hogar debe tener un solo conyuge
      *
      */
-    protected boolean validarJefeHogarConyuge() {
+    protected boolean validarJefeHogarConyuge(Persona persona) {
+        String parametros[];
+        String where = Persona.whereByIdParentesco;
+        parametros = new String[] {String.valueOf(2)};
+        Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);
+        if (tipoGestion == 1){
+            if (_persona != null){
+                getAlert(getString(R.string.validacion_aviso),
+                        getString(R.string.mv_seccion5ExisteVariosConyugesJefeHogar));
+                return true;
+            }
+        }else{
+            if (tipoGestion == 2){
+                if (_persona != null) {
+                    if (persona != null) {
+                        if (!_persona.getId().equals(persona.getId())) {
+                            getAlert(getString(R.string.validacion_aviso),
+                                    getString(R.string.mv_seccion5ExisteVariosConyugesJefeHogar));
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
 
-        boolean cancel = false;
-        int contadorConyuges = 0;
+        return false;
 
-//
-//        for (int i = 0; i < personasTableLayout.getChildCount(); i++) {
-//            TableRow row = (TableRow) personasTableLayout.getChildAt(i);
-//            Persona persona = (Persona) row.getTag();
-//
-//            Values parentesco = (Values) ((Spinner) row
-//                    .findViewById(R.id.colum))
-//                    .getSelectedItem();
-//
-//            Values ordenNucleo = (Values) ((Spinner) row
-//                    .findViewById(R.id.ColumnaOrdenNucleoSpinner))
-//                    .getSelectedItem();
-//
-//            Values parentescoNucleo = (Values) ((Spinner) row
-//                    .findViewById(R.id.ColumnaParentescoNucleoSpinner))
-//                    .getSelectedItem();
-//
-//            int parentescoAux = Integer.parseInt(parentesco.getKey());
-//            int ordenNucleoAux = Integer.parseInt(ordenNucleo.getKey());
-//            int parentescoNucleoAux = Integer.parseInt(parentescoNucleo
-//                    .getKey());
-//
-//            if(parentescoAux == 2){
-//                contadorConyuges = contadorConyuges + 1;
-//            }
-//            if (contadorConyuges > 1){
-//                getAlert(getString(R.string.validacion_aviso),
-//                        getString(R.string.mv_seccion5ExisteVariosConyugesJefeHogar));
-//
-//                ((Spinner) row
-//                        .findViewById(R.id.ColumnaParentescoSpinner))
-//                        .setSelection(0);
-//
-//                cancel = true;
-//                return cancel;
-//            }
-//
-//        }
-        return cancel;
     }
 
     /**

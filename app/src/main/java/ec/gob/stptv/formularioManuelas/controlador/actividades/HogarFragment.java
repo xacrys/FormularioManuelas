@@ -343,8 +343,8 @@ public class HogarFragment extends Fragment {
                 hogar.setTerrenoservicios(Global.ENTEROS_VACIOS);
             }
         }
-        hogar.setFechainicio(Utilitarios.getCurrentDate());
-        hogar.setFechafin(Utilitarios.getCurrentDate());
+        hogar.setFechainicio(Utilitarios.getCurrentDateAndHour());
+        hogar.setFechafin(Utilitarios.getCurrentDateAndHour());
 
         if (hogar.getId() == 0) {
             Utilitarios.logInfo(HogarFragment.class.getName(), "Guardar hogar");

@@ -100,7 +100,6 @@ public class CertificadoImagenFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 //        linlaHeaderProgress = getActivity().findViewById(R.id.linlaHeaderProgress);
         vivienda = ViviendaFragment.getVivienda();
-        Utilitarios.logError("eeeeeeeeeeeeeeeeeeeeee",""+vivienda.getId());
         if (vivienda.getId() != 0) {
             this.llenarCampos();
             if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
@@ -151,12 +150,13 @@ public class CertificadoImagenFragment extends Fragment {
 
             if (imagenViviendaBitmap != null) {
 
-                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByViviendaIdAndTipo,
-                        new String[] { String.valueOf(vivienda.getId()),  String.valueOf(REQUEST_PICTURE_VIVIENDA)});
+                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
+                        new String[] { String.valueOf(vivienda.getVivcodigo()),  String.valueOf(REQUEST_PICTURE_VIVIENDA)});
 
                 if (_imagen == null){
                     Imagen imagen = new Imagen();
-                    imagen.setIdvivienda(vivienda.getId());
+                    imagen.setVivcodigo(vivienda.getVivcodigo());
+                    imagen.setFormulario(vivienda.getFormulario());
                     //imagen.setCodigoequipo(vivienda.getIdentificadorequipo());pendiente
                     imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
                     imagen.setTipo(REQUEST_PICTURE_VIVIENDA);
@@ -334,7 +334,7 @@ public class CertificadoImagenFragment extends Fragment {
      */
     private void actualizarVivienda() {
 
-        vivienda.setCertificado(certificadoEditText.getText().toString());
+        vivienda.setFormulario(certificadoEditText.getText().toString());
         vivienda.setIdcontrolentrevista(ControlPreguntas.ControlEntrevista.COMPLETA.getValor());
 
         if (vivienda.getEstadosincronizacion() != Global.SINCRONIZACION_CERTIFICADO_REPETIDO){
@@ -357,44 +357,26 @@ public class CertificadoImagenFragment extends Fragment {
     }
 
     /**
-     * Método que permite guardar la imagen
-     */
-    private void guardarImagen(){
-        vivienda = ViviendaFragment.getVivienda();
-        Imagen imagen = new Imagen();
-        imagen.setIdvivienda(vivienda.getId());
-        imagen.setTipo(REQUEST_PICTURE_VIVIENDA);
-        imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
-        imagen.setFecha(Utilitarios.getCurrentDate());
-        Uri uri = ImagenDao.save(cr, imagen);
-        if(uri != null)
-        {
-            imagenVivienda = imagen;
-        }
-
-    }
-
-    /**
      * Método que llena los controles con datos de la base
      */
     private void llenarCampos() {
-        if (!vivienda.getCertificado().equals(Global.CADENAS_VACIAS)) {
-            certificadoEditText.setText(vivienda.getCertificado());
+        if (!vivienda.getFormulario().equals(Global.CADENAS_VACIAS)) {
+            certificadoEditText.setText(vivienda.getFormulario());
         } else {
             certificadoEditText.setText("");
         }
 
-        if (!vivienda.getCertificado().equals(Global.CADENAS_VACIAS)) {
-            certificadoVerificarEditText.setText(vivienda.getCertificado());
+        if (!vivienda.getFormulario().equals(Global.CADENAS_VACIAS)) {
+            certificadoVerificarEditText.setText(vivienda.getFormulario());
         } else {
             certificadoVerificarEditText.setText("");
         }
 
-        this.imagenVivienda = ImagenDao.getImagen(cr,	Imagen.whereByViviendaIdAndTipo, new String[] { String.valueOf(vivienda.getId()), String.valueOf(REQUEST_PICTURE_VIVIENDA) });
+        this.imagenVivienda = ImagenDao.getImagen(cr,	Imagen.whereByVivcodigoAndTipo, new String[] { String.valueOf(vivienda.getVivcodigo()), String.valueOf(REQUEST_PICTURE_VIVIENDA) });
         if(imagenVivienda != null)
         {
             new GetImagen().execute(
-                    String.valueOf(vivienda.getId()),
+                    String.valueOf(vivienda.getVivcodigo()),
                     String.valueOf(REQUEST_PICTURE_VIVIENDA));
         }
     }
@@ -415,7 +397,7 @@ public class CertificadoImagenFragment extends Fragment {
 
             tipo = params[1];
 
-            Imagen imagen = ImagenDao.getImagen(cr, Imagen.whereByViviendaIdAndTipo, params);
+            Imagen imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo, params);
 
             Bitmap _imagen = Utilitarios.decodeBase64(imagen.getImagen());
 

@@ -99,6 +99,21 @@ public class DpaManzana implements Serializable {
 			+ COLUMNA_SECTOR
 			+ " LIKE ?";
 
+	public static String whereByPCPZSM =
+			COLUMNA_IDPROVINCIA
+			+ " = ? AND "
+			+ COLUMNA_IDCANTON
+			+ " = ? AND "
+			+ COLUMNA_IDPARROQUIA
+			+ " = ? AND "
+			+ COLUMNA_ZONA
+			+ " = ? AND "
+			+ COLUMNA_SECTOR
+			+ " = ? AND "
+			+ COLUMNA_MANZANA
+			+ " = ?";
+
+
 
 	public DpaManzana() {
 		setId(0);
@@ -111,6 +126,18 @@ public class DpaManzana implements Serializable {
 	public static ContentValues getValues(DpaManzana vivienda) {
 		ContentValues values = new ContentValues();
 		values.put(DpaManzana.COLUMNA_ID, vivienda.getId());
+		values.put(DpaManzana.COLUMNA_IDPROVINCIA, vivienda.getIdprovincia());
+		values.put(DpaManzana.COLUMNA_IDCANTON, vivienda.getIdcanton());
+		values.put(DpaManzana.COLUMNA_IDPARROQUIA, vivienda.getIdparroquia());
+		values.put(DpaManzana.COLUMNA_ZONA, vivienda.getZona());
+		values.put(DpaManzana.COLUMNA_SECTOR, vivienda.getSector());
+		values.put(DpaManzana.COLUMNA_MANZANA, vivienda.getManzana());
+		values.put(DpaManzana.COLUMNA_PROVINCIA, vivienda.getProvincia());
+		values.put(DpaManzana.COLUMNA_CANTON, vivienda.getCanton());
+		values.put(DpaManzana.COLUMNA_PARROQUIA, vivienda.getParroquia());
+		values.put(DpaManzana.COLUMNA_TOTALHOGAR, vivienda.getTotalhogar());
+		values.put(DpaManzana.COLUMNA_ANIO, vivienda.getAnio());
+		values.put(DpaManzana.COLUMNA_DPACOMPUESTA, vivienda.getDpacompuesta());
 		return values;
 	}
 
@@ -119,10 +146,22 @@ public class DpaManzana implements Serializable {
 	 * @param result
 	 * @return
 	 */
-	public static DpaManzana newVivienda(Cursor result) {
-		DpaManzana vivienda = new DpaManzana();
-		vivienda.setId(result.getInt(result.getColumnIndex(COLUMNA_ID)));
-		return vivienda;
+	public static DpaManzana newDpaManzana(Cursor result) {
+		DpaManzana dpaManzana = new DpaManzana();
+		dpaManzana.setId(result.getInt(result.getColumnIndex(COLUMNA_ID)));
+		dpaManzana.setIdprovincia(result.getString(result.getColumnIndex(COLUMNA_IDPROVINCIA)));
+		dpaManzana.setIdparroquia(result.getString(result.getColumnIndex(COLUMNA_IDPARROQUIA)));
+		dpaManzana.setIdcanton(result.getString(result.getColumnIndex(COLUMNA_IDCANTON)));
+		dpaManzana.setSector(result.getString(result.getColumnIndex(COLUMNA_SECTOR)));
+		dpaManzana.setManzana(result.getString(result.getColumnIndex(COLUMNA_MANZANA)));
+		dpaManzana.setProvincia(result.getString(result.getColumnIndex(COLUMNA_PROVINCIA)));
+		dpaManzana.setCanton(result.getString(result.getColumnIndex(COLUMNA_CANTON)));
+		dpaManzana.setParroquia(result.getString(result.getColumnIndex(COLUMNA_PARROQUIA)));
+		dpaManzana.setTotalhogar(result.getInt(result.getColumnIndex(COLUMNA_TOTALHOGAR)));
+		dpaManzana.setAnio(result.getInt(result.getColumnIndex(COLUMNA_ANIO)));
+		dpaManzana.setDpacompuesta(result.getString(result.getColumnIndex(COLUMNA_DPACOMPUESTA)));
+
+		return dpaManzana;
 	}
 
 

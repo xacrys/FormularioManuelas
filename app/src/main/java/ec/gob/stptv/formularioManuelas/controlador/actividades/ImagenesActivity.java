@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ec.gob.stptv.formularioManuelas.R;
+import ec.gob.stptv.formularioManuelas.controlador.sincronizacion.SincronizacionImagenes;
 import ec.gob.stptv.formularioManuelas.controlador.util.DatePickerFragment;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Pageable;
@@ -47,7 +48,7 @@ public class ImagenesActivity extends Activity {
 	private int totalImagenesASincronizar;
 	private int contadorSincronizacion;
 	private ProgressDialog mProgressDialog;
-	//private SincronizacionImagenes sincronizacionImagenes;
+	private SincronizacionImagenes sincronizacionImagenes;
 	private Button fechaInicioButton;
 	private Button fechaFinButton;
 	private Button buscarFormulariosButton;
@@ -60,7 +61,7 @@ public class ImagenesActivity extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		this.cr = getContentResolver();
 		this.inflaterLayout = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		//this.sincronizacionImagenes = new SincronizacionImagenes(this);
+		this.sincronizacionImagenes = new SincronizacionImagenes(this);
 	
 		this.getViews();
 		this.getAcctions();
@@ -178,7 +179,7 @@ public class ImagenesActivity extends Activity {
 				String where = Imagen.whereByFechasEstadoSincronizacion;
 				String parametros[] = new String[] {fechaInicioButton.getText().toString(),  fechaFinButton.getText().toString(), String.valueOf(Global.SINCRONIZACION_INCOMPLETA)};
 				
-				ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_IDVIVIENDA);
+				ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_VIVCODIGO);
 				
 				totalImagenesASincronizar = imagenes.size();
 				if(totalImagenesASincronizar > 0)
@@ -191,7 +192,7 @@ public class ImagenesActivity extends Activity {
 				for (final Imagen imagen : imagenes) {
 					exec.execute(new Runnable() {
 						public void run() {
-							//sincronizacionImagenes.sincronizarAll(imagen, ImagenesActivity.this);
+							sincronizacionImagenes.sincronizarAll(imagen, ImagenesActivity.this);
 						}
 					});
 				}
@@ -229,7 +230,7 @@ public class ImagenesActivity extends Activity {
 		String where = Imagen.whereByFechasEstadoSincronizacion;
 		String parametros[] = new String[] {fechaInicioButton.getText().toString(),  fechaFinButton.getText().toString(), String.valueOf(Global.SINCRONIZACION_INCOMPLETA)};
 		
-		final ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_IDVIVIENDA);
+		final ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_VIVCODIGO);
 	
 		final Pageable<Imagen> pagination = new Pageable<Imagen>(imagenes);
 		pagination.setPageSize(20);
@@ -288,7 +289,7 @@ public class ImagenesActivity extends Activity {
 			.setText("" + imagen.getId());
 			
 			((TextView) row.findViewById(R.id.columnaCodigoVivTextView))
-					.setText(imagen.getCodigoequipo() + "-" + imagen.getIdvivienda());
+					.setText(imagen.getVivcodigo());
 			
 			((TextView) row.findViewById(R.id.columnaTipoTextView))
 			.setText("" + imagen.getTipo());
@@ -371,7 +372,7 @@ public class ImagenesActivity extends Activity {
 			Imagen _imagen = (Imagen) row.getTag();
 
 
-			if (_imagen.getIdvivienda()== imagen.getIdvivienda() && _imagen.getTipo()== imagen.getTipo()) {
+			if (_imagen.getVivcodigo()== imagen.getVivcodigo() && _imagen.getTipo()== imagen.getTipo()) {
 				imagenesTableLayout.removeViewAt(i);
 			}
 

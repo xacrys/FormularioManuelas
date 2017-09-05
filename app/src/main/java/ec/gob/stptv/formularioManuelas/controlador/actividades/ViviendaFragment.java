@@ -55,12 +55,14 @@ import ec.gob.stptv.formularioManuelas.modelo.dao.DpaManzanaDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.HogarDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.LocalidadDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.LocalizacionDao;
+import ec.gob.stptv.formularioManuelas.modelo.dao.PersonaDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.DpaManzana;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localidad;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localizacion;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
@@ -150,7 +152,6 @@ public class ViviendaFragment extends Fragment {
             vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
             Utilitarios.logInfo(ViviendaFragment.class.getName(), "Formulario nuevo");
         }
-
         cargarUbicacionGeografica();
         this.mallasValidacion();
 
@@ -574,7 +575,22 @@ public class ViviendaFragment extends Fragment {
                 ((Values) zonaSpinner.getSelectedItem()).getKey()
                 + ((Values) sectorSpinner.getSelectedItem()).getKey()
                 + ((Values) manzanaSpinner.getSelectedItem()).getKey());
-
+        //guarda el id de la dpa
+        String idProvincia = vivienda.getIdparroquia().substring(0, 2);
+        String idCanton = vivienda.getIdparroquia().substring(2, 4);
+        String idParroquia = vivienda.getIdparroquia().substring(4, 6);
+        String where;
+        String parametros[];
+        where = DpaManzana.whereByPCPZSM;
+        parametros = new String[] {idProvincia, idCanton, idParroquia, vivienda.getZona(),vivienda.getSector(), vivienda.getManzana()};
+        DpaManzana dpaManzana = DpaManzanaDao.getDpaManzana(contentResolver, where, parametros);
+        Utilitarios.logError("id de dapa", "*"+dpaManzana.getId()+"*");
+        if (dpaManzana!= null){
+            vivienda.setIddpa(String.valueOf(dpaManzana.getId()));
+        }
+//        else{
+//            vivienda.setIddpa("");
+//        }
 
         if (Integer
                 .valueOf(((Values) condicionOcupacionSpinner
@@ -699,8 +715,7 @@ public class ViviendaFragment extends Fragment {
             return true;
         }
 
-        if (!((Values) zonaSpinner.getSelectedItem()).getKey().equals("999") &&
-                ((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
+        if (((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
                     getString(R.string.validacion_aviso),
                     getString(R.string.seleccione_pregunta)
@@ -1303,7 +1318,6 @@ public class ViviendaFragment extends Fragment {
                             }
 
 
-
                         } else {
                             Utilitarios
                                     .removeAll((ArrayAdapter<Values>) zonaSpinner
@@ -1344,13 +1358,11 @@ public class ViviendaFragment extends Fragment {
                     String[] args = {idProvincia, idCanton, idParroquia,
                             zona.getKey()};
 
-                    if (zona.getKey().equals("999")) {
-                        manzanaSpinner.setEnabled(false);
-                    } else {
-                        manzanaSpinner.setEnabled(true);
-                    }
-
-
+//                    if (zona.getKey().equals("999")) {
+//                        manzanaSpinner.setEnabled(false);
+//                    } else {
+//                        manzanaSpinner.setEnabled(true);
+//                    }
 
                     ArrayList<Values> localidades;
 
@@ -1415,11 +1427,6 @@ public class ViviendaFragment extends Fragment {
 
                     String[] args = {idProvincia, idCanton, idParroquia,
                             zona.getKey(), sector.getKey()};
-
-                    //taskManzanas = new GetManzanas();
-                    //taskManzanas.execute(args);
-
-
 
                     ArrayList<Values> localidades;
 

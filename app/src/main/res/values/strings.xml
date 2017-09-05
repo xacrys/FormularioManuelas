@@ -31,6 +31,7 @@
     <string name="menu_reporte">Reporte</string>
     <string name="menu_sincronizar_formularios">Sincronizar Formularios</string>
     <string name="menu_sincronizar_imagenes">Sincronizar Imagenes</string>
+    <string name="mensaje_sincronizacion_formularios">Sincronización de formularios esto puede tardar hasta 2 minutos por formulario,  por favor no cerrar o minimizar la ventana y espere&#8230; si no sincroniza intentelo mas tarde</string>
 
     <!-- Formulario de IMagenes -->
     <string name="title_activity_imagenes">Imagenes</string>
@@ -76,6 +77,13 @@
     <string name="error_conectar_servidor">No se puede conectar al servidor</string>
     <string name="error_incorrect_password">Usuario o contraseña incorrectos</string>
     <string name="error_asignacion_tablet">Usuario sin dispositivo asignado</string>
+    <string name="error_asignacion_fase">Usuario sin fase asignado</string>
+    <string name="error_version">Actualice de versión de la aplicacion</string>
+    <string name="errorDispositivoFase">Usuario sin dispositivo y fase</string>
+    <string name="errorDispositivoVersion">Usuario sin dispositivo y versión incorrecta </string>
+    <string name="errorFaseVersion">Usuario sin fase y versión incorrecta </string>
+    <string name="errorDispositivoFaseVersion">Usuario sin dispositivo ni fase y versión incorrecta </string>
+
 
 
     <!-- Seccion Vivienda -->
@@ -753,6 +761,7 @@
     <string name="mensajeEliminarMiembroHogar">¿Esta seguro de eliminar el registro con toda su información?</string>
     <string name="mensajeValidacionEdadParentesco">El jefe de hogar no puede ser menor de 12 años</string>
     <string name="seccion5MensajeEliminarJefeDeHogar">No se puede eliminar el Jefe(a) de Hogar</string>
+    <string name="mv_seccion5ExisteVariosConyugesJefeHogar">No puede existir más de un esposo(a) o conviviente para el Jefe(a) del Hogar</string>
 
 
     <string name="seccion5MensajeNucleosDispersos">No puede existir nucleos dispersos</string>

@@ -29,12 +29,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -52,6 +56,7 @@ import ec.gob.stptv.formularioManuelas.modelo.dao.UsuarioDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
 
 import static android.content.Intent.EXTRA_EMAIL;
@@ -61,6 +66,7 @@ public class LoginActivity extends Activity {
     private ContentResolver contentResolver;
 
     private UserLoginTask mAuthTask = null;
+    private VivcodigoTask vivcodigoTask = null;
 
     private String mEmail;
     private String mPassword;
@@ -373,224 +379,223 @@ public class LoginActivity extends Activity {
 
 
              //Usuario de pruebas
-            Usuario usuario = new Usuario();
-            usuario.setUsuario("0503380164");
-            usuario.setPassword("0503380164");
-            usuario.setIdusuario("12");
-            usuario.setNombres("Lorena");
-            usuario.setApellidos("Morales");
-            usuario.setCedula("050338014");
-            usuario.setIddispositivo(62);
-            usuario.setCodigo(1);
-            usuario.setMaxvivcodigo("62-1");
-            finish();
-            Intent intent = new Intent(LoginActivity.this,
-                    FormulariosActivity.class);
-            intent.putExtra("usuario", usuario);
-            String where;
-            String parametros[];
-            where = Fase.whereById;
-            parametros = new String[] {String.valueOf(1)};
-            Fase fase = FaseDao.getFase(contentResolver, where, parametros);
-            if (fase == null){
-                fase = new Fase();
-                fase.setId(1);
-                fase.setFechainicio(Utilitarios.getCurrentDate());
-                fase.setFechafin(Utilitarios.getCurrentDate());
-                fase.setNombrefase("FASE MANUELAS");
-                fase.setEstado(1);
-                FaseDao.save(contentResolver, fase);
+//            Usuario usuario = new Usuario();
+//            usuario.setUsuario("0503380164");
+//            usuario.setPassword("0503380164");
+//            usuario.setIdusuario("12");
+//            usuario.setNombres("Lorena");
+//            usuario.setApellidos("Morales");
+//            usuario.setCedula("050338014");
+//            usuario.setIddispositivo(2);
+//            usuario.setCodigo(1);
+//            usuario.setMaxvivcodigo("2-1");
+//            finish();
+//            Intent intent = new Intent(LoginActivity.this,
+//                    FormulariosActivity.class);
+//            intent.putExtra("usuario", usuario);
+//            String where;
+//            String parametros[];
+//            where = Fase.whereById;
+//            parametros = new String[] {String.valueOf(1)};
+//            Fase fase = FaseDao.getFase(contentResolver, where, parametros);
+//            if (fase == null){
+//                fase = new Fase();
+//                fase.setId(1);
+//                fase.setFechainicio(Utilitarios.getCurrentDate());
+//                fase.setFechafin(Utilitarios.getCurrentDate());
+//                fase.setNombrefase("FASE MANUELAS");
+//                fase.setEstado(1);
+//                FaseDao.save(contentResolver, fase);
+//            }
+//
+//            Utilitarios.logError("resouesta del login", ""+_respuesta);
+//            startActivity(intent);
+
+            if (_respuesta != null) {
+                if (_respuesta.getClass() == Usuario.class)
+                {
+                    Intent intent = new Intent(LoginActivity.this, FormulariosActivity.class);
+                    finish();
+                    intent.putExtra("usuario", (Usuario) _respuesta);
+                    startActivity(intent);
+                }
+                if (_respuesta.getClass() == JSONObject.class) {
+                    try {
+                        JSONObject respuesta = (JSONObject) _respuesta;
+                        Utilitarios.logError("id usuario", respuesta.getString("idUsuario"));
+                        String codigoUsuario = respuesta.getString("idUsuario");
+                        String codigoDispositivo = respuesta.getString("idDispositivo");
+                        String idFase = respuesta.getString("idFase");
+                        Integer codigo = respuesta.getInt("codigo");
+                        Utilitarios.logError("codigooooooooooo", "gggg"+codigo);
+                        switch (codigo) {
+                            case 1:
+                                Date fechaActual = new Date();
+                                DateFormat formato = new SimpleDateFormat(
+                                        "yyyy-MM-dd");
+
+                                String[] parametros = new String[] {
+                                        respuesta.getString("usuario"),
+                                        respuesta.getString("contrasenia") };
+
+                                String where= Usuario.whereByUsuarioYPassword;
+                                Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+                                if (usuario != null)
+                                {
+
+                                    usuario.setIdusuario(respuesta.getString("idUsuario"));
+                                    usuario.setNombres(respuesta.getString("nombres"));
+                                    usuario.setApellidos(respuesta.getString("apellidos"));
+                                    usuario.setCedula(respuesta.getString("cedula"));
+                                    //usuario.setCodigoGrupo(respuesta.getInt("codigoGrupo"));
+                                    usuario.setIddispositivo(respuesta.getInt("idDispositivo"));
+                                    //usuario.setEstado(respuesta.getInt("estado"));
+                                    //usuario.setMaxVivCodigo(respuesta.getString("maxVivCodigo"));
+                                    UsuarioDao.update(contentResolver,usuario);
+                                }
+                                else
+                                {
+                                    Log.e("", "Entra a crear el usuario");
+                                    Usuario _usuario = new Usuario();
+                                    _usuario.setUsuario(respuesta.getString("usuario"));
+                                    _usuario.setPassword(respuesta.getString("contrasenia"));
+                                    _usuario.setIdusuario(respuesta.getString("idUsuario"));
+                                    _usuario.setNombres(respuesta.getString("nombres"));
+                                    _usuario.setApellidos(respuesta.getString("apellidos"));
+                                    _usuario.setCedula(respuesta.getString("cedula"));
+                                    //_usuario.setCodigoGrupo(respuesta.getInt("codigoGrupo"));
+                                    _usuario.setIddispositivo(respuesta.getInt("idDispositivo"));
+                                    //_usuario.setRol("user");
+                                    //_usuario.setEstado(respuesta.getInt("estado"));
+                                    _usuario.setImei(Utilitarios.getImeiDispositivo(getApplicationContext()));
+                                    //_usuario.setMaxVivCodigo(respuesta.getString("maxVivCodigo"));
+                                    _usuario.setFecharegistro(formato.format(fechaActual));
+                                    _usuario.setCodigo(respuesta.getInt("codigo"));
+                                    UsuarioDao.save(contentResolver,_usuario);
+                                    usuario = _usuario;
+                                }
+
+                                parametros = new String[] {idFase};
+                                Fase fase = FaseDao.getFase(contentResolver, Fase.whereById,parametros );
+                                if (fase == null){
+                                    fase = new Fase();
+                                    fase.setId(Integer.parseInt(idFase));
+                                    fase.setFechainicio(respuesta.getString("fechaInicio"));
+                                    fase.setFechafin(respuesta.getString("fechaFin"));
+                                    fase.setNombrefase(respuesta.getString("fase"));
+                                    //fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
+                                    fase.setEstado(1);
+                                    FaseDao.save(contentResolver,fase);
+                                    FaseDao.updateEstadoFases(contentResolver,fase);
+                                    Utilitarios.printObject(fase);
+                                }else{
+                                    fase.setId(Integer.parseInt(idFase));
+                                    fase.setFechainicio(respuesta.getString("fechaInicio"));
+                                    fase.setFechafin(respuesta.getString("fechaFin"));
+                                    fase.setNombrefase(respuesta.getString("fase"));
+                                    //fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
+                                    fase.setEstado(1);
+                                    FaseDao.update(contentResolver, fase);
+                                    FaseDao.updateEstadoFases(contentResolver,fase);
+                                    Utilitarios.printObject(fase);
+                                }
+
+                                getVivcodigo();
+                                /*finish();
+                                Intent intent = new Intent(LoginActivity.this,	FormulariosActivity.class);
+                                intent.putExtra("usuario", usuario);
+                                startActivity(intent);*/
+                                break;
+
+                            case -1:
+                                mAuthTask = null;
+                                showProgress(false);
+                                mEmailView.setError(getString(R.string.error_incorrect_password));
+                                mEmailView.requestFocus();
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.error_incorrect_password));
+                                break;
+
+                            case -2:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.error_asignacion_tablet));
+                                break;
+
+                            case -3:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.error_asignacion_fase));
+                                break;
+
+                            case -4:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.error_version));
+                                break;
+
+                            case -5:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDispositivoFase));
+                                break;
+
+                            case -6:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDispositivoVersion));
+                                break;
+
+                            case -7:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.errorFaseVersion));
+                                break;
+
+                            case -8:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDispositivoFaseVersion));
+                                break;
+
+                            default:
+                                break;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } else
+            {
+                String[] parametros = new String[] {
+                        mEmailView.getText().toString(),
+                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+                };
+                String where= Usuario.whereByUsuarioYPassword;
+                Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+                if (usuario != null) {
+                    getVivcodigo();
+                    /*Intent intent = new Intent(LoginActivity.this,
+                            FormulariosActivity.class);
+                    finish();
+                    intent.putExtra("usuario",usuario);
+                    startActivity(intent);*/
+                }
+                else
+                {
+                    mEmailView.setError(getString(R.string.error_incorrect_password));
+                    mEmailView.requestFocus();
+                    mAuthTask = null;
+                    showProgress(false);
+                }
+
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        getString(R.string.error_conectar_servidor),
+                        Toast.LENGTH_LONG);
+                toast.show();
             }
 
-            Utilitarios.logError("resouesta del login", ""+_respuesta);
-            startActivity(intent);
 
-//            if (_respuesta != null) {
-//                if (_respuesta.getClass() == Usuario.class)
-//                {
-//                    Intent intent = new Intent(LoginActivity.this, FormulariosActivity.class);
-//                    finish();
-//                    intent.putExtra("usuario", (Usuario) _respuesta);
-//                    startActivity(intent);
-//                }
-//                if (_respuesta.getClass() == JSONObject.class) {
-//                    try {
-//                        JSONObject respuesta = (JSONObject) _respuesta;
-//                        Utilitarios.logError("id usuario", respuesta.getString("idUsuario"));
-//                        String codigoUsuario = respuesta.getString("idUsuario");
-//                        String codigoDispositivo = respuesta.getString("idDispositivo");
-//                        String version = respuesta.getString("version");
-//                        String idFase = respuesta.getString("idFase");
-//                        if(version.equals("SI"))
-//                        {
-//                            if(!codigoDispositivo.equals("0"))
-//                            {
-//                                if ( !codigoUsuario.equals("0"))
-//                                {
-//                                    Date fechaActual = new Date();
-//                                    DateFormat formato = new SimpleDateFormat(
-//                                            "yyyy-MM-dd");
-//
-//                                    String[] parametros = new String[] {
-//                                            respuesta.getString("login"),
-//                                            respuesta.getString("password") };
-//
-//                                    String where= Usuario.whereByUsuarioYPassword;
-//                                    Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
-//                                    if (usuario != null)
-//                                    {
-//
-//                                        usuario.setIdusuario(respuesta.getString("idUsuario"));
-//                                        usuario.setNombres(respuesta.getString("nombres"));
-//                                        usuario.setApellidos(respuesta.getString("apellidos"));
-//                                        usuario.setCedula(respuesta.getString("cedula"));
-//                                        //usuario.setCodigoGrupo(respuesta.getInt("codigoGrupo"));
-//                                        usuario.setIddispositivo(respuesta.getInt("idDispositivo"));
-//                                        //usuario.setEstado(respuesta.getInt("estado"));
-//                                        //usuario.setMaxVivCodigo(respuesta.getString("maxVivCodigo"));
-//                                        UsuarioDao.update(contentResolver,usuario);
-//                                    }
-//                                    else
-//                                    {
-//                                        Log.e("", "Entra a crear el usuario");
-//                                        Usuario _usuario = new Usuario();
-//                                        _usuario.setUsuario(respuesta.getString("usuario"));
-//                                        _usuario.setPassword(respuesta.getString("contrasenia"));
-//                                        _usuario.setIdusuario(respuesta.getString("idUsuario"));
-//                                        _usuario.setNombres(respuesta.getString("nombres"));
-//                                        _usuario.setApellidos(respuesta.getString("apellidos"));
-//                                        _usuario.setCedula(respuesta.getString("cedula"));
-//                                        //_usuario.setCodigoGrupo(respuesta.getInt("codigoGrupo"));
-//                                        _usuario.setIddispositivo(respuesta.getInt("idDispositivo"));
-//                                        //_usuario.setRol("user");
-//                                        //_usuario.setEstado(respuesta.getInt("estado"));
-//                                        _usuario.setImei(Utilitarios.getImeiDispositivo(getApplicationContext()));
-//                                        //_usuario.setMaxVivCodigo(respuesta.getString("maxVivCodigo"));
-//                                        _usuario.setFecharegistro(formato.format(fechaActual));
-//                                        UsuarioDao.save(contentResolver,_usuario);
-//                                        usuario = _usuario;
-//                                    }
-//
-//                                    parametros = new String[] {idFase};
-//                                    Fase fase = FaseDao.getFase(contentResolver, Fase.whereById,parametros );
-//                                    Utilitarios.printObject(fase);
-//                                    if(fase.getId() == 0)
-//                                    {
-//                                        fase = new Fase();
-//                                        fase.setId(Integer.parseInt(idFase));
-//                                        fase.setFechainicio(respuesta.getString("fechaInicio"));
-//                                        fase.setFechafin(respuesta.getString("fechaInicio"));
-//                                        fase.setNombrefase(respuesta.getString("nombres"));
-//                                        //fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
-//                                        fase.setEstado(1);
-//                                        FaseDao.save(contentResolver,fase);
-//                                        FaseDao.updateEstadoFases(contentResolver,fase);
-//                                    }
-//                                    else
-//                                    {
-//                                        fase.setId(Integer.parseInt(idFase));
-//                                        fase.setFechainicio(respuesta.getString("fechaInicio"));
-//                                        fase.setFechafin(respuesta.getString("fechaInicio"));
-//                                        fase.setNombrefase(respuesta.getString("nombres"));
-//                                        //fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
-//                                        fase.setEstado(1);
-//                                        FaseDao.update(contentResolver, fase);
-//                                        FaseDao.updateEstadoFases(contentResolver,fase);
-//                                        Utilitarios.printObject(fase);
-//                                    }
-//
-//                                    finish();
-//                                    Intent intent = new Intent(LoginActivity.this,	FormulariosActivity.class);
-//                                    intent.putExtra("usuario", usuario);
-//                                    startActivity(intent);
-//                                }
-//                                else
-//                                {
-//                                    mAuthTask = null;
-//                                    showProgress(false);
-//                                    mEmailView.setError(getString(R.string.error_incorrect_password));
-//                                    mEmailView.requestFocus();
-//                                    getAlert(getString(R.string.validacion_aviso), getString(R.string.error_incorrect_password));
-//
-//                                }
-//                            }
-//                            else
-//                            {
-//                                mAuthTask = null;
-//                                showProgress(false);
-//                                getAlert(getString(R.string.validacion_aviso), getString(R.string.error_asignacion_tablet));
-//                            }
-//                        }
-//                        else
-//                        {
-//                            if(version.equals("NO"))
-//                            {
-//                                mAuthTask = null;
-//                                showProgress(false);
-//
-//                                getAlert(getString(R.string.validacion_aviso), "Actualice de version de la aplicacion");
-//                            }
-//                            else
-//                            {
-//
-//                                if(version.equals(""))
-//                                {
-//                                    mAuthTask = null;
-//                                    showProgress(false);
-//
-//                                    getAlert(getString(R.string.validacion_aviso), getString(R.string.error_incorrect_password));
-//                                }
-//                                else
-//                                {
-//                                    mAuthTask = null;
-//                                    showProgress(false);
-//                                }
-//
-//                            }
-//                        }
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//            } else
-//            {
-//
-//                Log.e("ddddddddddd", "Login - Error en el servidor");
-//
-//                String[] parametros = new String[] {
-//                        mEmailView.getText().toString(),
-//                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-//                };
-//
-//                String where= Usuario.whereByUsuarioYPassword;
-//                Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
-//
-//                if (usuario != null) {
-//
-//                    Intent intent = new Intent(LoginActivity.this,
-//                            FormulariosActivity.class);
-//                    finish();
-//                    intent.putExtra("usuario",usuario);
-//                    startActivity(intent);
-//                }
-//                else
-//                {
-//                    mEmailView.setError(getString(R.string.error_incorrect_password));
-//                    mEmailView.requestFocus();
-//                    mAuthTask = null;
-//                    showProgress(false);
-//                }
-//
-//                //mAuthTask = null;
-//                //showProgress(false);
-//
-//                Toast toast = Toast.makeText(getApplicationContext(),
-//                        getString(R.string.error_conectar_servidor),
-//                        Toast.LENGTH_LONG);
-//                toast.show();
-//            }
         }
 
         @Override
@@ -702,6 +707,180 @@ public class LoginActivity extends Activity {
 
     }
 
+    /**
+     *Obtiene el viv codigo
+     */
+    public void getVivcodigo() {
+
+        // Show a progress spinner, and kick off a background task to
+        // perform the user login attempt.
+        mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
+        showProgress(true);
+        vivcodigoTask = new VivcodigoTask();
+
+        if (!Utilitarios.verificarConexion(this))
+        {
+            Toast toast = Toast.makeText(this,getString(R.string.error_conectar_servidor),Toast.LENGTH_LONG);
+            toast.show();
+            String[] parametros = new String[]{
+                    mEmailView.getText().toString(),
+                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+            };
+            String where = Usuario.whereByUsuarioYPassword;
+            Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+            if (usuario != null) {
+                Intent intent = new Intent(LoginActivity.this,
+                        FormulariosActivity.class);
+                finish();
+                intent.putExtra("usuario",usuario);
+                startActivity(intent);
+            }
+            else
+            {
+                mEmailView.setError(getString(R.string.error_incorrect_password));
+                mEmailView.requestFocus();
+                mAuthTask = null;
+                showProgress(false);
+            }
+        }
+        else
+        {
+            httpClient = new DefaultHttpClient();
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        vivcodigoTask.execute(Global.URL_WEB_SERVICE_VIVCODIGO).get(Global.ASYNCTASK_TIMEOUT_LOGIN, TimeUnit.MILLISECONDS);
+
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    } catch (ExecutionException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    } catch (TimeoutException e1) {
+
+                        Log.e("", "Termino el tiempo de coneccion");
+                        httpClient.getConnectionManager().shutdown();
+
+                        if(!vivcodigoTask.isCancelled()){
+                            vivcodigoTask.cancel(true);
+                        }
+                        e1.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+
+    }
+
+    /**
+     * Represents an asynchronous login/registration task used to authenticate
+     * the user.
+     */
+    @SuppressLint("SimpleDateFormat")
+    public class VivcodigoTask extends AsyncTask<String, Void, Object> {
+
+        protected Object doInBackground(String... params) {
+            Object respuesta = null;
+
+            String[] parametros = new String[]{
+                    mEmailView.getText().toString(),
+                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+            };
+            String where = Usuario.whereByUsuarioYPassword;
+            Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+
+            JSONObject values = new JSONObject();
+            try {
+                values.put("usuario", usuario.getIdusuario());
+                values.put("imei", usuario.getImei());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String _respuesta = WebService.getJsonData(params[0], values, httpClient);
+            Utilitarios.logInfo("values", values.toString());
+            Utilitarios.logInfo("respuesta", _respuesta);
+
+            if (!_respuesta.equals(""))
+            {
+                try
+                {
+                    respuesta = new JSONObject(_respuesta);
+
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+                }
+            }
+
+            return respuesta;
+
+        }
+
+        @Override
+        protected void onPostExecute(final Object _respuesta) {
+            if (_respuesta != null) {
+              if (_respuesta.getClass() == JSONObject.class) {
+                  JSONObject respuesta = (JSONObject) _respuesta;
+                  try {
+                      JSONArray re = respuesta.getJSONArray("datos");
+                      if (!re.get(0).equals("")){
+
+                          String[] parametros = new String[]{
+                                  mEmailView.getText().toString(),
+                                  ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+                          };
+                          String where = Usuario.whereByUsuarioYPassword;
+                          Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+                          usuario.setMaxvivcodigo(String.valueOf(re.get(0)));
+                          UsuarioDao.update(contentResolver, usuario);
+                          Intent intent = new Intent(LoginActivity.this,
+                                  FormulariosActivity.class);
+                          finish();
+                          intent.putExtra("usuario",usuario);
+                          startActivity(intent);
+                      }
+                  } catch (JSONException e) {
+                      e.printStackTrace();
+                  }
+              }
+
+            }
+            else{
+                String[] parametros = new String[]{
+                        mEmailView.getText().toString(),
+                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+                };
+                String where = Usuario.whereByUsuarioYPassword;
+                Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+                if (usuario != null) {
+                    Intent intent = new Intent(LoginActivity.this,
+                            FormulariosActivity.class);
+                    finish();
+                    intent.putExtra("usuario",usuario);
+                    startActivity(intent);
+                }else
+                {
+                    mEmailView.setError(getString(R.string.error_incorrect_password));
+                    mEmailView.requestFocus();
+                    mAuthTask = null;
+                    showProgress(false);
+                }
+
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        getString(R.string.error_conectar_servidor),
+                        Toast.LENGTH_LONG);
+                toast.show();
+            }
+
+        }
+
+        @Override
+        protected void onCancelled() {
+
+        }
+    }
 
 
 

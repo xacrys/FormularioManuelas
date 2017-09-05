@@ -1,8 +1,12 @@
 package ec.gob.stptv.formularioManuelas.controlador.actividades;
 
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -10,6 +14,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.google.gson.Gson;
@@ -20,12 +25,17 @@ import com.google.gson.reflect.TypeToken;
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.servicio.LocalizacionService;
+import ec.gob.stptv.formularioManuelas.controlador.sincronizacion.SincronizacionVivienda;
+import ec.gob.stptv.formularioManuelas.controlador.sincronizacion.WebService;
+import ec.gob.stptv.formularioManuelas.controlador.util.ClaveEncriptada;
 import ec.gob.stptv.formularioManuelas.controlador.util.DatePickerFragment;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Pageable;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.FaseDao;
+import ec.gob.stptv.formularioManuelas.modelo.dao.UsuarioDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
@@ -105,6 +115,7 @@ public class FormulariosActivity extends Activity {
 	//private SincronizacionVivienda sincronizacionVivenda;
 	private ProgressDialog mProgressDialogFormularios;
 	ContentResolver contentResolver;
+	private SincronizacionVivienda sincronizacionVivenda;
 
 
 	@Override
@@ -125,7 +136,7 @@ public class FormulariosActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		//sincronizacionVivenda = new SincronizacionVivienda(this);
+		sincronizacionVivenda = new SincronizacionVivienda(this);
 		
 		this.usuario = (Usuario) extra.getSerializable("usuario");
 		this.faseActual = FaseDao.getFase(contentResolver, Fase.whereFaseEnabled, null);
@@ -295,7 +306,14 @@ public class FormulariosActivity extends Activity {
 			((TextView) row.findViewById(R.id.columnaSectorTextView))
 					.setText(vivienda.getSector());
 
-			//falta manzana
+			if(!vivienda.getManzana().equals(Global.ENTEROS_VACIOS))
+			{
+				((TextView) row.findViewById(R.id.columnaManzanaTextView))
+						.setText(String.valueOf(vivienda.getManzana()));
+			}else{
+				((TextView) row.findViewById(R.id.columnaManzanaTextView))
+						.setText("");
+			}
 
 			if(!vivienda.getEdificio().equals(Global.ENTEROS_VACIOS))
 			{
@@ -538,16 +556,55 @@ public class FormulariosActivity extends Activity {
 		switch (id) {
 			case R.id.menu_nuevo:
 
-				Intent intent = new Intent(FormulariosActivity.this,MainActivity.class);
-				intent.putExtra("usuario", usuario);
-				intent.putExtra("fase", faseActual);
-				startActivity(intent);
+				Date fechaInicio  = null;
+				Date fechaFin  = null;
+				Date fechaActual  = null;
+				SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+				faseActual = FaseDao.getFase(contentResolver, Fase.whereFaseEnabled, null);
+				Utilitarios.printObject(faseActual);
+				try {
+					fechaInicio  = formatoFecha.parse(faseActual.getFechainicio());
+					fechaFin = formatoFecha.parse(faseActual.getFechafin());
+					fechaActual = formatoFecha.parse(Utilitarios.getCurrentDate());
+					Utilitarios.logInfo(getPackageName().getClass().getName(),
+							"faseActual.getFechaInicio(): " + faseActual.getFechainicio() +
+									" faseActual.getFechaFin(): " + faseActual.getFechafin() +
+									" Fecha Actual: " + Utilitarios.getCurrentDate());
+					if(fechaActual.compareTo(fechaInicio) >= 0 && fechaActual.compareTo(fechaFin) <= 0)
+					{
+
+						Intent intent = new Intent(FormulariosActivity.this,MainActivity.class);
+						intent.putExtra("usuario", usuario);
+						intent.putExtra("fase", faseActual);
+						startActivity(intent);
+					}else
+					{
+
+						getFaseAlert("Validacion", "La fase ya se termino");
+					}
+
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				break;
+
+			case R.id.menu_sincronizar:
+				boolean isConectedInternet = Utilitarios.verificarConexion(this);
+				if (isConectedInternet) {
+
+					this.sincronizarFormularios();
+
+				} else
+				{
+					Toast.makeText(getApplicationContext(),	"No existe coneccion a internet", Toast.LENGTH_LONG).show();
+				}
 				break;
 
 
 			case R.id.menu_salir:
 
 				getExitAlert();
+				break;
 
 			case R.id.menu_sincronizar_imagenes:
 
@@ -564,7 +621,85 @@ public class FormulariosActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	
+	private void openProgressBar() {
+
+		mProgressDialog.setMessage(getString(R.string.mensaje_sincronizacion_formularios));
+		mProgressDialog.setIcon(android.R.drawable.stat_sys_upload);
+		mProgressDialog.setIndeterminate(false);
+		mProgressDialog.setTitle("Sincronizacion");
+		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		mProgressDialog.setCancelable(false);
+		mProgressDialog.show();
+	}
+
+	/**
+	 * mensajes de alerta de la fase terminada
+	 * @param title
+	 * @param message
+	 */
+	private void getFaseAlert(String title, String message) {
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setMessage(message)
+				.setTitle(title);
+
+		builder.setNegativeButton("Cerrar", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				dialog.dismiss();
+			}
+		});
+
+		builder.setPositiveButton("Actualizar La fase", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+
+				openProgressBarFase();
+
+				new Thread(new Runnable() {
+
+					FaseTask faseTask = new FaseTask();
+					DefaultHttpClient httpClient = new DefaultHttpClient();
+
+					public void run() {
+						try {
+
+							faseTask.execute(httpClient).get(Global.ASYNCTASK_TIMEROUT, TimeUnit.MILLISECONDS);
+
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						} catch (ExecutionException e1) {
+							e1.printStackTrace();
+						} catch (TimeoutException e1) {
+							Log.e("", "Termino el tiempo");
+							httpClient.getConnectionManager().shutdown();
+							faseTask.cancel(true);
+							e1.printStackTrace();
+						}
+					}
+				}).start();
+
+
+
+			}
+		});
+
+
+		AlertDialog dialog = builder.create();
+
+		dialog.show();
+	}
+
+	private void openProgressBarFase() {
+
+		mProgressDialogFase.setMessage("Actualizando la fase esto puede tardar hasta 2 minutos,  por favor no cerrar o minimizar la ventana y espere... si no actualiza intentelo mas tarde");
+		mProgressDialogFase.setIcon(android.R.drawable.stat_sys_download);
+		mProgressDialogFase.setIndeterminate(false);
+		mProgressDialogFase.setTitle("Sincronización");
+		mProgressDialogFase.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		mProgressDialogFase.setCancelable(false);
+		mProgressDialogFase.show();
+	}
+
 	private void getExitAlert() {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -589,6 +724,30 @@ public class FormulariosActivity extends Activity {
 	}
 
 	private void sincronizarFormularios() {
+		String where = Vivienda.whereByEstadoSincronizacionControlEntrevista;
+		String parametros[] = new String[] {String
+				.valueOf(Global.SINCRONIZACION_INCOMPLETA) ,
+				String.valueOf(ControlPreguntas.ControlEntrevista.ELIMINADO.getValor())};
+
+		ArrayList<Vivienda> viviendas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_VIVCODIGO);
+
+		totalViviendasASincronizar = viviendas.size();
+
+		if(totalViviendasASincronizar > 0)
+		{
+			this.openProgressBar();
+		}
+
+		ExecutorService exec = Executors.newSingleThreadExecutor();
+
+		for (final Vivienda vivienda : viviendas) {
+			exec.execute(new Runnable() {
+				public void run() {
+					sincronizacionVivenda.sincronizarAll(vivienda, FormulariosActivity.this);
+				}
+			});
+		}
+		exec.shutdown();
 
 	}
 
@@ -738,7 +897,8 @@ public class FormulariosActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-
+		Intent msgIntent = new Intent(this, LocalizacionService.class);
+		stopService(msgIntent);
 		super.onDestroy();
 	}
 
@@ -755,4 +915,185 @@ public class FormulariosActivity extends Activity {
 		}
 
 	}
+
+	/**
+	 * Representa una tarea asincrona para traer la fase
+	 */
+	@SuppressLint("SimpleDateFormat")
+	public class FaseTask extends AsyncTask<Object, Void, Object> {
+
+		DefaultHttpClient httpClient;
+
+		@Override
+		protected Object doInBackground(Object... params) {
+
+			Object respuesta = null;
+			httpClient = (DefaultHttpClient)params[0];
+
+			JSONObject values = new JSONObject();
+			try {
+
+
+				String user = usuario.getUsuario();
+				String password = usuario.getPassword();
+				String imei = Utilitarios.getImeiDispositivo(getApplicationContext());
+
+				if (TextUtils.isEmpty(imei)) {
+
+					String[] parametros = new String[] {user, password};
+					String where= Usuario.whereByUsuarioYPassword;
+					Usuario usuarioBD = UsuarioDao.getUsuario(contentResolver, where, parametros);
+					if(usuarioBD != null)
+					{
+						imei = usuarioBD.getImei();
+					}
+				}
+
+				values.put("login", user);
+				values.put("password", password);
+				values.put("imei", imei);
+				values.put("version", infoApp.versionName);
+
+				Utilitarios.logInfo(FormulariosActivity.class.getName(), "Peticion de nueva fase valores"+ values.toString());
+
+				String _respuesta = WebService.getJsonData(Global.URL_WEB_SERVICE_USUARIOS,	values, httpClient);
+
+				Utilitarios.logInfo(FormulariosActivity.class.getName(), "respuesta"+_respuesta);
+				if (!_respuesta.equals("")) {
+					try {
+						respuesta = new JSONObject(_respuesta);
+					} catch (JSONException e) {
+
+						e.printStackTrace();
+					}
+				}
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
+
+			return respuesta;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		protected void onPostExecute(final Object _respuesta) {
+
+			if (_respuesta != null) {
+
+				try {
+					JSONObject respuesta = (JSONObject) _respuesta;
+					String codigoDispositivo = respuesta.getString("idDispositivo");
+					//String codigoGrupo = respuesta.getString("codigoGrupo");
+					String codigoUsuario = respuesta.getString("idUsuario");
+					//String intervalo = respuesta.getString("intervalo");
+					String idFase = respuesta.getString("idFase");
+					String version = respuesta.getString("version");
+					Log.e("", "" + respuesta);
+					if(version.equals("SI"))
+					{
+						if (!codigoDispositivo.equals("0") && !codigoUsuario.equals("0") && !idFase.equals("0"))
+						{
+
+							String[] parametros = new String[] {idFase};
+							Fase _fase = FaseDao.getFase(contentResolver,Fase.whereById, parametros);
+							if(_fase.getId() == 0)
+							{
+								_fase.setId(Integer.parseInt(idFase));
+								_fase.setFechainicio(respuesta.getString("fechaInicio"));
+								_fase.setFechafin(respuesta.getString("fechaFin"));
+								_fase.setNombrefase(respuesta.getString("fase"));
+								//_fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
+								_fase.setEstado(1);
+								Uri uri  = FaseDao.save(contentResolver, _fase);
+								FaseDao.updateEstadoFases(contentResolver,_fase);
+
+								if(uri != null)
+								{
+									((ArrayAdapter<Fase>)faseSpinner.getAdapter()).add(_fase);
+									((ArrayAdapter<Fase>)faseSpinner.getAdapter()).notifyDataSetChanged();
+
+									((ArrayAdapter<Fase>)faseSpinner.getAdapter()).sort(new Comparator<Fase>() {
+
+										@Override
+										public int compare(Fase lhs, Fase rhs) {
+
+											int compareId = rhs.getId();
+											return compareId - lhs.getId();
+										}
+									});
+								}
+							}
+							else
+							{
+								SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+								_fase.setFechainicio(respuesta.getString("fechaInicio"));
+								_fase.setFechafin(respuesta.getString("fechaFin"));
+								_fase.setNombrefase(respuesta.getString("fase"));
+								//_fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
+
+								try
+								{
+									Date fechaInicio = formatoFecha.parse(_fase.getFechainicio());
+									Date fechaFin = formatoFecha.parse(_fase.getFechafin());
+									Date fechaActual = formatoFecha.parse(Utilitarios.getCurrentDate());
+
+									if(fechaActual.compareTo(fechaInicio) >= 0 && fechaActual.compareTo(fechaFin) <= 0)
+									{
+										_fase.setEstado(1);
+										FaseDao.update(contentResolver,_fase);
+										FaseDao.updateEstadoFases(contentResolver,_fase);
+
+									}
+									else
+									{
+										getAlert(getString(R.string.validacion_aviso), "No existe una nueva fase");
+									}
+								} catch (ParseException e) {
+
+									e.printStackTrace();
+								}
+
+							}
+
+						} else {
+
+							getAlert(getString(R.string.validacion_aviso), "No existe una fase");
+
+						}
+					}
+					else
+					{
+						if(version.equals("NO"))
+						{
+							getAlert(getString(R.string.validacion_aviso), "Por favor actualice de version de la aplicacion");
+						}
+
+					}
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+
+			}
+			else
+			{
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						getString(R.string.error_conectar_servidor),
+						Toast.LENGTH_LONG);
+				toast.show();
+			}
+			mProgressDialogFase.dismiss();
+		}
+
+		@Override
+		protected void onCancelled() {
+
+			mProgressDialogFase.dismiss();
+		}
+	}
+
 }

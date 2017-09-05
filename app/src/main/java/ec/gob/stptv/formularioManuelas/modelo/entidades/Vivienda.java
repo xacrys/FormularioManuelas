@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
@@ -41,7 +42,7 @@ public class Vivienda implements Serializable {
     private Integer idestadoviviendatecho;
     private Integer idestadoviviendapiso;
     private Integer idestadoviviendapared;
-    private Integer formulario;//registr numero//certificado
+    private String formulario;//registr numero//certificado
     private String fechaencuesta;
     private String fechasincronizacion;
     private Integer numerovisitas;
@@ -193,11 +194,12 @@ public class Vivienda implements Serializable {
     public static String whereByFechasFormularios =  COLUMNA_IDFASE + " = ? AND " +"(" + COLUMNA_FECHACREACION
             + " BETWEEN  ?"	+ " AND ?) AND " + COLUMNA_IDCONTROLENTREVISTA +" <> ?" ;
 
+    public static String whereByEstadoSincronizacionControlEntrevista =  COLUMNA_ESTADOSINCRONIZACION + "  = ? AND " + COLUMNA_NUMEROVISITAS + "  <> 0 AND " + COLUMNA_IDCONTROLENTREVISTA +" <> ?" ;
 
     public Vivienda() {
         id = 0;
         observacion = Global.CADENAS_VACIAS;
-        certificado = Global.CADENAS_VACIAS;
+        formulario = Global.CADENAS_VACIAS;
     }
 
     /**
@@ -255,7 +257,6 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_FECHAFIN, vivienda.getFechafin());
         values.put(Vivienda.COLUMNA_ESTADOSINCRONIZACION, vivienda.getEstadosincronizacion());
         values.put(Vivienda.COLUMNA_OBSERVACION, vivienda.getObservacion());
-        values.put(Vivienda.COLUMNA_CERTIFICADO, vivienda.getCertificado());
 
         return values;
     }
@@ -304,7 +305,7 @@ public class Vivienda implements Serializable {
         vivienda.setIdestadoviviendatecho(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDATECHO)));
         vivienda.setIdestadoviviendapiso(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDAPISO)));
         vivienda.setIdestadoviviendapared(result.getInt(result.getColumnIndex(COLUMNA_IDESTADOVIVIENDAPARED)));
-        vivienda.setFormulario(result.getInt(result.getColumnIndex(COLUMNA_FORMULARIO)));
+        vivienda.setFormulario(result.getString(result.getColumnIndex(COLUMNA_FORMULARIO)));
         vivienda.setFechaencuesta(result.getString(result.getColumnIndex(COLUMNA_FECHACREACION)));
         vivienda.setNumerovisitas(result.getInt(result.getColumnIndex(COLUMNA_NUMEROVISITAS)));
         vivienda.setIdcontrolentrevista(result.getInt(result.getColumnIndex(COLUMNA_IDCONTROLENTREVISTA)));
@@ -316,7 +317,7 @@ public class Vivienda implements Serializable {
         vivienda.setFechasincronizacion(result.getString(result.getColumnIndex(COLUMNA_FECHASINCRONIZACION)));
         vivienda.setEstadosincronizacion(result.getInt(result.getColumnIndex(COLUMNA_ESTADOSINCRONIZACION)));
         vivienda.setObservacion(result.getString(result.getColumnIndex(COLUMNA_OBSERVACION)));
-        vivienda.setCertificado(result.getString(result.getColumnIndex(COLUMNA_CERTIFICADO)));
+
         return vivienda;
     }
 
@@ -540,13 +541,6 @@ public class Vivienda implements Serializable {
         this.idestadoviviendapared = idestadoviviendapared;
     }
 
-    public Integer getFormulario() {
-        return formulario;
-    }
-
-    public void setFormulario(Integer formulario) {
-        this.formulario = formulario;
-    }
 
     public Integer getNumerovisitas() {
         return numerovisitas;
@@ -695,15 +689,6 @@ public class Vivienda implements Serializable {
         this.division = division;
     }
 
-
-    public String getCertificado() {
-        return certificado;
-    }
-
-    public void setCertificado(String certificado) {
-        this.certificado = certificado;
-    }
-
     public String getFechaencuesta() {
         return fechaencuesta;
     }
@@ -760,5 +745,14 @@ public class Vivienda implements Serializable {
 
     public void setListaLocalizacion(ArrayList<Localizacion> listaLocalizacion) {
         this.listaLocalizacion = listaLocalizacion;
+    }
+
+
+    public String getFormulario() {
+        return formulario;
+    }
+
+    public void setFormulario(String formulario) {
+        this.formulario = formulario;
     }
 }

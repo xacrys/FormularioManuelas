@@ -117,46 +117,39 @@ public class SincronizacionVivienda {
 	 * @author
 	 *
 	 */
-	public class ViviendaSincronizacionTask extends AsyncTask<Object , Void, Vivienda> {
+	public class ViviendaSincronizacionTask extends AsyncTask<Object , Void, String> {
 		
 		Vivienda vivienda;
 		DefaultHttpClient httpClient;
 		Activity activity;
 		
 		@Override
-		protected Vivienda doInBackground(Object... params) {
+		protected String doInBackground(Object... params) {
 		
 			String json = (String)params[0];
 			vivienda = (Vivienda)params[1];
 			httpClient = (DefaultHttpClient)params[2];
 			activity = (Activity)params[3];
 			String _respuesta = WebService.sendJson(Global.URL_WEB_SERVICE_INGRESO_FORMULARIO, json, httpClient);
-			
-			if (!_respuesta.equals("") && !_respuesta.equals(null)) {
-				vivienda = gson.fromJson(_respuesta, Vivienda.class);
-			}
-			
-			Log.i("respuesta", "*" + _respuesta + "*");		
-			
-			return vivienda;
+			Log.i("respuesta", "*" + _respuesta + "*");
+			return _respuesta;
 		}
 
 		@Override
-		protected void onPostExecute(Vivienda _vivienda) {
+		protected void onPostExecute(String _respuesta) {
 			mProgressDialog.dismiss();
+			if (!_respuesta.equals("")) {
+				if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_COMPLETA))) {
 
-			if (_vivienda.getMensaje() != null) {
-				Log.e("vivienda mensaje ", _vivienda.getMensaje()+"");
-				if (_vivienda.getMensaje().equals(String.valueOf(Global.SINCRONIZACION_COMPLETA))) {
-
+					Utilitarios.logInfo(SincronizacionVivienda.class.getName(), "sincronizacion completa");
 					vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
 					vivienda.setEstadosincronizacion(Global.SINCRONIZACION_COMPLETA);
 					ViviendaDao.update(cr, vivienda);
 					getAlertDialog(activity.getString(R.string.confirmacion_aviso), activity.getString(R.string.sinronizacion_correcta), activity);
 
 				} else {
-					
-					if (_vivienda.getMensaje().equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA))) {
+
+					if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA))) {
 						Utilitarios.logInfo(SincronizacionVivienda.class.getName(), "sincronizacion incompleta");
 						vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
 						vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
@@ -165,7 +158,8 @@ public class SincronizacionVivienda {
 					}
 					else
 					{
-						if (_vivienda.getMensaje().equals(String.valueOf(Global.SINCRONIZACION_CERTIFICADO_REPETIDO))) {
+						if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_CERTIFICADO_REPETIDO))) {
+
 							Utilitarios.logInfo(SincronizacionVivienda.class.getName(), "sincronizacion certificado ya existe en el servidor");
 							vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
 							vivienda.setEstadosincronizacion(Global.SINCRONIZACION_CERTIFICADO_REPETIDO);
@@ -173,18 +167,17 @@ public class SincronizacionVivienda {
 							getAlertDialog(activity.getString(R.string.confirmacion_aviso), activity.getString(R.string.sinronizacion_duplicado), activity);
 						}
 					}
-					
 				}
 			}
 			else
 			{
-				Log.i("respuesta", "sincronizacion incompleta");
+				Utilitarios.logInfo(SincronizacionVivienda.class.getName(), "sincronizacion incompleta");
 				vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
 				vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
 				ViviendaDao.update(cr, vivienda);
-				
 				getAlertDialog(activity.getString(R.string.confirmacion_aviso), activity.getString(R.string.sinronizacion_incorrecta), activity);
 			}
+
 
 		}
 		
@@ -235,9 +228,9 @@ public class SincronizacionVivienda {
 			parametros = new String[] { String.valueOf(vivienda.getId()) };
 			Hogar hogar = HogarDao.getHogar(cr, where, parametros);
 			vivienda.setHogar(hogar);
-			
+
 			where = Persona.whereByIdHogar;
-			parametros = new String[] { String.valueOf(vivienda.getId()) };
+			parametros = new String[] { String.valueOf(hogar.getId()) };
 			ArrayList<Persona> personas = PersonaDao.getPersonas(cr, where, parametros, null);
 			hogar.setListaPersonas(personas);
 		}
@@ -277,43 +270,38 @@ public class SincronizacionVivienda {
 	 * 	 * @author
 	 *
 	 */
-	public class ViviendasSincronizacionProgressTask extends AsyncTask<Object , Void, Vivienda> {
+	public class ViviendasSincronizacionProgressTask extends AsyncTask<Object , Void, String> {
 		
 		Vivienda vivienda;
 		DefaultHttpClient httpClient;
-
 		Activity activity;
 		
 		@Override
-		protected Vivienda doInBackground(Object... params) {
-		
+		protected String doInBackground(Object... params) {
+
 			String json = (String)params[0];
 			vivienda = (Vivienda)params[1];
 			activity = (Activity)params[2];
 			httpClient =  (DefaultHttpClient)params[3];
 			Log.e("servicio", json);
 			String _respuesta = WebService.sendJson(Global.URL_WEB_SERVICE_INGRESO_FORMULARIO, json, httpClient);
-			
-			if (!_respuesta.equals("") && !_respuesta.equals(null)) {
-				vivienda = gson.fromJson(_respuesta, Vivienda.class);
-			}
-			Log.i("respuesta", "*" + _respuesta + "*");		
-			
-			return vivienda;
+			Log.i("respuesta", "*" + _respuesta + "*");
+			return _respuesta;
 		}
 
 		@Override
-		protected void onPostExecute(Vivienda _vivienda) {
-			
-			if (_vivienda.getMensaje() != null) {
-				Log.e("vivienda mensaje ", _vivienda.getMensaje()+"");
-				if (_vivienda.getMensaje().equals(String.valueOf(Global.SINCRONIZACION_COMPLETA))) {
+		protected void onPostExecute(String _respuesta) {
+			if (!_respuesta.equals("")) {
+				if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_COMPLETA))) {
 
+					Utilitarios.logInfo(SincronizacionVivienda.class.getName(), "sincronizacion completa");
 					vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
 					vivienda.setEstadosincronizacion(Global.SINCRONIZACION_COMPLETA);
 					ViviendaDao.update(cr, vivienda);
+
 				} else {
-					if (_vivienda.getMensaje().equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA))) {
+
+					if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA))) {
 						Utilitarios.logInfo(SincronizacionVivienda.class.getName(), "sincronizacion incompleta");
 						vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
 						vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
@@ -321,7 +309,8 @@ public class SincronizacionVivienda {
 					}
 					else
 					{
-						if (_vivienda.getMensaje().equals(String.valueOf(Global.SINCRONIZACION_CERTIFICADO_REPETIDO))) {
+						if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_CERTIFICADO_REPETIDO))) {
+
 							Utilitarios.logInfo(SincronizacionVivienda.class.getName(), "sincronizacion certificado ya existe en el servidor");
 							vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());
 							vivienda.setEstadosincronizacion(Global.SINCRONIZACION_CERTIFICADO_REPETIDO);
@@ -352,6 +341,5 @@ public class SincronizacionVivienda {
 			super.onCancelled();
 		}
 	}
-	
 	
 }
