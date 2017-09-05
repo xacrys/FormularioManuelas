@@ -386,7 +386,7 @@
     <string name="controlTrabajoParentescoJefeHogarOpcion10">10. Cuñado(a)</string>
     <string name="controlTrabajoParentescoJefeHogarOpcion11">11. Otro familiar</string>
     <string name="controlTrabajoParentescoJefeHogarOpcion12">12. No familiar</string>
-    <string name="controlTrabajoParentescoJefeHogarOpcion13">13. Servicio dómestico puertas adentro</string>
+    <string name="controlTrabajoParentescoJefeHogarOpcion13">13. Servicio doméstico puertas adentro</string>
 
     <!-- Seccion 5 Pregunta 10 -->
     <string name="controlTrabajoEstadoCivil">ESTADO CIVIL O CONYUGAL</string>
@@ -464,13 +464,13 @@
 
     <!-- Seccion 5 Pregunta 18 -->
     <string name="tipoDiscapacidadTitulo">18. La DISCAPACIDAD de (&#8230;) es:</string>
-    <string name="tipoDiscapacidadIntelectual">Intelectual (Dificultades en el aprendizaje)?</string>
-    <string name="tipoDiscapacidadFisica">Física - (Parálisis, amputaciones, entre otras)?</string>
-    <string name="tipoDiscapacidadCeguera">Visual (Ceguera total)?</string>
-    <string name="tipoDiscapacidadBajaVision">Visual (Baja visión)?</string>
-    <string name="tipoDiscapacidadSordera">Auditiva (Sordera Total)?</string>
-    <string name="tipoDiscapacidadHipoacusia">Auditiva (Hipoacusia)?</string>
-    <string name="tipoDiscapacidadPsicosociales">Psicosociales (Mental, autismo o enfermedades psiquiátricas)?</string>
+    <string name="tipoDiscapacidadIntelectual">A. Intelectual (Dificultades en el aprendizaje)?</string>
+    <string name="tipoDiscapacidadFisica">B. Física - (Parálisis, amputaciones, entre otras)?</string>
+    <string name="tipoDiscapacidadCeguera">C. Visual (Ceguera total)?</string>
+    <string name="tipoDiscapacidadBajaVision">C1. Visual (Baja visión)?</string>
+    <string name="tipoDiscapacidadSordera">D. Auditiva (Sordera Total)?</string>
+    <string name="tipoDiscapacidadHipoacusia">D1. Auditiva (Hipoacusia)?</string>
+    <string name="tipoDiscapacidadPsicosociales">E. Psicosociales (Mental, autismo o enfermedades psiquiátricas)?</string>
     <string name="tipoDiscapacidadPorcentaje">Porc (%)</string>
     <string name="tipoDiscapacidadPorcentajeError">Revise que el campo de porcentaje haya sido llenado</string>
 
