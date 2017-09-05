@@ -1431,9 +1431,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         if (((Values) parentescoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.controlTrabajoParentescoJefeHogar));
         } else if (((Values) estadoCivilSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))
-                && persona != null && persona.getEdadanio() > 11) {
+                && persona != null && persona.getEdadanio() > 11 ) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.controlTrabajoEstadoCivilTitulo));
-        } else if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == -1) {
+        } else if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == -1
+                && persona != null && persona.getEdadanio() < 18) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.controlMadreHogarTitulo));
         } else if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion1RadioButton &&
                 ((Values) estadoCivilSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
@@ -1473,7 +1474,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeIntelectualEditText.setError(null);
             porcentajeIntelectualEditText.clearFocus();
             porcentajeIntelectualEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeIntelectualEditText.requestFocus();
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadFisica));
@@ -1483,7 +1484,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeFisicaEditText.setError(null);
             porcentajeFisicaEditText.clearFocus();
             porcentajeFisicaEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeFisicaEditText.requestFocus();
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadCeguera));
@@ -1493,7 +1494,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeCegueraEditText.setError(null);
             porcentajeCegueraEditText.clearFocus();
             porcentajeCegueraEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeCegueraEditText.requestFocus();
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadVisionRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadBajaVision));
@@ -1503,7 +1504,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeVisionEditText.setError(null);
             porcentajeVisionEditText.clearFocus();
             porcentajeVisionEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeVisionEditText.requestFocus();
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadSordera));
@@ -1513,7 +1514,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeSorderaEditText.setError(null);
             porcentajeSorderaEditText.clearFocus();
             porcentajeSorderaEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeSorderaEditText.requestFocus();
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadHipoacusia));
@@ -1523,7 +1524,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeHipoacusiaEditText.setError(null);
             porcentajeHipoacusiaEditText.clearFocus();
             porcentajeHipoacusiaEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeHipoacusiaEditText.requestFocus();
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadPsicosociales));
@@ -1533,7 +1534,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajePsicosocialesEditText.setError(null);
             porcentajePsicosocialesEditText.clearFocus();
             porcentajePsicosocialesEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajePsicosocialesEditText.requestFocus();
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 porcentajeIntelectualEditText.getText().toString().equals("") &&
                 porcentajeFisicaEditText.getText().toString().equals("") &&
