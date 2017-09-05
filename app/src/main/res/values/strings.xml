@@ -472,6 +472,10 @@
     <string name="tipoDiscapacidadHipoacusia">Auditiva (Hipoacusia)?</string>
     <string name="tipoDiscapacidadPsicosociales">Psicosociales (Mental, autismo o enfermedades psiquiátricas)?</string>
     <string name="tipoDiscapacidadPorcentaje">Porc (%)</string>
+    <string name="tipoDiscapacidadPorcentajeError">Revise que el campo de porcentaje haya sido llenado</string>
+
+
+
 
     <!-- Seccion 5 Pregunta 19 -->
     <string name="asistenciaEstablecimiento">19. Actualmente (&#8230;) asiste a algún establecimiento de Educación</string>
