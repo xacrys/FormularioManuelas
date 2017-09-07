@@ -297,8 +297,8 @@ public class HogarFragment extends Fragment {
 
         hogar.setCuartos(Integer.parseInt(((Values) numCuartosSpinner.getSelectedItem()).getKey()));
         hogar.setDormitorio(Integer.parseInt(((Values) numDormitoriosSpinner.getSelectedItem()).getKey()));
-        hogar.setIdagua(Integer.parseInt(((Values) fuenteAguaSpinner.getSelectedItem()).getKey()));
-        hogar.setIdredagua(Integer.parseInt(((Values) ubicacionAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdagua(Integer.parseInt(((Values) ubicacionAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdredagua(Integer.parseInt(((Values) fuenteAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdtratamientoagua(Integer.parseInt(((Values) tratamientoAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdtiposshh(Integer.parseInt(((Values) servicioSanitarioSpinner.getSelectedItem()).getKey()));
 
