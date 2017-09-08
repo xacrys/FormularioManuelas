@@ -74,7 +74,7 @@ public class ViviendaDao  extends Vivienda{
                     String _maxViviCodigo = cursor.getString(cursor.getColumnIndex(Usuario.COLUMNA_MAXVIVCODIGO));
                     Utilitarios.logInfo(ViviendaDao.class.getName(), "getUltimoRegistro maxViviCodigo: " + _maxViviCodigo);
 
-                    if(!_maxViviCodigo.equals(""))
+                    if(_maxViviCodigo!=null && !_maxViviCodigo.equals(""))
                     {
                         String[] maxViviCodigo = _maxViviCodigo.split("-");
                         //Log.i("Vivienda", "getUltimoRegistro maxViviCodigo[1]: " + maxViviCodigo[1]);
