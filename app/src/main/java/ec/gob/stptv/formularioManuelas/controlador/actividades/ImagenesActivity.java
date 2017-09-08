@@ -174,7 +174,7 @@ public class ImagenesActivity extends Activity {
 
 			boolean isConectedInternet = Utilitarios.verificarConexion(this);
 			
-			if (isConectedInternet) {
+ 			if (isConectedInternet) {
 				
 				String where = Imagen.whereByFechasEstadoSincronizacion;
 				String parametros[] = new String[] {fechaInicioButton.getText().toString(),  fechaFinButton.getText().toString(), String.valueOf(Global.SINCRONIZACION_INCOMPLETA)};
@@ -192,6 +192,7 @@ public class ImagenesActivity extends Activity {
 				for (final Imagen imagen : imagenes) {
 					exec.execute(new Runnable() {
 						public void run() {
+							imagen.setEstadosincronizacion(null);
 							sincronizacionImagenes.sincronizarAll(imagen, ImagenesActivity.this);
 						}
 					});
