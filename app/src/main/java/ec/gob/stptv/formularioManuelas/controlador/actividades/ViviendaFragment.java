@@ -130,7 +130,6 @@ public class ViviendaFragment extends Fragment {
 
         View item = inflater.inflate(R.layout.activity_main_fragment_vivienda,
                 container, false);
-
         Bundle extra = getActivity().getIntent().getExtras();
         contentResolver = getActivity().getContentResolver();
         this.obtenerVistas(item);
@@ -141,6 +140,7 @@ public class ViviendaFragment extends Fragment {
             vivienda = (Vivienda) extra.getSerializable("vivienda");
             usuario = (Usuario) extra.getSerializable("usuario");
             fase = (Fase) extra.getSerializable("fase");
+
             if (vivienda.getId() != 0) {
                 this.llenarCamposVivienda();
                 vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
@@ -464,6 +464,7 @@ public class ViviendaFragment extends Fragment {
      */
     private void guardar() {
 
+        vivienda.setIdusuario(Integer.parseInt(usuario.getIdusuario()));
         vivienda.setIdtipolevantamiento(Integer
                 .parseInt(((Values) tipoLevantamientoSpinner.getSelectedItem())
                         .getKey()));
