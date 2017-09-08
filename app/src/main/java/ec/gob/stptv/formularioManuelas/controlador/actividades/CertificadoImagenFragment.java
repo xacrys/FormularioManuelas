@@ -173,6 +173,7 @@ public class CertificadoImagenFragment extends Fragment {
                     _imagen.setFecha(Utilitarios.getCurrentDate());
                     _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
                     _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
+                    _imagen.setFormulario(vivienda.getFormulario());
                     int result = ImagenDao.update(cr, _imagen);
                     if(result > 0)
                     {
