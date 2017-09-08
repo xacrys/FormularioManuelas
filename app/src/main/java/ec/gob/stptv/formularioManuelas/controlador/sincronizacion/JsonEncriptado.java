@@ -1,15 +1,13 @@
 package ec.gob.stptv.formularioManuelas.controlador.sincronizacion;
 
 public class JsonEncriptado {
-	private String codigoFormulario;
+	private String cadena;
 
-	public String getCodigoFormulario() {
-		return codigoFormulario;
+	public String getCadena() {
+		return cadena;
 	}
 
-	public void setCodigoFormulario(String codigoFormulario) {
-		this.codigoFormulario = codigoFormulario;
+	public void setCadena(String cadena) {
+		this.cadena = cadena;
 	}
-
-	
 }

@@ -51,6 +51,7 @@
 
         <activity
             android:name="ec.gob.stptv.formularioManuelas.controlador.actividades.ImagenesActivity"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_imagenes">
         </activity>
 

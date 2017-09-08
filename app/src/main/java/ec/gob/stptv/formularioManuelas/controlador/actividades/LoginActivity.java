@@ -826,6 +826,7 @@ public class LoginActivity extends Activity {
                   try {
                       JSONArray re = respuesta.getJSONArray("datos");
                       if (!re.get(0).equals("")){
+                          Utilitarios.logError("lore", ""+re.get(0));
 
                           String[] parametros = new String[]{
                                   mEmailView.getText().toString(),
@@ -848,12 +849,14 @@ public class LoginActivity extends Activity {
 
             }
             else{
+                Utilitarios.logError("lore", "entraaaaaaaaaaaaaaaaaaaaaaaaaaaa validarrrrrrrrr pendiente");
                 String[] parametros = new String[]{
                         mEmailView.getText().toString(),
                         ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
                 };
                 String where = Usuario.whereByUsuarioYPassword;
                 Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+
                 if (usuario != null) {
                     Intent intent = new Intent(LoginActivity.this,
                             FormulariosActivity.class);

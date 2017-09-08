@@ -131,7 +131,7 @@ public class SincronizacionVivienda {
 			httpClient = (DefaultHttpClient)params[2];
 			activity = (Activity)params[3];
 			String _respuesta = WebService.sendJson(Global.URL_WEB_SERVICE_INGRESO_FORMULARIO, json, httpClient);
-			Log.i("respuesta", "*" + _respuesta + "*");
+			Utilitarios.logError("respuesta", "*" + _respuesta + "*");
 			return _respuesta;
 		}
 

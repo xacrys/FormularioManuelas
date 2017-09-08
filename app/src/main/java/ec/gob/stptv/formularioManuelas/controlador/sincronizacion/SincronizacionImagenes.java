@@ -19,48 +19,41 @@ import android.util.Log;
 import ec.gob.stptv.formularioManuelas.controlador.actividades.ImagenesActivity;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
+import ec.gob.stptv.formularioManuelas.modelo.dao.ImagenDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Imagen;
 
 public class SincronizacionImagenes {
 
 	private ContentResolver cr;
 	private Gson gson;
-	
-	public SincronizacionImagenes() {
 
-	}
-	
 	public SincronizacionImagenes(Context context) {
 		cr = context.getContentResolver();
 		gson = new GsonBuilder().serializeNulls().create();
 		
 	}
 	
-	public void sincronizarAll(final Imagen imagen, final Activity activity) {
+	public void sincronizarAll(Imagen imagen, final Activity activity) {
 		final String json = gson.toJson(imagen);
 		Utilitarios.logError("JSON", json);
-		new Thread(new Runnable() {
-			ImagenSincronizacionTask imagenSincronizacionTask = new ImagenSincronizacionTask();
-			DefaultHttpClient httpClient = new DefaultHttpClient();
-			@Override
-			public void run() {
-				try {
-					imagenSincronizacionTask.execute(json, imagen, activity, httpClient).get(Global.ASYNCTASK_TIMEROUT_IMAGENES, TimeUnit.MILLISECONDS);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					e1.printStackTrace();
-				} catch (TimeoutException e1) {
-					Log.e("", "Termino el tiempo de coneccion");
-					httpClient.getConnectionManager().shutdown();
-					imagenSincronizacionTask.cancel(true);
-					e1.printStackTrace();
-				}
-			}
-		}).start();
+		ImagenSincronizacionTask imagenSincronizacionTask = new ImagenSincronizacionTask();
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+
+		try {
+			imagenSincronizacionTask.execute(json, imagen, activity, httpClient).get(Global.ASYNCTASK_TIMEROUT_IMAGENES, TimeUnit.MILLISECONDS);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			e1.printStackTrace();
+		} catch (TimeoutException e1) {
+			Log.e("", "Termino el tiempo de coneccion");
+			httpClient.getConnectionManager().shutdown();
+			imagenSincronizacionTask.cancel(true);
+			e1.printStackTrace();
+
+		}
 
 		Utilitarios.createFileLog(json);
-
 
 
 	} 
@@ -69,59 +62,53 @@ public class SincronizacionImagenes {
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
 	 */
-	public class ImagenSincronizacionTask extends AsyncTask<Object, Void, String> {
-		
-		Imagen imagen;
-		Activity activity;
-		DefaultHttpClient httpClient;
-		
-		
+	public class ImagenSincronizacionTask extends AsyncTask<Object, Void, Object> {
+
+		Imagen imagen = new Imagen();
+		private Activity activity;
+		private DefaultHttpClient httpClient;
+
+
 		@Override
-		protected String doInBackground(Object... params) {
-			
+		protected Object doInBackground(Object... params) {
+
 			String json = (String)params[0];
 			imagen = (Imagen)params[1];
 			activity = (Activity)params[2];
 			httpClient = (DefaultHttpClient)params[3];
 
 			String _respuesta = WebService.sendJsonCompres(Global.URL_WEB_SERVICE_IMAGENES, json, httpClient);
-			Utilitarios.logInfo(SincronizacionImagenes.class.getName(), "respuesta" + _respuesta);
-			
-			
+			Utilitarios.logError("respuesta de imagenes", "*" + _respuesta + "*");
+
 			return _respuesta;
 		}
 
 		@Override
-		protected void onPostExecute(String _respuesta) {
+		protected void onPostExecute(Object _respuesta) {
 
 			if (!_respuesta.equals("")) {
-				
+
 				if(_respuesta.equals(String.valueOf(Global.SINCRONIZACION_COMPLETA)))
 				{
-					
 					imagen.setFechasincronizacion(Utilitarios.getCurrentDate());
 					imagen.setEstadosincronizacion(Global.SINCRONIZACION_COMPLETA);
-					//ImagenDao.updateByViviendaId(cr, imagen);
+					ImagenDao.update(cr, imagen);
 					((ImagenesActivity)activity).changeRowSincronizada(imagen);
-					//((ImagenesActivity)activity).buscarImagenes();
-					
-				}
-				else
-				{
-					if(_respuesta.equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA)))
-					{
+
+				} else {
+					if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_ERROR_IMAGENES))) {
 						imagen.setFechasincronizacion(Utilitarios.getCurrentDate());
 						imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-						//ImagenDao.updateByViviendaId(cr, imagen);
+						ImagenDao.update(cr, imagen);
 					}
-					
 				}
 			}
 			else
 			{
 				imagen.setFechasincronizacion(Utilitarios.getCurrentDate());
-				imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-				//ImagenDao.updateByViviendaId(cr, imagen);
+				imagen.setEstadosincronizacion(Global.SINCRONIZACION_ERROR_IMAGENES);
+				ImagenDao.update(cr, imagen);
+
 			}
 			
 			((ImagenesActivity)activity).closeProgressBar();

@@ -894,8 +894,12 @@ public class MiembrosHogarFragment extends Fragment {
                     return;
             }
 
+            if (persona.getIdparentesco() == 2) {
+                if (validarJefeHogarConyuge(persona))
+                    return;
+            }
 
-            if (validarJefeHogarConyugeSexo())
+            if (validarJefeHogarConyugeSexo(persona))
                 return;
 
 
@@ -937,6 +941,12 @@ public class MiembrosHogarFragment extends Fragment {
                     if (validarJefeHogarConyuge(persona))
                         return;
                 }
+
+                if (persona.getIdparentesco() == 2) {
+                    if (validarJefeHogarConyugeSexo(persona))
+                        return;
+                }
+
 
                 persona.setEdadmes(edadMeses);
                 if ((persona.getEdadanio() >= Global.EDAD_12ANIOS)
@@ -1005,6 +1015,7 @@ public class MiembrosHogarFragment extends Fragment {
 
                 }
                 getPersonas();
+                tipoGestion = 1;
                 limpiarCampos();
 
             }
@@ -1049,7 +1060,7 @@ public class MiembrosHogarFragment extends Fragment {
      * Metodo para validar Jefe de hogar con su conyuge del mismo sexo
      *
      */
-    protected boolean validarJefeHogarConyugeSexo() {
+    protected boolean validarJefeHogarConyugeSexo(Persona persona) {
 
         boolean cancel = false;
 //        int contadorConyuges = 0;

@@ -192,7 +192,6 @@ public class ImagenesActivity extends Activity {
 				for (final Imagen imagen : imagenes) {
 					exec.execute(new Runnable() {
 						public void run() {
-							imagen.setEstadosincronizacion(null);
 							sincronizacionImagenes.sincronizarAll(imagen, ImagenesActivity.this);
 						}
 					});
@@ -371,9 +370,7 @@ public class ImagenesActivity extends Activity {
 
 			TableRow row = (TableRow) imagenesTableLayout.getChildAt(i);
 			Imagen _imagen = (Imagen) row.getTag();
-
-
-			if (_imagen.getVivcodigo()== imagen.getVivcodigo() && _imagen.getTipo()== imagen.getTipo()) {
+			if (_imagen.getVivcodigo().equals(imagen.getVivcodigo()) && _imagen.getTipo()== imagen.getTipo()) {
 				imagenesTableLayout.removeViewAt(i);
 			}
 

@@ -654,7 +654,8 @@ public class WebService {
 		}
 	 
 	 public static InputStream openHttpConnectionPostCompress(String url, String json, DefaultHttpClient httpClient) {
-			
+
+		 	Utilitarios.logError("ENTRA openHttpConnectionPostCompress", "openHttpConnectionPostCompress");
 			InputStream inputStream = null;
 			
 			try
@@ -672,8 +673,11 @@ public class WebService {
 				 
 				String cadenaComprimida = Base64.encodeToString(compressed, Base64.DEFAULT);
 				JsonEncriptado jsonEncriptado = new JsonEncriptado();
-				jsonEncriptado.setCodigoFormulario(cadenaComprimida);    
-				 
+				jsonEncriptado.setCadena(cadenaComprimida);
+
+//				Utilitarios.logError("", "JSON encriptado" + "*"+cadenaComprimida+"*");
+//				Utilitarios.createFileLog1(gson.toJson(jsonEncriptado)+"");
+
 				StringEntity entity = new StringEntity( gson.toJson(jsonEncriptado), HTTP.UTF_8);
 				
 				HttpParams httpParams = new BasicHttpParams();

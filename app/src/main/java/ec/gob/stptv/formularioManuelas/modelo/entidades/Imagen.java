@@ -26,9 +26,9 @@ public class Imagen implements Serializable{
 	public final static String COLUMNA_ID = "id";
 	public final static String COLUMNA_IMAGEN = "imagen";
 	public final static String COLUMNA_FECHA = "fecha";
-	public final static String COLUMNA_TIPO = "tipo";
-	public final static String COLUMNA_VIVCODIGO = "vivcodigo";
-	public final static String COLUMNA_FORMULARIO = "formulario";
+	public final static String COLUMNA_TIPO = "tipo"; //1 =vivienda 2= formulario
+	public final static String COLUMNA_VIVCODIGO = "vivcodigo";//id de dispositivo - secuencial
+	public final static String COLUMNA_FORMULARIO = "formulario";//codigo de barras
 	public final static String COLUMNA_ESTADOSINCRONIZACION = "estadosincronizacion";
 	public final static String COLUMNA_FECHASINCRONIZACION = "fechasincronizacion";
 
