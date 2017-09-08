@@ -1,7 +1,6 @@
 package ec.gob.stptv.formularioManuelas.controlador.sincronizacion;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.RunnableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -20,7 +19,6 @@ import android.util.Log;
 import ec.gob.stptv.formularioManuelas.controlador.actividades.ImagenesActivity;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
-import ec.gob.stptv.formularioManuelas.modelo.dao.ImagenDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Imagen;
 
 public class SincronizacionImagenes {
