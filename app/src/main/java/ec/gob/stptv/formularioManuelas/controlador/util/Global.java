@@ -32,7 +32,7 @@ public class Global {
     public static final String URL_WEB_SERVICE_USUARIOS= IP_SERVIDOR + URL_WEB_SERVICES_LOGEO + "/logeoManuela";
     public static final String URL_WEB_SERVICE_INGRESO_FORMULARIO= IP_SERVIDOR + URL_WEB_SERVICES_INGRESO +"/vivienda";
     public static final String URL_WEB_SERVICE_VIVCODIGO= IP_SERVIDOR + URL_WEB_SERVICES_INGRESO +"/vivcodigo";
-    public static final String URL_WEB_SERVICE_IMAGENES= IP_SERVIDOR + URL_WEB_SERVICES_INGRESO + "/ingresoImagenes";
+    public static final String URL_WEB_SERVICE_IMAGENES= IP_SERVIDOR + URL_WEB_SERVICES_INGRESO + "/guardarImagen";
 
     /**
      * Tiempo de ejecucion de Login
@@ -82,7 +82,7 @@ public class Global {
      * Tiempo de ejecucion de sincronizacion
      */
     public static final int ASYNCTASK_TIMEROUT =  120000; // 2 min
-    public static final int ASYNCTASK_TIMEROUT_IMAGENES =  420000; // 7 min
+    public static final int ASYNCTASK_TIMEROUT_IMAGENES =  120000; // 2 min
 
     /**
      * Valor para la sincronizacion completa
