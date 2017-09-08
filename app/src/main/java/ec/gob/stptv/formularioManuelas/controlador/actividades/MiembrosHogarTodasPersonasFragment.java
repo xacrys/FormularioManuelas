@@ -1001,7 +1001,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             }
         }
         persona.setIdenfermedadcatastrofica(Integer.parseInt(((Values) enfermedadCatastroficaSpinner.getSelectedItem()).getKey()));
-
+        persona.setFechafin(Utilitarios.getCurrentDateAndHour());
         persona.setInformacioncompleta(Global.INFORMACION_COMPLETA);
         int filaAfectadas = PersonaDao.update(contentResolver, persona);
 
