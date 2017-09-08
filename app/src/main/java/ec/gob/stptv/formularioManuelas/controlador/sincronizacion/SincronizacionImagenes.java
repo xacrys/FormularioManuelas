@@ -1,6 +1,7 @@
 package ec.gob.stptv.formularioManuelas.controlador.sincronizacion;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.RunnableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -37,24 +38,33 @@ public class SincronizacionImagenes {
 		
 	}
 	
-	public void sincronizarAll(final Imagen imagen, Activity activity) {
-		String json = gson.toJson(imagen);
+	public void sincronizarAll(final Imagen imagen, final Activity activity) {
+		final String json = gson.toJson(imagen);
 		Utilitarios.logError("JSON", json);
-		ImagenSincronizacionTask imagenSincronizacionTask = new ImagenSincronizacionTask();
-		DefaultHttpClient httpClient = new DefaultHttpClient();
-
-			try {
-				imagenSincronizacionTask.execute(json, imagen, activity, httpClient).get(Global.ASYNCTASK_TIMEROUT_IMAGENES, TimeUnit.MILLISECONDS);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			} catch (ExecutionException e1) {
-				e1.printStackTrace();
-			} catch (TimeoutException e1) {
-				Log.e("", "Termino el tiempo de coneccion");
-				httpClient.getConnectionManager().shutdown();
-				imagenSincronizacionTask.cancel(true);
-				e1.printStackTrace();
+		new Thread(new Runnable() {
+			ImagenSincronizacionTask imagenSincronizacionTask = new ImagenSincronizacionTask();
+			DefaultHttpClient httpClient = new DefaultHttpClient();
+			@Override
+			public void run() {
+				try {
+					imagenSincronizacionTask.execute(json, imagen, activity, httpClient).get(Global.ASYNCTASK_TIMEROUT_IMAGENES, TimeUnit.MILLISECONDS);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				} catch (ExecutionException e1) {
+					e1.printStackTrace();
+				} catch (TimeoutException e1) {
+					Log.e("", "Termino el tiempo de coneccion");
+					httpClient.getConnectionManager().shutdown();
+					imagenSincronizacionTask.cancel(true);
+					e1.printStackTrace();
+				}
 			}
+		}).start();
+
+		Utilitarios.createFileLog(json);
+
+
+
 	} 
 	
 	/**
@@ -64,8 +74,8 @@ public class SincronizacionImagenes {
 	public class ImagenSincronizacionTask extends AsyncTask<Object, Void, String> {
 		
 		Imagen imagen;
-		private Activity activity;
-		private DefaultHttpClient httpClient;
+		Activity activity;
+		DefaultHttpClient httpClient;
 		
 		
 		@Override
@@ -85,6 +95,7 @@ public class SincronizacionImagenes {
 
 		@Override
 		protected void onPostExecute(String _respuesta) {
+
 			if (!_respuesta.equals("")) {
 				
 				if(_respuesta.equals(String.valueOf(Global.SINCRONIZACION_COMPLETA)))
