@@ -370,7 +370,7 @@ public class ImagenesActivity extends Activity {
 
 			TableRow row = (TableRow) imagenesTableLayout.getChildAt(i);
 			Imagen _imagen = (Imagen) row.getTag();
-			if (_imagen.getVivcodigo().equals(imagen.getVivcodigo()) && _imagen.getTipo()== imagen.getTipo()) {
+			if (_imagen.getId() == imagen.getId()) {
 				imagenesTableLayout.removeViewAt(i);
 			}
 

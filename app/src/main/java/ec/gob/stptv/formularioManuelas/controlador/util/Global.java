@@ -92,12 +92,7 @@ public class Global {
     /**
      * Valor para la sincronizacion incompleta
      */
-    public static final int SINCRONIZACION_INCOMPLETA = -1;
-
-    /**
-     * Valor para la sincronizacion con error en imaghenes
-     */
-    public static final int SINCRONIZACION_ERROR_IMAGENES = 0;
+    public static final int SINCRONIZACION_INCOMPLETA = 0;
 
     /**
      * Valor para la sincronizacion con certificado duplicado
