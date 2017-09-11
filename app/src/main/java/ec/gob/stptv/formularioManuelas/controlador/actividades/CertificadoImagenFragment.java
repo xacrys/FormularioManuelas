@@ -106,6 +106,18 @@ public class CertificadoImagenFragment extends Fragment {
                     && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
                 Utilitarios.disableEnableViews(getActivity(), false, pantallaCertificadoImagenLinearLayout);
             }
+
+            if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
+                actualizarCertificadoButton.setEnabled(true);
+                limpiarButton.setEnabled(true);
+
+
+                actualizarCertificadoVerificarButton.setEnabled(true);
+                limpiarCertificadoVerificarButton.setEnabled(true);
+
+                finalizarEntrevistaButton.setEnabled(true);
+
+            }
         }
     }
 
@@ -280,6 +292,8 @@ public class CertificadoImagenFragment extends Fragment {
 
                 if (validarCampos())
                     return;
+
+
                 actualizarVivienda();
 
 
@@ -318,8 +332,10 @@ public class CertificadoImagenFragment extends Fragment {
         Boolean validacion = true;
         if (certificadoEditText.getText().toString().equals("")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionCodigoBarraVacio));
+            certificadoEditText.requestFocus();
         } else if (certificadoVerificarEditText.getText().toString().equals("")) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionCodigoBarraVerificadorVacio));
+            certificadoVerificarEditText.requestFocus();
         } else if (!certificadoEditText.getText().toString().equals(certificadoVerificarEditText.getText().toString())) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionCodigoBarrasDiferentes));
         } else if (imagenViviendaBitmap == null) {
@@ -327,6 +343,15 @@ public class CertificadoImagenFragment extends Fragment {
         } else {
             validacion=false;
         }
+
+        if (ViviendaDao.isRepeatCertificado(cr, certificadoEditText
+                .getText().toString()) == true) {
+            getAlert(getString(R.string.validacion_aviso),
+                    getString(R.string.mv_numero_certificado_duplicado));
+            return true;
+        }
+
+
         return validacion;
     }
 

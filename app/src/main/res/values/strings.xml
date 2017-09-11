@@ -32,6 +32,7 @@
     <string name="menu_sincronizar_formularios">Sincronizar Formularios</string>
     <string name="menu_sincronizar_imagenes">Sincronizar Imagenes</string>
     <string name="mensaje_sincronizacion_formularios">Sincronización de formularios esto puede tardar hasta 2 minutos por formulario,  por favor no cerrar o minimizar la ventana y espere&#8230; si no sincroniza intentelo mas tarde</string>
+    <string name="mv_numero_certificado_duplicado">Ya se ha registrado el mismo número de certificado para otra vivienda</string>
 
     <!-- Formulario de IMagenes -->
     <string name="title_activity_imagenes">Imagenes</string>

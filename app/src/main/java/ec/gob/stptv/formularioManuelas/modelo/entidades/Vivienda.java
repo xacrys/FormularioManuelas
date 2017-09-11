@@ -119,7 +119,7 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_FLAG = "flag";
     public final static String COLUMNA_VIVCODIGO = "vivcodigo";
     public final static String COLUMNA_IDUSUARIO = "idusuario";
-    public final static String COLUMNA_CODIGOUNICODISPOSITIVO = "identificadorequipo";
+    public final static String COLUMNA_IMEI = "identificadorequipo";
     public final static String COLUMNA_FECHAINICIO = "fechainicio";
     public final static String COLUMNA_FECHAFIN = "fechafin";
     public final static String COLUMNA_FECHASINCRONIZACION = "fechasincronizacion";
@@ -173,7 +173,7 @@ public class Vivienda implements Serializable {
             COLUMNA_FLAG,
             COLUMNA_VIVCODIGO,
             COLUMNA_IDUSUARIO,
-            COLUMNA_CODIGOUNICODISPOSITIVO,
+            COLUMNA_IMEI,
             COLUMNA_FECHAINICIO,
             COLUMNA_FECHAFIN,
             COLUMNA_FECHASINCRONIZACION,
@@ -196,10 +196,21 @@ public class Vivienda implements Serializable {
 
     public static String whereByEstadoSincronizacionControlEntrevista =  COLUMNA_ESTADOSINCRONIZACION + "  = ? AND " + COLUMNA_NUMEROVISITAS + "  <> 0 AND " + COLUMNA_IDCONTROLENTREVISTA +" <> ?" ;
 
+    public static String whereByFormulario = COLUMNA_FORMULARIO + " like ?";
+
     public Vivienda() {
         id = 0;
         observacion = Global.CADENAS_VACIAS;
-        formulario = Global.CADENAS_VACIAS;
+        formulario = String.valueOf(Global.ENTEROS_VACIOS);
+        idtipovivienda = Global.ENTEROS_VACIOS;
+        idviacceso = Global.ENTEROS_VACIOS;
+        idmaterialtecho = Global.ENTEROS_VACIOS;
+        idmaterialpiso = Global.ENTEROS_VACIOS;
+        idmaterialpared = Global.ENTEROS_VACIOS;
+        idestadoviviendatecho = Global.ENTEROS_VACIOS;
+        idestadoviviendapiso = Global.ENTEROS_VACIOS;
+        idestadoviviendapared = Global.ENTEROS_VACIOS;
+
     }
 
     /**
@@ -252,9 +263,11 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_NUMEROVISITAS, vivienda.getNumerovisitas());
         values.put(Vivienda.COLUMNA_IDCONTROLENTREVISTA, vivienda.getIdcontrolentrevista());
         values.put(Vivienda.COLUMNA_VIVCODIGO, vivienda.getVivcodigo());
-        values.put(Vivienda.COLUMNA_FECHASINCRONIZACION, vivienda.getFechasincronizacion());
+        values.put(Vivienda.COLUMNA_IDUSUARIO, vivienda.getIdusuario());
+        values.put(Vivienda.COLUMNA_IMEI, vivienda.getIdentificadorequipo());
         values.put(Vivienda.COLUMNA_FECHAINICIO, vivienda.getFechainicio());
         values.put(Vivienda.COLUMNA_FECHAFIN, vivienda.getFechafin());
+        values.put(Vivienda.COLUMNA_FECHASINCRONIZACION, vivienda.getFechasincronizacion());
         values.put(Vivienda.COLUMNA_ESTADOSINCRONIZACION, vivienda.getEstadosincronizacion());
         values.put(Vivienda.COLUMNA_OBSERVACION, vivienda.getObservacion());
 
@@ -311,7 +324,7 @@ public class Vivienda implements Serializable {
         vivienda.setIdcontrolentrevista(result.getInt(result.getColumnIndex(COLUMNA_IDCONTROLENTREVISTA)));
         vivienda.setVivcodigo(result.getString(result.getColumnIndex(COLUMNA_VIVCODIGO)));
         vivienda.setIdusuario(result.getInt(result.getColumnIndex(COLUMNA_IDUSUARIO)));
-        vivienda.setIdentificadorequipo(result.getString(result.getColumnIndex(COLUMNA_CODIGOUNICODISPOSITIVO)));
+        vivienda.setIdentificadorequipo(result.getString(result.getColumnIndex(COLUMNA_IMEI)));
         vivienda.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
         vivienda.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
         vivienda.setFechasincronizacion(result.getString(result.getColumnIndex(COLUMNA_FECHASINCRONIZACION)));

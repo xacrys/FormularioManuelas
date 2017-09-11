@@ -96,7 +96,7 @@ public class SincronizacionImagenes {
 					((ImagenesActivity)activity).changeRowSincronizada(imagen);
 
 				} else {
-					if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_ERROR_IMAGENES))) {
+					if (_respuesta.equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA))) {
 						imagen.setFechasincronizacion(Utilitarios.getCurrentDate());
 						imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
 						ImagenDao.update(cr, imagen);
@@ -106,7 +106,7 @@ public class SincronizacionImagenes {
 			else
 			{
 				imagen.setFechasincronizacion(Utilitarios.getCurrentDate());
-				imagen.setEstadosincronizacion(Global.SINCRONIZACION_ERROR_IMAGENES);
+				imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
 				ImagenDao.update(cr, imagen);
 
 			}

@@ -108,4 +108,27 @@ public class ViviendaDao  extends Vivienda{
         }
         return viviendas;
     }
+
+    public static boolean isRepeatCertificado(ContentResolver cr, String formulario)
+    {
+        boolean isRepeat = false;
+        Cursor result = cr.query(FormularioManuelasProvider.CONTENT_URI_VIVIENDA,
+                new String[] { COLUMNA_FORMULARIO}, Vivienda.whereByFormulario,new String[]{formulario},
+                null);
+        if ((result.getCount() == 0) || !result.moveToFirst()) {
+            isRepeat = false;
+        } else
+        {
+            if (result.moveToFirst())
+            {
+                if(!result.getString(result.getColumnIndex(COLUMNA_FORMULARIO)).equals("-1") && !result.getString(result.getColumnIndex(COLUMNA_FORMULARIO)).equals("") )
+                {
+                   isRepeat = true;
+                }
+            }
+        }
+        result.close();
+
+        return isRepeat;
+    }
 }

@@ -422,12 +422,7 @@ public class LoginActivity extends Activity {
                 if (_respuesta.getClass() == JSONObject.class) {
                     try {
                         JSONObject respuesta = (JSONObject) _respuesta;
-                        Utilitarios.logError("id usuario", respuesta.getString("idUsuario"));
-                        String codigoUsuario = respuesta.getString("idUsuario");
-                        String codigoDispositivo = respuesta.getString("idDispositivo");
-                        String idFase = respuesta.getString("idFase");
                         Integer codigo = respuesta.getInt("codigo");
-                        Utilitarios.logError("codigooooooooooo", "gggg"+codigo);
                         switch (codigo) {
                             case 1:
                                 Date fechaActual = new Date();
@@ -474,7 +469,7 @@ public class LoginActivity extends Activity {
                                     UsuarioDao.save(contentResolver,_usuario);
                                     usuario = _usuario;
                                 }
-
+                                String idFase = respuesta.getString("idFase");
                                 parametros = new String[] {idFase};
                                 Fase fase = FaseDao.getFase(contentResolver, Fase.whereById,parametros );
                                 if (fase == null){
@@ -778,10 +773,9 @@ public class LoginActivity extends Activity {
      * the user.
      */
     @SuppressLint("SimpleDateFormat")
-    public class VivcodigoTask extends AsyncTask<String, Void, Object> {
+    public class VivcodigoTask extends AsyncTask<String, Void, String> {
 
-        protected Object doInBackground(String... params) {
-            Object respuesta = null;
+        protected String doInBackground(String... params) {
 
             String[] parametros = new String[]{
                     mEmailView.getText().toString(),
@@ -789,7 +783,6 @@ public class LoginActivity extends Activity {
             };
             String where = Usuario.whereByUsuarioYPassword;
             Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
-
             JSONObject values = new JSONObject();
             try {
                 values.put("usuario", usuario.getIdusuario());
@@ -801,52 +794,31 @@ public class LoginActivity extends Activity {
             String _respuesta = WebService.getJsonData(params[0], values, httpClient);
             Utilitarios.logInfo("values", values.toString());
             Utilitarios.logInfo("respuesta", _respuesta);
-
-            if (!_respuesta.equals(""))
-            {
-                try
-                {
-                    respuesta = new JSONObject(_respuesta);
-
-                } catch (JSONException e) {
-
-                    e.printStackTrace();
-                }
-            }
-
-            return respuesta;
+            return _respuesta;
 
         }
 
         @Override
-        protected void onPostExecute(final Object _respuesta) {
+        protected void onPostExecute(final String _respuesta) {
             if (_respuesta != null) {
-              if (_respuesta.getClass() == JSONObject.class) {
-                  JSONObject respuesta = (JSONObject) _respuesta;
-                  try {
-                      JSONArray re = respuesta.getJSONArray("datos");
-                      if (!re.get(0).equals("")){
-                          Utilitarios.logError("lore", ""+re.get(0));
 
-                          String[] parametros = new String[]{
-                                  mEmailView.getText().toString(),
-                                  ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-                          };
-                          String where = Usuario.whereByUsuarioYPassword;
-                          Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
-                          usuario.setMaxvivcodigo(String.valueOf(re.get(0)));
-                          UsuarioDao.update(contentResolver, usuario);
-                          Intent intent = new Intent(LoginActivity.this,
-                                  FormulariosActivity.class);
-                          finish();
-                          intent.putExtra("usuario",usuario);
-                          startActivity(intent);
-                      }
-                  } catch (JSONException e) {
-                      e.printStackTrace();
-                  }
-              }
+                if (!_respuesta.equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA))) {
 
+                    String[] parametros = new String[]{
+                            mEmailView.getText().toString(),
+                            ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+                    };
+                    String where = Usuario.whereByUsuarioYPassword;
+                    Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+                    usuario.setMaxvivcodigo(_respuesta);
+                    UsuarioDao.update(contentResolver, usuario);
+                    Intent intent = new Intent(LoginActivity.this,
+                            FormulariosActivity.class);
+                    finish();
+                    intent.putExtra("usuario", usuario);
+                    startActivity(intent);
+
+                }
             }
             else{
                 Utilitarios.logError("lore", "entraaaaaaaaaaaaaaaaaaaaaaaaaaaa validarrrrrrrrr pendiente");

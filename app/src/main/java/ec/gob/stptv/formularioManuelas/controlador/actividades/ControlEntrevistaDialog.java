@@ -16,7 +16,9 @@ import android.widget.RadioGroup;
 
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
+import ec.gob.stptv.formularioManuelas.controlador.sincronizacion.SincronizacionVivienda;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
+import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 
@@ -29,6 +31,7 @@ public class ControlEntrevistaDialog extends DialogFragment{
 
 	public static final String PRODUCT_MODE = "PRODUCT_MODE";
 	private LinearLayout linlaHeaderProgress;
+	SincronizacionVivienda sincronizacionVivenda;
 	public ControlEntrevistaDialog() {
 	}
 
@@ -45,7 +48,7 @@ public class ControlEntrevistaDialog extends DialogFragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+		sincronizacionVivenda =  new SincronizacionVivienda(getActivity());
 		vivienda = (Vivienda) getArguments().getSerializable("vivienda");
 		contentResolver = getActivity().getContentResolver();
 
@@ -162,7 +165,14 @@ public class ControlEntrevistaDialog extends DialogFragment{
 		vivienda.setNumerovisitas(vivienda.getNumerovisitas() + 1);
 		vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
 		ViviendaDao.update(contentResolver, vivienda);
-		getActivity().finish();
+		if (Utilitarios.verificarConexion(getActivity())) {
+			sincronizacionVivenda.sincronizar(vivienda, getActivity());
+		}
+		else
+		{
+			getActivity().finish();
+		}
+
 		dismiss();
 	}
 	

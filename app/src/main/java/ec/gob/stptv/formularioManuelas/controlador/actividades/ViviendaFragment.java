@@ -117,7 +117,7 @@ public class ViviendaFragment extends Fragment {
     private ArrayList<Localizacion> localizaciones = new ArrayList<>();
     private int maxNumeroLocalizaciones = 50;
     private Location location = null;
-    private ProgressReceiver progressReceiver;
+    //private ProgressReceiver progressReceiver;
     private LocationManager locationManager = null;
     private TextView latitudTextView;
     private TextView longitudTextView;
@@ -169,8 +169,8 @@ public class ViviendaFragment extends Fragment {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Global.BROADCAST_ACTION_PROGRESS);
         filter.addAction(Global.BROADCAST_ACTION_FIN);
-        progressReceiver = new ProgressReceiver();
-        getActivity().registerReceiver(progressReceiver, filter);
+        //progressReceiver = new ProgressReceiver();
+        //getActivity().registerReceiver(progressReceiver, filter);
 
         tabs = getActivity().findViewById(android.R.id.tabhost);
         tabs.setup();
@@ -1492,7 +1492,7 @@ public class ViviendaFragment extends Fragment {
     /**
      *está destinado a recibir y responder ante eventos globales generados por el sistema,
      */
-    public class ProgressReceiver extends BroadcastReceiver {
+    /*public class ProgressReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1515,7 +1515,7 @@ public class ViviendaFragment extends Fragment {
             }
 
         }
-    }
+    }*/
 
 
     /**

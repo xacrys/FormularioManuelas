@@ -21,6 +21,7 @@ import com.google.gson.GsonBuilder;
 
 import ec.gob.stptv.formularioManuelas.R;
 import ec.gob.stptv.formularioManuelas.controlador.actividades.FormulariosActivity;
+import ec.gob.stptv.formularioManuelas.controlador.preguntas.ControlPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.preguntas.ViviendaPreguntas;
 import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
@@ -62,7 +63,8 @@ public class SincronizacionVivienda {
 		String where = null;
 		String parametros[];
 		
-		if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()){
+		if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor() &&
+				vivienda.getIdcontrolentrevista()== ControlPreguntas.ControlEntrevista.COMPLETA.getValor()){
 
 			where = Hogar.whereByViviendaId;
 			parametros = new String[] { String.valueOf(vivienda.getId()) };
@@ -73,7 +75,18 @@ public class SincronizacionVivienda {
 			parametros = new String[] { String.valueOf(hogar.getId()) };
 			ArrayList<Persona> personas = PersonaDao.getPersonas(cr, where, parametros, null);
 			hogar.setListaPersonas(personas);
+		}else{
+			//no se debe setear xq solo se envia la seccion vivienda
+			vivienda.setIdtipovivienda(Global.ENTEROS_VACIOS);
+			vivienda.setIdviacceso(Global.ENTEROS_VACIOS);
+			vivienda.setIdmaterialtecho(Global.ENTEROS_VACIOS);
+			vivienda.setIdmaterialpiso(Global.ENTEROS_VACIOS);
+			vivienda.setIdmaterialpared(Global.ENTEROS_VACIOS);
+			vivienda.setIdestadoviviendatecho(Global.ENTEROS_VACIOS);
+			vivienda.setIdestadoviviendapiso(Global.ENTEROS_VACIOS);
+			vivienda.setIdestadoviviendapared(Global.ENTEROS_VACIOS);
 		}
+
 		
 		where = Localizacion.whereByViviendaId;
 		parametros = new String[] { String.valueOf(vivienda.getId()) };
@@ -223,7 +236,8 @@ public class SincronizacionVivienda {
 		String where = null;
 		String parametros[];
 		
-		if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()){
+		if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor() &&
+				vivienda.getIdcontrolentrevista()== ControlPreguntas.ControlEntrevista.COMPLETA.getValor()){
 			where = Hogar.whereByViviendaId;
 			parametros = new String[] { String.valueOf(vivienda.getId()) };
 			Hogar hogar = HogarDao.getHogar(cr, where, parametros);
@@ -233,6 +247,16 @@ public class SincronizacionVivienda {
 			parametros = new String[] { String.valueOf(hogar.getId()) };
 			ArrayList<Persona> personas = PersonaDao.getPersonas(cr, where, parametros, null);
 			hogar.setListaPersonas(personas);
+		}else {
+			//no se debe setear xq solo se envia la seccion vivienda
+			vivienda.setIdtipovivienda(Global.ENTEROS_VACIOS);
+			vivienda.setIdviacceso(Global.ENTEROS_VACIOS);
+			vivienda.setIdmaterialtecho(Global.ENTEROS_VACIOS);
+			vivienda.setIdmaterialpiso(Global.ENTEROS_VACIOS);
+			vivienda.setIdmaterialpared(Global.ENTEROS_VACIOS);
+			vivienda.setIdestadoviviendatecho(Global.ENTEROS_VACIOS);
+			vivienda.setIdestadoviviendapiso(Global.ENTEROS_VACIOS);
+			vivienda.setIdestadoviviendapared(Global.ENTEROS_VACIOS);
 		}
 
 		where = Localizacion.whereByViviendaId;

@@ -33,9 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <receiver android:name="ec.gob.stptv.formularioManuelas.controlador.actividades.ViviendaFragment$ProgressReceiver" >
-        </receiver>
         <provider
             android:name="ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider"
             android:authorities="ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelas"

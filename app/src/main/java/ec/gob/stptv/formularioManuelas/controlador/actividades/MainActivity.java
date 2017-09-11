@@ -66,8 +66,7 @@ public class MainActivity extends Activity {
 
             if(vivienda.getId() != 0)
             {
-                if (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA
-                        .getValor()) {
+                if (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
                     finish();
                 }
                 else
@@ -105,30 +104,22 @@ public class MainActivity extends Activity {
 
         builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
-
                 vivienda.setNumerovisitas(vivienda.getNumerovisitas() + 1);
-                int filasAfectadas = ViviendaDao.update(contentResolver, vivienda);
-
+                ViviendaDao.update(contentResolver, vivienda);
                 if(vivienda.getNumerovisitas() < Global.NUMERO_VISITAS_MAXIMO)
                 {
                     getEditVisitasObservacion(vivienda);
-
-                    //finish();
                 }
-
-
                 if(vivienda.getNumerovisitas() == Global.NUMERO_VISITAS_MAXIMO)
                 {
                     if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
                             && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor()
                             ) {
                         vivienda.setNumerovisitas(2);
-                        filasAfectadas = ViviendaDao.update(contentResolver, vivienda);
+                        ViviendaDao.update(contentResolver, vivienda);
                         getEditControlEntrevista(vivienda);
                     }
                 }
-
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -350,9 +341,9 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        Vivienda vivienda = ViviendaFragment.getVivienda();
 
-        switch (id) {
+        switch (item.getItemId()) {
             case R.id.menu_observacion:
                 FragmentManager fm = getFragmentManager();
                 ObservacionDialog editarObservacionesDialog = new ObservacionDialog();
@@ -362,14 +353,34 @@ public class MainActivity extends Activity {
                 editarObservacionesDialog.show(fm, "fragment_observaciones");
                 break;
 
-            case R.id.menu_control_entrevista:
-                /*FragmentManager controlEntevista = getFragmentManager();
-                ControlEntrevistaDialog controlEntrevistaDialog = new ControlEntrevistaDialog();
-                parametros = new Bundle();
-                parametros.putSerializable("vivienda", ViviendaFragment.getVivienda());
-                controlEntrevistaDialog.setArguments(parametros);
-                controlEntrevistaDialog.show(controlEntevista, "fragment_control_entrevista");*/
-                break;
+            case R.id.menu_terminar:
+
+                if(vivienda.getId() != 0)
+                {
+                    if (vivienda.getIdcontrolentrevista()== ControlPreguntas.ControlEntrevista.COMPLETA
+                            .getValor()) {
+                        finish();
+                    }
+                    else
+                    {
+                        if(vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                                && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor())
+                        {
+                            getVisitastAlert(vivienda).show();
+                        }
+                        else
+                        {
+
+                            getExitAlert().show();
+                        }
+                    }
+                }
+                else
+                {
+                    getExitAlert().show();
+                }
+
+                return true;
 
             case R.id.menu_exit:
                 getExitAlert();
