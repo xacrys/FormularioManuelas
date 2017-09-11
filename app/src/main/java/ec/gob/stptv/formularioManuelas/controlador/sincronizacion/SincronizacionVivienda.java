@@ -77,14 +77,14 @@ public class SincronizacionVivienda {
 			hogar.setListaPersonas(personas);
 		}else{
 			//no se debe setear xq solo se envia la seccion vivienda
-			vivienda.setIdtipovivienda(Global.ENTEROS_VACIOS);
-			vivienda.setIdviacceso(Global.ENTEROS_VACIOS);
-			vivienda.setIdmaterialtecho(Global.ENTEROS_VACIOS);
-			vivienda.setIdmaterialpiso(Global.ENTEROS_VACIOS);
-			vivienda.setIdmaterialpared(Global.ENTEROS_VACIOS);
-			vivienda.setIdestadoviviendatecho(Global.ENTEROS_VACIOS);
-			vivienda.setIdestadoviviendapiso(Global.ENTEROS_VACIOS);
-			vivienda.setIdestadoviviendapared(Global.ENTEROS_VACIOS);
+			vivienda.setIdtipovivienda(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdviacceso(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdmaterialtecho(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdmaterialpiso(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdmaterialpared(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdestadoviviendatecho(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdestadoviviendapiso(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdestadoviviendapared(Global.ENTEROS_VACIOS_CATALOGOS);
 		}
 
 		
@@ -249,14 +249,14 @@ public class SincronizacionVivienda {
 			hogar.setListaPersonas(personas);
 		}else {
 			//no se debe setear xq solo se envia la seccion vivienda
-			vivienda.setIdtipovivienda(Global.ENTEROS_VACIOS);
-			vivienda.setIdviacceso(Global.ENTEROS_VACIOS);
-			vivienda.setIdmaterialtecho(Global.ENTEROS_VACIOS);
-			vivienda.setIdmaterialpiso(Global.ENTEROS_VACIOS);
-			vivienda.setIdmaterialpared(Global.ENTEROS_VACIOS);
-			vivienda.setIdestadoviviendatecho(Global.ENTEROS_VACIOS);
-			vivienda.setIdestadoviviendapiso(Global.ENTEROS_VACIOS);
-			vivienda.setIdestadoviviendapared(Global.ENTEROS_VACIOS);
+			vivienda.setIdtipovivienda(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdviacceso(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdmaterialtecho(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdmaterialpiso(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdmaterialpared(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdestadoviviendatecho(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdestadoviviendapiso(Global.ENTEROS_VACIOS_CATALOGOS);
+			vivienda.setIdestadoviviendapared(Global.ENTEROS_VACIOS_CATALOGOS);
 		}
 
 		where = Localizacion.whereByViviendaId;

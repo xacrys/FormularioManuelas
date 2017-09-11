@@ -121,6 +121,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         persona = (Persona) getArguments().getSerializable("persona");
         hogar = HogarFragment.getHogar();
         this.cargarPreguntas();
+        this.habilitarDeshabilitar();
         this.realizarAcciones();
         this.mallasValidacion();
         return item;
@@ -286,7 +287,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         }
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) nacionalidadSpinner.getAdapter(), String.valueOf(persona.getIdnacionalidad()));
         nacionalidadSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) etniaSpinner.getAdapter(), String.valueOf(persona.getIdnacionalidad()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) etniaSpinner.getAdapter(), String.valueOf(persona.getIdetnia()));
         etniaSpinner.setSelection(posicion);
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) seguroSocial1Spinner.getAdapter(), String.valueOf(persona.getIdsegurosocial1()));
         seguroSocial1Spinner.setSelection(posicion);
@@ -627,6 +628,13 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
      */
     public void habilitarDeshabilitar() {
 
+        asistenciaEstablecimientoSpinner.setEnabled(false);
+        proteccionSocialpinner.setEnabled(false);
+        enfermedadCatastroficaSpinner.setEnabled(false);
+        parentescoSpinner.setEnabled(false);
+        seguroSocial2Spinner.setEnabled(false);
+        seguroSalud2Spinner.setEnabled(false);
+
     }
 
     /**
@@ -642,10 +650,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         } else {
             if (viveMadreHogarRadioGroup.getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion2RadioButton) {
                 persona.setMadrevive(Global.NO);
-                persona.setOrdenMadre(Global.ENTEROS_VACIOS);
+                persona.setOrdenMadre(Global.ENTEROS_VACIOS_CATALOGOS);
             } else {
-                persona.setMadrevive(Global.ENTEROS_VACIOS);
-                persona.setOrdenMadre(Global.ENTEROS_VACIOS);
+                persona.setMadrevive(Global.ENTEROS_VACIOS_CATALOGOS);
+                persona.setOrdenMadre(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         persona.setIdnacionalidad(Integer.parseInt(((Values) nacionalidadSpinner.getSelectedItem()).getKey()));
@@ -660,7 +668,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion2RadioButton) {
                 persona.setTienediscapacidad(Global.NO);
             } else {
-                persona.setTienediscapacidad(Global.ENTEROS_VACIOS);
+                persona.setTienediscapacidad(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton) {
@@ -669,7 +677,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion2RadioButton) {
                 persona.setCarnediscapacidad(Global.NO);
             } else {
-                persona.setCarnediscapacidad(Global.ENTEROS_VACIOS);
+                persona.setCarnediscapacidad(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
 
@@ -679,7 +687,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion2RadioButton) {
                 persona.setDiscapacidadintelectual(Global.NO);
             } else {
-                persona.setDiscapacidadintelectual(Global.ENTEROS_VACIOS);
+                persona.setDiscapacidadintelectual(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (!TextUtils.isEmpty(porcentajeIntelectualEditText.getText().toString())) {
@@ -694,7 +702,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion2RadioButton) {
                 persona.setDiscapacidadfisica(Global.NO);
             } else {
-                persona.setDiscapacidadfisica(Global.ENTEROS_VACIOS);
+                persona.setDiscapacidadfisica(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (!TextUtils.isEmpty(porcentajeFisicaEditText.getText().toString())) {
@@ -709,7 +717,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion2RadioButton) {
                 persona.setDiscapacidadceguera(Global.NO);
             } else {
-                persona.setDiscapacidadceguera(Global.ENTEROS_VACIOS);
+                persona.setDiscapacidadceguera(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (!TextUtils.isEmpty(porcentajeCegueraEditText.getText().toString())) {
@@ -724,7 +732,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion2RadioButton) {
                 persona.setDiscapacidadvision(Global.NO);
             } else {
-                persona.setDiscapacidadvision(Global.ENTEROS_VACIOS);
+                persona.setDiscapacidadvision(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (!TextUtils.isEmpty(porcentajeVisionEditText.getText().toString())) {
@@ -739,7 +747,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion2RadioButton) {
                 persona.setDiscapacidadsordera(Global.NO);
             } else {
-                persona.setDiscapacidadsordera(Global.ENTEROS_VACIOS);
+                persona.setDiscapacidadsordera(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (!TextUtils.isEmpty(porcentajeSorderaEditText.getText().toString())) {
@@ -754,7 +762,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion2RadioButton) {
                 persona.setDiscapacidadhipoacusia(Global.NO);
             } else {
-                persona.setDiscapacidadhipoacusia(Global.ENTEROS_VACIOS);
+                persona.setDiscapacidadhipoacusia(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (!TextUtils.isEmpty(porcentajeHipoacusiaEditText.getText().toString())) {
@@ -769,7 +777,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion2RadioButton) {
                 persona.setDiscapacidadpsicosociales(Global.NO);
             } else {
-                persona.setDiscapacidadpsicosociales(Global.ENTEROS_VACIOS);
+                persona.setDiscapacidadpsicosociales(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (!TextUtils.isEmpty(porcentajePsicosocialesEditText.getText().toString())) {
@@ -786,7 +794,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion2RadioButton) {
                 persona.setNecesitaayudatecnica(Global.NO);
             } else {
-                persona.setNecesitaayudatecnica(Global.ENTEROS_VACIOS);
+                persona.setNecesitaayudatecnica(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion1RadioButton) {
@@ -795,7 +803,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion2RadioButton) {
                 persona.setRecibioayudatecnica(Global.NO);
             } else {
-                persona.setRecibioayudatecnica(Global.ENTEROS_VACIOS);
+                persona.setRecibioayudatecnica(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
 
@@ -805,7 +813,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (sillaRuedasRadioGroup.getCheckedRadioButtonId() == R.id.sillaRuedasOpcion2RadioButton) {
                 persona.setSillaruedas(Global.NO);
             } else {
-                persona.setSillaruedas(Global.ENTEROS_VACIOS);
+                persona.setSillaruedas(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
 
@@ -815,7 +823,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (muletasRadioGroup.getCheckedRadioButtonId() == R.id.muletasOpcion2RadioButton) {
                 persona.setMuletas(Global.NO);
             } else {
-                persona.setMuletas(Global.ENTEROS_VACIOS);
+                persona.setMuletas(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
 
@@ -825,7 +833,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (andadoresRadioGroup.getCheckedRadioButtonId() == R.id.andadoresOpcion2RadioButton) {
                 persona.setAndadores(Global.NO);
             } else {
-                persona.setAndadores(Global.ENTEROS_VACIOS);
+                persona.setAndadores(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (bastonApoyoRadioGroup.getCheckedRadioButtonId() == R.id.bastonApoyoOpcion1RadioButton) {
@@ -834,7 +842,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (bastonApoyoRadioGroup.getCheckedRadioButtonId() == R.id.bastonApoyoOpcion2RadioButton) {
                 persona.setBastonapoyo(Global.NO);
             } else {
-                persona.setBastonapoyo(Global.ENTEROS_VACIOS);
+                persona.setBastonapoyo(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (ortesisRadioGroup.getCheckedRadioButtonId() == R.id.ortesisOpcion1RadioButton) {
@@ -843,7 +851,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (ortesisRadioGroup.getCheckedRadioButtonId() == R.id.ortesisOpcion2RadioButton) {
                 persona.setOrtesis(Global.NO);
             } else {
-                persona.setOrtesis(Global.ENTEROS_VACIOS);
+                persona.setOrtesis(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (colchonRadioGroup.getCheckedRadioButtonId() == R.id.colchonOpcion1RadioButton) {
@@ -852,7 +860,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (colchonRadioGroup.getCheckedRadioButtonId() == R.id.colchonOpcion2RadioButton) {
                 persona.setColchon(Global.NO);
             } else {
-                persona.setColchon(Global.ENTEROS_VACIOS);
+                persona.setColchon(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (cojinRadioGroup.getCheckedRadioButtonId() == R.id.cojinOpcion1RadioButton) {
@@ -861,7 +869,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (cojinRadioGroup.getCheckedRadioButtonId() == R.id.cojinOpcion2RadioButton) {
                 persona.setCojin(Global.NO);
             } else {
-                persona.setCojin(Global.ENTEROS_VACIOS);
+                persona.setCojin(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (bastonRastreoRadioGroup.getCheckedRadioButtonId() == R.id.bastonRastreoOpcion1RadioButton) {
@@ -870,7 +878,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (bastonRastreoRadioGroup.getCheckedRadioButtonId() == R.id.bastonRastreoOpcion2RadioButton) {
                 persona.setBastonrastreo(Global.NO);
             } else {
-                persona.setBastonrastreo(Global.ENTEROS_VACIOS);
+                persona.setBastonrastreo(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (abacoRadioGroup.getCheckedRadioButtonId() == R.id.abacoOpcion1RadioButton) {
@@ -879,7 +887,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (abacoRadioGroup.getCheckedRadioButtonId() == R.id.abacoOpcion2RadioButton) {
                 persona.setAbaco(Global.NO);
             } else {
-                persona.setAbaco(Global.ENTEROS_VACIOS);
+                persona.setAbaco(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (computadoraRadioGroup.getCheckedRadioButtonId() == R.id.computadoraOpcion1RadioButton) {
@@ -888,7 +896,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (computadoraRadioGroup.getCheckedRadioButtonId() == R.id.computadoraOpcion2RadioButton) {
                 persona.setComputadora(Global.NO);
             } else {
-                persona.setComputadora(Global.ENTEROS_VACIOS);
+                persona.setComputadora(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (audifonosRadioGroup.getCheckedRadioButtonId() == R.id.audifonosOpcion1RadioButton) {
@@ -897,7 +905,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (audifonosRadioGroup.getCheckedRadioButtonId() == R.id.audifonosOpcion2RadioButton) {
                 persona.setAudifonos(Global.NO);
             } else {
-                persona.setAudifonos(Global.ENTEROS_VACIOS);
+                persona.setAudifonos(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (implantesRadioGroup.getCheckedRadioButtonId() == R.id.implantesOpcion1RadioButton) {
@@ -906,7 +914,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (implantesRadioGroup.getCheckedRadioButtonId() == R.id.implantesOpcion2RadioButton) {
                 persona.setImplantes(Global.NO);
             } else {
-                persona.setImplantes(Global.ENTEROS_VACIOS);
+                persona.setImplantes(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (cochePostularRadioGroup.getCheckedRadioButtonId() == R.id.cochePostularOpcion1RadioButton) {
@@ -915,7 +923,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (cochePostularRadioGroup.getCheckedRadioButtonId() == R.id.cochePostularOpcion2RadioButton) {
                 persona.setCochepostular(Global.NO);
             } else {
-                persona.setCochepostular(Global.ENTEROS_VACIOS);
+                persona.setCochepostular(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (panialesRadioGroup.getCheckedRadioButtonId() == R.id.panialesOpcion1RadioButton) {
@@ -924,7 +932,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (panialesRadioGroup.getCheckedRadioButtonId() == R.id.panialesOpcion2RadioButton) {
                 persona.setPaniales(Global.NO);
             } else {
-                persona.setPaniales(Global.ENTEROS_VACIOS);
+                persona.setPaniales(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (sillaBaniarseRadioGroup.getCheckedRadioButtonId() == R.id.sillaBaniarseOpcion1RadioButton) {
@@ -933,7 +941,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (sillaBaniarseRadioGroup.getCheckedRadioButtonId() == R.id.sillaBaniarseOpcion2RadioButton) {
                 persona.setSillabaniarse(Global.NO);
             } else {
-                persona.setSillabaniarse(Global.ENTEROS_VACIOS);
+                persona.setSillabaniarse(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (camasRadioGroup.getCheckedRadioButtonId() == R.id.camasOpcion1RadioButton) {
@@ -942,7 +950,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (camasRadioGroup.getCheckedRadioButtonId() == R.id.camasOpcion2RadioButton) {
                 persona.setCamas(Global.NO);
             } else {
-                persona.setCamas(Global.ENTEROS_VACIOS);
+                persona.setCamas(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (otrosRadioGroup.getCheckedRadioButtonId() == R.id.otrosOpcion1RadioButton) {
@@ -951,7 +959,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (otrosRadioGroup.getCheckedRadioButtonId() == R.id.otrosOpcion2RadioButton) {
                 persona.setOtrasayudas(Global.NO);
             } else {
-                persona.setOtrasayudas(Global.ENTEROS_VACIOS);
+                persona.setOtrasayudas(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (gobiernoCentralRadioGroup.getCheckedRadioButtonId() == R.id.gobiernoCentralOpcion1RadioButton) {
@@ -960,7 +968,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (gobiernoCentralRadioGroup.getCheckedRadioButtonId() == R.id.gobiernoCentralOpcion2RadioButton) {
                 persona.setGobiernocentral(Global.NO);
             } else {
-                persona.setGobiernocentral(Global.ENTEROS_VACIOS);
+                persona.setGobiernocentral(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (gobiernoAutonomoRadioGroup.getCheckedRadioButtonId() == R.id.gobiernoAutonomoOpcion1RadioButton) {
@@ -969,7 +977,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (gobiernoAutonomoRadioGroup.getCheckedRadioButtonId() == R.id.gobiernoAutonomoOpcion2RadioButton) {
                 persona.setGobiernoautonomo(Global.NO);
             } else {
-                persona.setGobiernoautonomo(Global.ENTEROS_VACIOS);
+                persona.setGobiernoautonomo(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (organizacionPrivadaRadioGroup.getCheckedRadioButtonId() == R.id.organizacionPrivadaOpcion1RadioButton) {
@@ -978,7 +986,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (organizacionPrivadaRadioGroup.getCheckedRadioButtonId() == R.id.organizacionPrivadaOpcion2RadioButton) {
                 persona.setOrganizacionprivada(Global.NO);
             } else {
-                persona.setOrganizacionprivada(Global.ENTEROS_VACIOS);
+                persona.setOrganizacionprivada(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         if (ningunaRadioGroup.getCheckedRadioButtonId() == R.id.ningunaOpcion1RadioButton) {
@@ -987,7 +995,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (ningunaRadioGroup.getCheckedRadioButtonId() == R.id.ningunaOpcion2RadioButton) {
                 persona.setNingunainstitucion(Global.NO);
             } else {
-                persona.setNingunainstitucion(Global.ENTEROS_VACIOS);
+                persona.setNingunainstitucion(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         persona.setIdtipoenfermedad(Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()));
@@ -997,7 +1005,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if (diagnosticoMedicoRadioGroup.getCheckedRadioButtonId() == R.id.diagnosticoMedicoOpcion2RadioButton) {
                 persona.setEnfermedaddiagnostico(Global.NO);
             } else {
-                persona.setEnfermedaddiagnostico(Global.ENTEROS_VACIOS);
+                persona.setEnfermedaddiagnostico(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         persona.setIdenfermedadcatastrofica(Integer.parseInt(((Values) enfermedadCatastroficaSpinner.getSelectedItem()).getKey()));
@@ -1092,8 +1100,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     asistenciaEstablecimientoSpinner.setEnabled(false);
                     proteccionSocialpinner.setSelection(0);
                     proteccionSocialpinner.setEnabled(false);
-                    asistenciaEstablecimientoSpinner.setClickable(false);
-                    proteccionSocialpinner.setClickable(false);
                     necesitaAyudaTecnicaRadioGroup.check(-1);
                     for (int cont = 0; cont < necesitaAyudaTecnicaRadioGroup.getChildCount(); cont++) {
                         necesitaAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(false);
@@ -1128,8 +1134,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     }
                     asistenciaEstablecimientoSpinner.setEnabled(true);
                     proteccionSocialpinner.setEnabled(true);
-                    asistenciaEstablecimientoSpinner.setClickable(true);
-                    proteccionSocialpinner.setClickable(true);
                     for (int cont = 0; cont < necesitaAyudaTecnicaRadioGroup.getChildCount(); cont++) {
                         necesitaAyudaTecnicaRadioGroup.getChildAt(cont).setEnabled(true);
                     }
@@ -1150,17 +1154,14 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     }
                     enfermedadCatastroficaSpinner.setSelection(0);
                     enfermedadCatastroficaSpinner.setEnabled(false);
-                    enfermedadCatastroficaSpinner.setClickable(false);
                 } else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 2 ||
                         Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 3) {
                     enfermedadCatastroficaSpinner.setEnabled(false);
-                    enfermedadCatastroficaSpinner.setClickable(false);
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
                     }
                 }
                 else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 1 ) {
-                    enfermedadCatastroficaSpinner.setClickable(true);
                     enfermedadCatastroficaSpinner.setEnabled(true);
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
@@ -1178,10 +1179,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-                    seguroSocial2Spinner.setClickable(true);
+                    seguroSocial2Spinner.setEnabled(true);
                 }
                 else{
-                    seguroSocial2Spinner.setClickable(false);
+                    seguroSocial2Spinner.setEnabled(false);
                     seguroSocial2Spinner.setSelection(0);
                 }
                 if (((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial2Spinner.getSelectedItem()).getKey())
@@ -1217,10 +1218,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-                    seguroSalud2Spinner.setClickable(true);
+                    seguroSalud2Spinner.setEnabled(true);
                 }
                 else{
-                    seguroSalud2Spinner.setClickable(false);
+                    seguroSalud2Spinner.setEnabled(false);
                     seguroSalud2Spinner.setSelection(0);
                 }
                 if (((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(((Values) seguroSalud2Spinner.getSelectedItem()).getKey())
@@ -1375,23 +1376,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             }
         });
 
-        parentescoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if ((((Values) parentescoSpinner.getSelectedItem()).getKey().equals("5") ||
-                        ((Values) parentescoSpinner.getSelectedItem()).getKey().equals("6") ||
-                        ((Values) parentescoSpinner.getSelectedItem()).getKey().equals("7")) &&
-                        persona != null && persona.getEdadanio() < 12) {
-                    parentescoSpinner.setSelection(0);
-                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorParentescoEdad));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         carnetConadisRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -1958,7 +1942,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         if (!porcentajeSorderaEditText.getText().toString().equals("")) {
             contador++;
         }
-        if (!porcentajeVisionEditText.getText().toString().equals("")) {
+        if (!porcentajeHipoacusiaEditText.getText().toString().equals("")) {
             contador++;
         }
         if (!porcentajePsicosocialesEditText.getText().toString().equals("")) {

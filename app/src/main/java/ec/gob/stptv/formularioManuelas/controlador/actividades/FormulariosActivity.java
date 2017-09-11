@@ -306,7 +306,7 @@ public class FormulariosActivity extends Activity {
 			((TextView) row.findViewById(R.id.columnaSectorTextView))
 					.setText(vivienda.getSector());
 
-			if(!vivienda.getManzana().equals(Global.ENTEROS_VACIOS))
+			if(!vivienda.getManzana().equals(Global.ENTEROS_VACIOS_CATALOGOS))
 			{
 				((TextView) row.findViewById(R.id.columnaManzanaTextView))
 						.setText(String.valueOf(vivienda.getManzana()));
@@ -315,7 +315,7 @@ public class FormulariosActivity extends Activity {
 						.setText("");
 			}
 
-			if(!vivienda.getEdificio().equals(Global.ENTEROS_VACIOS))
+			if(!vivienda.getEdificio().equals(Global.ENTEROS_VACIOS_CATALOGOS))
 			{
 				((TextView) row.findViewById(R.id.columnaEdificioTextView))
 						.setText(String.valueOf(vivienda.getEdificio()));
@@ -324,7 +324,7 @@ public class FormulariosActivity extends Activity {
 						.setText("");
 			}
 
-			if (!vivienda.getVivienda().equals(Global.ENTEROS_VACIOS)) {
+			if (!vivienda.getVivienda().equals(Global.ENTEROS_VACIOS_CATALOGOS)) {
 				((TextView) row.findViewById(R.id.columnaViviendaTextView))
 						.setText(String.valueOf(vivienda.getVivienda()));
 			}
@@ -334,7 +334,7 @@ public class FormulariosActivity extends Activity {
 						.setText("");
 			}
 
-			if (!vivienda.getHogar1().equals(Global.ENTEROS_VACIOS)) {
+			if (!vivienda.getHogar1().equals(Global.ENTEROS_VACIOS_CATALOGOS)) {
 				((TextView) row.findViewById(R.id.columnaHogarInicialFinalTextView))
 						.setText(String.valueOf(vivienda.getHogar1())+ "-"+ String.valueOf(vivienda.getHogart()));
 			} else {
@@ -342,7 +342,7 @@ public class FormulariosActivity extends Activity {
 						.setText("");
 			}
 
-			if (!vivienda.getNumerovisitas().equals(Global.ENTEROS_VACIOS)) {
+			if (!vivienda.getNumerovisitas().equals(Global.ENTEROS_VACIOS_CATALOGOS)) {
 				((TextView) row.findViewById(R.id.columnaNumeroVisitasTextView))
 						.setText(String.valueOf(vivienda.getNumerovisitas()));
 			} else {

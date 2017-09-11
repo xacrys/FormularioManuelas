@@ -202,14 +202,14 @@ public class Vivienda implements Serializable {
         id = 0;
         observacion = Global.CADENAS_VACIAS;
         formulario = String.valueOf(Global.ENTEROS_VACIOS);
-        idtipovivienda = Global.ENTEROS_VACIOS;
-        idviacceso = Global.ENTEROS_VACIOS;
-        idmaterialtecho = Global.ENTEROS_VACIOS;
-        idmaterialpiso = Global.ENTEROS_VACIOS;
-        idmaterialpared = Global.ENTEROS_VACIOS;
-        idestadoviviendatecho = Global.ENTEROS_VACIOS;
-        idestadoviviendapiso = Global.ENTEROS_VACIOS;
-        idestadoviviendapared = Global.ENTEROS_VACIOS;
+        idtipovivienda = Global.ENTEROS_VACIOS_CATALOGOS;
+        idviacceso = Global.ENTEROS_VACIOS_CATALOGOS;
+        idmaterialtecho = Global.ENTEROS_VACIOS_CATALOGOS;
+        idmaterialpiso = Global.ENTEROS_VACIOS_CATALOGOS;
+        idmaterialpared = Global.ENTEROS_VACIOS_CATALOGOS;
+        idestadoviviendatecho = Global.ENTEROS_VACIOS_CATALOGOS;
+        idestadoviviendapiso = Global.ENTEROS_VACIOS_CATALOGOS;
+        idestadoviviendapared = Global.ENTEROS_VACIOS_CATALOGOS;
 
     }
 

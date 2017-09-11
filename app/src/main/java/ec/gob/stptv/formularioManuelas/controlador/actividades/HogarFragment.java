@@ -320,7 +320,7 @@ public class HogarFragment extends Fragment {
             if (gasParaCalefonOpcion.getCheckedRadioButtonId() == R.id.gasParaCalefonOpcion2) {
                 hogar.setGascalefon(Global.NO);
             } else {
-                hogar.setGascalefon(Global.ENTEROS_VACIOS);
+                hogar.setGascalefon(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
 
@@ -330,7 +330,7 @@ public class HogarFragment extends Fragment {
             if (terrenoAgropecuario.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioOpcion2rb) {
                 hogar.setTerreno(Global.NO);
             } else {
-                hogar.setTerreno(Global.ENTEROS_VACIOS);
+                hogar.setTerreno(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
 
@@ -340,7 +340,7 @@ public class HogarFragment extends Fragment {
             if (terrenoAgropecuarioSi.getCheckedRadioButtonId() == R.id.terrenoAgropecuarioSiOpcion2rb) {
                 hogar.setTerrenoservicios(Global.NO);
             } else {
-                hogar.setTerrenoservicios(Global.ENTEROS_VACIOS);
+                hogar.setTerrenoservicios(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
         hogar.setFechainicio(Utilitarios.getCurrentDateAndHour());

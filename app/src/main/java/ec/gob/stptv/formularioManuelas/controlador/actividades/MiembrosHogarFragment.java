@@ -369,8 +369,8 @@ public class MiembrosHogarFragment extends Fragment {
             TableRow row = (TableRow) personasTableLayout.getChildAt(i);
             Persona _persona = (Persona) row.getTag();
             if ((_persona.getMadrevive() == Global.SI) && (madre.getId().equals( _persona.getOrdenMadre()))) {
-                _persona.setMadrevive(Global.ENTEROS_VACIOS);
-                _persona.setOrdenMadre(Global.ENTEROS_VACIOS);
+                _persona.setMadrevive(Global.ENTEROS_VACIOS_CATALOGOS);
+                _persona.setOrdenMadre(Global.ENTEROS_VACIOS_CATALOGOS);
                 _persona.setInformacioncompleta(Global.INFORMACION_INCOMPLETA);
                 PersonaDao.update(contentResolver,_persona);
             }
@@ -409,7 +409,7 @@ public class MiembrosHogarFragment extends Fragment {
             if (persona.getTipoEdad() == Global.ANIOS_CUMPLIDOS) {
                 edadRadioGroup.check(R.id.edadAniosCumplidosOpcion2RadioButton);
                 aniosEditText.setText(String.valueOf(persona.getEdadanio()));
-                if (persona.getEdadmes().equals(Global.ENTEROS_VACIOS)) {
+                if (persona.getEdadmes().equals(Global.ENTEROS_VACIOS_CATALOGOS)) {
                     mesesEditText.setVisibility(View.INVISIBLE);
                     mesesEditText.setText("");
                 } else {
@@ -822,7 +822,7 @@ public class MiembrosHogarFragment extends Fragment {
 
                 edadMeses = Integer.valueOf(mesesEditText.getText().toString());
             }else{
-                edadMeses = Global.ENTEROS_VACIOS;
+                edadMeses = Global.ENTEROS_VACIOS_CATALOGOS;
             }
         }
 
@@ -874,33 +874,48 @@ public class MiembrosHogarFragment extends Fragment {
             }
 
             if ((persona.getOrden() == 1)) {
-                if (validarJefeHogar(edadAnios))
+                if (validarEdad(edadAnios, 1))
                     return;
                 persona.setIdparentesco(1);
-
             }
 
             if(persona.getOrden() > 1){
                 if (validarParentesco(persona))
                     return;
             }
+
             if (persona.getIdparentesco() == 2) {
-                if (validarEdadConyuge(edadAnios))
+                if (validarEdad(edadAnios, 2))
+                    return;
+            }
+
+            if (persona.getIdparentesco() == 5) {
+                if (validarEdad(edadAnios, 5))
+                    return;
+            }
+
+            if (persona.getIdparentesco() == 6) {
+                if (validarEdad(edadAnios, 6))
+                    return;
+            }
+
+            if (persona.getIdparentesco() == 7) {
+                if (validarEdad(edadAnios, 7))
+                    return;
+            }
+
+
+            if (persona.getIdparentesco() == 2) {
+                if (validarJefeHogarUnConyuge(persona))
                     return;
             }
 
             if (persona.getIdparentesco() == 2) {
-                if (validarJefeHogarConyuge(persona))
+                if (validarJefeHogarConyugeSexo(persona))
                     return;
             }
 
-            if (persona.getIdparentesco() == 2) {
-                if (validarJefeHogarConyuge(persona))
-                    return;
-            }
 
-            if (validarJefeHogarConyugeSexo(persona))
-                return;
 
 
             Uri uri = PersonaDao.save(contentResolver, persona);
@@ -926,19 +941,34 @@ public class MiembrosHogarFragment extends Fragment {
                 } else {
                     persona.setCi(Global.CADENAS_VACIAS);
                 }
-                if (persona.getIdparentesco() == 1) {
-                    if ((persona.getOrden() == 1)) {
-                        if (validarJefeHogar(edadAnios))
-                            return;
-                    }
-                }
-                if (persona.getIdparentesco() == 2) {
-                    if (validarEdadConyuge(edadAnios))
+
+                if(persona.getOrden() > 1){
+                    if (validarParentesco(persona))
                         return;
                 }
 
                 if (persona.getIdparentesco() == 2) {
-                    if (validarJefeHogarConyuge(persona))
+                    if (validarEdad(edadAnios, 2))
+                        return;
+                }
+
+                if (persona.getIdparentesco() == 5) {
+                    if (validarEdad(edadAnios, 5))
+                        return;
+                }
+
+                if (persona.getIdparentesco() == 6) {
+                    if (validarEdad(edadAnios, 6))
+                        return;
+                }
+
+                if (persona.getIdparentesco() == 7) {
+                    if (validarEdad(edadAnios, 7))
+                        return;
+                }
+
+                if (persona.getIdparentesco() == 2) {
+                    if (validarJefeHogarUnConyuge(persona))
                         return;
                 }
 
@@ -946,7 +976,6 @@ public class MiembrosHogarFragment extends Fragment {
                     if (validarJefeHogarConyugeSexo(persona))
                         return;
                 }
-
 
                 persona.setEdadmes(edadMeses);
                 if ((persona.getEdadanio() >= Global.EDAD_12ANIOS)
@@ -961,11 +990,6 @@ public class MiembrosHogarFragment extends Fragment {
                             //validarMadreEHijos(persona);
                         }
                     }
-                }
-
-                if(persona.getOrden() > 1){
-                    if (validarParentesco(persona))
-                        return;
                 }
 
                 if (persona.getEdadanio() != edadAnios || persona.getSexo() != genero) {
@@ -1027,7 +1051,7 @@ public class MiembrosHogarFragment extends Fragment {
      * Metodo para validar Jefe de hogar debe tener un solo conyuge
      *
      */
-    protected boolean validarJefeHogarConyuge(Persona persona) {
+    protected boolean validarJefeHogarUnConyuge(Persona persona) {
         String parametros[];
         String where = Persona.whereByIdParentesco;
         parametros = new String[] {String.valueOf(2)};
@@ -1035,7 +1059,7 @@ public class MiembrosHogarFragment extends Fragment {
         if (tipoGestion == 1){
             if (_persona != null){
                 getAlert(getString(R.string.validacion_aviso),
-                        getString(R.string.mv_seccion5ExisteVariosConyugesJefeHogar));
+                        getString(R.string.mensajeExisteVariosConyugesJefeHogar));
                 return true;
             }
         }else{
@@ -1044,7 +1068,7 @@ public class MiembrosHogarFragment extends Fragment {
                     if (persona != null) {
                         if (!_persona.getId().equals(persona.getId())) {
                             getAlert(getString(R.string.validacion_aviso),
-                                    getString(R.string.mv_seccion5ExisteVariosConyugesJefeHogar));
+                                    getString(R.string.mensajeExisteVariosConyugesJefeHogar));
                             return true;
                         }
                     }
@@ -1062,72 +1086,66 @@ public class MiembrosHogarFragment extends Fragment {
      */
     protected boolean validarJefeHogarConyugeSexo(Persona persona) {
 
-        boolean cancel = false;
-//        int contadorConyuges = 0;
-//        int sexoJefeHogar = 0;
-//
-//        for (int i = 0; i < parentescoTableLayout.getChildCount(); i++) {
-//            TableRow row = (TableRow) parentescoTableLayout.getChildAt(i);
-//            Persona persona = (Persona) row.getTag();
-//
-//            Values parentesco = (Values) ((Spinner) row
-//                    .findViewById(R.id.ColumnaParentescoSpinner))
-//                    .getSelectedItem();
-//
-//            Values ordenNucleo = (Values) ((Spinner) row
-//                    .findViewById(R.id.ColumnaOrdenNucleoSpinner))
-//                    .getSelectedItem();
-//
-//            Values parentescoNucleo = (Values) ((Spinner) row
-//                    .findViewById(R.id.ColumnaParentescoNucleoSpinner))
-//                    .getSelectedItem();
-//
-//            int parentescoAux = Integer.parseInt(parentesco.getKey());
-//            int ordenNucleoAux = Integer.parseInt(ordenNucleo.getKey());
-//            int parentescoNucleoAux = Integer.parseInt(parentescoNucleo
-//                    .getKey());
-//
-//            if (i == 0){
-//                if (parentescoAux == 1){
-//
-//                    sexoJefeHogar = persona.getGenero();
-//                }
-//            }
-//            else{
-//                if (parentescoAux == 2){
-//
-//                    if (sexoJefeHogar == persona.getGenero() ){
-//
-//                        getAlert(getString(R.string.validacion_aviso),
-//                                getString(R.string.mv_seccion5JefeHogarConyugeMismoSexo));
-//
-//                        ((Spinner) row
-//                                .findViewById(R.id.ColumnaParentescoSpinner))
-//                                .setSelection(0);
-//
-//                        cancel = true;
-//                        return cancel;
-//
-//                    }
-//                }
-//
-//            }
-//
-//        }
-        return cancel;
+        String parametros[];
+        String where = Persona.whereByIdParentesco;
+        parametros = new String[] {String.valueOf(1)};
+        Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);
+        if (_persona != null){
+            if (_persona.getSexo().equals(persona.getSexo())){
+                getAlert(getString(R.string.validacion_aviso),
+                        getString(R.string.mensajeJefeHogarConyugeMismoSexo));
+                return true;
+            }
+        }
+
+        return false;
+
     }
-    /**
+
+     /**
      * Metodo para validar la edad de la conyuge
      * @param edad
      * @return
      */
-    public boolean validarEdadConyuge(Integer edad) {
-        if (edad < 12) {
+    public boolean validarEdad(Integer edad, Integer parentesco) {
 
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seccion5MensajePregunta12EdadConyugeNucleo));
-            return true;
+        if (edad < Global.EDAD_PARENTESCO) {
+            if (parentesco == 1) {
+                getAlert(getString(R.string.validacion_aviso),
+                        getString(R.string.seccion5MensajeValidacionEdadParentesco));
+                return true;
+            } else {
+                if (parentesco == 2) {
+                    getAlert(
+                            getString(R.string.validacion_aviso),
+                            getString(R.string.seccion5MensajePregunta12EdadConyugeNucleo));
+                    return true;
+
+                } else {
+                    if (parentesco == 5) {
+                        getAlert(
+                                getString(R.string.validacion_aviso),
+                                getString(R.string.mensajeEdadPadre));
+                        return true;
+                    } else {
+                        if (parentesco == 6) {
+                            getAlert(
+                                    getString(R.string.validacion_aviso),
+                                    getString(R.string.mensajeEdadSuegro));
+                            return true;
+                        } else {
+                            if (parentesco == 7) {
+                                getAlert(
+                                        getString(R.string.validacion_aviso),
+                                        getString(R.string.mensajeEdadYernoNuera));
+                                return true;
+                            }
+                        }
+
+                    }
+                }
+
+            }
         }
 
         return false;
@@ -1173,20 +1191,6 @@ public class MiembrosHogarFragment extends Fragment {
         return false;
     }
 
-    /**
-     * Metodo para validar el jefe de hogar
-     */
-    public boolean validarJefeHogar(Integer edad) {
-        boolean cancel = false;
-
-        if (edad < Global.EDAD_PARENTESCO) {
-
-            getAlert(getString(R.string.validacion_aviso),
-                    getString(R.string.seccion5MensajeValidacionEdadParentesco));
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Metodo para  el jefe de hogar

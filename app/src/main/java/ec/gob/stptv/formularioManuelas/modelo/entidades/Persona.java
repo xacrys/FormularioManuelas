@@ -256,6 +256,7 @@ public class Persona implements Serializable {
 	public static String whereByIdHogarCedula = COLUMNA_IDHOGAR
 			+ "= ? AND " + COLUMNA_CI + " = ?";
 	public static String whereByIdParentesco = COLUMNA_IDPARENTESCO + " = ?";
+	public static String whereByIdSexo = COLUMNA_SEXO + " = ?";
 
 
 

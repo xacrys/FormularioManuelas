@@ -745,6 +745,9 @@
     <string name="seccion5MensajeAutodefinicionEtnica">Seleccione la autodefinición étnica (Prg. 13)</string>
     <string name="seccion5MensajePregunta12EdadNucleoFamiliar">El jefe del núcleo familiar no puede ser menor de 12 años</string>
     <string name="seccion5MensajePregunta12EdadConyugeNucleo">El/La Cónyuge o pareja no puede ser menor de 12 años</string>
+    <string name="mensajeEdadPadre">El padre o la madre no puede ser menor de 12 años</string>
+    <string name="mensajeEdadSuegro">El suegro(a) no puede ser menor de 12 años</string>
+    <string name="mensajeEdadYernoNuera">El yerno o la nuera no puede ser menor de 12 años</string>
     <string name="seccion5MensajePregunta12Seguros">Seleccione registro en el seguro social (Prg. 12)</string>
     <string name="seccion5MensajePregunta13SeguroPrivado">Seleccione registro en el seguro privado (Prg. 13)</string>
     <string name="seccion5MensajePregunta14Discapacidad">Seleccione registro en discapacidad (Prg. 14)</string>
@@ -762,7 +765,8 @@
     <string name="mensajeEliminarMiembroHogar">¿Esta seguro de eliminar el registro con toda su información?</string>
     <string name="mensajeValidacionEdadParentesco">El jefe de hogar no puede ser menor de 12 años</string>
     <string name="seccion5MensajeEliminarJefeDeHogar">No se puede eliminar el Jefe(a) de Hogar</string>
-    <string name="mv_seccion5ExisteVariosConyugesJefeHogar">No puede existir más de un esposo(a) o conviviente para el Jefe(a) del Hogar</string>
+    <string name="mensajeExisteVariosConyugesJefeHogar">No puede existir más de un esposo(a) o conviviente para el Jefe(a) del Hogar</string>
+    <string name="mensajeJefeHogarConyugeMismoSexo">Jefe y cónyuge del hogar con el mismo sexo </string>
 
 
     <string name="seccion5MensajeNucleosDispersos">No puede existir nucleos dispersos</string>

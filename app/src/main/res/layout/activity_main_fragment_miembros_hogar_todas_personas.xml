@@ -100,7 +100,7 @@
                         <Spinner
                             android:id="@+id/parentescoSpinner"
                             style="@style/respuestaSpinner"
-                            android:clickable="false"/>
+                            />
                     </LinearLayout>
                     <!-- Fin Pregunta -->
 
@@ -247,7 +247,7 @@
                         <Spinner
                             android:id="@+id/seguroSocial2Spinner"
                             style="@style/respuestaSpinner"
-                            android:clickable="false"/>
+                            />
                     </LinearLayout>
                     <!-- Fin Pregunta -->
 
@@ -271,7 +271,7 @@
                         <Spinner
                             android:id="@+id/seguroSalud2Spinner"
                             style="@style/respuestaSpinner"
-                            android:clickable="false"/>
+                            />
                     </LinearLayout>
                     <!-- Fin Pregunta -->
 
@@ -715,7 +715,7 @@
                         <Spinner
                             android:id="@+id/asistenciaEstablecimientoSpinner"
                             style="@style/respuestaSpinner"
-                            android:clickable="false"/>
+                            />
 
                     </LinearLayout>
                     <!-- Fin Pregunta -->
@@ -730,7 +730,7 @@
                         <Spinner
                             android:id="@+id/proteccionSocialpinner"
                             style="@style/respuestaSpinner"
-                            android:clickable="false"/>
+                            />
 
                     </LinearLayout>
                     <!-- Fin Pregunta -->
@@ -1764,7 +1764,7 @@
                         <Spinner
                             android:id="@+id/enfermedadCatastroficaSpinner"
                             style="@style/respuestaSpinner"
-                            android:clickable="false"/>
+                            />
                     </LinearLayout>
                 </LinearLayout>
                 <!-- Fin de la columna 3 -->

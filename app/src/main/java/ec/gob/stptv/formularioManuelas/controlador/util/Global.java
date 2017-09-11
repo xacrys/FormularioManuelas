@@ -120,9 +120,14 @@ public class Global {
     public static final String CADENAS_VACIAS = "";
 
     /**
-     * Valor Cadenas Vacias
+     * Valor enteros vacios
      */
-    public static final Integer ENTEROS_VACIOS = 99;
+    public static final Integer ENTEROS_VACIOS = -99;
+
+    /**
+     * Valor para los catalogos
+     */
+    public static final Integer ENTEROS_VACIOS_CATALOGOS = 99;
 
     /**
      * numero de visitas que se puede hacer en el formulario
