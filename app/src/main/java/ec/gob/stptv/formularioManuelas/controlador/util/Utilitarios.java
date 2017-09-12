@@ -421,13 +421,13 @@ public class Utilitarios {
             }
             if (child.getClass() == TableRow.class) {
                 child.setClickable(enable);
+                child.setEnabled(enable);
             }
             if (child instanceof ViewGroup) {
                 disableEnableViews(context, enable, (ViewGroup) child);
             }
         }
     }
-
     /**
      * Metodo para imprimir los valores de un objeto json
      *

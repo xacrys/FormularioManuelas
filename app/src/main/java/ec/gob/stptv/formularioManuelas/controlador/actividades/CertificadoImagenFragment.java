@@ -386,13 +386,13 @@ public class CertificadoImagenFragment extends Fragment {
      * Método que llena los controles con datos de la base
      */
     private void llenarCampos() {
-        if (!vivienda.getFormulario().equals(Global.CADENAS_VACIAS)) {
+        if (!vivienda.getFormulario().equals(String.valueOf(Global.ENTEROS_VACIOS))) {
             certificadoEditText.setText(vivienda.getFormulario());
         } else {
             certificadoEditText.setText("");
         }
 
-        if (!vivienda.getFormulario().equals(Global.CADENAS_VACIAS)) {
+        if (!vivienda.getFormulario().equals(String.valueOf(Global.ENTEROS_VACIOS))) {
             certificadoVerificarEditText.setText(vivienda.getFormulario());
         } else {
             certificadoVerificarEditText.setText("");

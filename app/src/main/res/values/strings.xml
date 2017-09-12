@@ -76,6 +76,7 @@
     <string name="errorPasswordInvalido">La contraseña es muy corta</string>
     <string name="errorConectarServidor">No se puede conectar al servidor</string>
     <string name="error_conectar_servidor">No se puede conectar al servidor</string>
+    <string name="error_servidor">Error en el servidor</string>
     <string name="error_incorrect_password">Usuario o contraseña incorrectos</string>
     <string name="error_asignacion_tablet">Usuario sin dispositivo asignado</string>
     <string name="error_asignacion_fase">Usuario sin fase asignado</string>
@@ -462,7 +463,7 @@
     <string name="seguroSaludOpcion7">7. Servicios Municipales o de Consejos Provinciales?</string>
     <string name="seguroSaludOpcion8">8. Ministerio de Salud Pública?</string>
     <string name="seguroSaludOpcion9">9. Otros?</string>
-    <string name="seguroSaludOpcion10">10. Niguno?</string>
+    <string name="seguroSaludOpcion10">10. Ninguno?</string>
 
     <!-- Seccion 5 Pregunta 16 -->
     <string name="discapacidadEtiqueta">DISCAPACIDAD</string>
@@ -783,7 +784,7 @@
     <string name="seccion3MensajeNoCorrespondePared">El tipo de vivienda no corresponde al material de la pared  seleccionada</string>
     <string name="seccion3MensajeNoCorrespondeLetrina">Letrina no puede estar dentro de la vivienda</string>
     <string name="seccion3MensajeNoCorrespondeDepartamento">Tiene departamento y registra que no tiene servicio higiénico</string>
-
+    <string name="error_numero_medidor">El código debe tener 10 dígitos</string>
 
 
     <!-- FIN Validaciones formulario paraHogar -->
@@ -796,6 +797,8 @@
     <string name="seccion5MensajeCarnetConadis">Tiene discapacidad y no responde P19</string>
     <string name="seccion5MensajePorcentajeConadis">Tiene carnet de discapacidad y no hay dato en porcentaje (Prg. 19)</string>
     <string name="mensajeJefeHogarMasUno">No puede existir más de un Jefe de Hogar</string>
+    <string name="mensajeEstadoCivil">El jefe(a) del Hogar y el Esposo(a) o conviviente debe tener el mismo estado civil</string>
+
 
 
     <!-- fin Validaciones formulario para todas las personas -->

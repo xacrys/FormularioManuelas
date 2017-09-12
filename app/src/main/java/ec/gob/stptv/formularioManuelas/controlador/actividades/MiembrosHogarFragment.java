@@ -177,9 +177,13 @@ public class MiembrosHogarFragment extends Fragment {
 
             row.setBackgroundResource(R.drawable.table_row_selector);
         }
-
         row.setClickable(true);
-
+        if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA
+                .getValor() && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
+            row.setEnabled(false);
+        }else{
+            row.setEnabled(true);
+        }
 
         row.setTag(_persona);
 

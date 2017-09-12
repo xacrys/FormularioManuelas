@@ -294,18 +294,15 @@ public class HogarFragment extends Fragment {
 
         hogar.setIdpropiedadvivienda(Integer.parseInt(((Values) tipoHogarSpinner.getSelectedItem()).getKey()));
         hogar.setIddocumentovivienda(Integer.parseInt(((Values) documentoHogarSpinner.getSelectedItem()).getKey()));
-
         hogar.setCuartos(Integer.parseInt(((Values) numCuartosSpinner.getSelectedItem()).getKey()));
         hogar.setDormitorio(Integer.parseInt(((Values) numDormitoriosSpinner.getSelectedItem()).getKey()));
         hogar.setIdagua(Integer.parseInt(((Values) ubicacionAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdredagua(Integer.parseInt(((Values) fuenteAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdtratamientoagua(Integer.parseInt(((Values) tratamientoAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdtiposshh(Integer.parseInt(((Values) servicioSanitarioSpinner.getSelectedItem()).getKey()));
-
         hogar.setIdsshh(Integer.parseInt(((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey()));
         hogar.setIdducha(Integer.parseInt(((Values) servicioDuchaSpinner.getSelectedItem()).getKey()));
         hogar.setIdbasura(Integer.parseInt(((Values) eliminaBasuraSpinner.getSelectedItem()).getKey()));
-
         hogar.setIdalumbrado(Integer.parseInt(((Values) tipoAlumbradoSpinner.getSelectedItem()).getKey()));
         if (!(TextUtils.isEmpty(codigoElectricoEditText.getText()))) {
             hogar.setPlanillapago(codigoElectricoEditText.getText().toString().trim());
@@ -635,8 +632,6 @@ public class HogarFragment extends Fragment {
      */
     protected boolean validarCampos() {
         boolean cancel = true;
-        View focusView = null;
-
         if (((Values) tipoViviendaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoVivienda));
         } else if (((Values) viaAccesoPrincipalSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
@@ -704,6 +699,14 @@ public class HogarFragment extends Fragment {
 
         }else {
             cancel = false;
+        }
+        if (!TextUtils.isEmpty(codigoElectricoEditText.getText().toString())) {
+
+            if (codigoElectricoEditText.getText().toString().length() != 10) {
+                codigoElectricoEditText.setError(getString(R.string.error_numero_medidor));
+                codigoElectricoEditText.requestFocus();
+                return true;
+            }
         }
         return cancel;
     }

@@ -424,6 +424,12 @@ public class LoginActivity extends Activity {
                         JSONObject respuesta = (JSONObject) _respuesta;
                         Integer codigo = respuesta.getInt("codigo");
                         switch (codigo) {
+                            case 0:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.error_servidor));
+                                break;
+
                             case 1:
                                 Date fechaActual = new Date();
                                 DateFormat formato = new SimpleDateFormat(
@@ -633,7 +639,7 @@ public class LoginActivity extends Activity {
         /**
          * Iniciar el servicio de localizacion
          */
-        /*try {
+        try {
             LocationManager locationManager = (LocationManager) getApplicationContext()
                     .getSystemService(LOCATION_SERVICE);
 
@@ -650,7 +656,7 @@ public class LoginActivity extends Activity {
             }
         } catch (Exception e) {
 
-        }*/
+        }
         super.onResume();
     }
 
@@ -817,6 +823,14 @@ public class LoginActivity extends Activity {
                     finish();
                     intent.putExtra("usuario", usuario);
                     startActivity(intent);
+
+                }else{
+                    vivcodigoTask = null;
+                    showProgress(false);
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            getString(R.string.error_servidor),
+                            Toast.LENGTH_LONG);
+                    toast.show();
 
                 }
             }

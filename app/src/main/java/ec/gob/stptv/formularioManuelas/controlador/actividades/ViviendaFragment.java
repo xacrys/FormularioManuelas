@@ -196,6 +196,9 @@ public class ViviendaFragment extends Fragment {
                     getActivity().invalidateOptionsMenu();
                 }
             }
+        }else{
+            isEnabledObervacion = true;
+            getActivity().invalidateOptionsMenu();
         }
 
         /*

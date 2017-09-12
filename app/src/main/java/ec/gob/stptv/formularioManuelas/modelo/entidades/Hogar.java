@@ -132,30 +132,30 @@ public class Hogar implements Serializable {
 	 * @return
 	 */
 	public static Hogar newHogar(Cursor result) {
-		Hogar vivienda = new Hogar();
-		vivienda.setId(result.getInt(result.getColumnIndex(COLUMNA_ID)));
-		vivienda.setIdvivienda(result.getInt(result.getColumnIndex(COLUMNA_IDVIVIENDA)));
-		vivienda.setIdpropiedadvivienda(result.getInt(result.getColumnIndex(COLUMNA_IDPROPIEDADVIVIENDA)));
-		vivienda.setIddocumentovivienda(result.getInt(result.getColumnIndex(COLUMNA_IDDOCUMENTOVIVIENDA)));
-		vivienda.setCuartos(result.getInt(result.getColumnIndex(COLUMNA_CUARTOS)));
-		vivienda.setDormitorio(result.getInt(result.getColumnIndex(COLUMNA_DORMITORIO)));
-		vivienda.setIdagua(result.getInt(result.getColumnIndex(COLUMNA_IDAGUA)));
-		vivienda.setIdredagua(result.getInt(result.getColumnIndex(COLUMNA_IDREDAGUA)));
-		vivienda.setIdtratamientoagua(result.getInt(result.getColumnIndex(COLUMNA_IDTRATAMIENTOAGUA)));
-		vivienda.setIdtiposshh(result.getInt(result.getColumnIndex(COLUMNA_IDTIPOSSHH)));
-		vivienda.setIdsshh(result.getInt(result.getColumnIndex(COLUMNA_IDSSHH)));
-		vivienda.setIdducha(result.getInt(result.getColumnIndex(COLUMNA_IDDUCHA)));
-		vivienda.setIdbasura(result.getInt(result.getColumnIndex(COLUMNA_IDBASURA)));
-		vivienda.setIdalumbrado(result.getInt(result.getColumnIndex(COLUMNA_IDALUMBRADO)));
-		vivienda.setPlanillapago(result.getString(result.getColumnIndex(COLUMNA_PLANILLAPAGO)));
-		vivienda.setIdtipococina(result.getInt(result.getColumnIndex(COLUMNA_IDTIPOCOCINA)));
-		vivienda.setGascalefon(result.getInt(result.getColumnIndex(COLUMNA_GASCALEFON)));
-		vivienda.setTerreno(result.getInt(result.getColumnIndex(COLUMNA_TERRENO)));
-		vivienda.setTerrenoservicios(result.getInt(result.getColumnIndex(COLUMNA_TERRENOSERVICIOS)));
-		vivienda.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
-		vivienda.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
+		Hogar hogar = new Hogar();
+		hogar.setId(result.getInt(result.getColumnIndex(COLUMNA_ID)));
+		hogar.setIdvivienda(result.getInt(result.getColumnIndex(COLUMNA_IDVIVIENDA)));
+		hogar.setIdpropiedadvivienda(result.getInt(result.getColumnIndex(COLUMNA_IDPROPIEDADVIVIENDA)));
+		hogar.setIddocumentovivienda(result.getInt(result.getColumnIndex(COLUMNA_IDDOCUMENTOVIVIENDA)));
+		hogar.setCuartos(result.getInt(result.getColumnIndex(COLUMNA_CUARTOS)));
+		hogar.setDormitorio(result.getInt(result.getColumnIndex(COLUMNA_DORMITORIO)));
+		hogar.setIdagua(result.getInt(result.getColumnIndex(COLUMNA_IDAGUA)));
+		hogar.setIdredagua(result.getInt(result.getColumnIndex(COLUMNA_IDREDAGUA)));
+		hogar.setIdtratamientoagua(result.getInt(result.getColumnIndex(COLUMNA_IDTRATAMIENTOAGUA)));
+		hogar.setIdtiposshh(result.getInt(result.getColumnIndex(COLUMNA_IDTIPOSSHH)));
+		hogar.setIdsshh(result.getInt(result.getColumnIndex(COLUMNA_IDSSHH)));
+		hogar.setIdducha(result.getInt(result.getColumnIndex(COLUMNA_IDDUCHA)));
+		hogar.setIdbasura(result.getInt(result.getColumnIndex(COLUMNA_IDBASURA)));
+		hogar.setIdalumbrado(result.getInt(result.getColumnIndex(COLUMNA_IDALUMBRADO)));
+		hogar.setPlanillapago(result.getString(result.getColumnIndex(COLUMNA_PLANILLAPAGO)));
+		hogar.setIdtipococina(result.getInt(result.getColumnIndex(COLUMNA_IDTIPOCOCINA)));
+		hogar.setGascalefon(result.getInt(result.getColumnIndex(COLUMNA_GASCALEFON)));
+		hogar.setTerreno(result.getInt(result.getColumnIndex(COLUMNA_TERRENO)));
+		hogar.setTerrenoservicios(result.getInt(result.getColumnIndex(COLUMNA_TERRENOSERVICIOS)));
+		hogar.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
+		hogar.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
 
-		return vivienda;
+		return hogar;
 	}
 
 

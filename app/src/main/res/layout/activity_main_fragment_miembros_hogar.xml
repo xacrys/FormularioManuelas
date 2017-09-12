@@ -1,21 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanco" >
+    android:background="@color/blanco">
 
     <LinearLayout
         android:id="@+id/pantallaMiembrosHogarLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/blanco">
+        android:background="@color/blanco"
+        android:orientation="vertical">
 
         <!-- Titulo de la seccion V -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp" >
+            android:padding="10dp">
 
             <TextView
                 style="@style/seccionTextView"
@@ -26,18 +27,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:baselineAligned="false" >
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:orientation="vertical"
-                android:padding="10dp" >
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <TextView
                         style="@style/etiquetaSmallTextView"
@@ -77,13 +78,13 @@
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
                     android:orientation="horizontal"
-                    android:weightSum="2" >
+                    android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal" >
+                        android:orientation="horizontal">
 
                         <TextView
                             style="@style/etiquetaSmallTextView"
@@ -101,7 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal" >
+                        android:orientation="horizontal">
 
                         <TextView
                             style="@style/etiquetaSmallTextView"
@@ -119,7 +120,7 @@
                 <!-- INicio sexo edad y correo -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <TextView
                         style="@style/etiquetaSmallTextView"
@@ -136,7 +137,7 @@
 
                     <LinearLayout
                         style="@style/contenedorPregunta"
-                        android:layout_width="366dp" >
+                        android:layout_width="366dp">
 
                         <TextView
                             style="@style/etiquetaSmallTextView"
@@ -145,14 +146,14 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:paddingBottom="0dp" >
+                            android:paddingBottom="0dp">
 
                             <RadioGroup
                                 android:id="@+id/edadRadioGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="42dp"
                                 android:layout_centerHorizontal="true"
-                                android:orientation="horizontal" >
+                                android:orientation="horizontal">
 
                                 <RadioButton
                                     android:id="@+id/edadFechaNacimientoOpcion1RadioButton"
@@ -172,17 +173,16 @@
 
                         <RelativeLayout
                             android:layout_width="380dp"
-                            android:layout_height="42dp" >
+                            android:layout_height="42dp">
 
                             <Button
                                 android:id="@+id/fechaNacimientoButton"
                                 style="@style/respuestaBusquedaSpinner"
                                 android:layout_width="wrap_content"
-                                android:drawableStart="@android:drawable/ic_menu_agenda"
                                 android:drawableLeft="@android:drawable/ic_menu_agenda"
-                                android:text="@string/seleccioneFecha"
-                                android:enabled="false">
-                            </Button>
+                                android:drawableStart="@android:drawable/ic_menu_agenda"
+                                android:enabled="false"
+                                android:text="@string/seleccioneFecha"></Button>
 
                             <EditText
                                 android:id="@+id/aniosEditText"
@@ -193,13 +193,14 @@
                                 android:layout_toEndOf="@+id/fechaNacimientoButton"
                                 android:layout_toRightOf="@+id/fechaNacimientoButton"
                                 android:ems="10"
+                                android:enabled="false"
                                 android:hint="@string/edadEtiqueta3"
                                 android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:lines="1"
                                 android:maxLength="2"
-                                android:maxLines="1"
-                                android:enabled="false">
+                                android:maxLines="1">
+
                                 <requestFocus />
                             </EditText>
 
@@ -217,9 +218,10 @@
                                 android:inputType="number"
                                 android:lines="1"
                                 android:maxLength="2"
-                                android:maxLines="1"/>
+                                android:maxLines="1" />
 
                         </RelativeLayout>
+
                         <TextView
                             android:layout_width="10dp"
                             android:layout_height="wrap_content" />
@@ -233,11 +235,13 @@
                         <!-- INicio parentesco -->
                         <LinearLayout
                             style="@style/contenedorPregunta"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent" >
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal">
+
                             <TextView
                                 style="@style/etiquetaSmallTextView"
                                 android:text="@string/parentescoJefeHogar" />
+
                             <Spinner
                                 android:id="@+id/parentescoSpinner"
                                 android:layout_width="300dp"
@@ -247,13 +251,15 @@
                         <!-- INicio correo -->
                         <LinearLayout
                             style="@style/contenedorPregunta"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent" >
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/correoTitulo"
                                 android:textStyle="bold" />
+
                             <EditText
                                 android:id="@+id/correoEditText"
                                 style="@style/respuestaEmailEditText"
@@ -275,7 +281,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp" >
+                    android:paddingTop="10dp">
 
                     <TextView style="@style/etiquetaSmallTextView" />
 
@@ -285,8 +291,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableStart="@android:drawable/ic_menu_add"
                         android:drawableLeft="@android:drawable/ic_menu_add"
+                        android:drawableStart="@android:drawable/ic_menu_add"
                         android:text="@string/menu_guardar" />
 
                     <TextView
@@ -298,11 +304,11 @@
                         style="@style/actionButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_weight="1"
-                        android:drawableStart="@android:drawable/ic_menu_more"
                         android:drawableLeft="@android:drawable/ic_menu_more"
+                        android:drawableStart="@android:drawable/ic_menu_more"
                         android:text="@string/menu_nuevo" />
 
                     <TextView
@@ -311,6 +317,7 @@
 
                 </LinearLayout>
                 <!-- INicio Tabla -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

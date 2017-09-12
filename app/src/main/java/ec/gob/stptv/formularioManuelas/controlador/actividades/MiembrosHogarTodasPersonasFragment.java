@@ -155,10 +155,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                 sexoTextView.setText(String.valueOf(persona.getGeneroCompleto()));
                 //que se visualice dependiendo la edad
                 //que quede quemado 'NO'cuando no hay madres
-                if (codigosMadres.size() == 1) {
-                    viveMadreHogarRadioGroup
-                            .check(R.id.viveMadreHogarOpcion2RadioButton);
-                }
+//                if (codigosMadres.size() == 1) {
+//                    viveMadreHogarRadioGroup
+//                            .check(R.id.viveMadreHogarOpcion2RadioButton);
+//                }
                 if (persona.getEdadanio() < Global.EDAD_18ANIOS) {
                     viveMadreHogarRadioGroup
                             .setVisibility(View.VISIBLE);
@@ -634,7 +634,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         parentescoSpinner.setEnabled(false);
         seguroSocial2Spinner.setEnabled(false);
         seguroSalud2Spinner.setEnabled(false);
-
+        codigoPersonaMadreSpinner.setEnabled(false);
     }
 
     /**
@@ -1034,10 +1034,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
                         if (viveMadreHogarRadioGroup
                                 .getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion1RadioButton) {
-                            codigoPersonaLinearLayout.setVisibility(View.VISIBLE);
+                            //codigoPersonaLinearLayout.setVisibility(View.VISIBLE);
                             codigoPersonaMadreSpinner.setEnabled(true);
                         } else {
-                            codigoPersonaLinearLayout.setVisibility(View.INVISIBLE);
+                            //codigoPersonaLinearLayout.setVisibility(View.INVISIBLE);
                             codigoPersonaMadreSpinner.setSelection(0);
                             codigoPersonaMadreSpinner.setEnabled(false);
                         }
@@ -1147,25 +1147,33 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         sufreEnfermedadesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 4) {
-                    diagnosticoMedicoRadioGroup.check(-1);
+
+                if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 1) {
+                    for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+                        diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
+                    }
+                    enfermedadCatastroficaSpinner.setSelection(0);
+                    enfermedadCatastroficaSpinner.setEnabled(true);
+                }else
+                if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 2 ||
+                        Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 3) {
+                        diagnosticoMedicoRadioGroup.clearCheck();
+                        for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+                            diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
+                        }
+                        enfermedadCatastroficaSpinner.setSelection(0);
+                        enfermedadCatastroficaSpinner.setEnabled(false);
+
+                }
+                else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 4 ||
+                        Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == -1) {
+                    diagnosticoMedicoRadioGroup.clearCheck();
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     enfermedadCatastroficaSpinner.setSelection(0);
                     enfermedadCatastroficaSpinner.setEnabled(false);
-                } else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 2 ||
-                        Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 3) {
-                    enfermedadCatastroficaSpinner.setEnabled(false);
-                    for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
-                        diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                }
-                else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 1 ) {
-                    enfermedadCatastroficaSpinner.setEnabled(true);
-                    for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
-                        diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
+
                 }
             }
 
@@ -1653,7 +1661,38 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             flag = false;
         }
         return flag;
+    }
 
+    /**
+     * Metodo para validar que el jefe de hogar y esposa sea el mismo estado civil
+     * @return
+     */
+    public boolean validarEstadCivil() {
+        if (persona.getIdparentesco().equals(1) || persona.getIdparentesco().equals(2)){
+            String parametros[] = null;
+            String where;
+            where = Persona.whereByIdParentesco;
+            if (persona.getIdparentesco().equals(1)){
+                parametros = new String[] {String.valueOf(2)};
+            }else{
+                if (persona.getIdparentesco().equals(2)){
+                    parametros = new String[] {String.valueOf(1)};
+                }
+            }
+            Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);
+            if (_persona!= null){
+                if (_persona.getIdestadocivil().equals(1) || _persona.getIdestadocivil().equals(2)){
+                    if (!((Values) estadoCivilSpinner.getSelectedItem()).getKey().equals(String.valueOf(_persona.getIdestadocivil()))){
+                        getAlert(getString(R.string.validacion_aviso),
+                                getString(R.string.mensajeEstadoCivil));
+                        estadoCivilSpinner.setSelection(0);
+                        return true;
+                    }
+                }
+            }
+
+        }
+        return false;
     }
 
     /**
@@ -1675,6 +1714,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             public void onClick(View view) {
                 if (validarCampos())
                     return;
+
+                if (validarEstadCivil())
+                    return;
+
                 guardar();
             }
         });

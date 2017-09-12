@@ -375,19 +375,33 @@
                         style="@style/areaPreguntaTextView"
                         android:text="@string/gasParaCalefon" />
 
-                    <RadioGroup android:id="@+id/gasParaCalefon"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <RadioButton android:id="@+id/gasParaCalefonOpcion1"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="10dp">
+
+                        <RadioGroup
+                            android:id="@+id/gasParaCalefon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/gasParaCalefonOpcion1" />
-                        <RadioButton android:id="@+id/gasParaCalefonOpcion2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/gasParaCalefonOpcion2" />
-                    </RadioGroup>
+                            android:layout_centerHorizontal="true"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/gasParaCalefonOpcion1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/opcion_si" />
+
+                            <RadioButton
+                                android:id="@+id/gasParaCalefonOpcion2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/opcion_no" />
+                        </RadioGroup>
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <!-- 4 -15  Disposicion de Terrenos-->
@@ -397,19 +411,33 @@
                         style="@style/areaPreguntaTextView"
                         android:text="@string/terrenoAgropecuario" />
 
-                    <RadioGroup android:id="@+id/terrenoAgropecuario"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <RadioButton android:id="@+id/terrenoAgropecuarioOpcion1rb"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="10dp">
+
+                        <RadioGroup
+                            android:id="@+id/terrenoAgropecuario"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/terrenoAgropecuarioOpcion1" />
-                        <RadioButton android:id="@+id/terrenoAgropecuarioOpcion2rb"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/terrenoAgropecuarioOpcion2" />
-                    </RadioGroup>
+                            android:layout_centerHorizontal="true"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/terrenoAgropecuarioOpcion1rb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/opcion_si" />
+
+                            <RadioButton
+                                android:id="@+id/terrenoAgropecuarioOpcion2rb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/opcion_no" />
+                        </RadioGroup>
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -417,19 +445,34 @@
                     <TextView
                         style="@style/areaPreguntaTextView"
                         android:text="@string/terrenoAgropecuarioSi" />
-                    <RadioGroup android:id="@+id/terrenoAgropecuarioSi"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <RadioButton android:id="@+id/terrenoAgropecuarioSiOpcion1rb"
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="10dp">
+
+                        <RadioGroup
+                            android:id="@+id/terrenoAgropecuarioSi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/terrenoAgropecuarioSiOpcion1" />
-                        <RadioButton android:id="@+id/terrenoAgropecuarioSiOpcion2rb"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/terrenoAgropecuarioSiOpcion2" />
-                    </RadioGroup>
+                            android:layout_centerHorizontal="true"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/terrenoAgropecuarioSiOpcion1rb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/opcion_si" />
+
+                            <RadioButton
+                                android:id="@+id/terrenoAgropecuarioSiOpcion2rb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/opcion_no" />
+                        </RadioGroup>
+                    </RelativeLayout>
                 </LinearLayout>
 
             </LinearLayout>
