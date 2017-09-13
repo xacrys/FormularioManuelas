@@ -300,6 +300,16 @@ public class FormulariosActivity extends Activity {
 			((TextView) row.findViewById(R.id.columnaFechaRegistroTextView))
 					.setText(vivienda.getFechaencuesta());
 
+			if(!vivienda.getFormulario().equals(String.valueOf(Global.ENTEROS_VACIOS)))
+			{
+				((TextView) row.findViewById(R.id.columnaCertificadoTextView)).setText("C: " + vivienda.getFormulario());
+			}
+			else
+			{
+					((TextView) row.findViewById(R.id.columnaCertificadoTextView)).setText(Global.SIN_REGISTRO);
+
+			}
+
 			((TextView) row.findViewById(R.id.columnaZonaTextView))
 					.setText(vivienda.getZona());
 

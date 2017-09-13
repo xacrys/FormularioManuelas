@@ -17,6 +17,7 @@
     <string name="menuSincronizarFormularios">Sincronizar Formularios</string>
     <string name="tituloFormulario">Formularios</string>
     <string name="columna_codigo_viv">Codigo</string>
+    <string name="columna_certificado">Certificado</string>
     <string name="columna_fecha_registro">Fecha</string>
     <string name="columna_zona">Zona</string>
     <string name="columna_sector">Sector</string>

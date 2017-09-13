@@ -259,6 +259,13 @@
                          android:text="@string/columna_fecha_registro"
                          android:textColor="#000000" />
 
+                     <TextView
+                         android:layout_width="140dp"
+                         android:layout_height="match_parent"
+                         android:gravity="left"
+                         android:padding="10dip"
+                         android:text="@string/columna_certificado"
+                         android:textColor="#000000" />
 
                      <TextView
                          android:layout_width="70dp"

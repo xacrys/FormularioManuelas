@@ -1671,12 +1671,12 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         if (persona.getIdparentesco().equals(1) || persona.getIdparentesco().equals(2)){
             String parametros[] = null;
             String where;
-            where = Persona.whereByIdParentesco;
+            where = Persona.whereByIdParentescoIdHogar;
             if (persona.getIdparentesco().equals(1)){
-                parametros = new String[] {String.valueOf(2)};
+                parametros = new String[] {String.valueOf(2), String.valueOf(hogar.getId())};
             }else{
                 if (persona.getIdparentesco().equals(2)){
-                    parametros = new String[] {String.valueOf(1)};
+                    parametros = new String[] {String.valueOf(1), String.valueOf(hogar.getId())};
                 }
             }
             Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);

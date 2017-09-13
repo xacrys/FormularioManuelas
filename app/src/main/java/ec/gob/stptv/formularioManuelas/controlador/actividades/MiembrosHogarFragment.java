@@ -1057,8 +1057,8 @@ public class MiembrosHogarFragment extends Fragment {
      */
     protected boolean validarJefeHogarUnConyuge(Persona persona) {
         String parametros[];
-        String where = Persona.whereByIdParentesco;
-        parametros = new String[] {String.valueOf(2)};
+        String where = Persona.whereByIdParentescoIdHogar;
+        parametros = new String[] {String.valueOf(2), String.valueOf(hogar.getId())};
         Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);
         if (tipoGestion == 1){
             if (_persona != null){
@@ -1091,8 +1091,8 @@ public class MiembrosHogarFragment extends Fragment {
     protected boolean validarJefeHogarConyugeSexo(Persona persona) {
 
         String parametros[];
-        String where = Persona.whereByIdParentesco;
-        parametros = new String[] {String.valueOf(1)};
+        String where = Persona.whereByIdParentescoIdHogar;
+        parametros = new String[] {String.valueOf(2), String.valueOf(hogar.getId())};
         Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);
         if (_persona != null){
             if (_persona.getSexo().equals(persona.getSexo())){
