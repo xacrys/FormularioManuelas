@@ -224,10 +224,9 @@ public class HogarPreguntas {
     public static ArrayAdapter<Values> getTenenciaHogarAdapter(Context context) {
 
         ArrayList<Values> tenenciaHogar = new ArrayList<>();
-
         tenenciaHogar.add(new Values(Global.VALOR_SELECCIONE, context.getString(R.string.seleccionRespuesta)));
         tenenciaHogar.add(new Values(TenenciaHogar.PROPIA_PAGANDO.getValor(),context.getString(R.string.tenenciaHogarOpcion1)));
-        tenenciaHogar.add(new Values(TenenciaHogar.PROPIA_PAGANDO.getValor(),context.getString(R.string.tenenciaHogarOpcion2)));
+        tenenciaHogar.add(new Values(TenenciaHogar.PROPIA_PAGADA.getValor(),context.getString(R.string.tenenciaHogarOpcion2)));
         tenenciaHogar.add(new Values(TenenciaHogar.ARRIENDO.getValor(),context.getString(R.string.tenenciaHogarOpcion3)));
         tenenciaHogar.add(new Values(TenenciaHogar.ANTICRESIS.getValor(),context.getString(R.string.tenenciaHogarOpcion4)));
         tenenciaHogar.add(new Values(TenenciaHogar.CEDIDA.getValor(),context.getString(R.string.tenenciaHogarOpcion5)));

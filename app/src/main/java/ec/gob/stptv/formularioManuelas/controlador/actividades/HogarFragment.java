@@ -296,8 +296,8 @@ public class HogarFragment extends Fragment {
         hogar.setIddocumentovivienda(Integer.parseInt(((Values) documentoHogarSpinner.getSelectedItem()).getKey()));
         hogar.setCuartos(Integer.parseInt(((Values) numCuartosSpinner.getSelectedItem()).getKey()));
         hogar.setDormitorio(Integer.parseInt(((Values) numDormitoriosSpinner.getSelectedItem()).getKey()));
-        hogar.setIdagua(Integer.parseInt(((Values) ubicacionAguaSpinner.getSelectedItem()).getKey()));
-        hogar.setIdredagua(Integer.parseInt(((Values) fuenteAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdagua(Integer.parseInt(((Values) fuenteAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdredagua(Integer.parseInt(((Values) ubicacionAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdtratamientoagua(Integer.parseInt(((Values) tratamientoAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdtiposshh(Integer.parseInt(((Values) servicioSanitarioSpinner.getSelectedItem()).getKey()));
         hogar.setIdsshh(Integer.parseInt(((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey()));
@@ -388,6 +388,7 @@ public class HogarFragment extends Fragment {
                 else if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
                         ((Values)servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")){
                     getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondeDepartamento));
+                    servicioSanitarioSpinner.setSelection(0);
 
                 }
             }
@@ -486,6 +487,7 @@ public class HogarFragment extends Fragment {
                 }
                 else if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
                         ((Values)servicioSanitarioSpinner.getSelectedItem()).getKey().equals("6")){
+                    servicioSanitarioSpinner.setSelection(0);
                     getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondeDepartamento));
                 }
             }
@@ -683,6 +685,7 @@ public class HogarFragment extends Fragment {
             codigoElectricoEditText.setError(null);
             codigoElectricoEditText.clearFocus();
             codigoElectricoEditText.setError(getString(R.string.errorCampoRequerido));
+            codigoElectricoEditText.requestFocus();
         } else if (((Values) energeticoCocinaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.energeticoCocina));
         } else if (gasParaCalefonOpcion.getCheckedRadioButtonId() == -1) {

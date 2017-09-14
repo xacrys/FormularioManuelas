@@ -382,48 +382,48 @@ public class MiembrosHogarFragment extends Fragment {
     }
     /**
      * Método que llena los controles con datos de la base
-     * @param ppersona
+     * @param _persona
      */
     @SuppressWarnings("unchecked")
-    protected void llenarCampos(Persona ppersona) {
-        int posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoResidenteSpinner.getAdapter(), String.valueOf(ppersona.getIdresidente()));
+    protected void llenarCampos(Persona _persona) {
+        int posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tipoResidenteSpinner.getAdapter(), String.valueOf(_persona.getIdresidente()));
         tipoResidenteSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) sexoSpinner.getAdapter(), String.valueOf(ppersona.getSexo()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) sexoSpinner.getAdapter(), String.valueOf(_persona.getSexo()));
         sexoSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) documentoSpinner.getAdapter(),String.valueOf(ppersona.getIddocumentacion()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) documentoSpinner.getAdapter(),String.valueOf(_persona.getIddocumentacion()));
         documentoSpinner.setSelection(posicion);
-        if(!ppersona.getCi().equals(Global.CADENAS_VACIAS)){
-            cedulaEditText.setText(ppersona.getCi());
+        if(!_persona.getCi().equals(Global.CADENAS_VACIAS)){
+            cedulaEditText.setText(_persona.getCi());
         }
         else{
             cedulaEditText.setText("");
         }
-        apellidosEditText.setText(persona.getApellidos());
-        nombresEditText.setText(persona.getNombres());
-        if (persona.getTipoEdad() == Global.FECHA_NACIMIENTO) {
+        apellidosEditText.setText(_persona.getApellidos());
+        nombresEditText.setText(_persona.getNombres());
+        if (_persona.getTipoEdad() == Global.FECHA_NACIMIENTO) {
             edadRadioGroup
                     .check(R.id.edadFechaNacimientoOpcion1RadioButton);
-            fechaNacimientoButton.setText(persona.getFechanacimiento());
-            if (persona.getEdadanio() >= 5){
+            fechaNacimientoButton.setText(_persona.getFechanacimiento());
+            if (_persona.getEdadanio() >= 5){
                 correoEditText.setEnabled(true);
             }else{
                 correoEditText.setEnabled(false);
             }
         } else {
-            if (persona.getTipoEdad() == Global.ANIOS_CUMPLIDOS) {
+            if (_persona.getTipoEdad() == Global.ANIOS_CUMPLIDOS) {
                 edadRadioGroup.check(R.id.edadAniosCumplidosOpcion2RadioButton);
-                aniosEditText.setText(String.valueOf(persona.getEdadanio()));
-                if (persona.getEdadmes().equals(Global.ENTEROS_VACIOS_CATALOGOS)) {
+                aniosEditText.setText(String.valueOf(_persona.getEdadanio()));
+                if (_persona.getEdadmes().equals(Global.ENTEROS_VACIOS_CATALOGOS)) {
                     mesesEditText.setVisibility(View.INVISIBLE);
                     mesesEditText.setText("");
                 } else {
                     mesesEditText.setVisibility(View.VISIBLE);
-                    mesesEditText.setText(String.valueOf(persona.getEdadmes()));
+                    mesesEditText.setText(String.valueOf(_persona.getEdadmes()));
                 }
 
             }
         }
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) parentescoSpinner.getAdapter(),String.valueOf(ppersona.getIdparentesco()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) parentescoSpinner.getAdapter(),String.valueOf(_persona.getIdparentesco()));
         parentescoSpinner.setSelection(posicion);
 
     }
@@ -908,19 +908,15 @@ public class MiembrosHogarFragment extends Fragment {
                     return;
             }
 
-
             if (persona.getIdparentesco() == 2) {
                 if (validarJefeHogarUnConyuge(persona))
                     return;
             }
 
             if (persona.getIdparentesco() == 2) {
-                if (validarJefeHogarConyugeSexo(persona))
+                if (validarJefeHogarConyugeSexo(persona.getSexo()))
                     return;
             }
-
-
-
 
             Uri uri = PersonaDao.save(contentResolver, persona);
             String id = uri.getPathSegments().get(1);
@@ -977,7 +973,7 @@ public class MiembrosHogarFragment extends Fragment {
                 }
 
                 if (persona.getIdparentesco() == 2) {
-                    if (validarJefeHogarConyugeSexo(persona))
+                    if (validarJefeHogarConyugeSexo(Integer.valueOf(((Values) sexoSpinner.getSelectedItem()).getKey())))
                         return;
                 }
 
@@ -1088,14 +1084,14 @@ public class MiembrosHogarFragment extends Fragment {
      * Metodo para validar Jefe de hogar con su conyuge del mismo sexo
      *
      */
-    protected boolean validarJefeHogarConyugeSexo(Persona persona) {
+    protected boolean validarJefeHogarConyugeSexo(Integer sexo) {
 
         String parametros[];
         String where = Persona.whereByIdParentescoIdHogar;
-        parametros = new String[] {String.valueOf(2), String.valueOf(hogar.getId())};
+        parametros = new String[] {String.valueOf(1), String.valueOf(hogar.getId())};
         Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);
         if (_persona != null){
-            if (_persona.getSexo().equals(persona.getSexo())){
+            if (_persona.getSexo().equals(sexo)){
                 getAlert(getString(R.string.validacion_aviso),
                         getString(R.string.mensajeJefeHogarConyugeMismoSexo));
                 return true;
@@ -1103,7 +1099,6 @@ public class MiembrosHogarFragment extends Fragment {
         }
 
         return false;
-
     }
 
      /**

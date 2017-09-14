@@ -108,6 +108,9 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     ArrayList<Values> codigosMadres;
     private Hogar hogar;
     private int contador;
+    private static boolean aplicaMallaSufreEnfermedad1 = false;
+    private static boolean aplicaMallaSufreEnfermedad2 = false;
+
 
 
     @Override
@@ -123,13 +126,15 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         this.cargarPreguntas();
         this.habilitarDeshabilitar();
         this.realizarAcciones();
+        this.limpiarFocus();
         this.mallasValidacion();
         return item;
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        aplicaMallaSufreEnfermedad1 = false;
+        aplicaMallaSufreEnfermedad2 = false;
         try {
             //persona = (Persona) getArguments().getSerializable("persona");
             //se llena las etiquetas del encabezado
@@ -624,6 +629,22 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     }
 
     /**
+     * Método que permite limpiar los focos de los compònentes
+     */
+    private void limpiarFocus() {
+        Utilitarios.logError("vecesssssssssssss","limpiarFocus");
+        porcentajeIntelectualEditText.clearFocus();
+        porcentajeFisicaEditText.clearFocus();
+        porcentajeCegueraEditText.clearFocus();
+        porcentajeVisionEditText.clearFocus();
+        porcentajeSorderaEditText.clearFocus();
+        porcentajeHipoacusiaEditText.clearFocus();
+        porcentajePsicosocialesEditText.clearFocus();
+        asistenciaEstablecimientoSpinner.clearFocus();
+        enfermedadCatastroficaSpinner.requestFocus();
+
+    }
+    /**
      * Método para habilitar o desabilitar los controles de la vista
      */
     public void habilitarDeshabilitar() {
@@ -635,6 +656,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         seguroSocial2Spinner.setEnabled(false);
         seguroSalud2Spinner.setEnabled(false);
         codigoPersonaMadreSpinner.setEnabled(false);
+        for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+            diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+
     }
 
     /**
@@ -1144,48 +1169,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             }
         });
 
-        sufreEnfermedadesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 1) {
-                    for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
-                        diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
-                    }
-                    enfermedadCatastroficaSpinner.setSelection(0);
-                    enfermedadCatastroficaSpinner.setEnabled(true);
-                }else
-                if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 2 ||
-                        Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 3) {
-                        diagnosticoMedicoRadioGroup.clearCheck();
-                        for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
-                            diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
-                        }
-                        enfermedadCatastroficaSpinner.setSelection(0);
-                        enfermedadCatastroficaSpinner.setEnabled(false);
-
-                }
-                else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 4 ||
-                        Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == -1) {
-                    diagnosticoMedicoRadioGroup.clearCheck();
-                    for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
-                        diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(false);
-                    }
-                    enfermedadCatastroficaSpinner.setSelection(0);
-                    enfermedadCatastroficaSpinner.setEnabled(false);
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
         seguroSocial1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 if (!((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
                     seguroSocial2Spinner.setEnabled(true);
                 }
@@ -1412,6 +1399,71 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             }
         });
 
+        sufreEnfermedadesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                limpiarFocus();
+
+                if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 1) {
+                    sufreEnfermedadesSpinner.requestFocus();
+                    if (aplicaMallaSufreEnfermedad1 == false) {
+                        aplicaMallaSufreEnfermedad1 = true;
+                        enfermedadCatastroficaSpinner.setEnabled(true);
+                    } else {
+                        diagnosticoMedicoRadioGroup.clearCheck();
+                        for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+                            diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
+                        }
+                        enfermedadCatastroficaSpinner.setSelection(0);
+                        enfermedadCatastroficaSpinner.setEnabled(true);
+                    }
+                } else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 2 ||
+                        Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 3) {
+                    sufreEnfermedadesSpinner.requestFocus();
+                    if (aplicaMallaSufreEnfermedad1 == false) {
+                        aplicaMallaSufreEnfermedad1 = true;
+                        enfermedadCatastroficaSpinner.setEnabled(false);
+
+                    } else {
+                        diagnosticoMedicoRadioGroup.clearCheck();
+                        for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+                            diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(true);
+                        }
+                        enfermedadCatastroficaSpinner.setSelection(0);
+                        enfermedadCatastroficaSpinner.setEnabled(false);
+                    }
+                }
+                else if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 4) {
+                    sufreEnfermedadesSpinner.requestFocus();
+                    if (aplicaMallaSufreEnfermedad1 == false) {
+                        aplicaMallaSufreEnfermedad1 = true;
+                        enfermedadCatastroficaSpinner.setEnabled(false);
+                    } else {
+                        diagnosticoMedicoRadioGroup.clearCheck();
+                        for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+                            diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(false);
+                        }
+                        enfermedadCatastroficaSpinner.setSelection(0);
+                        enfermedadCatastroficaSpinner.setEnabled(false);
+                    }
+                }else{
+                    sufreEnfermedadesSpinner.requestFocus();
+                    aplicaMallaSufreEnfermedad1 = true;
+                    diagnosticoMedicoRadioGroup.clearCheck();
+                    for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+
+                        diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(false);
+                    }
+                    enfermedadCatastroficaSpinner.setSelection(0);
+                    enfermedadCatastroficaSpinner.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                sufreEnfermedadesSpinner.requestFocus();
+            }
+        });
 
     }
 
@@ -1467,6 +1519,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeIntelectualEditText.setError(null);
             porcentajeIntelectualEditText.clearFocus();
             porcentajeIntelectualEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeIntelectualEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1478,6 +1531,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeFisicaEditText.setError(null);
             porcentajeFisicaEditText.clearFocus();
             porcentajeFisicaEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeFisicaEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1489,6 +1543,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeCegueraEditText.setError(null);
             porcentajeCegueraEditText.clearFocus();
             porcentajeCegueraEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeCegueraEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadVisionRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1500,6 +1555,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeVisionEditText.setError(null);
             porcentajeVisionEditText.clearFocus();
             porcentajeVisionEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeVisionEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1511,6 +1567,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeSorderaEditText.setError(null);
             porcentajeSorderaEditText.clearFocus();
             porcentajeSorderaEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeSorderaEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1522,6 +1579,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeHipoacusiaEditText.setError(null);
             porcentajeHipoacusiaEditText.clearFocus();
             porcentajeHipoacusiaEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajeHipoacusiaEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1533,6 +1591,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajePsicosocialesEditText.setError(null);
             porcentajePsicosocialesEditText.clearFocus();
             porcentajePsicosocialesEditText.setError(getString(R.string.errorCampoRequerido));
+            porcentajePsicosocialesEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 porcentajeIntelectualEditText.getText().toString().equals("") &&

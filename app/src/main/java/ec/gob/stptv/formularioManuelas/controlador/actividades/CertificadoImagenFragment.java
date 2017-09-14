@@ -292,11 +292,7 @@ public class CertificadoImagenFragment extends Fragment {
 
                 if (validarCampos())
                     return;
-
-
                 actualizarVivienda();
-
-
             }
         });
     }
@@ -340,17 +336,11 @@ public class CertificadoImagenFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionCodigoBarrasDiferentes));
         } else if (imagenViviendaBitmap == null) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionImagenViviendaVacio));
+        } else if (ViviendaDao.isRepeatCertificado(cr, certificadoEditText.getText().toString()) == true) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.mv_numero_certificado_duplicado));
         } else {
-            validacion=false;
+            validacion = false;
         }
-
-        if (ViviendaDao.isRepeatCertificado(cr, certificadoEditText
-                .getText().toString()) == true) {
-            getAlert(getString(R.string.validacion_aviso),
-                    getString(R.string.mv_numero_certificado_duplicado));
-            return true;
-        }
-
 
         return validacion;
     }

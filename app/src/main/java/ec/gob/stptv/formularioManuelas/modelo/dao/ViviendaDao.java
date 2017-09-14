@@ -7,6 +7,7 @@ import android.net.Uri;
 
 import java.util.ArrayList;
 
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
@@ -121,7 +122,8 @@ public class ViviendaDao  extends Vivienda{
         {
             if (result.moveToFirst())
             {
-                if(!result.getString(result.getColumnIndex(COLUMNA_FORMULARIO)).equals("-1") && !result.getString(result.getColumnIndex(COLUMNA_FORMULARIO)).equals("") )
+                if(!result.getString(result.getColumnIndex(COLUMNA_FORMULARIO)).equals(String.valueOf(Global.ENTEROS_VACIOS))
+                        && !result.getString(result.getColumnIndex(COLUMNA_FORMULARIO)).equals("") )
                 {
                    isRepeat = true;
                 }

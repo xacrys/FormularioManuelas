@@ -125,6 +125,11 @@ public class Global {
     public static final Integer ENTEROS_VACIOS = -99;
 
     /**
+     * Valor para registros sin valor
+     */
+    public static final String SIN_REGISTRO = "ND";
+
+    /**
      * Valor para los catalogos
      */
     public static final Integer ENTEROS_VACIOS_CATALOGOS = 99;
