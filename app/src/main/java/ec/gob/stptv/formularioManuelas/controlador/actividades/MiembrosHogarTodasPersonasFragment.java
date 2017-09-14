@@ -632,7 +632,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
      * Método que permite limpiar los focos de los compònentes
      */
     private void limpiarFocus() {
-        Utilitarios.logError("vecesssssssssssss","limpiarFocus");
         porcentajeIntelectualEditText.clearFocus();
         porcentajeFisicaEditText.clearFocus();
         porcentajeCegueraEditText.clearFocus();
@@ -642,7 +641,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         porcentajePsicosocialesEditText.clearFocus();
         asistenciaEstablecimientoSpinner.clearFocus();
         enfermedadCatastroficaSpinner.requestFocus();
-
     }
     /**
      * Método para habilitar o desabilitar los controles de la vista
@@ -1056,7 +1054,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     @Override
                     public void onCheckedChanged(RadioGroup group,
                                                  int checkedId) {
-
+                        limpiarFocus();
                         if (viveMadreHogarRadioGroup
                                 .getCheckedRadioButtonId() == R.id.viveMadreHogarOpcion1RadioButton) {
                             //codigoPersonaLinearLayout.setVisibility(View.VISIBLE);
@@ -1074,6 +1072,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion2RadioButton) {
                     carnetConadisRadioGroup.check(-1);
                     for (int cont = 0; cont < carnetConadisRadioGroup.getChildCount(); cont++) {
@@ -1172,7 +1171,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         seguroSocial1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                limpiarFocus();
                 if (!((Values) seguroSocial1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
                     seguroSocial2Spinner.setEnabled(true);
                 }
@@ -1196,6 +1195,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         seguroSocial2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                limpiarFocus();
                 if (((Values) seguroSocial2Spinner.getSelectedItem()).getKey().equals(((Values) seguroSocial1Spinner.getSelectedItem()).getKey())
                         &&
                         !((Values) seguroSocial2Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
@@ -1212,6 +1212,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         seguroSalud1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                limpiarFocus();
                 if (!((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
                     seguroSalud2Spinner.setEnabled(true);
                 }
@@ -1235,6 +1236,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         seguroSalud2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                limpiarFocus();
                 if (((Values) seguroSalud2Spinner.getSelectedItem()).getKey().equals(((Values) seguroSalud1Spinner.getSelectedItem()).getKey())
                         &&
                         !((Values) seguroSalud1Spinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
@@ -1252,6 +1254,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadIntelectualRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                         discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton) {
                     porcentajeIntelectualEditText.setEnabled(true);
@@ -1266,6 +1269,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadFisicaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                         discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton) {
                     porcentajeFisicaEditText.setEnabled(true);
@@ -1280,6 +1284,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadCegueraRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                         discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton) {
                     porcentajeCegueraEditText.setEnabled(true);
@@ -1294,6 +1299,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadVisionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                         discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton) {
                     porcentajeVisionEditText.setEnabled(true);
@@ -1308,6 +1314,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadSorderaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                         discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton) {
                     porcentajeSorderaEditText.setEnabled(true);
@@ -1322,6 +1329,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadHipoacusiaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                         discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion1RadioButton) {
                     porcentajeHipoacusiaEditText.setEnabled(true);
@@ -1336,6 +1344,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         discapacidadPsicosocialesRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                         discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton) {
                     porcentajePsicosocialesEditText.setEnabled(true);
@@ -1350,6 +1359,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         necesitaAyudaTecnicaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (necesitaAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.necesitaAyudaTecnicaOpcion2RadioButton) {
                     deshabilitarAyudasTecnicas();
                     deshabilitarInstitucionesAyudasTecnicas();
@@ -1363,6 +1373,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         recibioAyudaTecnicaRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (recibioAyudaTecnicaRadioGroup.getCheckedRadioButtonId() == R.id.recibioAyudaTecnicaOpcion1RadioButton) {
                     habilitarInstitucionesAyudasTecnicas();
                 } else {
@@ -1375,6 +1386,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         carnetConadisRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                limpiarFocus();
                 if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton) {
                     habilitarPorcentajes();
                 } else {
@@ -1386,6 +1398,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         proteccionSocialpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                limpiarFocus();
                 if (persona != null && persona.getEdadanio() > 3 &&
                         Integer.parseInt(((Values) proteccionSocialpinner.getSelectedItem()).getKey()) > 0 &&
                         Integer.parseInt(((Values) proteccionSocialpinner.getSelectedItem()).getKey()) < 3) {
@@ -1403,7 +1416,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 limpiarFocus();
-
                 if (Integer.parseInt(((Values) sufreEnfermedadesSpinner.getSelectedItem()).getKey()) == 1) {
                     sufreEnfermedadesSpinner.requestFocus();
                     if (aplicaMallaSufreEnfermedad1 == false) {
@@ -1438,6 +1450,10 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     if (aplicaMallaSufreEnfermedad1 == false) {
                         aplicaMallaSufreEnfermedad1 = true;
                         enfermedadCatastroficaSpinner.setEnabled(false);
+                        diagnosticoMedicoRadioGroup.clearCheck();
+                        for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
+                            diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(false);
+                        }
                     } else {
                         diagnosticoMedicoRadioGroup.clearCheck();
                         for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
@@ -1451,7 +1467,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
                     aplicaMallaSufreEnfermedad1 = true;
                     diagnosticoMedicoRadioGroup.clearCheck();
                     for (int cont = 0; cont < diagnosticoMedicoRadioGroup.getChildCount(); cont++) {
-
                         diagnosticoMedicoRadioGroup.getChildAt(cont).setEnabled(false);
                     }
                     enfermedadCatastroficaSpinner.setSelection(0);
@@ -1461,7 +1476,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                sufreEnfermedadesSpinner.requestFocus();
+
             }
         });
 
@@ -1519,7 +1534,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeIntelectualEditText.setError(null);
             porcentajeIntelectualEditText.clearFocus();
             porcentajeIntelectualEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeIntelectualEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1531,7 +1545,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeFisicaEditText.setError(null);
             porcentajeFisicaEditText.clearFocus();
             porcentajeFisicaEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeFisicaEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1543,7 +1556,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeCegueraEditText.setError(null);
             porcentajeCegueraEditText.clearFocus();
             porcentajeCegueraEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeCegueraEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadVisionRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1555,7 +1567,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeVisionEditText.setError(null);
             porcentajeVisionEditText.clearFocus();
             porcentajeVisionEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeVisionEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1567,7 +1578,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeSorderaEditText.setError(null);
             porcentajeSorderaEditText.clearFocus();
             porcentajeSorderaEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeSorderaEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1579,7 +1589,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajeHipoacusiaEditText.setError(null);
             porcentajeHipoacusiaEditText.clearFocus();
             porcentajeHipoacusiaEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajeHipoacusiaEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == -1) {
@@ -1591,7 +1600,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             porcentajePsicosocialesEditText.setError(null);
             porcentajePsicosocialesEditText.clearFocus();
             porcentajePsicosocialesEditText.setError(getString(R.string.errorCampoRequerido));
-            porcentajePsicosocialesEditText.requestFocus();
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
         } else if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 porcentajeIntelectualEditText.getText().toString().equals("") &&
@@ -1776,7 +1784,6 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
 
                 if (validarEstadCivil())
                     return;
-
                 guardar();
             }
         });

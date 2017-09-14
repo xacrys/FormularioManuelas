@@ -380,6 +380,17 @@ public class MiembrosHogarFragment extends Fragment {
             }
         }
     }
+
+    /**
+     * Método que encera encera el campo estado civil
+     * @param _persona
+     */
+    protected void validarConyugeEstadoCivil(Persona _persona) {
+        _persona.setIdestadocivil(Global.ENTEROS_VACIOS_CATALOGOS);
+        _persona.setInformacioncompleta(Global.INFORMACION_INCOMPLETA);
+        PersonaDao.update(contentResolver,_persona);
+    }
+
     /**
      * Método que llena los controles con datos de la base
      * @param _persona
@@ -769,27 +780,6 @@ public class MiembrosHogarFragment extends Fragment {
                         }
                     }
                 });
-
-        /*parentescoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                int parentesco = Integer.valueOf(((Values) adapterView
-                        .getAdapter().getItem(i)).getKey());
-
-
-                if (getCountTablaPersonas()+1 > 1){
-                    if (parentesco == 1 && getCountTablaPersonas() >0){
-                        getAlert(getString(R.string.validacion_aviso),
-                                getString(R.string.mensajeJefeHogarMasUno));
-                        parentescoSpinner.setSelection(0);
-                    }
-                }
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });*/
-
     }
 
     /**
@@ -834,6 +824,7 @@ public class MiembrosHogarFragment extends Fragment {
             return;
 
         int genero = Integer.valueOf(((Values) sexoSpinner.getSelectedItem()).getKey());
+        Integer parentesco = persona.getIdparentesco();
         // Guardar nuevo registro
         if (tipoGestion == 1) {
             Persona persona = new Persona();
@@ -981,15 +972,15 @@ public class MiembrosHogarFragment extends Fragment {
                 if ((persona.getEdadanio() >= Global.EDAD_12ANIOS)
                         && (persona.getSexo() == Global.GENERO_FEMENINO)) {
                     if (genero != Global.GENERO_FEMENINO) {
-
-                        //validarMadreEHijos(persona);
-
+                        validarMadreEHijos(persona);
                     } else {
                         if (edadAnios < Global.EDAD_12ANIOS) {
-
-                            //validarMadreEHijos(persona);
+                            validarMadreEHijos(persona);
                         }
                     }
+                }
+                if (!persona.getIdparentesco().equals(parentesco) && (persona.getIdparentesco().equals(2) || (parentesco.equals(2)))){
+                    validarConyugeEstadoCivil(persona);
                 }
 
                 if (persona.getEdadanio() != edadAnios || persona.getSexo() != genero) {
