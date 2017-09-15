@@ -824,7 +824,7 @@ public class MiembrosHogarFragment extends Fragment {
             return;
 
         int genero = Integer.valueOf(((Values) sexoSpinner.getSelectedItem()).getKey());
-        Integer parentesco = persona.getIdparentesco();
+
         // Guardar nuevo registro
         if (tipoGestion == 1) {
             Persona persona = new Persona();
@@ -921,6 +921,7 @@ public class MiembrosHogarFragment extends Fragment {
 
         } else {
             if (tipoGestion == 2) {
+                Integer parentesco = persona.getIdparentesco();
                 persona.setIdresidente(Integer.valueOf(((Values) tipoResidenteSpinner.getSelectedItem()).getKey()));
                 persona.setNombres(nombresEditText.getText().toString().trim());
                 persona.setApellidos(apellidosEditText.getText().toString().trim());

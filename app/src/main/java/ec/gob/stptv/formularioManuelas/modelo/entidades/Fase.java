@@ -42,6 +42,7 @@ public class Fase implements Serializable {
 
 	//consultas
 	public static String whereById = COLUMNA_ID + "= ?";
+	public static String whereByEstado = COLUMNA_ESTADO + "= ?";
 	public static String whereByIdDistinto = COLUMNA_ID + " <> ?";
 	public static String whereDates =
 

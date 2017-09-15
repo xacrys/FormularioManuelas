@@ -791,11 +791,7 @@ public class FormulariosActivity extends Activity {
 		estadoSpinner.setAdapter(ControlPreguntas.getControlEntrevistaAdapter(this));
 		faseSpinner.setAdapter(ViviendaPreguntas.getAreaAdapter(this));
 
-		String where;
-		String parametros[];
-		where = Fase.whereById;
-		parametros = new String[] {String.valueOf(1)};
-		ArrayList<Fase> fases= FaseDao.getFases(contentResolver, where, parametros, Fase.COLUMNA_ESTADO + " desc");
+		ArrayList<Fase> fases= FaseDao.getFases(contentResolver, null, null, Fase.COLUMNA_ESTADO + " desc");
 		ArrayAdapter<Fase> fasesAdapter = new ArrayAdapter<Fase>(this, android.R.layout.simple_spinner_item,fases);
 		fasesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		faseSpinner.setAdapter(fasesAdapter);
@@ -991,21 +987,18 @@ public class FormulariosActivity extends Activity {
 		protected void onPostExecute(final Object _respuesta) {
 
 			if (_respuesta != null) {
-
 				try {
-					JSONObject respuesta = (JSONObject) _respuesta;
-					String codigoDispositivo = respuesta.getString("idDispositivo");
-					//String codigoGrupo = respuesta.getString("codigoGrupo");
-					String codigoUsuario = respuesta.getString("idUsuario");
-					//String intervalo = respuesta.getString("intervalo");
-					String idFase = respuesta.getString("idFase");
-					String version = respuesta.getString("version");
-					Log.e("", "" + respuesta);
-					if(version.equals("SI"))
-					{
-						if (!codigoDispositivo.equals("0") && !codigoUsuario.equals("0") && !idFase.equals("0"))
-						{
 
+					JSONObject respuesta = (JSONObject) _respuesta;
+					Integer codigo = respuesta.getInt("codigo");
+					switch (codigo) {
+
+						case 0:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.error_servidor));
+							break;
+
+						case 1:
+							String idFase = respuesta.getString("idFase");
 							String[] parametros = new String[] {idFase};
 							Fase _fase = FaseDao.getFase(contentResolver,Fase.whereById, parametros);
 							if(_fase.getId() == 0)
@@ -1065,32 +1058,50 @@ public class FormulariosActivity extends Activity {
 
 									e.printStackTrace();
 								}
-
 							}
 
-						} else {
+							break;
+						case -1:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.error_incorrect_password));
+							break;
 
-							getAlert(getString(R.string.validacion_aviso), "No existe una fase");
+						case -2:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.error_asignacion_tablet));
+							break;
 
-						}
+						case -3:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.error_asignacion_fase));
+							break;
+
+						case -4:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.error_version));
+							break;
+
+						case -5:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDispositivoFase));
+							break;
+
+						case -6:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDispositivoVersion));
+							break;
+
+						case -7:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.errorFaseVersion));
+							break;
+
+						case -8:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDispositivoFaseVersion));
+							break;
+
+						default:
+							break;
 					}
-					else
-					{
-						if(version.equals("NO"))
-						{
-							getAlert(getString(R.string.validacion_aviso), "Por favor actualice de version de la aplicacion");
-						}
-
-					}
-
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-
 			}
 			else
 			{
-
 				Toast toast = Toast.makeText(getApplicationContext(),
 						getString(R.string.error_conectar_servidor),
 						Toast.LENGTH_LONG);

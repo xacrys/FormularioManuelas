@@ -588,13 +588,13 @@ public class ViviendaFragment extends Fragment {
         where = DpaManzana.whereByPCPZSM;
         parametros = new String[] {idProvincia, idCanton, idParroquia, vivienda.getZona(),vivienda.getSector(), vivienda.getManzana()};
         DpaManzana dpaManzana = DpaManzanaDao.getDpaManzana(contentResolver, where, parametros);
-        Utilitarios.logError("id de dapa", "*"+dpaManzana.getId()+"*");
         if (dpaManzana!= null){
+            Utilitarios.logError("id de dapa", "*"+dpaManzana.getId()+"*");
             vivienda.setIddpa(String.valueOf(dpaManzana.getId()));
         }
-//        else{
-//            vivienda.setIddpa("");
-//        }
+        else{
+            vivienda.setIddpa(String.valueOf(Global.ENTEROS_VACIOS));
+        }
 
         if (Integer
                 .valueOf(((Values) condicionOcupacionSpinner
@@ -606,7 +606,6 @@ public class ViviendaFragment extends Fragment {
                     .getValor());
         }
         vivienda.setIdfase(fase.getId());
-        //vivienda.setIdfase(1);
         vivienda.setIdentificadorequipo(Utilitarios.getImeiDispositivo(getActivity()));
         vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
         vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
@@ -719,13 +718,16 @@ public class ViviendaFragment extends Fragment {
             return true;
         }
 
-        if (((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
-            getAlert(
-                    getString(R.string.validacion_aviso),
-                    getString(R.string.seleccione_pregunta)
-                            + getString(R.string.manzana));
-            return true;
+        if (!((Values) zonaSpinner.getSelectedItem()).getKey().equals("999")){
+            if (((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
+                getAlert(
+                        getString(R.string.validacion_aviso),
+                        getString(R.string.seleccione_pregunta)
+                                + getString(R.string.manzana));
+                return true;
+            }
         }
+
 
         viviendaEditText.setError(null);
         viviendaEditText.clearFocus();
@@ -1362,11 +1364,11 @@ public class ViviendaFragment extends Fragment {
                     String[] args = {idProvincia, idCanton, idParroquia,
                             zona.getKey()};
 
-//                    if (zona.getKey().equals("999")) {
-//                        manzanaSpinner.setEnabled(false);
-//                    } else {
-//                        manzanaSpinner.setEnabled(true);
-//                    }
+                    if (zona.getKey().equals("999")) {
+                        manzanaSpinner.setEnabled(false);
+                    } else {
+                        manzanaSpinner.setEnabled(true);
+                    }
 
                     ArrayList<Values> localidades;
 

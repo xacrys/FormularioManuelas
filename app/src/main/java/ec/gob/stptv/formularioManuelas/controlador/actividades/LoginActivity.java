@@ -333,8 +333,8 @@ public class LoginActivity extends Activity {
                 values.put("version", infoApp.versionName);
 
                 String _respuesta = WebService.getJsonData(params[0], values, httpClient);
-                Utilitarios.logInfo("values", values.toString());
-                Utilitarios.logInfo("respuesta", _respuesta);
+                Utilitarios.logError("values", values.toString());
+                Utilitarios.logError("respuesta", _respuesta);
 
                 if (!_respuesta.equals(""))
                 {
@@ -349,6 +349,7 @@ public class LoginActivity extends Activity {
                 }
                 else
                 {
+                    Utilitarios.logError("No deveulve nada pero busca en la base","error busca en la base");
                     String where= Usuario.whereByUsuarioYPassword;
                     String[] parametros = new String[] {
                             mEmailView.getText().toString(),
@@ -411,7 +412,8 @@ public class LoginActivity extends Activity {
 //            Utilitarios.logError("resouesta del login", ""+_respuesta);
 //            startActivity(intent);
 
-            if (_respuesta != null) {
+            JSONObject respuesta = null;
+            if (_respuesta != null ) {
                 if (_respuesta.getClass() == Usuario.class)
                 {
                     Intent intent = new Intent(LoginActivity.this, FormulariosActivity.class);
@@ -421,7 +423,7 @@ public class LoginActivity extends Activity {
                 }
                 if (_respuesta.getClass() == JSONObject.class) {
                     try {
-                        JSONObject respuesta = (JSONObject) _respuesta;
+                        respuesta = (JSONObject) _respuesta;
                         Integer codigo = respuesta.getInt("codigo");
                         switch (codigo) {
                             case 0:
@@ -429,9 +431,8 @@ public class LoginActivity extends Activity {
                                 showProgress(false);
                                 getAlert(getString(R.string.validacion_aviso), getString(R.string.error_servidor));
                                 break;
-
                             case 1:
-                                Date fechaActual = new Date();
+                                /*Date fechaActual = new Date();
                                 DateFormat formato = new SimpleDateFormat(
                                         "yyyy-MM-dd");
 
@@ -499,13 +500,9 @@ public class LoginActivity extends Activity {
                                     FaseDao.update(contentResolver, fase);
                                     FaseDao.updateEstadoFases(contentResolver,fase);
                                     Utilitarios.printObject(fase);
-                                }
+                                }*/
 
-                                getVivcodigo();
-                                /*finish();
-                                Intent intent = new Intent(LoginActivity.this,	FormulariosActivity.class);
-                                intent.putExtra("usuario", usuario);
-                                startActivity(intent);*/
+                                getVivcodigo(respuesta);
                                 break;
 
                             case -1:
@@ -568,6 +565,7 @@ public class LoginActivity extends Activity {
 
             } else
             {
+                Log.e("ddddddddddd", "Login - Error en el servidor");
                 String[] parametros = new String[] {
                         mEmailView.getText().toString(),
                         ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
@@ -575,12 +573,7 @@ public class LoginActivity extends Activity {
                 String where= Usuario.whereByUsuarioYPassword;
                 Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
                 if (usuario != null) {
-                    getVivcodigo();
-                    /*Intent intent = new Intent(LoginActivity.this,
-                            FormulariosActivity.class);
-                    finish();
-                    intent.putExtra("usuario",usuario);
-                    startActivity(intent);*/
+                    getVivcodigo(respuesta);
                 }
                 else
                 {
@@ -603,29 +596,35 @@ public class LoginActivity extends Activity {
         protected void onCancelled() {
 
             Log.e("ddddddddddd", "Login onCancelled");
-            String[] parametros = new String[] {
-                    mEmailView.getText().toString(),
-                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-            };
+//            String[] parametros = new String[] {
+//                    mEmailView.getText().toString(),
+//                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+//            };
+//
+//            String where= Usuario.whereByUsuarioYPassword;
+//            Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+//
+//            if (usuario != null) {
+//
+//                Intent intent = new Intent(LoginActivity.this,
+//                        FormulariosActivity.class);
+//                finish();
+//                intent.putExtra("usuario",usuario);
+//                startActivity(intent);
+//            }
+//            else
+//            {
+//                mEmailView.setError(getString(R.string.error_incorrect_password));
+//                mEmailView.requestFocus();
+//                mAuthTask = null;
+//                showProgress(false);
+//            }
 
-            String where= Usuario.whereByUsuarioYPassword;
-            Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
-
-            if (usuario != null) {
-
-                Intent intent = new Intent(LoginActivity.this,
-                        FormulariosActivity.class);
-                finish();
-                intent.putExtra("usuario",usuario);
-                startActivity(intent);
-            }
-            else
-            {
-                mEmailView.setError(getString(R.string.error_incorrect_password));
-                mEmailView.requestFocus();
-                mAuthTask = null;
-                showProgress(false);
-            }
+            //esto le puse ya q de aki no deberia pasar sino desde el oncancel del vivcodigo
+            mEmailView.setError(getString(R.string.error_incorrect_password));
+            mEmailView.requestFocus();
+            mAuthTask = null;
+            showProgress(false);
 
             Toast toast = Toast.makeText(getApplicationContext(),
                     getString(R.string.error_conectar_servidor),
@@ -711,7 +710,7 @@ public class LoginActivity extends Activity {
     /**
      *Obtiene el viv codigo
      */
-    public void getVivcodigo() {
+    public void getVivcodigo(final JSONObject _respuesta) {
 
         // Show a progress spinner, and kick off a background task to
         // perform the user login attempt.
@@ -750,7 +749,8 @@ public class LoginActivity extends Activity {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        vivcodigoTask.execute(Global.URL_WEB_SERVICE_VIVCODIGO).get(Global.ASYNCTASK_TIMEOUT_LOGIN, TimeUnit.MILLISECONDS);
+                        //vivcodigoTask.execute(Global.URL_WEB_SERVICE_VIVCODIGO).get(Global.ASYNCTASK_TIMEOUT_LOGIN, TimeUnit.MILLISECONDS);
+                        vivcodigoTask.execute(_respuesta, httpClient).get(Global.ASYNCTASK_TIMEOUT_LOGIN, TimeUnit.MILLISECONDS);
 
                     } catch (InterruptedException e1) {
                         // TODO Auto-generated catch block
@@ -760,9 +760,8 @@ public class LoginActivity extends Activity {
                         e1.printStackTrace();
                     } catch (TimeoutException e1) {
 
-                        Log.e("", "Termino el tiempo de coneccion");
+                        Log.e("", "Termino el tiempo de coneccion del viv codigo");
                         httpClient.getConnectionManager().shutdown();
-
                         if(!vivcodigoTask.isCancelled()){
                             vivcodigoTask.cancel(true);
                         }
@@ -779,25 +778,29 @@ public class LoginActivity extends Activity {
      * the user.
      */
     @SuppressLint("SimpleDateFormat")
-    public class VivcodigoTask extends AsyncTask<String, Void, String> {
+    public class VivcodigoTask extends AsyncTask<Object, Void, String> {
+        JSONObject respuestaUsuario;
+        DefaultHttpClient httpClient;
 
-        protected String doInBackground(String... params) {
+        protected String doInBackground(Object... params) {
+
+            respuestaUsuario = (JSONObject)params[0];
+            httpClient = (DefaultHttpClient)params[1];
 
             String[] parametros = new String[]{
                     mEmailView.getText().toString(),
                     ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
             };
-            String where = Usuario.whereByUsuarioYPassword;
-            Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
             JSONObject values = new JSONObject();
             try {
-                values.put("usuario", usuario.getIdusuario());
-                values.put("imei", usuario.getImei());
+                if (respuestaUsuario!= null){
+                    values.put("dispositivo", respuestaUsuario.getString("idDispositivo"));
+                    values.put("imei", Utilitarios.getImeiDispositivo(getApplicationContext()));
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            String _respuesta = WebService.getJsonData(params[0], values, httpClient);
+            String _respuesta = WebService.getJsonData(Global.URL_WEB_SERVICE_VIVCODIGO, values, httpClient);
             Utilitarios.logInfo("values", values.toString());
             Utilitarios.logInfo("respuesta", _respuesta);
             return _respuesta;
@@ -807,22 +810,96 @@ public class LoginActivity extends Activity {
         @Override
         protected void onPostExecute(final String _respuesta) {
             if (_respuesta != null) {
-
                 if (!_respuesta.equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA))) {
 
-                    String[] parametros = new String[]{
-                            mEmailView.getText().toString(),
-                            ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-                    };
-                    String where = Usuario.whereByUsuarioYPassword;
-                    Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
-                    usuario.setMaxvivcodigo(_respuesta);
-                    UsuarioDao.update(contentResolver, usuario);
-                    Intent intent = new Intent(LoginActivity.this,
-                            FormulariosActivity.class);
-                    finish();
-                    intent.putExtra("usuario", usuario);
-                    startActivity(intent);
+//                    String[] parametros = new String[]{
+//                            mEmailView.getText().toString(),
+//                            ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+//                    };
+//                    String where = Usuario.whereByUsuarioYPassword;
+//                    Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+//                    usuario.setMaxvivcodigo(_respuesta);
+//                    UsuarioDao.update(contentResolver, usuario);
+//                    Intent intent = new Intent(LoginActivity.this,
+//                            FormulariosActivity.class);
+//                    finish();
+//                    intent.putExtra("usuario", usuario);
+//                    startActivity(intent);
+
+                    try {
+                        Date fechaActual = new Date();
+                        DateFormat formato = new SimpleDateFormat(
+                                "yyyy-MM-dd");
+
+                        String[] parametros = new String[]{respuestaUsuario.getString("usuario"),
+                                respuestaUsuario.getString("contrasenia")};
+
+                        String where = Usuario.whereByUsuarioYPassword;
+                        Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+                        if (usuario != null) {
+
+                            usuario.setIdusuario(respuestaUsuario.getString("idUsuario"));
+                            usuario.setNombres(respuestaUsuario.getString("nombres"));
+                            usuario.setApellidos(respuestaUsuario.getString("apellidos"));
+                            usuario.setCedula(respuestaUsuario.getString("cedula"));
+                            //usuario.setCodigoGrupo(respuesta.getInt("codigoGrupo"));
+                            usuario.setIddispositivo(respuestaUsuario.getInt("idDispositivo"));
+                            //usuario.setEstado(respuesta.getInt("estado"));
+                            usuario.setMaxvivcodigo(_respuesta);
+                            UsuarioDao.update(contentResolver, usuario);
+                        } else {
+                            Log.e("", "Entra a crear el usuario");
+                            Usuario _usuario = new Usuario();
+                            _usuario.setUsuario(respuestaUsuario.getString("usuario"));
+                            _usuario.setPassword(respuestaUsuario.getString("contrasenia"));
+                            _usuario.setIdusuario(respuestaUsuario.getString("idUsuario"));
+                            _usuario.setNombres(respuestaUsuario.getString("nombres"));
+                            _usuario.setApellidos(respuestaUsuario.getString("apellidos"));
+                            _usuario.setCedula(respuestaUsuario.getString("cedula"));
+                            //_usuario.setCodigoGrupo(respuesta.getInt("codigoGrupo"));
+                            _usuario.setIddispositivo(respuestaUsuario.getInt("idDispositivo"));
+                            //_usuario.setRol("user");
+                            //_usuario.setEstado(respuesta.getInt("estado"));
+                            _usuario.setImei(Utilitarios.getImeiDispositivo(getApplicationContext()));
+                            _usuario.setMaxvivcodigo(_respuesta);
+                            _usuario.setFecharegistro(formato.format(fechaActual));
+                            _usuario.setCodigo(respuestaUsuario.getInt("codigo"));
+                            UsuarioDao.save(contentResolver, _usuario);
+                            usuario = _usuario;
+                        }
+                        String idFase = respuestaUsuario.getString("idFase");
+                        parametros = new String[]{idFase};
+                        Fase fase = FaseDao.getFase(contentResolver, Fase.whereById, parametros);
+                        if (fase == null) {
+                            fase = new Fase();
+                            fase.setId(Integer.parseInt(idFase));
+                            fase.setFechainicio(respuestaUsuario.getString("fechaInicio"));
+                            fase.setFechafin(respuestaUsuario.getString("fechaFin"));
+                            fase.setNombrefase(respuestaUsuario.getString("fase"));
+                            //fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
+                            fase.setEstado(1);
+                            FaseDao.save(contentResolver, fase);
+                            FaseDao.updateEstadoFases(contentResolver, fase);
+                            Utilitarios.printObject(fase);
+                        } else {
+                            fase.setId(Integer.parseInt(idFase));
+                            fase.setFechainicio(respuestaUsuario.getString("fechaInicio"));
+                            fase.setFechafin(respuestaUsuario.getString("fechaFin"));
+                            fase.setNombrefase(respuestaUsuario.getString("fase"));
+                            //fase.setNombreOperativo(respuesta.getString("nombreOperativo"));
+                            fase.setEstado(1);
+                            FaseDao.update(contentResolver, fase);
+                            FaseDao.updateEstadoFases(contentResolver, fase);
+                            Utilitarios.printObject(fase);
+                        }
+                        Intent intent = new Intent(LoginActivity.this, FormulariosActivity.class);
+                        finish();
+                        intent.putExtra("usuario", usuario);
+                        startActivity(intent);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 }else{
                     vivcodigoTask = null;
@@ -835,7 +912,6 @@ public class LoginActivity extends Activity {
                 }
             }
             else{
-                Utilitarios.logError("lore", "entraaaaaaaaaaaaaaaaaaaaaaaaaaaa validarrrrrrrrr pendiente");
                 String[] parametros = new String[]{
                         mEmailView.getText().toString(),
                         ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
@@ -853,7 +929,7 @@ public class LoginActivity extends Activity {
                 {
                     mEmailView.setError(getString(R.string.error_incorrect_password));
                     mEmailView.requestFocus();
-                    mAuthTask = null;
+                    vivcodigoTask = null;
                     showProgress(false);
                 }
 
@@ -867,6 +943,34 @@ public class LoginActivity extends Activity {
 
         @Override
         protected void onCancelled() {
+            String[] parametros = new String[] {
+                    mEmailView.getText().toString(),
+                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
+            };
+
+            String where= Usuario.whereByUsuarioYPassword;
+            Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
+
+            if (usuario != null) {
+
+                Intent intent = new Intent(LoginActivity.this,
+                        FormulariosActivity.class);
+                finish();
+                intent.putExtra("usuario",usuario);
+                startActivity(intent);
+            }
+            else
+            {
+                mEmailView.setError(getString(R.string.error_incorrect_password));
+                mEmailView.requestFocus();
+                vivcodigoTask = null;
+                showProgress(false);
+            }
+
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    getString(R.string.error_conectar_servidor),
+                    Toast.LENGTH_LONG);
+            toast.show();
 
         }
     }

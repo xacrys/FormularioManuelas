@@ -383,8 +383,32 @@ public class MainActivity extends Activity {
                 return true;
 
             case R.id.menu_exit:
-                getExitAlert();
-                break;
+                if(vivienda.getId() != 0)
+                {
+                    if (vivienda.getIdcontrolentrevista()== ControlPreguntas.ControlEntrevista.COMPLETA
+                            .getValor()) {
+                        finish();
+                    }
+                    else
+                    {
+                        if(vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
+                                && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor())
+                        {
+                            getVisitastAlert(vivienda).show();
+                        }
+                        else
+                        {
+
+                            getExitAlert().show();
+                        }
+                    }
+                }
+                else
+                {
+                    getExitAlert().show();
+                }
+
+                return true;
 
             default:
                 break;

@@ -384,6 +384,12 @@ public class FormularioManuelasProvider extends ContentProvider {
             case VIVIENDA:
                 filasAfectadas = dataBase.update(Vivienda.NOMBRE_TABLA, values,
                         selection, selectionArgs);
+                if (filasAfectadas > 0) {
+                    Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
+                            "Registro actualizado: Tabla: " + Vivienda.NOMBRE_TABLA
+                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Vivienda.NOMBRE_TABLA + "set "
+                                    + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
+                }
                 break;
 
             case HOGAR:
@@ -393,7 +399,7 @@ public class FormularioManuelasProvider extends ContentProvider {
                 if (filasAfectadas > 0) {
                     Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
                             "Registro actualizado: Tabla: " + Hogar.NOMBRE_TABLA
-                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
+                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Hogar.NOMBRE_TABLA + "set "
                                     + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
                 }
                 break;
@@ -417,7 +423,7 @@ public class FormularioManuelasProvider extends ContentProvider {
                     if (filasAfectadas > 0) {
                         Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
                                 "Registro actualizado: Tabla: " + Usuario.NOMBRE_TABLA
-                                        + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
+                                        + " Id: " + selectionArgs[0] + " Valores: Update " + Usuario.NOMBRE_TABLA + "set "
                                         + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
                     }
                 }
@@ -430,7 +436,7 @@ public class FormularioManuelasProvider extends ContentProvider {
                 if (filasAfectadas > 0) {
                     Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
                             "Registro actualizado: Tabla: " + Fase.NOMBRE_TABLA
-                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
+                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Fase.NOMBRE_TABLA + "set "
                                     + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
 
                 }
@@ -443,7 +449,7 @@ public class FormularioManuelasProvider extends ContentProvider {
                 if (filasAfectadas > 0) {
                     Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
                             "Registro actualizado: Tabla: " + Localizacion.NOMBRE_TABLA
-                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Persona.NOMBRE_TABLA + "set "
+                                    + " Id: " + selectionArgs[0] + " Valores: Update " + Localizacion.NOMBRE_TABLA + "set "
                                     + values.toString() + " where " + selection + " valores: " + selectionArgs[0]);
                 }
                 break;
