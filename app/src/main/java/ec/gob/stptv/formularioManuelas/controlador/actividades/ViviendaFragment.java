@@ -513,7 +513,7 @@ public class ViviendaFragment extends Fragment {
             vivienda.setIdlocalidad(Integer.parseInt(localidadesDispersas.getKey()));
         }
         else{
-            vivienda.setIdlocalidad(Global.ENTEROS_VACIOS_CATALOGOS);
+            vivienda.setIdlocalidad(Global.ENTEROS_VACIOS);
         }
 
         if (!TextUtils.isEmpty(edificioEditText.getText().toString())) {
@@ -752,10 +752,7 @@ public class ViviendaFragment extends Fragment {
             }
 
             //localidad q no existe
-            Utilitarios.logError("localidades.getKey()", ""+localidadesDispersas.getKey());
-            Utilitarios.logError("localidades.getvalue", ""+localidadesDispersas.getValue());
             if (localidadesDispersas.getKey().equals("0")) {
-                Utilitarios.logError("error 0000000", "erro o");
                 localidadesAutoCompleteTextView.setText("");
                 localidadesAutoCompleteTextView.setError(getString(R.string.error_localidad_no_existe));
                 localidadesAutoCompleteTextView.requestFocus();
@@ -763,10 +760,7 @@ public class ViviendaFragment extends Fragment {
             }
 
             //si la descripcion no es igual
-            if (!(localidadesDispersas.getValue().equalsIgnoreCase(
-                    localidadesAutoCompleteTextView.getText()
-                            .toString()))) {
-                Utilitarios.logError("error 1111111111", "erro 111111");
+            if (!(localidadesDispersas.getValue().equalsIgnoreCase(localidadesAutoCompleteTextView.getText().toString()))) {
                 localidadesAutoCompleteTextView.setText("");
                 localidadesAutoCompleteTextView	.setError(getString(R.string.error_localidad_no_existe));
                 localidadesAutoCompleteTextView	.requestFocus();
@@ -1707,7 +1701,7 @@ public class ViviendaFragment extends Fragment {
 
             Utilitarios.logInfo(ViviendaFragment.class.getSimpleName(), "localidades cargaradas...");
             localidadesAutoCompleteTextView.setAdapter(adapter);
-            if (!vivienda.getIdlocalidad().equals(Global.ENTEROS_VACIOS_CATALOGOS)) {
+            if (!vivienda.getIdlocalidad().equals(Global.ENTEROS_VACIOS)) {
                 Values value = Utilitarios
                         .getValueByKey(
                                 (ArrayAdapter<Values>) localidadesAutoCompleteTextView

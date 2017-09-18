@@ -213,7 +213,7 @@ public class Vivienda implements Serializable {
         idestadoviviendatecho = Global.ENTEROS_VACIOS_CATALOGOS;
         idestadoviviendapiso = Global.ENTEROS_VACIOS_CATALOGOS;
         idestadoviviendapared = Global.ENTEROS_VACIOS_CATALOGOS;
-        idlocalidad = Global.ENTEROS_VACIOS_CATALOGOS;
+        idlocalidad = Global.ENTEROS_VACIOS;
 
     }
 
