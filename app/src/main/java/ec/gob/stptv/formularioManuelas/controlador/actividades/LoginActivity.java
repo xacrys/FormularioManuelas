@@ -60,6 +60,7 @@ import ec.gob.stptv.formularioManuelas.modelo.entidades.Vivienda;
 import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
 
 import static android.content.Intent.EXTRA_EMAIL;
+import static android.content.Intent.makeMainSelectorActivity;
 
 public class LoginActivity extends Activity {
 
@@ -99,12 +100,24 @@ public class LoginActivity extends Activity {
         }
         contentResolver = getContentResolver();
         this.obtenerVistas();
-        this.realizarAcciones();
 
         // Set up the login form.
         mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 
-        findViewById(R.id.sign_in_button).setOnClickListener(
+        mPasswordView
+                .setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView textView, int id,
+                                                  KeyEvent keyEvent) {
+                        if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                            attemptLogin();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+
+        sign_in_button.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -161,37 +174,13 @@ public class LoginActivity extends Activity {
     }
 
     /**
-     * Método para realizar las acciones
-     */
-    private void realizarAcciones() {
-
-        sign_in_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utilitarios.hideSoftKeyboard(LoginActivity.this);
-                attemptLogin();
-            }
-        });
-        mPasswordView
-                .setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    @Override
-                    public boolean onEditorAction(TextView textView, int id,
-                                                  KeyEvent keyEvent) {
-                        if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                            attemptLogin();
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-    }
-
-    /**
      *Intenta iniciar sesión o registrar la cuenta especificada en el formulario de inicio de sesión.
      *Si hay errores de formulario (correo electrónico no válido, campos perdidos, etc.), el
      *Se presentan errores y no se realiza ningún intento de inicio de sesión real.
      */
     public void attemptLogin() {
+        Utilitarios.logError("mAuthTask", mAuthTask+"");
+        Utilitarios.logError("vivcodigoTask", vivcodigoTask+"");
         if (mAuthTask != null) {
             return;
         }
@@ -267,6 +256,7 @@ public class LoginActivity extends Activity {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
+        Utilitarios.logError("si entra al show progress", "show progresas");
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
@@ -809,7 +799,7 @@ public class LoginActivity extends Activity {
 
         @Override
         protected void onPostExecute(final String _respuesta) {
-            if (_respuesta != null) {
+            if (_respuesta != null && !_respuesta.equals("")) {
                 if (!_respuesta.equals(String.valueOf(Global.SINCRONIZACION_INCOMPLETA))) {
 
 //                    String[] parametros = new String[]{
@@ -903,6 +893,7 @@ public class LoginActivity extends Activity {
 
                 }else{
                     vivcodigoTask = null;
+                    mAuthTask = null;
                     showProgress(false);
                     Toast toast = Toast.makeText(getApplicationContext(),
                             getString(R.string.error_servidor),
@@ -930,6 +921,7 @@ public class LoginActivity extends Activity {
                     mEmailView.setError(getString(R.string.error_incorrect_password));
                     mEmailView.requestFocus();
                     vivcodigoTask = null;
+                    mAuthTask = null;
                     showProgress(false);
                 }
 
@@ -964,6 +956,7 @@ public class LoginActivity extends Activity {
                 mEmailView.setError(getString(R.string.error_incorrect_password));
                 mEmailView.requestFocus();
                 vivcodigoTask = null;
+                mAuthTask = null;
                 showProgress(false);
             }
 

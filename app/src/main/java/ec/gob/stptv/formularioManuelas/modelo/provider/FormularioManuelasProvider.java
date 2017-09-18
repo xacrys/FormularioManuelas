@@ -22,6 +22,7 @@ import ec.gob.stptv.formularioManuelas.modelo.entidades.Fase;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Hogar;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Imagen;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localidad;
+import ec.gob.stptv.formularioManuelas.modelo.entidades.LocalidadDispersa;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Localizacion;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Usuario;
@@ -52,6 +53,7 @@ public class FormularioManuelasProvider extends ContentProvider {
     private static final String uri_dpamanzana = ESQUEMA + AUTORIDAD + "/dpamanzanas";
     private static final String uri_localidad = ESQUEMA + AUTORIDAD	+ "/localidades";
     private static final String uri_imagen = ESQUEMA + AUTORIDAD + "/imagenes";
+    private static final String uri_localidaddispersa = ESQUEMA + AUTORIDAD + "/localidaddispersa";
 
 
     public static final Uri CONTENT_URI_VIVIENDA = Uri.parse(uri_vivienda);
@@ -63,6 +65,7 @@ public class FormularioManuelasProvider extends ContentProvider {
     public static final Uri CONTENT_URI_DPAMANZANA = Uri.parse(uri_dpamanzana);
     public static final Uri CONTENT_URI_LOCALIDAD = Uri.parse(uri_localidad);
     public static final Uri CONTENT_URI_IMAGEN = Uri.parse(uri_imagen);
+    public static final Uri CONTENT_URI_LOCALIDADDISPERSA = Uri.parse(uri_localidaddispersa);
 
 
 
@@ -99,6 +102,9 @@ public class FormularioManuelasProvider extends ContentProvider {
     private static final int IMAGEN = 17;
     private static final int IMAGEN_ID = 18;
 
+    private static final int LOCALIDADDISPERSA = 19;
+    private static final int LOCALIDADDISPERSA_ID = 20;
+
 
     // Inicializamos el UriMatcher
     static {
@@ -129,6 +135,9 @@ public class FormularioManuelasProvider extends ContentProvider {
 
         uriMatcher.addURI(AUTORIDAD, "imagenes", IMAGEN);
         uriMatcher.addURI(AUTORIDAD, "imagenes/#", IMAGEN_ID);
+
+        uriMatcher.addURI(AUTORIDAD, "localidaddispersa", LOCALIDADDISPERSA);
+        uriMatcher.addURI(AUTORIDAD, "localidaddispersa/#", LOCALIDADDISPERSA_ID);
     }
 
     /**
@@ -218,6 +227,12 @@ public class FormularioManuelasProvider extends ContentProvider {
                 break;
             case IMAGEN:
                 qb.setTables(Imagen.NOMBRE_TABLA);
+                break;
+
+            case LOCALIDADDISPERSA:
+
+                qb.setTables(LocalidadDispersa.NOMBRE_TABLA);
+                // qb.setDistinct(true);
                 break;
 
 

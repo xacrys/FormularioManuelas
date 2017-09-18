@@ -54,6 +54,7 @@ import ec.gob.stptv.formularioManuelas.controlador.util.Values;
 import ec.gob.stptv.formularioManuelas.modelo.dao.DpaManzanaDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.HogarDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.LocalidadDao;
+import ec.gob.stptv.formularioManuelas.modelo.dao.LocalidadDispersaDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.LocalizacionDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.PersonaDao;
 import ec.gob.stptv.formularioManuelas.modelo.dao.ViviendaDao;
@@ -78,7 +79,7 @@ public class ViviendaFragment extends Fragment {
     private Spinner provinciaSpinner;
     private Spinner cantonSpinner;
     private Spinner parroquiaSpinner;
-    private Spinner parroquiaUrbanoSpinner;
+//    private Spinner parroquiaUrbanoSpinner;
     private Spinner zonaSpinner;
     private Spinner sectorSpinner;
     private Spinner manzanaSpinner;
@@ -123,6 +124,11 @@ public class ViviendaFragment extends Fragment {
     private TextView longitudTextView;
     private Button capturarPuntoGPSbutton;
     private Fase fase;
+    public AutoCompleteTextView localidadesAutoCompleteTextView;
+    private Button limpiarLocalidades;
+    protected Values localidadesDispersas = new Values("0", "0");
+    private LinearLayout localidadDispersaLinearLayout;
+    private LinearLayout localidadLinearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -273,7 +279,7 @@ public class ViviendaFragment extends Fragment {
         provinciaSpinner = item.findViewById(R.id.provinciaSpinner);
         cantonSpinner = item.findViewById(R.id.cantonSpinner);
         parroquiaSpinner = item.findViewById(R.id.parroquiaSpinner);
-        parroquiaUrbanoSpinner = item.findViewById(R.id.parroquiaUrbanoSpinner);
+//        parroquiaUrbanoSpinner = item.findViewById(R.id.parroquiaUrbanoSpinner);
         localidadEditText = item.findViewById(R.id.localidadEditText);
         zonaSpinner = item.findViewById(R.id.zonaSpinner);
         sectorSpinner = item.findViewById(R.id.sectorSpinner);
@@ -300,6 +306,11 @@ public class ViviendaFragment extends Fragment {
         latitudTextView = item.findViewById(R.id.latitudTextView);
         longitudTextView = item.findViewById(R.id.longitudTextView);
         capturarPuntoGPSbutton = item.findViewById(R.id.capturarPuntoGPSbutton);
+        localidadesAutoCompleteTextView = item.findViewById(R.id.localidadesAutoCompleteTextView);
+        limpiarLocalidades = item.findViewById(R.id.limpiarLocalidades);
+        localidadDispersaLinearLayout= item.findViewById(R.id.localidadDispersaLinearLayout);
+        localidadLinearLayout= item.findViewById(R.id.localidadLinearLayout);
+
 
     }
 
@@ -457,7 +468,9 @@ public class ViviendaFragment extends Fragment {
 
         hogarInicialSpinner.setEnabled(true);
         hogarInicialSpinner.setSelection(1);
-        parroquiaUrbanoSpinner.setEnabled(false);
+//        parroquiaUrbanoSpinner.setEnabled(false);
+        localidadDispersaLinearLayout.setVisibility(View.GONE);
+        localidadLinearLayout.setVisibility(View.GONE);
 
 
     }
@@ -494,6 +507,13 @@ public class ViviendaFragment extends Fragment {
             vivienda.setDivision(divisionEditText.getText().toString());
         } else {
             vivienda.setDivision(Global.CADENAS_VACIAS);
+        }
+
+        if (((Values) zonaSpinner.getSelectedItem()).getKey().equals("999")) {
+            vivienda.setIdlocalidad(Integer.parseInt(localidadesDispersas.getKey()));
+        }
+        else{
+            vivienda.setIdlocalidad(Global.ENTEROS_VACIOS_CATALOGOS);
         }
 
         if (!TextUtils.isEmpty(edificioEditText.getText().toString())) {
@@ -690,16 +710,7 @@ public class ViviendaFragment extends Fragment {
             return true;
         }
 
-        localidadEditText.setError(null);
-        localidadEditText.clearFocus();
-        if (localidadEditText.getText().toString().equals("")) {
-            localidadEditText
-                    .setError(getString(R.string.errorCampoRequerido));
-            localidadEditText.requestFocus();
 
-            cancel = true;
-            //return cancel;
-        }
         if (((Values) zonaSpinner.getSelectedItem())
                 .getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
             getAlert(
@@ -728,6 +739,50 @@ public class ViviendaFragment extends Fragment {
             }
         }
 
+        String nombreLocalidad = localidadesAutoCompleteTextView.getText().toString();
+        //validar localidades que sean 999 y 001
+        if (((Values) zonaSpinner.getSelectedItem()).getKey().equals("999")){
+            //campo obligatorio cuando es zona dispersa
+            localidadesAutoCompleteTextView.clearFocus();
+            localidadesAutoCompleteTextView.setError(null);
+            if (TextUtils.isEmpty(nombreLocalidad)) {
+                localidadesAutoCompleteTextView.setError(getString(R.string.errorCampoRequerido));
+                localidadesAutoCompleteTextView.requestFocus();
+                return true;
+            }
+
+            //localidad q no existe
+            Utilitarios.logError("localidades.getKey()", ""+localidadesDispersas.getKey());
+            Utilitarios.logError("localidades.getvalue", ""+localidadesDispersas.getValue());
+            if (localidadesDispersas.getKey().equals("0")) {
+                Utilitarios.logError("error 0000000", "erro o");
+                localidadesAutoCompleteTextView.setText("");
+                localidadesAutoCompleteTextView.setError(getString(R.string.error_localidad_no_existe));
+                localidadesAutoCompleteTextView.requestFocus();
+                return true;
+            }
+
+            //si la descripcion no es igual
+            if (!(localidadesDispersas.getValue().equalsIgnoreCase(
+                    localidadesAutoCompleteTextView.getText()
+                            .toString()))) {
+                Utilitarios.logError("error 1111111111", "erro 111111");
+                localidadesAutoCompleteTextView.setText("");
+                localidadesAutoCompleteTextView	.setError(getString(R.string.error_localidad_no_existe));
+                localidadesAutoCompleteTextView	.requestFocus();
+                return true;
+            }
+
+        }else{
+            localidadEditText.setError(null);
+            localidadEditText.clearFocus();
+            if (TextUtils.isEmpty(localidadEditText.getText().toString())) {
+                localidadEditText
+                        .setError(getString(R.string.errorCampoRequerido));
+                localidadEditText.requestFocus();
+                return true;
+            }
+        }
 
         viviendaEditText.setError(null);
         viviendaEditText.clearFocus();
@@ -1032,6 +1087,24 @@ public class ViviendaFragment extends Fragment {
             }
         });
 
+        localidadesAutoCompleteTextView
+                .setOnItemClickListener(new OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> adapter, View arg1,
+                                            int position, long arg3) {
+                        localidadesDispersas = (Values) adapter.getAdapter().getItem(position);
+                    }
+                });
+
+        limpiarLocalidades.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                localidadesAutoCompleteTextView.setText("");
+            }
+        });
 
 
         calle1EditText.addTextChangedListener(Utilitarios
@@ -1357,6 +1430,24 @@ public class ViviendaFragment extends Fragment {
                 String _idParroquia = parroquia.getKey();
                 if (!zona.getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
 
+                    //carga todas las localidades dispersas
+                    if (zona.getKey().equals("999"))
+                    {
+                        String idParroquia = _idParroquia.substring(0, 6);
+                        String[] args = { idParroquia};
+                        new GetDPALocalidades().execute(args);
+                        localidadLinearLayout.setVisibility(View.GONE);
+                        localidadEditText.setError(null);
+                        localidadEditText.setText("");
+                        localidadDispersaLinearLayout.setVisibility(View.VISIBLE);
+                    }else{
+                        localidadLinearLayout.setVisibility(View.VISIBLE);
+                        localidadDispersaLinearLayout.setVisibility(View.GONE);
+                        localidadesAutoCompleteTextView.setError(null);
+                        localidadesAutoCompleteTextView.setText("");
+                    }
+
+                    //carga lños sectores
                     String idProvincia = _idParroquia.substring(0, 2);
                     String idCanton = _idParroquia.substring(2, 4);
                     String idParroquia = _idParroquia.substring(4, 6);
@@ -1397,6 +1488,15 @@ public class ViviendaFragment extends Fragment {
 
 
                 } else {
+
+                    localidadDispersaLinearLayout.setVisibility(View.GONE);
+                    localidadesAutoCompleteTextView.setError(null);
+                    localidadesAutoCompleteTextView.setText("");
+
+                    localidadLinearLayout.setVisibility(View.GONE);
+                    localidadEditText.setError(null);
+                    localidadEditText.setText("");
+
                     Utilitarios
                             .removeAll((ArrayAdapter<Values>) sectorSpinner
                                     .getAdapter());
@@ -1456,8 +1556,11 @@ public class ViviendaFragment extends Fragment {
                                 (ArrayAdapter<Values>) manzanaSpinner.getAdapter(),
                                 String.valueOf(vivienda.getManzana()));
                         manzanaSpinner.setSelection(posicion);
-
-                        aplicaMalla = false;
+//                        aplicaMalla = false;
+                        if (!zona.getKey().equals("999"))
+                        {
+                            aplicaMalla = false;
+                        }
                     }
 
 
@@ -1573,5 +1676,53 @@ public class ViviendaFragment extends Fragment {
                 }
             }
         }
+    }
+
+    /**
+     * Cargar localidades
+     */
+    private class GetDPALocalidades extends
+            AsyncTask<String, Void, ArrayList<Values>> {
+
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected ArrayList<Values> doInBackground(String... params) {
+
+            ArrayList<Values> localidades = null;
+            Utilitarios.logInfo(ViviendaFragment.class.getSimpleName(), "Cargando localidades...");
+            localidades = LocalidadDispersaDao.getLocalidades(contentResolver, params);
+            Utilitarios.logError("totals", ""+localidades.size());
+            return localidades;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void onPostExecute(ArrayList<Values> localidadesdispersas) {
+
+            ArrayAdapter<Values> adapter = new ArrayAdapter<Values>(
+                    getActivity(), android.R.layout.simple_dropdown_item_1line,localidadesdispersas);
+
+            Utilitarios.logInfo(ViviendaFragment.class.getSimpleName(), "localidades cargaradas...");
+            localidadesAutoCompleteTextView.setAdapter(adapter);
+            if (!vivienda.getIdlocalidad().equals(Global.ENTEROS_VACIOS_CATALOGOS)) {
+                Values value = Utilitarios
+                        .getValueByKey(
+                                (ArrayAdapter<Values>) localidadesAutoCompleteTextView
+                                        .getAdapter(), String.valueOf(vivienda
+                                        .getIdlocalidad()));
+                localidadesDispersas = value;
+                if (!(localidadesDispersas.getKey().equals("0")) && (aplicaMalla== true)) {
+                    localidadesAutoCompleteTextView.setText(localidadesDispersas.getValue());
+                    localidadesAutoCompleteTextView.clearFocus();
+                    aplicaMalla = false;
+                }
+
+            }
+
+        }
+
     }
 }

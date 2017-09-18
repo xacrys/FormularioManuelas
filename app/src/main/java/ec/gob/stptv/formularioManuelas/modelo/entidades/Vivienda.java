@@ -65,6 +65,7 @@ public class Vivienda implements Serializable {
     private String sector;
     private Integer estadosincronizacion;
     private String certificado;
+    private Integer idlocalidad;
 
     //para sincronizar
     private Hogar hogar;
@@ -126,6 +127,7 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_ESTADOSINCRONIZACION = "estadosincronizacion";
     public final static String COLUMNA_OBSERVACION = "observacion";
     public final static String COLUMNA_CERTIFICADO = "certificado";
+    public final static String COLUMNA_IDLOCALIDAD = "idlocalidad";
 
 
     //crear un string con las columnas de la tabla
@@ -179,7 +181,8 @@ public class Vivienda implements Serializable {
             COLUMNA_FECHASINCRONIZACION,
             COLUMNA_ESTADOSINCRONIZACION,
             COLUMNA_OBSERVACION,
-            COLUMNA_CERTIFICADO
+            COLUMNA_CERTIFICADO,
+            COLUMNA_IDLOCALIDAD
     };
 
     //consultas
@@ -210,6 +213,7 @@ public class Vivienda implements Serializable {
         idestadoviviendatecho = Global.ENTEROS_VACIOS_CATALOGOS;
         idestadoviviendapiso = Global.ENTEROS_VACIOS_CATALOGOS;
         idestadoviviendapared = Global.ENTEROS_VACIOS_CATALOGOS;
+        idlocalidad = Global.ENTEROS_VACIOS_CATALOGOS;
 
     }
 
@@ -270,6 +274,7 @@ public class Vivienda implements Serializable {
         values.put(Vivienda.COLUMNA_FECHASINCRONIZACION, vivienda.getFechasincronizacion());
         values.put(Vivienda.COLUMNA_ESTADOSINCRONIZACION, vivienda.getEstadosincronizacion());
         values.put(Vivienda.COLUMNA_OBSERVACION, vivienda.getObservacion());
+        values.put(Vivienda.COLUMNA_IDLOCALIDAD, vivienda.getIdlocalidad());
 
         return values;
     }
@@ -330,6 +335,7 @@ public class Vivienda implements Serializable {
         vivienda.setFechasincronizacion(result.getString(result.getColumnIndex(COLUMNA_FECHASINCRONIZACION)));
         vivienda.setEstadosincronizacion(result.getInt(result.getColumnIndex(COLUMNA_ESTADOSINCRONIZACION)));
         vivienda.setObservacion(result.getString(result.getColumnIndex(COLUMNA_OBSERVACION)));
+        vivienda.setIdlocalidad(result.getInt(result.getColumnIndex(COLUMNA_IDLOCALIDAD)));
 
         return vivienda;
     }
@@ -767,5 +773,14 @@ public class Vivienda implements Serializable {
 
     public void setFormulario(String formulario) {
         this.formulario = formulario;
+    }
+
+
+    public Integer getIdlocalidad() {
+        return idlocalidad;
+    }
+
+    public void setIdlocalidad(Integer idlocalidad) {
+        this.idlocalidad = idlocalidad;
     }
 }

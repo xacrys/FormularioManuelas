@@ -150,35 +150,20 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:padding="10dp">-->
 
-                    <TextView
-                        style="@style/etiquetaSmallTextView"
-                        android:text="@string/parroquiaUrbana" />
+                    <!--<TextView-->
+                        <!--style="@style/etiquetaSmallTextView"-->
+                        <!--android:text="@string/parroquiaUrbana" />-->
 
-                    <Spinner
-                        android:id="@+id/parroquiaUrbanoSpinner"
-                        style="@style/respuestaSpinner"
-                        android:clickable="false"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:padding="10dp">
-
-                    <TextView
-                        style="@style/etiquetaSmallTextView"
-                        android:text="@string/localidadComunidad" />
-
-                    <EditText
-                        android:id="@+id/localidadEditText"
-                        style="@style/respuestaTextosEditText"
-                        android:maxLength="50" />
-                </LinearLayout>
+                    <!--<Spinner-->
+                        <!--android:id="@+id/parroquiaUrbanoSpinner"-->
+                        <!--style="@style/respuestaSpinner"-->
+                        <!--android:clickable="false"/>-->
+                <!--</LinearLayout>-->
 
                 <TextView
                     style="@style/areaPreguntaTextView"
@@ -212,6 +197,55 @@
                         style="@style/respuestaSpinner" />
                 </LinearLayout>
 
+                <LinearLayout style="@style/contenedorPregunta">
+                    <TextView
+                        style="@style/etiquetaSmallTextView"
+                        android:layout_width="wrap_content"
+                        android:text="@string/localidadComunidad" />
+
+                    <LinearLayout
+                        android:id="@+id/localidadDispersaLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/localidadesAutoCompleteTextView"
+                            style="@style/respuestaEditText"
+                            android:layout_width="320dp"
+                            android:completionThreshold="4"
+                            android:dropDownWidth="1300dp"
+                            android:singleLine="true"
+                            android:text=""></AutoCompleteTextView>
+
+
+                        <Button
+                            android:id="@+id/limpiarLocalidades"
+                            style="@style/actionButton"
+                            android:layout_width="55dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="5dp"
+                            android:drawableLeft="@android:drawable/ic_menu_revert" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/localidadLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:padding="10dp">
+
+                    <!--<TextView-->
+                        <!--style="@style/etiquetaSmallTextView"-->
+                        <!--android:text="@string/localidadComunidad" />-->
+
+                    <EditText
+                        android:id="@+id/localidadEditText"
+                        style="@style/respuestaTextosEditText"
+                        android:maxLength="50" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

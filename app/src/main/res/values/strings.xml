@@ -611,6 +611,7 @@
     <string name="error_numero_celularCeros">No es campo obligatorio</string>
     <string name="error_numero_celular">Ingrese 10 dígitos</string>
     <string name="mv_no_punto_gps">Capturando punto GPS  espere por favor&#8230;</string>
+    <string name="error_localidad_no_existe">Esta localidad no existe</string>
 
     <!-- FIN Mensajes de validacion Seccion I y II -->
 

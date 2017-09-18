@@ -170,9 +170,9 @@ public class HogarFragment extends Fragment {
         numCuartosSpinner.setSelection(posicion);
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) numDormitoriosSpinner.getAdapter(), String.valueOf(hogar.getDormitorio()));
         numDormitoriosSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) fuenteAguaSpinner.getAdapter(), String.valueOf(hogar.getIdagua()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) fuenteAguaSpinner.getAdapter(), String.valueOf(hogar.getIdredagua()));
         fuenteAguaSpinner.setSelection(posicion);
-        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) ubicacionAguaSpinner.getAdapter(), String.valueOf(hogar.getIdredagua()));
+        posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) ubicacionAguaSpinner.getAdapter(), String.valueOf(hogar.getIdagua()));
         ubicacionAguaSpinner.setSelection(posicion);
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) tratamientoAguaSpinner.getAdapter(), String.valueOf(hogar.getIdtratamientoagua()));
         tratamientoAguaSpinner.setSelection(posicion);
@@ -296,8 +296,8 @@ public class HogarFragment extends Fragment {
         hogar.setIddocumentovivienda(Integer.parseInt(((Values) documentoHogarSpinner.getSelectedItem()).getKey()));
         hogar.setCuartos(Integer.parseInt(((Values) numCuartosSpinner.getSelectedItem()).getKey()));
         hogar.setDormitorio(Integer.parseInt(((Values) numDormitoriosSpinner.getSelectedItem()).getKey()));
-        hogar.setIdagua(Integer.parseInt(((Values) fuenteAguaSpinner.getSelectedItem()).getKey()));
-        hogar.setIdredagua(Integer.parseInt(((Values) ubicacionAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdredagua(Integer.parseInt(((Values) fuenteAguaSpinner.getSelectedItem()).getKey()));
+        hogar.setIdagua(Integer.parseInt(((Values) ubicacionAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdtratamientoagua(Integer.parseInt(((Values) tratamientoAguaSpinner.getSelectedItem()).getKey()));
         hogar.setIdtiposshh(Integer.parseInt(((Values) servicioSanitarioSpinner.getSelectedItem()).getKey()));
         hogar.setIdsshh(Integer.parseInt(((Values) ubicacionSanitarioSpinner.getSelectedItem()).getKey()));
