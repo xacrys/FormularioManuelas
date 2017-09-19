@@ -316,7 +316,7 @@ public class FormulariosActivity extends Activity {
 			((TextView) row.findViewById(R.id.columnaSectorTextView))
 					.setText(vivienda.getSector());
 
-			if(!vivienda.getManzana().equals(Global.ENTEROS_VACIOS_CATALOGOS))
+			if(!vivienda.getManzana().equals(String.valueOf(Global.ENTEROS_VACIOS)))
 			{
 				((TextView) row.findViewById(R.id.columnaManzanaTextView))
 						.setText(String.valueOf(vivienda.getManzana()));

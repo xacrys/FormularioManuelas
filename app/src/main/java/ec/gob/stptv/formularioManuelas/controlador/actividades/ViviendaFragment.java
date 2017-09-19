@@ -503,6 +503,7 @@ public class ViviendaFragment extends Fragment {
         vivienda.setSector(((Values) sectorSpinner.getSelectedItem()).getKey());
 
         vivienda.setManzana(((Values) manzanaSpinner.getSelectedItem()).getKey());
+
         if (!TextUtils.isEmpty(divisionEditText.getText().toString())) {
             vivienda.setDivision(divisionEditText.getText().toString());
         } else {
@@ -787,6 +788,14 @@ public class ViviendaFragment extends Fragment {
                 .getValor()) {
             viviendaEditText
                     .setError(getString(R.string.mv_vivienda_ocupada));
+            viviendaEditText.requestFocus();
+            cancel = true;
+            //return cancel;
+        }
+
+        if ((!viviendaEditText.getText().toString().equals("") && Integer.valueOf(viviendaEditText.getText().toString()) <= 0)) {
+            viviendaEditText
+                    .setError(getString(R.string.mv_campo_vivienda_mayor_cero));
             viviendaEditText.requestFocus();
             cancel = true;
             //return cancel;
@@ -1536,7 +1545,7 @@ public class ViviendaFragment extends Fragment {
                             DpaManzana.whereByProvinciaCantonParroquiaZonaSector,
                             args, "CAST(" + DpaManzana.COLUMNA_MANZANA + " AS INTEGER)");
 
-                    localidades = DpaManzanaDao.getZonaSectorManzana(cursor);
+                    localidades = DpaManzanaDao.getManzana(cursor);
 
 
                     ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(

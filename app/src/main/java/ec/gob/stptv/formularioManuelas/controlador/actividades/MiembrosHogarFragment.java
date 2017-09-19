@@ -909,6 +909,10 @@ public class MiembrosHogarFragment extends Fragment {
                     return;
             }
 
+            if (persona.getIdparentesco() == 1) {
+                mensajesAlerta();
+            }
+
             Uri uri = PersonaDao.save(contentResolver, persona);
             String id = uri.getPathSegments().get(1);
             if (!id.equals("0")) {
@@ -1285,5 +1289,16 @@ public class MiembrosHogarFragment extends Fragment {
             }
         }
         return isValidate;
+    }
+
+    /**
+     * Metodo para mensajes de alerta
+     *
+     * @return boolean
+     */
+    protected void mensajesAlerta() {
+        if(((Values)tipoResidenteSpinner.getSelectedItem()).getKey().equals("3")){
+            getAlert(getString(R.string.validacion_aviso),getString(R.string.mv_idResisdenteTemporalJefeNucleo));
+        }
     }
 }

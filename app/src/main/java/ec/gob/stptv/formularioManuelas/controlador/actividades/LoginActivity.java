@@ -199,8 +199,7 @@ public class LoginActivity extends Activity {
             toast.show();
             String[] parametros = new String[]{
                     mEmailView.getText().toString(),
-                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-            };
+                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString())};
             String where = Usuario.whereByUsuarioYPassword;
             Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
             if (usuario != null) {
@@ -343,8 +342,7 @@ public class LoginActivity extends Activity {
                     String where= Usuario.whereByUsuarioYPassword;
                     String[] parametros = new String[] {
                             mEmailView.getText().toString(),
-                            ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-                    };
+                            ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString())};
                     Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
                     if (usuario != null) {
 
@@ -558,8 +556,7 @@ public class LoginActivity extends Activity {
                 Log.e("ddddddddddd", "Login - Error en el servidor");
                 String[] parametros = new String[] {
                         mEmailView.getText().toString(),
-                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-                };
+                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString())};
                 String where= Usuario.whereByUsuarioYPassword;
                 Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
                 if (usuario != null) {
@@ -714,8 +711,7 @@ public class LoginActivity extends Activity {
             toast.show();
             String[] parametros = new String[]{
                     mEmailView.getText().toString(),
-                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-            };
+                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString())};
             String where = Usuario.whereByUsuarioYPassword;
             Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
             if (usuario != null) {
@@ -905,8 +901,7 @@ public class LoginActivity extends Activity {
             else{
                 String[] parametros = new String[]{
                         mEmailView.getText().toString(),
-                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-                };
+                        ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString())};
                 String where = Usuario.whereByUsuarioYPassword;
                 Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);
 
@@ -937,8 +932,7 @@ public class LoginActivity extends Activity {
         protected void onCancelled() {
             String[] parametros = new String[] {
                     mEmailView.getText().toString(),
-                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString()),
-            };
+                    ClaveEncriptada.claveEncriptada(mPasswordView.getText().toString())};
 
             String where= Usuario.whereByUsuarioYPassword;
             Usuario usuario = UsuarioDao.getUsuario(contentResolver, where, parametros);

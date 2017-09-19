@@ -605,7 +605,7 @@
     <string name="mv_numerotelefono_celular">El campo número telefónico celular debe contener números de [0&#8211;9]</string>
     <string name="mv_lote_alfanumerico">El campo número de lote debe contener letras [A-Z] y/o números de [0&#8211;9]</string>
     <string name="mv_departamento_alfanumerico">El campo número de departamento debe contener letras [A&#8211;Z] y/o números de [0&#8211;9]</string>
-    <string name="mv_campo_vivienda_mayor_cero">El campo 12 vivienda debe ser un número entero mayor que cero</string>
+    <string name="mv_campo_vivienda_mayor_cero">El campo 13 vivienda debe ser un número entero mayor que cero</string>
     <string name="mv_campo_edificio_mayor_cero">El campo 11 edificio debe ser un número entero mayor que cero</string>
     <string name="mv_campo_hogar_mayor_cero">El campo 13 "Hogar de" debe ser un número entero mayor que cero</string>
     <string name="error_numero_celularCeros">No es campo obligatorio</string>
@@ -787,6 +787,10 @@
     <string name="seccion3MensajeNoCorrespondeLetrina">Letrina no puede estar dentro de la vivienda</string>
     <string name="seccion3MensajeNoCorrespondeDepartamento">Tiene departamento y registra que no tiene servicio higiénico</string>
     <string name="error_numero_medidor">El código debe tener 10 dígitos</string>
+    <string name="mensajeDepartamentoUbicacionAgua">Departamento y ubicación del agua fuera de edificio,  lote o terreno</string>
+    <string name="mensajeDepartamentoUbicacionSanitario">Departamento y ubicación del sanitario fuera de vivienda  lote o terreno</string>
+    <string name="mensajeMaterialTechoParedes">Material de paredes no corresponde a material de techo</string>
+    <string name="mensajeSanitarioUbicacionSanitario">Inodoro y alcantarillado fuera de la vivienda / lote o terreno</string>
 
 
     <!-- FIN Validaciones formulario paraHogar -->
@@ -855,9 +859,23 @@
     <string name="formularioDatosIndicacion2Opcion13">13&#8230;Servicio doméstico puertas adentro</string>
     <!-- fin valores descripciom -->
 
-
-
-
+    <!-- Mensajes de alerta -->
+    <string name="mv_idTipoViviendaUbicacionAgua">Departamento y ubicación de agua no corresponde, coloque en observación</string>
+    <string name="mv_idTipoViviendaUbicacionSanitario">Departamento y ubicación del sanitario no corresponde, coloque en observación</string>
+    <string name="mv_idServicioSanitarioUbicacionSanitarioDescarga">Descarga directa al mar, río, lago o quebrada y servicio higiénico dentro de la vivienda, coloque en observación</string>
+    <string name="mv_idServicioSanitarioUbicacionSanitarioPozo">Pozo ciego y servicio higiénico dentro de la vivienda, coloque en observación</string>
+    <string name="mv_idServicioSanitarioUbicacionSanitarioInodoro">Inodoro y alcantarillado fuera de la vivienda, lote o terreno, coloque en observación</string>
+    <string name="mv_idUbicacionAguaUbicacionSanitarioLetrina">Letrina y servicio higiénico dentro de la vivienda, lote o terreno, coloque en observación</string>
+    <string name="mv_idUbicacionAguaUbicacionSanitarioTuberia">Tubería fuera del edificio, lote o terreno y servicio higiénico dentro de la vivienda, coloque en observación</string>
+    <string name="mv_idDocumentoViviendaAdquisicionVivienda">Prg. 2 Documento no corresponde a Prg. 3 forma de adquisición, coloque en observación</string>
+    <string name="mv_idTipoViviendaTenenciaVivienda">Tipo de vivienda cuartos no corresponde a tenencia, coloque en observación</string>
+    <string name="mv_idTipoViviendaCasaMaterialTecho">Tipo vivienda Casa y Techo de Otro Material, coloque en observación</string>
+    <string name="mv_idTipoViviendaDepartamentoMaterialTecho">Tipo vivienda Departamento y Techo de Otro Material</string>
+    <string name="mv_idResisdenteTemporalJefeNucleo">Residente Temporal Presente y Parentesco con Jefe de Hogar, coloque en observación</string>
+    <string name="mv_idViaAccesoPrincipalEliminanBasura">Prg 2 Tipo de acceso a la vivienda otro y Prg 11 elimina la basura por servicio municipal, coloque en observación</string>
+    <string name="mv_idViaAccesoPrincipalEliminanBasura_rio">Via acceso vivienda Rio/Mar y Elimina basura Servicio Municipal, coloque en observación</string>
+    <string name="mv_idTipoViviendaTipoHogarDocumento">Registra tipo de vivienda "cuartos", propia y con escritura, coloque en observación</string>
+    <string name="mv_materialTechoOpcionOtro">Registra otro tipo de techo, coloque en observación a cual se refiere</string>
 
 
 
