@@ -37,6 +37,25 @@ public class DpaManzanaDao extends DpaManzana {
         return dpaManzanas;
     }
 
+    public static ArrayList<Values> getManzana(Cursor result) {
+
+        ArrayList<Values> dpaManzanas = new ArrayList<Values>();
+        dpaManzanas.add(new Values(String.valueOf(Global.ENTEROS_VACIOS), "Seleccione.."));
+
+        if (result.moveToFirst())
+            do {
+                Values dpaManzana = new Values();
+                String campo = result.getString(0);
+                dpaManzana.setKey(campo);
+                dpaManzana.setValue(campo);
+                dpaManzanas.add(dpaManzana);
+
+            } while (result.moveToNext());
+
+        result.close();
+        return dpaManzanas;
+    }
+
     /**
      * Método que obtiene la persona por id
      * @param cr

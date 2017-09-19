@@ -27,11 +27,11 @@ public class UsuarioDao extends Usuario{
         return cr.update(FormularioManuelasProvider.CONTENT_URI_USUARIO, values, whereById, new String[] { String.valueOf(usuario.getUsuario()) });
     }
 
-    public static Usuario getUsuario(ContentResolver cr, String where, String[] id) {
+    public static Usuario getUsuario(ContentResolver cr, String where, String[] parametros) {
 
         Cursor result = cr.query(
                 FormularioManuelasProvider.CONTENT_URI_USUARIO,
-                columnas, where, id, null);
+                columnas, where, parametros, null);
         Usuario usuario = null;
         if (result != null) {
             if ((result.getCount() == 0) || !result.moveToFirst()) {
