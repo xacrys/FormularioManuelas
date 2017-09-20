@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FormularioManuelas</string>
+    <string name="app_name">MOVMLM</string>
     <!-- Login -->
     <string name="login_progress_signing_in">Signing in&#8230;</string>
     <string name="usuario">Usuario</string>
