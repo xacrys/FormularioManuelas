@@ -367,6 +367,50 @@ public class HogarFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+                if(((Values) tipoViviendaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.ENTEROS_VACIOS_CATALOGOS))){
+                    materialTechoSpinner.setSelection(0);
+                    materialTechoSpinner.setEnabled(false);
+
+                    materialPisoSpinner.setSelection(0);
+                    materialPisoSpinner.setEnabled(false);
+
+                    materialParedesSpinner.setSelection(0);
+                    materialParedesSpinner.setEnabled(false);
+
+                    numCuartosSpinner.setSelection(0);
+                    numCuartosSpinner.setEnabled(false);
+
+                    numDormitoriosSpinner.setSelection(0);
+                    numDormitoriosSpinner.setEnabled(false);
+
+                    servicioSanitarioSpinner.setSelection(0);
+                    servicioSanitarioSpinner.setEnabled(false);
+
+                    ubicacionAguaSpinner.setSelection(0);
+                    ubicacionAguaSpinner.setEnabled(false);
+
+                    ubicacionSanitarioSpinner.setSelection(0);
+                    ubicacionSanitarioSpinner.setEnabled(false);
+
+                }else{
+                    materialTechoSpinner.setEnabled(true);
+
+                    materialPisoSpinner.setEnabled(true);
+
+                    materialParedesSpinner.setEnabled(true);
+
+                    numCuartosSpinner.setEnabled(true);
+
+                    numDormitoriosSpinner.setEnabled(true);
+
+                    servicioSanitarioSpinner.setEnabled(true);
+
+                    ubicacionAguaSpinner.setEnabled(true);
+
+                    ubicacionSanitarioSpinner.setEnabled(true);
+                }
+
+
                 if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("1") &&
                         ((Values)materialTechoSpinner.getSelectedItem()).getKey().equals("5")){
                     materialTechoSpinner.setSelection(0);
@@ -509,7 +553,6 @@ public class HogarFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
 
         terrenoAgropecuario.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

@@ -111,6 +111,11 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
     private static boolean aplicaMallaSufreEnfermedad1 = false;
     private static boolean aplicaMallaSufreEnfermedad2 = false;
 
+    private RadioGroup valoracionIntegralRadioGroup;
+    private RadioGroup atencionPsicologicaRadioGroup;
+    private RadioGroup medicamentosRadioGroup;
+    private RadioGroup ayudasMedicasRadioGroup;
+
 
 
     @Override
@@ -261,6 +266,11 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         porcentajeHipoacusiaEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         porcentajePsicosocialesEditText = item.findViewById(R.id.porcentajePsicosocialesEditText);
         porcentajePsicosocialesEditText.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
+
+        valoracionIntegralRadioGroup = item.findViewById(R.id.valoracionIntegralRadioGroup);
+        atencionPsicologicaRadioGroup = item.findViewById(R.id.atencionPsicologicaRadioGroup);
+        medicamentosRadioGroup = item.findViewById(R.id.medicamentosRadioGroup);
+        ayudasMedicasRadioGroup = item.findViewById(R.id.ayudasMedicasRadioGroup);
 
     }
 
@@ -469,7 +479,7 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         if (persona.getCojin() == Global.SI) {
             cojinRadioGroup.check(R.id.cojinOpcion1RadioButton);
         } else {
-            if (persona.getColchon() == Global.NO) {
+            if (persona.getCojin() == Global.NO) {
                 cojinRadioGroup.check(R.id.cojinOpcion2RadioButton);
             }
         }
@@ -583,6 +593,38 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) enfermedadCatastroficaSpinner.getAdapter(), String.valueOf(persona.getIdenfermedadcatastrofica()));
         enfermedadCatastroficaSpinner.setSelection(posicion);
 
+
+        if (persona.getValoracionintegral() == Global.SI) {
+            valoracionIntegralRadioGroup.check(R.id.valoracionIntegralOpcion1RadioButton);
+        } else {
+            if (persona.getValoracionintegral() == Global.NO) {
+                valoracionIntegralRadioGroup.check(R.id.valoracionIntegralOpcion2RadioButton);
+            }
+        }
+
+        if (persona.getAtencionpsicologica() == Global.SI) {
+            atencionPsicologicaRadioGroup.check(R.id.atencionPsicologicaOpcion1RadioButton);
+        } else {
+            if (persona.getAtencionpsicologica() == Global.NO) {
+                atencionPsicologicaRadioGroup.check(R.id.atencionPsicologicaOpcion2RadioButton);
+            }
+        }
+
+        if (persona.getMedicamentos() == Global.SI) {
+            medicamentosRadioGroup.check(R.id.medicamentosOpcion1RadioButton);
+        } else {
+            if (persona.getMedicamentos() == Global.NO) {
+                medicamentosRadioGroup.check(R.id.medicamentosOpcion2RadioButton);
+            }
+        }
+
+        if (persona.getAyudasmedicas() == Global.SI) {
+            ayudasMedicasRadioGroup.check(R.id.ayudasMedicasOpcion1RadioButton);
+        } else {
+            if (persona.getAyudasmedicas() == Global.NO) {
+                ayudasMedicasRadioGroup.check(R.id.ayudasMedicasOpcion2RadioButton);
+            }
+        }
     }
 
     /**
@@ -1032,6 +1074,47 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             }
         }
         persona.setIdenfermedadcatastrofica(Integer.parseInt(((Values) enfermedadCatastroficaSpinner.getSelectedItem()).getKey()));
+
+        if (valoracionIntegralRadioGroup.getCheckedRadioButtonId() == R.id.valoracionIntegralOpcion1RadioButton) {
+            persona.setValoracionintegral(Global.SI);
+        } else {
+            if (valoracionIntegralRadioGroup.getCheckedRadioButtonId() == R.id.valoracionIntegralOpcion2RadioButton) {
+                persona.setValoracionintegral(Global.NO);
+            } else {
+                persona.setValoracionintegral(Global.ENTEROS_VACIOS_CATALOGOS);
+            }
+        }
+
+        if (atencionPsicologicaRadioGroup.getCheckedRadioButtonId() == R.id.atencionPsicologicaOpcion1RadioButton) {
+            persona.setAtencionpsicologica(Global.SI);
+        } else {
+            if (atencionPsicologicaRadioGroup.getCheckedRadioButtonId() == R.id.atencionPsicologicaOpcion2RadioButton) {
+                persona.setAtencionpsicologica(Global.NO);
+            } else {
+                persona.setAtencionpsicologica(Global.ENTEROS_VACIOS_CATALOGOS);
+            }
+        }
+
+        if (medicamentosRadioGroup.getCheckedRadioButtonId() == R.id.medicamentosOpcion1RadioButton) {
+            persona.setMedicamentos(Global.SI);
+        } else {
+            if (medicamentosRadioGroup.getCheckedRadioButtonId() == R.id.medicamentosOpcion2RadioButton) {
+                persona.setMedicamentos(Global.NO);
+            } else {
+                persona.setMedicamentos(Global.ENTEROS_VACIOS_CATALOGOS);
+            }
+        }
+
+        if (ayudasMedicasRadioGroup.getCheckedRadioButtonId() == R.id.ayudasMedicasOpcion1RadioButton) {
+            persona.setAyudasmedicas(Global.SI);
+        } else {
+            if (ayudasMedicasRadioGroup.getCheckedRadioButtonId() == R.id.ayudasMedicasOpcion2RadioButton) {
+                persona.setAyudasmedicas(Global.NO);
+            } else {
+                persona.setAyudasmedicas(Global.ENTEROS_VACIOS_CATALOGOS);
+            }
+        }
+
         persona.setFechafin(Utilitarios.getCurrentDateAndHour());
         persona.setInformacioncompleta(Global.INFORMACION_COMPLETA);
         int filaAfectadas = PersonaDao.update(contentResolver, persona);
@@ -1889,6 +1972,22 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         for (int cont = 0; cont < otrosRadioGroup.getChildCount(); cont++) {
             otrosRadioGroup.getChildAt(cont).setEnabled(false);
         }
+        valoracionIntegralRadioGroup.check(-1);
+        for (int cont = 0; cont < valoracionIntegralRadioGroup.getChildCount(); cont++) {
+            valoracionIntegralRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        atencionPsicologicaRadioGroup.check(-1);
+        for (int cont = 0; cont < atencionPsicologicaRadioGroup.getChildCount(); cont++) {
+            atencionPsicologicaRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        medicamentosRadioGroup.check(-1);
+        for (int cont = 0; cont < medicamentosRadioGroup.getChildCount(); cont++) {
+            medicamentosRadioGroup.getChildAt(cont).setEnabled(false);
+        }
+        ayudasMedicasRadioGroup.check(-1);
+        for (int cont = 0; cont < ayudasMedicasRadioGroup.getChildCount(); cont++) {
+            ayudasMedicasRadioGroup.getChildAt(cont).setEnabled(false);
+        }
 
     }
 
@@ -1947,6 +2046,18 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         }
         for (int cont = 0; cont < otrosRadioGroup.getChildCount(); cont++) {
             otrosRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < valoracionIntegralRadioGroup.getChildCount(); cont++) {
+            valoracionIntegralRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < atencionPsicologicaRadioGroup.getChildCount(); cont++) {
+            atencionPsicologicaRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < medicamentosRadioGroup.getChildCount(); cont++) {
+            medicamentosRadioGroup.getChildAt(cont).setEnabled(true);
+        }
+        for (int cont = 0; cont < ayudasMedicasRadioGroup.getChildCount(); cont++) {
+            ayudasMedicasRadioGroup.getChildAt(cont).setEnabled(true);
         }
 
     }

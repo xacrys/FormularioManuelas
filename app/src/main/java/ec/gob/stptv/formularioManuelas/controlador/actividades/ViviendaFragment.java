@@ -492,12 +492,7 @@ public class ViviendaFragment extends Fragment {
         vivienda.setIdprovincia(((Values) provinciaSpinner.getSelectedItem()).getKey());
         vivienda.setIdcanton(((Values) cantonSpinner.getSelectedItem()).getKey());
         vivienda.setIdparroquia(((Values) parroquiaSpinner.getSelectedItem()).getKey());
-        if (!TextUtils.isEmpty(localidadEditText.getText().toString())) {
-            vivienda.setLocalidad(localidadEditText.getText()
-                    .toString().trim());
-        } else {
-            vivienda.setLocalidad(Global.CADENAS_VACIAS);
-        }
+
         vivienda.setZona(((Values) zonaSpinner.getSelectedItem()).getKey());
 
         vivienda.setSector(((Values) sectorSpinner.getSelectedItem()).getKey());
@@ -512,9 +507,10 @@ public class ViviendaFragment extends Fragment {
 
         if (((Values) zonaSpinner.getSelectedItem()).getKey().equals("999")) {
             vivienda.setIdlocalidad(Integer.parseInt(localidadesDispersas.getKey()));
-        }
-        else{
+            vivienda.setLocalidad(localidadesDispersas.getValue());
+        } else {
             vivienda.setIdlocalidad(Global.ENTEROS_VACIOS);
+            vivienda.setLocalidad(localidadEditText.getText().toString().trim());
         }
 
         if (!TextUtils.isEmpty(edificioEditText.getText().toString())) {

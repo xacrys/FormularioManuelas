@@ -19,7 +19,7 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_manuelas"
         android:label="@string/app_name"
         android:allowClearUserData="false"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -62,7 +62,7 @@
             android:name="ec.gob.stptv.formularioManuelas.controlador.servicio.LocalizacionService"
             android:exported="true"
             android:enabled="true"
-            android:icon="@drawable/ic_menu_observacion"
+            android:icon="@drawable/ic_manuelas"
             android:label="Servicio captura de localizacion"
             android:logo="@drawable/ic_menu_observacion"
             android:process=":my_service" >

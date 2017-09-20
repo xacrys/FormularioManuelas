@@ -446,11 +446,13 @@
     <string name="aporteSeguroEtiqueta">Para personas de 15 años y más</string>
     <string name="aporteSeguroOpcion1">1. IESS General?</string>
     <string name="aporteSeguroOpcion2">2. IESS Voluntario?</string>
-    <string name="aporteSeguroOpcion3">3. IESS Campesino?</string>
+    <string name="aporteSeguroOpcion3">3. IESS Seguro Campesino?</string>
     <string name="aporteSeguroOpcion4">4. IESS Trabajo no remunerado del hogar?</string>
     <string name="aporteSeguroOpcion5">5. Seguro del ISSFA o ISSPOL?</string>
     <string name="aporteSeguroOpcion6">6. No aporta?</string>
     <string name="aporteSeguroOpcion7">7. No sabe?</string>
+    <string name="aporteSeguroOpcion8">8. Privado?</string>
+    <string name="aporteSeguroOpcion9">9. Otros?</string>
 
     <!-- Seccion 5 Pregunta 15 -->
     <string name="seguroSaludTitulo">SEGURO DE SALUD</string>
@@ -562,7 +564,12 @@
     <string name="ayudasTecnicasOpcionN">N. Pañales desechables?</string>
     <string name="ayudasTecnicasOpcionO">O. Silla para bañarse y evacuación?</string>
     <string name="ayudasTecnicasOpcionP">P. Camas hospitalarias?</string>
-    <string name="ayudasTecnicasOpcionQ">Q. Otros?</string>
+    <string name="ayudasTecnicasOpcionQ">Q. Otras ayudas técnicas?</string>
+    <string name="ayudasTecnicasMedicas">Ayudas Médicas</string>
+    <string name="ayudasTecnicasOpcionR">R. Valoración o atención médica Integral?</string>
+    <string name="ayudasTecnicasOpcionS">S. Atención Psicológica?</string>
+    <string name="ayudasTecnicasOpcionT">T. Medicamentos para Enfermedades Catastróficas?</string>
+    <string name="ayudasTecnicasOpcionU">U. Otras ayudas médicas?</string>
 
     <!-- Mensajes de validacion Seccion I -->
     <string name="error_numero_fijo">Ingrese 9 dígitos</string>

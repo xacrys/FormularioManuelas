@@ -90,6 +90,12 @@ public class Persona implements Serializable {
 	private Integer gobiernoautonomo;
 	private Integer organizacionprivada;
 	private Integer ningunainstitucion;
+
+	private Integer valoracionintegral;
+	private Integer atencionpsicologica;
+	private Integer medicamentos;
+	private Integer ayudasmedicas;
+
 	//fin campos
 	//locales
 	private Integer informacioncompleta;
@@ -171,6 +177,11 @@ public class Persona implements Serializable {
 	public final static String COLUMNA_FECHAFIN="fechafin";
 	public final static String COLUMNA_INFORMACIONCOMPLETA="informacioncompleta";
 	public final static String COLUMNA_TIPOEDAD = "tipoedad";
+	public final static String COLUMNA_VALORACIONINTEGRAL = "valoracionintegral";
+	public final static String COLUMNA_ATENCIONPSICOLOGICA = "atencionpsicologica";
+	public final static String COLUMNA_MEDICAMENTOS = "medicamentos";
+	public final static String COLUMNA_AYUDASMEDICAS = "ayudasmedicas";
+
 
 	//crear un string con las columnas de la tabla
 	public static final String[] columnas = new String[] {
@@ -246,6 +257,10 @@ public class Persona implements Serializable {
 			COLUMNA_FECHAFIN,
 			COLUMNA_INFORMACIONCOMPLETA,
 			COLUMNA_TIPOEDAD,
+			COLUMNA_VALORACIONINTEGRAL,
+			COLUMNA_ATENCIONPSICOLOGICA,
+			COLUMNA_MEDICAMENTOS,
+			COLUMNA_AYUDASMEDICAS
 	};
 
 	private String[] generos = new String[] { "", "Hombre", "Mujer" };
@@ -348,6 +363,10 @@ public class Persona implements Serializable {
 		values.put(COLUMNA_FECHAFIN, persona.getFechafin());
 		values.put(COLUMNA_INFORMACIONCOMPLETA, persona.getInformacioncompleta());
 		values.put(COLUMNA_TIPOEDAD, persona.getTipoEdad());
+		values.put(COLUMNA_VALORACIONINTEGRAL, persona.getValoracionintegral());
+		values.put(COLUMNA_ATENCIONPSICOLOGICA, persona.getAtencionpsicologica());
+		values.put(COLUMNA_MEDICAMENTOS, persona.getMedicamentos());
+		values.put(COLUMNA_AYUDASMEDICAS, persona.getAyudasmedicas());
 
 		return values;
 	}
@@ -430,6 +449,10 @@ public class Persona implements Serializable {
 		persona.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
 		persona.setInformacioncompleta(result.getInt(result.getColumnIndex(COLUMNA_INFORMACIONCOMPLETA)));
 		persona.setTipoEdad(result.getInt(result.getColumnIndex(COLUMNA_TIPOEDAD)));
+		persona.setValoracionintegral(result.getInt(result.getColumnIndex(COLUMNA_VALORACIONINTEGRAL)));
+		persona.setAtencionpsicologica(result.getInt(result.getColumnIndex(COLUMNA_ATENCIONPSICOLOGICA)));
+		persona.setMedicamentos(result.getInt(result.getColumnIndex(COLUMNA_MEDICAMENTOS)));
+		persona.setAyudasmedicas(result.getInt(result.getColumnIndex(COLUMNA_AYUDASMEDICAS)));
 
 		return persona;
 	}
@@ -1048,5 +1071,38 @@ public class Persona implements Serializable {
 
 	public void setTipoEdad(Integer tipoEdad) {
 		this.tipoEdad = tipoEdad;
+	}
+
+
+	public Integer getValoracionintegral() {
+		return valoracionintegral;
+	}
+
+	public void setValoracionintegral(Integer valoracionintegral) {
+		this.valoracionintegral = valoracionintegral;
+	}
+
+	public Integer getAtencionpsicologica() {
+		return atencionpsicologica;
+	}
+
+	public void setAtencionpsicologica(Integer atencionpsicologica) {
+		this.atencionpsicologica = atencionpsicologica;
+	}
+
+	public Integer getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(Integer medicamentos) {
+		this.medicamentos = medicamentos;
+	}
+
+	public Integer getAyudasmedicas() {
+		return ayudasmedicas;
+	}
+
+	public void setAyudasmedicas(Integer ayudasmedicas) {
+		this.ayudasmedicas = ayudasmedicas;
 	}
 }
