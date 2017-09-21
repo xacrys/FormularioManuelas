@@ -269,27 +269,16 @@ public class FormulariosActivity extends Activity {
 			final View row = inflaterLayout.inflate(R.layout.reusable_table_row_formulario,
 					null);
 
-
-			if (vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.INCOMPLETA
-					.getValor()
-					&& vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_COMPLETA) {
-				row.setBackgroundResource(R.drawable.table_row_selector_incompletas);
+			if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_COMPLETA) {
+				row.setBackgroundResource(R.drawable.table_row_selector_validation);
 			} else {
-				if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_COMPLETA) {
-					row.setBackgroundResource(R.drawable.table_row_selector_validation);
+				if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_INCOMPLETA) {
+					row.setBackgroundResource(R.drawable.table_row_selector);
 				} else {
-					if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_INCOMPLETA) {
+					if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
 						row.setBackgroundResource(R.drawable.table_row_selector);
 					}
-					else
-					{
-						if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
-							row.setBackgroundResource(R.drawable.table_row_selector);
-						}
-					}
-
 				}
-
 			}
 
 			row.setTag(vivienda);
@@ -737,7 +726,7 @@ public class FormulariosActivity extends Activity {
 		String where = Vivienda.whereByEstadoSincronizacionControlEntrevista;
 		String parametros[] = new String[] {String
 				.valueOf(Global.SINCRONIZACION_INCOMPLETA) ,
-				String.valueOf(ControlPreguntas.ControlEntrevista.ELIMINADO.getValor())};
+				String.valueOf(ControlPreguntas.ControlEntrevista.COMPLETA.getValor())};
 
 		ArrayList<Vivienda> viviendas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_VIVCODIGO);
 

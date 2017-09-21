@@ -40,7 +40,7 @@ public class DpaManzanaDao extends DpaManzana {
     public static ArrayList<Values> getManzana(Cursor result) {
 
         ArrayList<Values> dpaManzanas = new ArrayList<Values>();
-        dpaManzanas.add(new Values(String.valueOf(Global.ENTEROS_VACIOS), "Seleccione.."));
+        dpaManzanas.add(new Values(Global.VALOR_CADENA_MANZANA, "Seleccione.."));
 
         if (result.moveToFirst())
             do {

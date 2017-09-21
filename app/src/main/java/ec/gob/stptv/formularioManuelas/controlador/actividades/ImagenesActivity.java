@@ -179,7 +179,7 @@ public class ImagenesActivity extends Activity {
 				String where = Imagen.whereByFechasEstadoSincronizacion;
 				String parametros[] = new String[] {fechaInicioButton.getText().toString(),  fechaFinButton.getText().toString(), String.valueOf(Global.SINCRONIZACION_INCOMPLETA)};
 				
-				ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_VIVCODIGO);
+				ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_VIVCODIGO + ","+ Imagen.COLUMNA_TIPO);
 				
 				totalImagenesASincronizar = imagenes.size();
 				if(totalImagenesASincronizar > 0)
@@ -230,7 +230,7 @@ public class ImagenesActivity extends Activity {
 		String where = Imagen.whereByFechasEstadoSincronizacion;
 		String parametros[] = new String[] {fechaInicioButton.getText().toString(),  fechaFinButton.getText().toString(), String.valueOf(Global.SINCRONIZACION_INCOMPLETA)};
 		
-		final ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_VIVCODIGO);
+		final ArrayList<Imagen> imagenes = ImagenDao.getImagenes(cr,where , parametros, Imagen.COLUMNA_VIVCODIGO + ","+ Imagen.COLUMNA_TIPO);
 	
 		final Pageable<Imagen> pagination = new Pageable<Imagen>(imagenes);
 		pagination.setPageSize(20);

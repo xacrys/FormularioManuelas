@@ -514,9 +514,27 @@ public class FormularioManuelasProvider extends ContentProvider {
                 filaEliminada = dataBase.delete(tabla, selection, selectionArgs);
                 break;
 
+            case IMAGEN:
+                tabla = Imagen.NOMBRE_TABLA;
+                filaEliminada = dataBase.delete(tabla, selection, selectionArgs);
+                break;
+
             default:
                 throw new IllegalArgumentException("URI desconocida " + uri);
+
         }
+
+        if (filaEliminada == 0) {
+            Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
+                    "No se elimino ningún registro");
+        } else {
+
+            Utilitarios.logInfo(FormularioManuelasProvider.class.getName(),
+                    "Registro eliminado: Tabla: " + tabla
+                            + " Nº de filas eliminadas: " + filaEliminada
+                            + " Valores: " + selectionArgs.toString());
+        }
+
         return filaEliminada;
     }
 

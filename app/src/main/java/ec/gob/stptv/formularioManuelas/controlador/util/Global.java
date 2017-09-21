@@ -125,6 +125,11 @@ public class Global {
     public static final Integer ENTEROS_VACIOS = -99;
 
     /**
+     * Valor enteros vacios solo para la manzana
+     */
+    public static final String VALOR_CADENA_MANZANA = "00";
+
+    /**
      * Valor para registros sin valor
      */
     public static final String SIN_REGISTRO = "ND";
@@ -185,7 +190,15 @@ public class Global {
      * Calidad de la foto entre 0-100
      */
     public static final int CALIDAD_FOTO = 70;
+    /**
+     * Valor para el tipo de imagen del certificado
+     */
+    public static final int TIPO_IMAGEN_FORMULARIO = 1;
 
+    /**
+     * Valor para el tipo de imagen vivienda
+     */
+    public static final int TIPO_IMAGEN_VIVIENDA = 2;
 
 
 }

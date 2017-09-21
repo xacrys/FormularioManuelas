@@ -58,9 +58,11 @@
     <string name="menu_cancelar">Cancelar</string>
     <string name="certificado_numero">N° Certificado</string>
     <string name="menu_capturar">Capturar</string>
+    <string name="sticker_numero">N° Sticker</string>
     <string name="menu_actualizar_certificado">Capturar Nº certificado</string>
     <string name="certificado_numero_repeat">Repetir el Nº Certificado </string>
     <string name="menu_capturar_vivienda">Vivienda</string>
+    <string name="menu_capturar_certificado">Certificado</string>
     <string name="menu_entrevista_efectiva">Guardar - Entrevista Completa Efectiva</string>
     <string name="finalizarEntrevista">Para finalizar la entrevista como completa usted debe dar clic en el botón de color naranja *Guardar - Entrevista Completa Efectiva*</string>
     <string name="fotoVivienda"> Foto de la vivienda</string>
@@ -619,6 +621,7 @@
     <string name="error_numero_celular">Ingrese 10 dígitos</string>
     <string name="mv_no_punto_gps">Capturando punto GPS  espere por favor&#8230;</string>
     <string name="error_localidad_no_existe">Esta localidad no existe</string>
+    <string name="error_iddpa">No existe un còdigo para la DPA</string>
 
     <!-- FIN Mensajes de validacion Seccion I y II -->
 
@@ -837,10 +840,11 @@
 
     <!-- valores para seccion capturar certificado -->
 
-    <string name="seccionCodigoBarraVacio">Capture el código de barras del certificado. El número de certificado no puede ser vacío</string>}
+    <string name="seccionCodigoBarraVacio">Ingrese el número de certificado. El número de certificado no puede ser vacío</string>
     <string name="seccionCodigoBarraVerificadorVacio">Capture el código de barras del certificado. El número de verificación de certificado no puede ser vacío</string>
     <string name="seccionImagenViviendaVacio">Capture la imagen de la Vivienda. No puede ser vacía</string>
-    <string name="seccionCodigoBarrasDiferentes">Los códigos de barras no coinciden</string>
+    <string name="seccionImagenFormularioVacio">Capture la imagen del Certificado. No puede ser vacía</string>
+    <string name="seccionCodigoBarrasDiferentes">Los certificados no coinciden</string>
 
     <!-- valores para descripciom -->
     <string name="formularioDatosEtiqueta1">Complete la información de:</string>

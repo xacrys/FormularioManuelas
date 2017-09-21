@@ -7,10 +7,9 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 
+import ec.gob.stptv.formularioManuelas.controlador.util.Global;
 import ec.gob.stptv.formularioManuelas.modelo.entidades.Imagen;
-import ec.gob.stptv.formularioManuelas.modelo.entidades.Persona;
 import ec.gob.stptv.formularioManuelas.modelo.provider.FormularioManuelasProvider;
 
 /**
@@ -30,6 +29,15 @@ public class ImagenDao extends Imagen {
 		ContentValues values = getValues(imagen);
 		values.remove(COLUMNA_ID);
 		return cr.update(FormularioManuelasProvider.CONTENT_URI_IMAGEN, values, whereById, new String[] { String.valueOf(imagen.getId()) });
+	}
+
+	public static int delete(ContentResolver cr, Imagen imagen) {
+		int filaEliminada;
+		filaEliminada = cr.delete(FormularioManuelasProvider.CONTENT_URI_IMAGEN,
+				whereByVivcodigoAndTipo,
+				new String[] { String.valueOf(imagen.getVivcodigo()), String.valueOf(imagen.getTipo()) });
+
+		return filaEliminada;
 	}
 
 	public static ArrayList<Imagen> getImagenes(ContentResolver cr, String where, String[]  parametros, String orderBy) {

@@ -592,26 +592,8 @@ public class ViviendaFragment extends Fragment {
         }
 
         vivienda.setIdocupada(Integer.parseInt(((Values) condicionOcupacionSpinner.getSelectedItem()).getKey()));
-        vivienda.setIddpa(((Values) parroquiaSpinner.getSelectedItem()).getKey() +
-                ((Values) zonaSpinner.getSelectedItem()).getKey()
-                + ((Values) sectorSpinner.getSelectedItem()).getKey()
-                + ((Values) manzanaSpinner.getSelectedItem()).getKey());
-        //guarda el id de la dpa
-        String idProvincia = vivienda.getIdparroquia().substring(0, 2);
-        String idCanton = vivienda.getIdparroquia().substring(2, 4);
-        String idParroquia = vivienda.getIdparroquia().substring(4, 6);
-        String where;
-        String parametros[];
-        where = DpaManzana.whereByPCPZSM;
-        parametros = new String[] {idProvincia, idCanton, idParroquia, vivienda.getZona(),vivienda.getSector(), vivienda.getManzana()};
-        DpaManzana dpaManzana = DpaManzanaDao.getDpaManzana(contentResolver, where, parametros);
-        if (dpaManzana!= null){
-            Utilitarios.logError("id de dapa", "*"+dpaManzana.getId()+"*");
-            vivienda.setIddpa(String.valueOf(dpaManzana.getId()));
-        }
-        else{
-            vivienda.setIddpa(String.valueOf(Global.ENTEROS_VACIOS));
-        }
+
+        vivienda.setIddpa(obtenerIdDpa());
 
         if (Integer
                 .valueOf(((Values) condicionOcupacionSpinner
@@ -654,6 +636,34 @@ public class ViviendaFragment extends Fragment {
             }
             ViviendaDao.update(contentResolver, vivienda);
         }
+    }
+
+    /**
+     * Metodo que permite obtener el id de la dpa
+     */
+    public String obtenerIdDpa(){
+        //guarda el id de la dpa
+
+        String parroquia = ((Values) parroquiaSpinner.getSelectedItem()).getKey();
+        String idProvincia = parroquia.substring(0, 2);
+        String idCanton = parroquia.substring(2, 4);
+        String idParroquia = parroquia.substring(4, 6);
+        String zona = ((Values) zonaSpinner.getSelectedItem()).getKey();
+        String sector =  ((Values) sectorSpinner.getSelectedItem()).getKey();
+        String manzana = ((Values) manzanaSpinner.getSelectedItem()).getKey();
+        String where;
+        String parametros[];
+        where = DpaManzana.whereByPCPZSM;
+        parametros = new String[] {idProvincia, idCanton, idParroquia, zona,sector,manzana};
+        DpaManzana dpaManzana = DpaManzanaDao.getDpaManzana(contentResolver, where, parametros);
+        if (dpaManzana!= null){
+            Utilitarios.logError("id de dapa", "*"+dpaManzana.getId()+"*");
+            return (String.valueOf(dpaManzana.getId()));
+        }
+        else{
+            return (String.valueOf(Global.ENTEROS_VACIOS));
+        }
+
     }
 
     /**
@@ -960,6 +970,11 @@ public class ViviendaFragment extends Fragment {
             return  true;
         }
 
+        if (obtenerIdDpa().equals(String.valueOf(Global.ENTEROS_VACIOS))) {
+            getAlert(
+                    getString(R.string.validacion_aviso),getString(R.string.error_iddpa));
+            return true;
+        }
 
 
         return cancel;

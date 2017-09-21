@@ -54,17 +54,16 @@ public class CertificadoImagenFragment extends Fragment {
     Vivienda vivienda;
 
     private Button capturarFotoViviendaButton;
-
-
     private static final int REQUEST_CODE = 0x0000c0de;
-    private static final int REQUEST_PICTURE_VIVIENDA = 1;
+    private static final int REQUEST_PICTURE_FORMULARIO = 1;
+    private static final int REQUEST_PICTURE_VIVIENDA = 2;
 
     private Animation myFadeInAnimation;
     private Bitmap imagenViviendaBitmap;
-    private Button actualizarCertificadoButton;
-    private Button limpiarButton;
-    private Button actualizarCertificadoVerificarButton;
-    private Button limpiarCertificadoVerificarButton;
+    //private Button actualizarCertificadoButton;
+    //private Button limpiarButton;
+    //private Button actualizarCertificadoVerificarButton;
+    //private Button limpiarCertificadoVerificarButton;
     private Button finalizarEntrevistaButton;
     private EditText certificadoEditText;
     private EditText certificadoVerificarEditText;
@@ -77,6 +76,13 @@ public class CertificadoImagenFragment extends Fragment {
     private Imagen imagenVivienda;
     private File photoVivienda;
     private LinearLayout pantallaCertificadoImagenLinearLayout;
+
+    private Button capturarFotoFormularioButton;
+    protected Uri mImageFormularioUri;
+    private File photoFormulario;
+    private Bitmap imagenFormularioBitmap;
+    private ImageView fotoFormularioImageView;
+    private Imagen imagenFormulario;
 
 
     public static final String PRODUCT_MODE = "PRODUCT_MODE";
@@ -98,25 +104,28 @@ public class CertificadoImagenFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        linlaHeaderProgress = getActivity().findViewById(R.id.linlaHeaderProgress);
         vivienda = ViviendaFragment.getVivienda();
         if (vivienda.getId() != 0) {
+            //primero elimna los datos de la foto si es un frm duplicado
+            if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
+                this.imagenFormulario = ImagenDao.getImagen(cr,	Imagen.whereByVivcodigoAndTipo, new String[] { String.valueOf(vivienda.getVivcodigo()), String.valueOf(Global.TIPO_IMAGEN_FORMULARIO) });
+                if (imagenFormulario != null) {
+                    ImagenDao.delete(cr, imagenFormulario);
+                    imagenFormulario = null;
+                    fotoFormularioImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_imagen_no_disponible));
+                }
+            }
+            //carga los datos
             this.llenarCampos();
+            //deshabilita los controles
             if (vivienda.getIdocupada() == ViviendaPreguntas.CondicionOcupacion.OCUPADA.getValor()
                     && vivienda.getIdcontrolentrevista() == ControlPreguntas.ControlEntrevista.COMPLETA.getValor()) {
                 Utilitarios.disableEnableViews(getActivity(), false, pantallaCertificadoImagenLinearLayout);
             }
-
+            //habilita los botones
             if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
-                actualizarCertificadoButton.setEnabled(true);
-                limpiarButton.setEnabled(true);
-
-
-                actualizarCertificadoVerificarButton.setEnabled(true);
-                limpiarCertificadoVerificarButton.setEnabled(true);
-
+                capturarFotoFormularioButton.setEnabled(true);
                 finalizarEntrevistaButton.setEnabled(true);
-
             }
         }
     }
@@ -125,20 +134,25 @@ public class CertificadoImagenFragment extends Fragment {
      * Método para obtener las controles de la vista
      */
     private void obtenerVistas(View item) {
-        actualizarCertificadoButton = item.findViewById(R.id.actualizarCertificadoButton);
+        //actualizarCertificadoButton = item.findViewById(R.id.actualizarCertificadoButton);
         capturarFotoViviendaButton = item.findViewById(R.id.capturarFotoViviendaButton);
-        limpiarButton = item.findViewById(R.id.limpiarButton);
+        //limpiarButton = item.findViewById(R.id.limpiarButton);
         certificadoEditText = item.findViewById(R.id.certificadoEditText);
         avisoEncuestaCompletaTextView = item.findViewById(R.id.avisoEncuestaCompletaTextView);
-        actualizarCertificadoVerificarButton = item.findViewById(R.id.actualizarCertificadoVerificarButton);
+        //actualizarCertificadoVerificarButton = item.findViewById(R.id.actualizarCertificadoVerificarButton);
         certificadoVerificarEditText = item.findViewById(R.id.certificadoVerificarEditText);
-        limpiarCertificadoVerificarButton = item.findViewById(R.id.limpiarCertificadoVerificarButton);
+        //limpiarCertificadoVerificarButton = item.findViewById(R.id.limpiarCertificadoVerificarButton);
         myFadeInAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
         fotoViviendaImageView = item.findViewById(R.id.fotoViviendaImageView);
         finalizarEntrevistaButton = item.findViewById(R.id.finalizarEntrevistaButton);
         botonCapturar = false;
         botonCapturarVerificar = false;
         pantallaCertificadoImagenLinearLayout = item.findViewById(R.id.pantallaCertificadoImagenLinearLayout);
+
+        capturarFotoFormularioButton = item.findViewById(R.id.capturarFotoFormularioButton);
+        fotoFormularioImageView = item.findViewById(R.id.fotoFormularioImageView);
+
+
     }
 
     @Override
@@ -171,7 +185,7 @@ public class CertificadoImagenFragment extends Fragment {
                     imagen.setFormulario(vivienda.getFormulario());
                     //imagen.setCodigoequipo(vivienda.getIdentificadorequipo());pendiente
                     imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
-                    imagen.setTipo(REQUEST_PICTURE_VIVIENDA);
+                    imagen.setTipo(Global.TIPO_IMAGEN_VIVIENDA);
                     imagen.setFecha(Utilitarios.getCurrentDate());
                     imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
                     imagen.setFechasincronizacion("");
@@ -195,23 +209,68 @@ public class CertificadoImagenFragment extends Fragment {
             }
             photoVivienda.delete();
 
-        } else if (requestCode == REQUEST_CODE) {
-            IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-            if (scanningResult != null) {
-                String scanContent = scanningResult.getContents();
-                if (botonCapturar) {
-                    certificadoEditText.setText(scanContent);
-                    botonCapturar = false;
-                } else if (botonCapturarVerificar) {
-                    certificadoVerificarEditText.setText(scanContent);
-                    botonCapturarVerificar = false;
-                }
+        }else if (requestCode == REQUEST_PICTURE_FORMULARIO && resultCode == Activity.RESULT_OK) {
 
-
-            } else {
-                getAlert(getString(R.string.validacion_aviso), getString(R.string.errorCodigoBarra));
+            if (imagenFormularioBitmap != null) {
+                imagenFormularioBitmap.recycle();
             }
+
+            imagenFormularioBitmap = BitmapFactory.decodeFile(mImageFormularioUri.getPath());
+            fotoFormularioImageView.setImageBitmap(imagenFormularioBitmap);
+
+            if (imagenFormularioBitmap != null) {
+
+                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
+                        new String[] { String.valueOf(vivienda.getVivcodigo()),  String.valueOf(REQUEST_PICTURE_FORMULARIO)});
+
+                if (_imagen == null){
+                    Imagen imagen = new Imagen();
+                    imagen.setVivcodigo(vivienda.getVivcodigo());
+                    imagen.setFormulario(vivienda.getFormulario());
+                         imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenFormularioBitmap, Global.CALIDAD_FOTO));
+                    imagen.setTipo(Global.TIPO_IMAGEN_FORMULARIO);
+                    imagen.setFecha(Utilitarios.getCurrentDate());
+                    imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                    imagen.setFechasincronizacion("");
+                    Uri uri = ImagenDao.save(cr, imagen);
+                    if(uri != null)
+                    {
+                        imagenFormulario = imagen;
+                    }
+                }else
+                {
+                    _imagen.setFecha(Utilitarios.getCurrentDate());
+                    _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                    _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenFormularioBitmap, Global.CALIDAD_FOTO));
+                    _imagen.setFormulario(vivienda.getFormulario());
+                    int result = ImagenDao.update(cr, _imagen);
+                    if(result > 0)
+                    {
+                        imagenFormulario = _imagen;
+                    }
+                }
+            }
+            photoFormulario.delete();
         }
+
+
+//        else if (requestCode == REQUEST_CODE) {
+//            IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+//            if (scanningResult != null) {
+//                String scanContent = scanningResult.getContents();
+//                if (botonCapturar) {
+//                    certificadoEditText.setText(scanContent);
+//                    botonCapturar = false;
+//                } else if (botonCapturarVerificar) {
+//                    certificadoVerificarEditText.setText(scanContent);
+//                    botonCapturarVerificar = false;
+//                }
+//
+//
+//            } else {
+//                getAlert(getString(R.string.validacion_aviso), getString(R.string.errorCodigoBarra));
+//            }
+//        }
 
     }
 
@@ -224,48 +283,48 @@ public class CertificadoImagenFragment extends Fragment {
 
     public void realizarAcciones() {
 
-        actualizarCertificadoButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-                    intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");
-                    startActivityForResult(intent, REQUEST_CODE);
-                    botonCapturar = true;
-                } catch (Exception e) {
-                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorLectorBarra));
-                }
+//        actualizarCertificadoButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                try {
+//                    Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+//                    intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");
+//                    startActivityForResult(intent, REQUEST_CODE);
+//                    botonCapturar = true;
+//                } catch (Exception e) {
+//                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorLectorBarra));
+//                }
+//
+//            }
+//        });
 
-            }
-        });
+//        actualizarCertificadoVerificarButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                try {
+//                    Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+//                    intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");
+//                    startActivityForResult(intent, REQUEST_CODE);
+//                    botonCapturarVerificar = true;
+//                } catch (Exception e) {
+//                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorLectorBarra));
+//                }
+//            }
+//        });
 
-        actualizarCertificadoVerificarButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-                    intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");
-                    startActivityForResult(intent, REQUEST_CODE);
-                    botonCapturarVerificar = true;
-                } catch (Exception e) {
-                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorLectorBarra));
-                }
-            }
-        });
+//        limpiarButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                certificadoEditText.setText("");
+//            }
+//        });
 
-        limpiarButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                certificadoEditText.setText("");
-            }
-        });
-
-        limpiarCertificadoVerificarButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                certificadoVerificarEditText.setText("");
-            }
-        });
+//        limpiarCertificadoVerificarButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                certificadoVerificarEditText.setText("");
+//            }
+//        });
 
         capturarFotoViviendaButton.setOnClickListener(new OnClickListener() {
 
@@ -279,7 +338,24 @@ public class CertificadoImagenFragment extends Fragment {
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImagenViviendaUri);
                     startActivityForResult(cameraIntent, REQUEST_PICTURE_VIVIENDA);
-                    // photo.delete();
+                } catch (Exception e) {
+                    getAlert(getString(R.string.validacion_aviso), getString(R.string.errorLectorFoto));
+                }
+            }
+        });
+
+        capturarFotoFormularioButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                photoFormulario = null;
+
+                try {
+                    photoFormulario = createTemporaryFile("imagenFormulario", ".jpg");
+                    mImageFormularioUri = Uri.fromFile(photoFormulario);
+                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageFormularioUri);
+                    startActivityForResult(cameraIntent, REQUEST_PICTURE_FORMULARIO);
                 } catch (Exception e) {
                     getAlert(getString(R.string.validacion_aviso), getString(R.string.errorLectorFoto));
                 }
@@ -327,17 +403,29 @@ public class CertificadoImagenFragment extends Fragment {
     private Boolean validarCampos() {
         Boolean validacion = true;
         if (certificadoEditText.getText().toString().equals("")) {
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionCodigoBarraVacio));
+            certificadoEditText.setError(null);
+            certificadoEditText.clearFocus();
+            certificadoEditText.setError(getString(R.string.errorCampoRequerido));
             certificadoEditText.requestFocus();
         } else if (certificadoVerificarEditText.getText().toString().equals("")) {
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionCodigoBarraVerificadorVacio));
+            certificadoVerificarEditText.setError(null);
+            certificadoVerificarEditText.clearFocus();
+            certificadoVerificarEditText.setError(getString(R.string.errorCampoRequerido));
             certificadoVerificarEditText.requestFocus();
         } else if (!certificadoEditText.getText().toString().equals(certificadoVerificarEditText.getText().toString())) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionCodigoBarrasDiferentes));
-        } else if (imagenViviendaBitmap == null) {
+        } else if (imagenVivienda == null) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionImagenViviendaVacio));
-        } else if (ViviendaDao.isRepeatCertificado(cr, certificadoEditText.getText().toString()) == true) {
+        }else if (imagenFormulario == null) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionImagenFormularioVacio));
+        }
+        else if (ViviendaDao.isRepeatCertificado(cr, certificadoEditText.getText().toString(), vivienda.getId()) == true) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.mv_numero_certificado_duplicado));
+            if (imagenFormulario != null){
+                ImagenDao.delete(cr, imagenFormulario);
+                imagenFormulario = null;
+                fotoFormularioImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_imagen_no_disponible));
+            }
         } else {
             validacion = false;
         }
@@ -388,42 +476,33 @@ public class CertificadoImagenFragment extends Fragment {
             certificadoVerificarEditText.setText("");
         }
 
-        this.imagenVivienda = ImagenDao.getImagen(cr,	Imagen.whereByVivcodigoAndTipo, new String[] { String.valueOf(vivienda.getVivcodigo()), String.valueOf(REQUEST_PICTURE_VIVIENDA) });
+        this.imagenVivienda = ImagenDao.getImagen(cr,	Imagen.whereByVivcodigoAndTipo, new String[] { String.valueOf(vivienda.getVivcodigo()), String.valueOf(Global.TIPO_IMAGEN_VIVIENDA) });
         if(imagenVivienda != null)
         {
-            new GetImagen().execute(
-                    String.valueOf(vivienda.getVivcodigo()),
-                    String.valueOf(REQUEST_PICTURE_VIVIENDA));
+            new GetImagen().execute(imagenVivienda.getImagen(), fotoViviendaImageView, imagenVivienda.getTipo());
+        }
+
+        this.imagenFormulario = ImagenDao.getImagen(cr,	Imagen.whereByVivcodigoAndTipo, new String[] { String.valueOf(vivienda.getVivcodigo()), String.valueOf(Global.TIPO_IMAGEN_FORMULARIO) });
+        if(imagenFormulario != null)
+        {
+            new GetImagen().execute(imagenFormulario.getImagen(), fotoFormularioImageView, imagenFormulario.getTipo());
         }
     }
 
-    /**
-     * Clase para retornar la imagen
-     */
-    private class GetImagen extends AsyncTask<String, Void, Bitmap> {
-
-        String tipo = "";
-
-        protected void onPreExecute() {
-
-        }
-
+    private class GetImagen extends AsyncTask<Object, Void, Bitmap> {
+        ImageView imageView;
+        Integer tipo;
         @Override
-        protected Bitmap doInBackground(String... params) {
-
-            tipo = params[1];
-
-            Imagen imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo, params);
-
-            Bitmap _imagen = Utilitarios.decodeBase64(imagen.getImagen());
-
-            return _imagen;
+        protected Bitmap doInBackground(Object... params) {
+            String imagenString = (String)params[0];
+            imageView = (ImageView)params[1];
+            tipo = (Integer)params[2];
+            Bitmap undecodedBitmap = Utilitarios.decodeBase64(imagenString);
+            return undecodedBitmap;
         }
-
         @Override
-        protected void onPostExecute(Bitmap imagen) {
-            imagenViviendaBitmap = imagen;
-            fotoViviendaImageView.setImageBitmap(imagen);
+        protected void onPostExecute(Bitmap _imagen) {
+            imageView.setImageBitmap(_imagen);
         }
 
     }

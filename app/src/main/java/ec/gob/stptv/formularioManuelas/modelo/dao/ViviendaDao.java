@@ -110,11 +110,11 @@ public class ViviendaDao  extends Vivienda{
         return viviendas;
     }
 
-    public static boolean isRepeatCertificado(ContentResolver cr, String formulario)
+    public static boolean isRepeatCertificado(ContentResolver cr, String formulario, Integer viviendaId)
     {
         boolean isRepeat = false;
         Cursor result = cr.query(FormularioManuelasProvider.CONTENT_URI_VIVIENDA,
-                new String[] { COLUMNA_FORMULARIO}, Vivienda.whereByFormulario,new String[]{formulario},
+                new String[] { COLUMNA_FORMULARIO}, Vivienda.whereByFormularioAndId,new String[]{formulario, String.valueOf(viviendaId)},
                 null);
         if ((result.getCount() == 0) || !result.moveToFirst()) {
             isRepeat = false;
