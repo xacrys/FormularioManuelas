@@ -449,7 +449,6 @@ public class CertificadoImagenFragment extends Fragment {
     }
 
     public void actualizarCertificadoVivienda(){
-        Utilitarios.logError("actualizaaaaaaaaaaa", imagenVivienda+"");
         if (imagenVivienda != null){
             imagenVivienda.setFormulario(vivienda.getFormulario());
             ImagenDao.update(cr, imagenVivienda);
