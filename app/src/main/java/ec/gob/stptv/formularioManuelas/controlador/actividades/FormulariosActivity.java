@@ -607,10 +607,31 @@ public class FormulariosActivity extends Activity {
 
 			case R.id.menu_sincronizar_imagenes:
 
-				Intent intentImagenes = new Intent(FormulariosActivity.this,
-						ImagenesActivity.class);
-				intentImagenes.putExtra("usuario", usuario);
-				startActivity(intentImagenes);
+				//Valido que primero sincronize los datos
+				String where = Vivienda.whereByEstadoSincronizacionControlEntrevista;
+				String parametros[] = new String[] {String
+						.valueOf(Global.SINCRONIZACION_CERTIFICADO_REPETIDO) ,
+						String.valueOf(ControlPreguntas.ControlEntrevista.COMPLETA.getValor())};
+				ArrayList<Vivienda> viviendasDuplicadas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_VIVCODIGO);
+				int totalViviendasDuplicadas = viviendasDuplicadas.size();
+
+				parametros = new String[] {String
+						.valueOf(Global.SINCRONIZACION_INCOMPLETA) ,
+						String.valueOf(ControlPreguntas.ControlEntrevista.COMPLETA.getValor())};
+				ArrayList<Vivienda> viviendasCompletasNoSincronizadas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_VIVCODIGO);
+				int totalViviendasNoSincronizadas = viviendasCompletasNoSincronizadas.size();
+
+				if (totalViviendasNoSincronizadas > 0) {
+					getAlert(getString(R.string.validacion_aviso), getString(R.string.mv_SincronizarDatosImagenes));
+
+				} else if (totalViviendasDuplicadas > 0) {
+					getAlert(getString(R.string.validacion_aviso), getString(R.string.mv_SincronizarDuplicadosImagenes));
+				} else {
+					Intent intentImagenes = new Intent(FormulariosActivity.this,
+							ImagenesActivity.class);
+					intentImagenes.putExtra("usuario", usuario);
+					startActivity(intentImagenes);
+				}
 				break;
 
 			default:
