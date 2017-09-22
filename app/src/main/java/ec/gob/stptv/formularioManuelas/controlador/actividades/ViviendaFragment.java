@@ -129,6 +129,7 @@ public class ViviendaFragment extends Fragment {
     protected Values localidadesDispersas = new Values("0", "0");
     private LinearLayout localidadDispersaLinearLayout;
     private LinearLayout localidadLinearLayout;
+    private String fechaYHoraInicio;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -138,6 +139,7 @@ public class ViviendaFragment extends Fragment {
                 container, false);
         Bundle extra = getActivity().getIntent().getExtras();
         contentResolver = getActivity().getContentResolver();
+        fechaYHoraInicio = Utilitarios.getCurrentDateAndHour();
         this.obtenerVistas(item);
         this.cargarPreguntas();
         this.habilitarDeshabilitar();
@@ -146,16 +148,11 @@ public class ViviendaFragment extends Fragment {
             vivienda = (Vivienda) extra.getSerializable("vivienda");
             usuario = (Usuario) extra.getSerializable("usuario");
             fase = (Fase) extra.getSerializable("fase");
-
             if (vivienda.getId() != 0) {
                 this.llenarCamposVivienda();
-                vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
-                vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
             }
         } catch (Exception e) {
             vivienda = new Vivienda();
-            vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
-            vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
             Utilitarios.logInfo(ViviendaFragment.class.getName(), "Formulario nuevo");
         }
         cargarUbicacionGeografica();
@@ -169,7 +166,6 @@ public class ViviendaFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         faseTextView.setText(fase.getNombrefase());
-
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         getLastLocation();
         IntentFilter filter = new IntentFilter();
@@ -607,7 +603,7 @@ public class ViviendaFragment extends Fragment {
         vivienda.setIdfase(fase.getId());
         vivienda.setIdentificadorequipo(Utilitarios.getImeiDispositivo(getActivity()));
         vivienda.setFechaencuesta(Utilitarios.getCurrentDate());
-        vivienda.setFechainicio(Utilitarios.getCurrentDateAndHour());
+        vivienda.setFechainicio(fechaYHoraInicio);
         vivienda.setFechafin(Utilitarios.getCurrentDateAndHour());
         vivienda.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
         vivienda.setFechasincronizacion(Utilitarios.getCurrentDate());

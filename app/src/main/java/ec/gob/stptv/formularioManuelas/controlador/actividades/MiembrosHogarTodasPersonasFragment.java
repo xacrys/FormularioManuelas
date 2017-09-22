@@ -658,7 +658,8 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
             if ((_persona.getEdadanio() >= Global.EDAD_12ANIOS)
                     && (_persona.getSexo() == Global.GENERO_FEMENINO)
                     && (_persona.getId() != persona.getId())) {
-                codigosMadres.add(new Values(_persona.getId(), _persona.getNombresCompletos()));
+                //codigosMadres.add(new Values(_persona.getId(), _persona.getNombresCompletos()));
+                codigosMadres.add(new Values(_persona.getOrden(), _persona.getNombresCompletos()));
             }
         }
         ArrayAdapter<Values> adapterSeccion5CodigoMadre = new ArrayAdapter<>(

@@ -197,7 +197,7 @@ public class Vivienda implements Serializable {
     public static String whereByFechasFormularios =  COLUMNA_IDFASE + " = ? AND " +"(" + COLUMNA_FECHACREACION
             + " BETWEEN  ?"	+ " AND ?) AND " + COLUMNA_IDCONTROLENTREVISTA +" <> ?" ;
 
-    public static String whereByEstadoSincronizacionControlEntrevista =  COLUMNA_ESTADOSINCRONIZACION + "  = ? AND " + COLUMNA_NUMEROVISITAS + "  <> 0 AND " + COLUMNA_IDCONTROLENTREVISTA +" = ?" ;
+    public static String whereByEstadoSincronizacionControlEntrevista =  COLUMNA_ESTADOSINCRONIZACION + "  = ? AND " + COLUMNA_NUMEROVISITAS + "  <> 0 AND " + COLUMNA_IDCONTROLENTREVISTA +" <> ?" ;
 
     public static String whereByFormulario = COLUMNA_FORMULARIO + " like ?";
 

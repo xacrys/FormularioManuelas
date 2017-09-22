@@ -484,10 +484,10 @@ public class PersonaPreguntas {
         listaAporteSeguro.add(new Values(AporteSeguro.IESS_CAMPESINO.getValor(), context.getString(R.string.aporteSeguroOpcion3)));
         listaAporteSeguro.add(new Values(AporteSeguro.IESS_NO_REMUNERADO.getValor(), context.getString(R.string.aporteSeguroOpcion4)));
         listaAporteSeguro.add(new Values(AporteSeguro.ISSFA_ISSPOL.getValor(), context.getString(R.string.aporteSeguroOpcion5)));
-        listaAporteSeguro.add(new Values(AporteSeguro.PRIVADO.getValor(), context.getString(R.string.aporteSeguroOpcion6)));
-        listaAporteSeguro.add(new Values(AporteSeguro.OTROS.getValor(), context.getString(R.string.aporteSeguroOpcion7)));
-        listaAporteSeguro.add(new Values(AporteSeguro.NO_APORTA.getValor(), context.getString(R.string.aporteSeguroOpcion8)));
-        listaAporteSeguro.add(new Values(AporteSeguro.NO_SABE.getValor(), context.getString(R.string.aporteSeguroOpcion9)));
+        listaAporteSeguro.add(new Values(AporteSeguro.NO_APORTA.getValor(), context.getString(R.string.aporteSeguroOpcion6)));
+        listaAporteSeguro.add(new Values(AporteSeguro.NO_SABE.getValor(), context.getString(R.string.aporteSeguroOpcion7)));
+        listaAporteSeguro.add(new Values(AporteSeguro.PRIVADO.getValor(), context.getString(R.string.aporteSeguroOpcion8)));
+        listaAporteSeguro.add(new Values(AporteSeguro.OTROS.getValor(), context.getString(R.string.aporteSeguroOpcion9)));
         ArrayAdapter<Values> aporteSeguroAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, listaAporteSeguro);
         aporteSeguroAdapter

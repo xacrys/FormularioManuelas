@@ -305,7 +305,7 @@ public class FormulariosActivity extends Activity {
 			((TextView) row.findViewById(R.id.columnaSectorTextView))
 					.setText(vivienda.getSector());
 
-			if(!vivienda.getManzana().equals(String.valueOf(Global.ENTEROS_VACIOS)))
+			if(!vivienda.getManzana().equals(String.valueOf(Global.VALOR_CADENA_MANZANA)))
 			{
 				((TextView) row.findViewById(R.id.columnaManzanaTextView))
 						.setText(String.valueOf(vivienda.getManzana()));
@@ -611,13 +611,13 @@ public class FormulariosActivity extends Activity {
 				String where = Vivienda.whereByEstadoSincronizacionControlEntrevista;
 				String parametros[] = new String[] {String
 						.valueOf(Global.SINCRONIZACION_CERTIFICADO_REPETIDO) ,
-						String.valueOf(ControlPreguntas.ControlEntrevista.COMPLETA.getValor())};
+						String.valueOf(ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor())};
 				ArrayList<Vivienda> viviendasDuplicadas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_VIVCODIGO);
 				int totalViviendasDuplicadas = viviendasDuplicadas.size();
 
 				parametros = new String[] {String
 						.valueOf(Global.SINCRONIZACION_INCOMPLETA) ,
-						String.valueOf(ControlPreguntas.ControlEntrevista.COMPLETA.getValor())};
+						String.valueOf(ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor())};
 				ArrayList<Vivienda> viviendasCompletasNoSincronizadas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_VIVCODIGO);
 				int totalViviendasNoSincronizadas = viviendasCompletasNoSincronizadas.size();
 
@@ -747,7 +747,7 @@ public class FormulariosActivity extends Activity {
 		String where = Vivienda.whereByEstadoSincronizacionControlEntrevista;
 		String parametros[] = new String[] {String
 				.valueOf(Global.SINCRONIZACION_INCOMPLETA) ,
-				String.valueOf(ControlPreguntas.ControlEntrevista.COMPLETA.getValor())};
+				String.valueOf(ControlPreguntas.ControlEntrevista.INCOMPLETA.getValor())};
 
 		ArrayList<Vivienda> viviendas = ViviendaDao.getViviendas(contentResolver, where, parametros, Vivienda.COLUMNA_VIVCODIGO);
 

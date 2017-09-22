@@ -883,12 +883,12 @@
     <string name="mv_idDocumentoViviendaAdquisicionVivienda">Prg. 2 Documento no corresponde a Prg. 3 forma de adquisición, coloque en observación</string>
     <string name="mv_idTipoViviendaTenenciaVivienda">Tipo de vivienda cuartos no corresponde a tenencia, coloque en observación</string>
     <string name="mv_idTipoViviendaCasaMaterialTecho">Tipo vivienda Casa y Techo de Otro Material, coloque en observación</string>
-    <string name="mv_idTipoViviendaDepartamentoMaterialTecho">Tipo vivienda Departamento y Techo de Otro Material</string>
+    <string name="mv_idTipoViviendaDepartamentoMaterialTecho">Tipo vivienda Departamento y Techo de Otro Material, coloque en observación</string>
     <string name="mv_idResisdenteTemporalJefeNucleo">Residente Temporal Presente y Parentesco con Jefe de Hogar, coloque en observación</string>
     <string name="mv_idViaAccesoPrincipalEliminanBasura">Prg 2 Tipo de acceso a la vivienda otro y Prg 11 elimina la basura por servicio municipal, coloque en observación</string>
     <string name="mv_idViaAccesoPrincipalEliminanBasura_rio">Via acceso vivienda Rio/Mar y Elimina basura Servicio Municipal, coloque en observación</string>
     <string name="mv_idTipoViviendaTipoHogarDocumento">Registra tipo de vivienda "cuartos", propia y con escritura, coloque en observación</string>
-    <string name="mv_materialTechoOpcionOtro">Registra otro tipo de techo, coloque en observación a cual se refiere</string>
+    <string name="mv_materialTechoOpcionOtro">Registra otro tipo de techo y no justifica en observaciones a que tipo de techo se refiere</string>
 
 
 

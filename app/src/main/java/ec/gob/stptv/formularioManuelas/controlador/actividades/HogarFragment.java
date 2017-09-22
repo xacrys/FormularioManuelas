@@ -74,6 +74,7 @@ public class HogarFragment extends Fragment {
     private Spinner estadoPisoSpinner;
     private Spinner estadoParedSpinner;
     private LinearLayout pantallaHogarLinearLayout;
+    private String fechaYHoraInicio;
 
 
     @Override
@@ -97,7 +98,7 @@ public class HogarFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        fechaYHoraInicio = Utilitarios.getCurrentDateAndHour();
         tabs = getActivity().findViewById(android.R.id.tabhost);
         String[] parametros;
 
@@ -291,6 +292,7 @@ public class HogarFragment extends Fragment {
         vivienda.setIdestadoviviendapiso(Integer.parseInt(((Values) estadoPisoSpinner.getSelectedItem()).getKey()));
         vivienda.setIdestadoviviendapared(Integer.parseInt(((Values) estadoParedSpinner.getSelectedItem()).getKey()));
         ViviendaDao.update(contentResolver,vivienda);
+        Utilitarios.logInfo(HogarFragment.class.getName(), "Actualiza vivienda");
 
         hogar.setIdpropiedadvivienda(Integer.parseInt(((Values) tipoHogarSpinner.getSelectedItem()).getKey()));
         hogar.setIddocumentovivienda(Integer.parseInt(((Values) documentoHogarSpinner.getSelectedItem()).getKey()));
@@ -340,7 +342,7 @@ public class HogarFragment extends Fragment {
                 hogar.setTerrenoservicios(Global.ENTEROS_VACIOS_CATALOGOS);
             }
         }
-        hogar.setFechainicio(Utilitarios.getCurrentDateAndHour());
+        hogar.setFechainicio(fechaYHoraInicio);
         hogar.setFechafin(Utilitarios.getCurrentDateAndHour());
 
         if (hogar.getId() == 0) {
@@ -401,7 +403,7 @@ public class HogarFragment extends Fragment {
 
                     numCuartosSpinner.setEnabled(true);
 
-                    numDormitoriosSpinner.setEnabled(true);
+                    //numDormitoriosSpinner.setEnabled(true);
 
                     servicioSanitarioSpinner.setEnabled(true);
 
@@ -575,6 +577,14 @@ public class HogarFragment extends Fragment {
         numCuartosSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(((Values) numCuartosSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.ENTEROS_VACIOS_CATALOGOS))){
+                    numDormitoriosSpinner.setSelection(0);
+                    numDormitoriosSpinner.setEnabled(false);
+
+                }else{
+                    numDormitoriosSpinner.setEnabled(true);
+                }
+
                 if (!((Values) numCuartosSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
                         !((Values) numDormitoriosSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE)) &&
                         Integer.parseInt(((Values) numCuartosSpinner.getSelectedItem()).getKey()) < Integer.parseInt(((Values) numDormitoriosSpinner.getSelectedItem()).getKey())) {
@@ -587,7 +597,9 @@ public class HogarFragment extends Fragment {
                     numCuartosSpinner.setSelection(0);
                     getAlert(getString(R.string.validacion_aviso),getString(R.string.seccion3MensajeNoCorrespondeCuartos));
                 }
+
             }
+
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -904,15 +916,15 @@ public class HogarFragment extends Fragment {
      */
     protected void mensajesAlerta() {
 
-        if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("1") &&
-                ((Values)materialTechoSpinner.getSelectedItem()).getKey().equals("6")){
-            getAlert(getString(R.string.validacion_aviso),getString(R.string.mv_idTipoViviendaCasaMaterialTecho));
-        }
-
-        if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
-                ((Values)materialTechoSpinner.getSelectedItem()).getKey().equals("6")){
-            getAlert(getString(R.string.validacion_aviso),getString(R.string.mv_idTipoViviendaDepartamentoMaterialTecho));
-        }
+//        if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("1") &&
+//                ((Values)materialTechoSpinner.getSelectedItem()).getKey().equals("6")){
+//            getAlert(getString(R.string.validacion_aviso),getString(R.string.mv_idTipoViviendaCasaMaterialTecho));
+//        }
+//
+//        if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
+//                ((Values)materialTechoSpinner.getSelectedItem()).getKey().equals("6")){
+//            getAlert(getString(R.string.validacion_aviso),getString(R.string.mv_idTipoViviendaDepartamentoMaterialTecho));
+//        }
 
         if(((Values)tipoViviendaSpinner.getSelectedItem()).getKey().equals("2") &&
                 ((Values)ubicacionAguaSpinner.getSelectedItem()).getKey().equals("2")){

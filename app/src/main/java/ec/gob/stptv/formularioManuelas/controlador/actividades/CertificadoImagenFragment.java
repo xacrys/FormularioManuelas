@@ -276,6 +276,40 @@ public class CertificadoImagenFragment extends Fragment {
 
     public void guardarImagenes(){
 
+        if (imagenFormularioBitmap != null) {
+
+            Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
+                    new String[] { String.valueOf(vivienda.getVivcodigo()),  String.valueOf(REQUEST_PICTURE_FORMULARIO)});
+
+            if (_imagen == null){
+                Imagen imagen = new Imagen();
+                imagen.setVivcodigo(vivienda.getVivcodigo());
+                imagen.setFormulario(vivienda.getFormulario());
+                imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenFormularioBitmap, Global.CALIDAD_FOTO));
+                imagen.setTipo(Global.TIPO_IMAGEN_FORMULARIO);
+                imagen.setFecha(Utilitarios.getCurrentDate());
+                imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                imagen.setFechasincronizacion("");
+                Uri uri = ImagenDao.save(cr, imagen);
+                if(uri != null)
+                {
+                    imagenFormulario = imagen;
+                }
+            }else
+            {
+                _imagen.setFecha(Utilitarios.getCurrentDate());
+                _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenFormularioBitmap, Global.CALIDAD_FOTO));
+                _imagen.setFormulario(vivienda.getFormulario());
+                int result = ImagenDao.update(cr, _imagen);
+                if(result > 0)
+                {
+                    imagenFormulario = _imagen;
+                }
+            }
+        }
+//            photoFormulario.delete();
+
         if (imagenViviendaBitmap != null) {
 
                 Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
@@ -310,39 +344,6 @@ public class CertificadoImagenFragment extends Fragment {
                 }
             }
 //            photoVivienda.delete();
-        if (imagenFormularioBitmap != null) {
-
-                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
-                        new String[] { String.valueOf(vivienda.getVivcodigo()),  String.valueOf(REQUEST_PICTURE_FORMULARIO)});
-
-                if (_imagen == null){
-                    Imagen imagen = new Imagen();
-                    imagen.setVivcodigo(vivienda.getVivcodigo());
-                    imagen.setFormulario(vivienda.getFormulario());
-                         imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenFormularioBitmap, Global.CALIDAD_FOTO));
-                    imagen.setTipo(Global.TIPO_IMAGEN_FORMULARIO);
-                    imagen.setFecha(Utilitarios.getCurrentDate());
-                    imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-                    imagen.setFechasincronizacion("");
-                    Uri uri = ImagenDao.save(cr, imagen);
-                    if(uri != null)
-                    {
-                        imagenFormulario = imagen;
-                    }
-                }else
-                {
-                    _imagen.setFecha(Utilitarios.getCurrentDate());
-                    _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-                    _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenFormularioBitmap, Global.CALIDAD_FOTO));
-                    _imagen.setFormulario(vivienda.getFormulario());
-                    int result = ImagenDao.update(cr, _imagen);
-                    if(result > 0)
-                    {
-                        imagenFormulario = _imagen;
-                    }
-                }
-            }
-//            photoFormulario.delete();
 
     }
 

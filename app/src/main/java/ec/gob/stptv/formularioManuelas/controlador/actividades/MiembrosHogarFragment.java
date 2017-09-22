@@ -292,6 +292,7 @@ public class MiembrosHogarFragment extends Fragment {
                                     for (int cont = 0; cont < edadRadioGroup.getChildCount(); cont++) {
                                         edadRadioGroup.getChildAt(cont).setEnabled(false);
                                     }
+                                    fechaNacimientoButton.setEnabled(false);
                                 }
                                 else{
                                     sexoSpinner.setEnabled(true);
