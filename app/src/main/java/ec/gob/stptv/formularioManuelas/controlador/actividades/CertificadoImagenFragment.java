@@ -174,40 +174,40 @@ public class CertificadoImagenFragment extends Fragment {
             imagenViviendaBitmap = BitmapFactory.decodeFile(mImagenViviendaUri.getPath());
             fotoViviendaImageView.setImageBitmap(imagenViviendaBitmap);
             Utilitarios.logError("imagenViviendaBitmap onActivityResult", imagenViviendaBitmap+"");
-//            if (imagenViviendaBitmap != null) {
-//
-//                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
-//                        new String[] { String.valueOf(vivienda.getVivcodigo()),  String.valueOf(REQUEST_PICTURE_VIVIENDA)});
-//
-//                if (_imagen == null){
-//                    Imagen imagen = new Imagen();
-//                    imagen.setVivcodigo(vivienda.getVivcodigo());
-//                    imagen.setFormulario(vivienda.getFormulario());
-//                    //imagen.setCodigoequipo(vivienda.getIdentificadorequipo());pendiente
-//                    imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
-//                    imagen.setTipo(Global.TIPO_IMAGEN_VIVIENDA);
-//                    imagen.setFecha(Utilitarios.getCurrentDate());
-//                    imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-//                    imagen.setFechasincronizacion("");
-//                    Uri uri = ImagenDao.save(cr, imagen);
-//                    if(uri != null)
-//                    {
-//                        imagenVivienda = imagen;
-//                    }
-//                }else
-//                {
-//                    _imagen.setFecha(Utilitarios.getCurrentDate());
-//                    _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-//                    _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
-//                    _imagen.setFormulario(vivienda.getFormulario());
-//                    int result = ImagenDao.update(cr, _imagen);
-//                    if(result > 0)
-//                    {
-//                        imagenVivienda = _imagen;
-//                    }
-//                }
-//            }
-//            photoVivienda.delete();
+            if (imagenViviendaBitmap != null) {
+
+                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
+                        new String[] { String.valueOf(vivienda.getVivcodigo()),  String.valueOf(REQUEST_PICTURE_VIVIENDA)});
+
+                if (_imagen == null){
+                    Imagen imagen = new Imagen();
+                    imagen.setVivcodigo(vivienda.getVivcodigo());
+                    imagen.setFormulario(vivienda.getFormulario());
+                    //imagen.setCodigoequipo(vivienda.getIdentificadorequipo());pendiente
+                    imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
+                    imagen.setTipo(Global.TIPO_IMAGEN_VIVIENDA);
+                    imagen.setFecha(Utilitarios.getCurrentDate());
+                    imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                    imagen.setFechasincronizacion("");
+                    Uri uri = ImagenDao.save(cr, imagen);
+                    if(uri != null)
+                    {
+                        imagenVivienda = imagen;
+                    }
+                }else
+                {
+                    _imagen.setFecha(Utilitarios.getCurrentDate());
+                    _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+                    _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
+                    _imagen.setFormulario(vivienda.getFormulario());
+                    int result = ImagenDao.update(cr, _imagen);
+                    if(result > 0)
+                    {
+                        imagenVivienda = _imagen;
+                    }
+                }
+            }
+            photoVivienda.delete();
 
         }else if (requestCode == REQUEST_PICTURE_FORMULARIO && resultCode == Activity.RESULT_OK) {
 
@@ -310,40 +310,40 @@ public class CertificadoImagenFragment extends Fragment {
         }
 //            photoFormulario.delete();
 
-        if (imagenViviendaBitmap != null) {
-
-                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
-                        new String[] { String.valueOf(vivienda.getVivcodigo()),  String.valueOf(REQUEST_PICTURE_VIVIENDA)});
-
-                if (_imagen == null){
-                    Imagen imagen = new Imagen();
-                    imagen.setVivcodigo(vivienda.getVivcodigo());
-                    imagen.setFormulario(vivienda.getFormulario());
-                    //imagen.setCodigoequipo(vivienda.getIdentificadorequipo());pendiente
-                    imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
-                    imagen.setTipo(Global.TIPO_IMAGEN_VIVIENDA);
-                    imagen.setFecha(Utilitarios.getCurrentDate());
-                    imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-                    imagen.setFechasincronizacion("");
-                    Uri uri = ImagenDao.save(cr, imagen);
-                    if(uri != null)
-                    {
-                        imagenVivienda = imagen;
-                    }
-                }else
-                {
-                    _imagen.setFecha(Utilitarios.getCurrentDate());
-                    _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
-                    _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
-                    _imagen.setFormulario(vivienda.getFormulario());
-                    int result = ImagenDao.update(cr, _imagen);
-                    if(result > 0)
-                    {
-                        imagenVivienda = _imagen;
-                    }
-                }
-            }
-//            photoVivienda.delete();
+//        if (imagenViviendaBitmap != null) {
+//
+//                Imagen _imagen = ImagenDao.getImagen(cr, Imagen.whereByVivcodigoAndTipo,
+//                        new String[] { String.valueOf(vivienda.getVivcodigo()),  String.valueOf(REQUEST_PICTURE_VIVIENDA)});
+//
+//                if (_imagen == null){
+//                    Imagen imagen = new Imagen();
+//                    imagen.setVivcodigo(vivienda.getVivcodigo());
+//                    imagen.setFormulario(vivienda.getFormulario());
+//                    //imagen.setCodigoequipo(vivienda.getIdentificadorequipo());pendiente
+//                    imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
+//                    imagen.setTipo(Global.TIPO_IMAGEN_VIVIENDA);
+//                    imagen.setFecha(Utilitarios.getCurrentDate());
+//                    imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+//                    imagen.setFechasincronizacion("");
+//                    Uri uri = ImagenDao.save(cr, imagen);
+//                    if(uri != null)
+//                    {
+//                        imagenVivienda = imagen;
+//                    }
+//                }else
+//                {
+//                    _imagen.setFecha(Utilitarios.getCurrentDate());
+//                    _imagen.setEstadosincronizacion(Global.SINCRONIZACION_INCOMPLETA);
+//                    _imagen.setImagen(Utilitarios.encodeTobase64ImageColor(imagenViviendaBitmap, Global.CALIDAD_FOTO));
+//                    _imagen.setFormulario(vivienda.getFormulario());
+//                    int result = ImagenDao.update(cr, _imagen);
+//                    if(result > 0)
+//                    {
+//                        imagenVivienda = _imagen;
+//                    }
+//                }
+//            }
+////            photoVivienda.delete();
 
     }
 
@@ -442,9 +442,9 @@ public class CertificadoImagenFragment extends Fragment {
                     return;
                 actualizarVivienda();
                 guardarImagenes();
-                if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
-                    actualizarCertificadoVivienda();
-                }
+                //if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
+                actualizarCertificadoVivienda();
+                //}
             }
         });
     }
@@ -500,7 +500,7 @@ public class CertificadoImagenFragment extends Fragment {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionCodigoBarrasDiferentes));
         } else if (imagenFormularioBitmap == null) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionImagenFormularioVacio));
-        }else if (imagenViviendaBitmap == null && vivienda.getEstadosincronizacion() != Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
+        }else if (imagenVivienda == null) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seccionImagenViviendaVacio));
         }
         else if (ViviendaDao.isRepeatCertificado(cr, certificadoEditText.getText().toString(), vivienda.getId()) == true) {

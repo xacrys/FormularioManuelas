@@ -16,7 +16,7 @@ import ec.gob.stptv.formularioManuelas.controlador.util.Utilitarios;
 
 public class LocalizacionService extends Service {
 	
-	private static final String TAG = "ec.gob.mcds.rips.fichafamiliar.controlador.service.localizacion";
+	private static final String TAG = "ec.gob.stptv.formularioManuelas.controlador.servicio.localizacion";
 	private LocationManager mLocationManager = null;
 	
 	private NotificationManager mNotificationManager;
@@ -91,7 +91,7 @@ public class LocalizacionService extends Service {
 		    NotificationCompat.Builder  mNotifyBuilder = new NotificationCompat.Builder(this)
 		        .setContentTitle("Capturando localizacion GPS")
 		        .setContentText("Servicio ejecutandose...")
-					.setSmallIcon(R.drawable.ic_menu_agenda);
+					.setSmallIcon(ec.gob.stptv.formularioManuelas.R.drawable.ic_manuelas);
 		        //.setSmallIcon(ec.gob.mcds.rips.fichafamiliar.controlador.R.drawable.ic_msp);
 		    mNotifyBuilder.setOngoing(true);
 		        mNotificationManager.notify(
