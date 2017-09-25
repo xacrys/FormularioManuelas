@@ -92,7 +92,6 @@ public class LocalizacionService extends Service {
 		        .setContentTitle("Capturando localizacion GPS")
 		        .setContentText("Servicio ejecutandose...")
 					.setSmallIcon(ec.gob.stptv.formularioManuelas.R.drawable.ic_manuelas);
-		        //.setSmallIcon(ec.gob.mcds.rips.fichafamiliar.controlador.R.drawable.ic_msp);
 		    mNotifyBuilder.setOngoing(true);
 		        mNotificationManager.notify(
 		                notifyID,
