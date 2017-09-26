@@ -669,14 +669,14 @@ public class WebService {
 				byte[] compressed = Utilitarios.compress(uncompressed);
 				
 				Utilitarios.createFileLog(new String(compressed), 2);
-				Log.e("", "Peso de la cadena comprimida: " + compressed.length);
+				Utilitarios.logInfo("", "Peso de la cadena comprimida: " + compressed.length);
 				 
 				String cadenaComprimida = Base64.encodeToString(compressed, Base64.DEFAULT);
 				JsonEncriptado jsonEncriptado = new JsonEncriptado();
 				jsonEncriptado.setCadena(cadenaComprimida);
 
-//				Utilitarios.logError("", "JSON encriptado" + "*"+cadenaComprimida+"*");
-//				Utilitarios.createFileLog1(gson.toJson(jsonEncriptado)+"");
+//				Utilitarios.logInfo("", "JSON encriptado" + "*"+cadenaComprimida+"*");
+//				Utilitarios.createFileLog(gson.toJson(jsonEncriptado)+"", 3);
 
 				StringEntity entity = new StringEntity( gson.toJson(jsonEncriptado), HTTP.UTF_8);
 				
