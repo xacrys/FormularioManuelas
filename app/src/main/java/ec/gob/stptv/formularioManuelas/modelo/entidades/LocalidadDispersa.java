@@ -11,7 +11,7 @@ public class LocalidadDispersa {
 	private String descripcion;
 		
 	
-	public final static String NOMBRE_TABLA = "localidadesdispersas";
+	public final static String NOMBRE_TABLA = "localidaddispersa";
 
 	//public final static String COLUMNA_ID_ = "ID";
 	public final static String COLUMNA_IDDPA = "iddpa";
