@@ -15,7 +15,6 @@ public class Fase implements Serializable {
 	private String fechainicio;
 	private String fechafin;
 	private String nombrefase;
-	private String nombreoperativo;
 
 	private Integer estado;
 
@@ -27,7 +26,6 @@ public class Fase implements Serializable {
 	public final static String COLUMNA_FECHAINICIO = "fechainicio";
 	public final static String COLUMNA_FECHAFIN = "fechafin";
 	public final static String COLUMNA_NOMBREFASE= "nombrefase";
-	public final static String COLUMNA_NOMBREOPERATIVO= "nombreoperativo";
 	public final static String COLUMNA_ESTADO = "estado";
 
 	//crear un string con las columnas de la tabla
@@ -36,7 +34,6 @@ public class Fase implements Serializable {
 			COLUMNA_FECHAINICIO,
 			COLUMNA_FECHAFIN,
 			COLUMNA_NOMBREFASE,
-			COLUMNA_NOMBREOPERATIVO,
 			COLUMNA_ESTADO
 	};
 
@@ -82,7 +79,6 @@ public class Fase implements Serializable {
 		this.setFechainicio(fechaInicio);
 		this.setFechafin(fechaFin);
 		this.setNombrefase(nombreFase);
-		this.setNombreoperativo(nombreOperativo);
 		this.setEstado(estado);
 	}
 
@@ -97,7 +93,6 @@ public class Fase implements Serializable {
 		values.put(Fase.COLUMNA_FECHAINICIO, fase.getFechainicio());
 		values.put(Fase.COLUMNA_FECHAFIN, fase.getFechafin());
 		values.put(Fase.COLUMNA_NOMBREFASE, fase.getNombrefase());
-		values.put(Fase.COLUMNA_NOMBREOPERATIVO, fase.getNombreoperativo());
 		values.put(Fase.COLUMNA_ESTADO, fase.getEstado());
 
 		return values;
@@ -114,7 +109,6 @@ public class Fase implements Serializable {
 		fase.setFechainicio(result.getString(result.getColumnIndex(COLUMNA_FECHAINICIO)));
 		fase.setFechafin(result.getString(result.getColumnIndex(COLUMNA_FECHAFIN)));
 		fase.setNombrefase(result.getString(result.getColumnIndex(COLUMNA_NOMBREFASE)));
-		fase.setNombreoperativo(result.getString(result.getColumnIndex(COLUMNA_NOMBREOPERATIVO)));
 		fase.setEstado(result.getInt(result.getColumnIndex(COLUMNA_ESTADO)));
 
 		return fase;
@@ -150,14 +144,6 @@ public class Fase implements Serializable {
 
 	public void setNombrefase(String nombrefase) {
 		this.nombrefase = nombrefase;
-	}
-
-	public String getNombreoperativo() {
-		return nombreoperativo;
-	}
-
-	public void setNombreoperativo(String nombreoperativo) {
-		this.nombreoperativo = nombreoperativo;
 	}
 
 	public Integer getEstado() {

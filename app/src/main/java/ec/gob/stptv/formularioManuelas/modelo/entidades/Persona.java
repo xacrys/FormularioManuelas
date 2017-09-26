@@ -284,6 +284,8 @@ public class Persona implements Serializable {
 		porcentajesordera = Global.ENTEROS_VACIOS;
 		porcentajehipoacusia = Global.ENTEROS_VACIOS;
 		porcentajepsicosociales = Global.ENTEROS_VACIOS;
+		madrevive = Global.ENTEROS_VACIOS_CATALOGOS;
+		ordenMadre = Global.ENTEROS_VACIOS_CATALOGOS;
 	}
 	/**
 	 * Método que devuelve los valores de un registro

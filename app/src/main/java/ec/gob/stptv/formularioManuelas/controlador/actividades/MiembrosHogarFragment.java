@@ -373,7 +373,7 @@ public class MiembrosHogarFragment extends Fragment {
         for (int i = 0; i < personasTableLayout.getChildCount(); i++) {
             TableRow row = (TableRow) personasTableLayout.getChildAt(i);
             Persona _persona = (Persona) row.getTag();
-            if ((_persona.getMadrevive() == Global.SI) && (madre.getId().equals( _persona.getOrdenMadre()))) {
+            if ((_persona.getMadrevive() == Global.SI) && (madre.getOrden().equals( _persona.getOrdenMadre()))) {
                 _persona.setMadrevive(Global.ENTEROS_VACIOS_CATALOGOS);
                 _persona.setOrdenMadre(Global.ENTEROS_VACIOS_CATALOGOS);
                 _persona.setInformacioncompleta(Global.INFORMACION_INCOMPLETA);
