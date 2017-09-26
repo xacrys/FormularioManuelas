@@ -675,8 +675,8 @@ public class WebService {
 				JsonEncriptado jsonEncriptado = new JsonEncriptado();
 				jsonEncriptado.setCadena(cadenaComprimida);
 
-//				Utilitarios.logInfo("", "JSON encriptado" + "*"+cadenaComprimida+"*");
-//				Utilitarios.createFileLog(gson.toJson(jsonEncriptado)+"", 3);
+				Utilitarios.logInfo("", "JSON encriptado" + "*"+cadenaComprimida+"*");
+				Utilitarios.createFileLog(gson.toJson(jsonEncriptado)+"", 3);
 
 				StringEntity entity = new StringEntity( gson.toJson(jsonEncriptado), HTTP.UTF_8);
 				
