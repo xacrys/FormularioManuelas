@@ -680,7 +680,7 @@ public class WebService {
 				StringEntity entity = new StringEntity( gson.toJson(jsonEncriptado), HTTP.UTF_8);
 
 				HttpParams httpParams = new BasicHttpParams();
-				int timeoutConnection = 50000;
+				int timeoutConnection = 60000;
 				HttpConnectionParams.setConnectionTimeout(httpParams, timeoutConnection);
 				httpClient.setParams(httpParams);
 				
