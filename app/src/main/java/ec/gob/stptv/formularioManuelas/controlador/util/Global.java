@@ -23,6 +23,7 @@ public class Global {
      */
     //public static final String IP_SERVIDOR = "http://192.168.10.151:8080";
     public static final String IP_SERVIDOR = "http://200.125.208.21:8080";
+    //public static final String IP_SERVIDORIMA = "http://192.168.1.108:8080";
 
     /**
      * WEB SERVICES

@@ -64,7 +64,7 @@ public class SincronizacionImagenes {
 	 */
 	public class ImagenSincronizacionTask extends AsyncTask<Object, Void, Object> {
 
-		Imagen imagen = new Imagen();
+		Imagen imagen;
 		private Activity activity;
 		private DefaultHttpClient httpClient;
 

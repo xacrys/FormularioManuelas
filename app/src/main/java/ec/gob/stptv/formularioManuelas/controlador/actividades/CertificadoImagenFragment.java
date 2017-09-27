@@ -54,7 +54,7 @@ public class CertificadoImagenFragment extends Fragment {
     Vivienda vivienda;
 
     private Button capturarFotoViviendaButton;
-    private static final int REQUEST_CODE = 0x0000c0de;
+//    private static final int REQUEST_CODE = 0x0000c0de;
     private static final int REQUEST_PICTURE_FORMULARIO = 1;
     private static final int REQUEST_PICTURE_VIVIENDA = 2;
 
@@ -85,7 +85,7 @@ public class CertificadoImagenFragment extends Fragment {
     private Imagen imagenFormulario;
 
 
-    public static final String PRODUCT_MODE = "PRODUCT_MODE";
+//    public static final String PRODUCT_MODE = "PRODUCT_MODE";
 
 
     @Override

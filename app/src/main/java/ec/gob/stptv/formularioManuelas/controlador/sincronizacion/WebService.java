@@ -655,22 +655,21 @@ public class WebService {
 	 
 	 public static InputStream openHttpConnectionPostCompress(String url, String json, DefaultHttpClient httpClient) {
 
-		 	Utilitarios.logError("ENTRA openHttpConnectionPostCompress", "openHttpConnectionPostCompress");
 			InputStream inputStream = null;
-			
+
 			try
 	        {
 				Gson gson = new GsonBuilder().serializeNulls().create();
-				
+
 				byte[] uncompressed = json.toString().getBytes(HTTP.UTF_8);
 				Utilitarios.createFileLog(new String(uncompressed), 1);
-				
+
 				Utilitarios.logInfo("", "Cadena original: " + uncompressed.length);
 				byte[] compressed = Utilitarios.compress(uncompressed);
-				
+
 				Utilitarios.createFileLog(new String(compressed), 2);
 				Utilitarios.logInfo("", "Peso de la cadena comprimida: " + compressed.length);
-				 
+
 				String cadenaComprimida = Base64.encodeToString(compressed, Base64.DEFAULT);
 				JsonEncriptado jsonEncriptado = new JsonEncriptado();
 				jsonEncriptado.setCadena(cadenaComprimida);
@@ -679,9 +678,9 @@ public class WebService {
 				Utilitarios.createFileLog(gson.toJson(jsonEncriptado)+"", 3);
 
 				StringEntity entity = new StringEntity( gson.toJson(jsonEncriptado), HTTP.UTF_8);
-				
+
 				HttpParams httpParams = new BasicHttpParams();
-				int timeoutConnection = 60000;
+				int timeoutConnection = 50000;
 				HttpConnectionParams.setConnectionTimeout(httpParams, timeoutConnection);
 				httpClient.setParams(httpParams);
 				
