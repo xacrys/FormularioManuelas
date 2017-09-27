@@ -116,7 +116,7 @@ public class ViviendaFragment extends Fragment {
 
     //Atriutos para la captura de puntos GPS
     private ArrayList<Localizacion> localizaciones = new ArrayList<>();
-    private int maxNumeroLocalizaciones = 50;
+    private int maxNumeroLocalizaciones = 50; //numero max de puntos que captura
     private Location location = null;
     //private ProgressReceiver progressReceiver;
     private LocationManager locationManager = null;
@@ -620,7 +620,7 @@ public class ViviendaFragment extends Fragment {
             ViviendaDao.save(contentResolver, vivienda);
             hogarInicialSpinner.setEnabled(false);
 
-            ArrayList<Localizacion> localizacionesTemp = Utilitarios.getLocalizacionesPorPresicion(localizaciones, 5);
+            ArrayList<Localizacion> localizacionesTemp = Utilitarios.getLocalizacionesPorPresicion(localizaciones, Global.NUMERO_PUNTOS_LOCALIZACION);
             for (Localizacion localizacion : localizacionesTemp) {
                 localizacion.setViviendaId(vivienda.getId());
                 LocalizacionDao.save(contentResolver, localizacion);

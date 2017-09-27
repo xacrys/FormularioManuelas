@@ -201,5 +201,10 @@ public class Global {
      */
     public static final int TIPO_IMAGEN_VIVIENDA = 2;
 
+    /**
+     * NUmero de puntos mas cercanos que se envia a la base para la localizacion
+     */
+    public static final int NUMERO_PUNTOS_LOCALIZACION = 5;
+
 
 }
