@@ -442,17 +442,17 @@ public class CertificadoImagenFragment extends Fragment {
                     return;
                 actualizarVivienda();
                 guardarImagenes();
-                //if (vivienda.getEstadosincronizacion() == Global.SINCRONIZACION_CERTIFICADO_REPETIDO) {
                 actualizarCertificadoVivienda();
-                //}
+
             }
         });
     }
 
     public void actualizarCertificadoVivienda(){
-        if (imagenVivienda != null){
-            imagenVivienda.setFormulario(vivienda.getFormulario());
-            ImagenDao.update(cr, imagenVivienda);
+        Imagen _imagenVivienda = ImagenDao.getImagen(cr,	Imagen.whereByVivcodigoAndTipo, new String[] { String.valueOf(vivienda.getVivcodigo()), String.valueOf(Global.TIPO_IMAGEN_VIVIENDA) });
+        if (_imagenVivienda != null){
+            _imagenVivienda.setFormulario(certificadoEditText.getText().toString());
+            ImagenDao.update(cr, _imagenVivienda);
         }
 
     }

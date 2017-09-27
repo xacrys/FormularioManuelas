@@ -50,7 +50,6 @@ public class Persona implements Serializable {
 	private Integer enfermedaddiagnostico;
 	private Integer idenfermedadcatastrofica;
 	private Integer orden;
-	private boolean flag;
 	private String fechainicio;
 	private String fechafin;
 

@@ -214,7 +214,7 @@
                             style="@style/respuestaEditText"
                             android:layout_width="320dp"
                             android:completionThreshold="4"
-                            android:dropDownWidth="1300dp"
+                            android:dropDownWidth="500dp"
                             android:singleLine="true"
                             android:text=""></AutoCompleteTextView>
 
