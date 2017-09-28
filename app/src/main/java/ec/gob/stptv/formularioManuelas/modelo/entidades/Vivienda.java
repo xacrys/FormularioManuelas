@@ -47,7 +47,6 @@ public class Vivienda implements Serializable {
     private String fechasincronizacion;
     private Integer numerovisitas;
     private Integer idcontrolentrevista;
-    private boolean flag;
     private String iddpa;
     private String observacion;
     private String fechainicio;
@@ -64,13 +63,11 @@ public class Vivienda implements Serializable {
     private String zona;
     private String sector;
     private Integer estadosincronizacion;
-    private String certificado;
     private Integer idlocalidad;
 
     //para sincronizar
     private Hogar hogar;
     private ArrayList<Localizacion> listaLocalizacion = new ArrayList<>();
-    private String mensaje;
 
 
     //Nombre de la tabla
@@ -117,7 +114,6 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_FECHACREACION = "fechaencuesta";
     public final static String COLUMNA_NUMEROVISITAS = "numerovisitas";
     public final static String COLUMNA_IDCONTROLENTREVISTA = "idcontrolentrevista";
-    public final static String COLUMNA_FLAG = "flag";
     public final static String COLUMNA_VIVCODIGO = "vivcodigo";
     public final static String COLUMNA_IDUSUARIO = "idusuario";
     public final static String COLUMNA_IMEI = "identificadorequipo";
@@ -172,7 +168,6 @@ public class Vivienda implements Serializable {
             COLUMNA_FECHACREACION,
             COLUMNA_NUMEROVISITAS,
             COLUMNA_IDCONTROLENTREVISTA,
-            COLUMNA_FLAG,
             COLUMNA_VIVCODIGO,
             COLUMNA_IDUSUARIO,
             COLUMNA_IMEI,
@@ -199,7 +194,6 @@ public class Vivienda implements Serializable {
 
     public static String whereByEstadoSincronizacionControlEntrevista =  COLUMNA_ESTADOSINCRONIZACION + "  = ? AND " + COLUMNA_NUMEROVISITAS + "  <> 0 AND " + COLUMNA_IDCONTROLENTREVISTA +" <> ?" ;
 
-    public static String whereByFormulario = COLUMNA_FORMULARIO + " like ?";
 
     public static String whereByFormularioAndId = COLUMNA_FORMULARIO + " like ? AND " + COLUMNA_ID + " <> ?";
 
@@ -637,14 +631,6 @@ public class Vivienda implements Serializable {
         this.observacion = observacion;
     }
 
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
     public String getZona() {
         return zona;
     }
@@ -685,14 +671,6 @@ public class Vivienda implements Serializable {
         this.departamento = departamento;
     }
 
-    public boolean isFlag() {
-        return flag;
-    }
-
-    public void setFlag(boolean flag) {
-        this.flag = flag;
-    }
-
     public String getPiso() {
         return piso;
     }
@@ -700,7 +678,6 @@ public class Vivienda implements Serializable {
     public void setPiso(String piso) {
         this.piso = piso;
     }
-
 
     public String getDivision() {
         return division;

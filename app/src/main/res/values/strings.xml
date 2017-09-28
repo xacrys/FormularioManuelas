@@ -34,7 +34,7 @@
     <string name="menu_sincronizar_imagenes">Sincronizar Imagenes</string>
     <string name="mensaje_sincronizacion_formularios">Sincronización de formularios esto puede tardar hasta 2 minutos por formulario,  por favor no cerrar o minimizar la ventana y espere&#8230; si no sincroniza intentelo mas tarde</string>
     <string name="mv_numero_certificado_duplicado">Ya se ha registrado el mismo número de certificado para otra vivienda</string>
-    <string name="mv_SincronizarDatosImagenes">Sicronice primero los datos para sincronizar las imágenes</string>
+    <string name="mv_SincronizarDatosImagenes">Sicronice primero los formularios, luego sincronizar las imágenes</string>
     <string name="mv_SincronizarDuplicadosImagenes">Capture nuevamente el certificado para los formularios con certificados duplicados para sincronizar las imágenes</string>
 
     <!-- Formulario de IMagenes -->
@@ -512,13 +512,13 @@
     <string name="servicioProteccionOpcion6">6. No recibió?</string>
 
     <!-- Seccion 5 Pregunta 21 -->
-    <string name="necesitaAyudaTecnica">21. (&#8230;) necesita ayudas técnicas</string>
+    <string name="necesitaAyudaTecnica">21. (&#8230;) necesita ayudas técnicas y/o médicas?</string>
 
     <!-- Seccion 5 Pregunta 22 -->
-    <string name="recibioAyudaTecnica">22. (&#8230;) recibió ayudas técnicas</string>
+    <string name="recibioAyudaTecnica">22. (&#8230;) recibió ayudas técnicas y/o ayudas médicas</string>
 
     <!-- Seccion 5 Pregunta 24-->
-    <string name="institucionAyudasTecnicas">24. De qué Institución recibió las ayudas técnicas (&#8230;):</string>
+    <string name="institucionAyudasTecnicas">24. De qué institución recibió las ayudas técnicas y/o médicas (&#8230;):</string>
     <string name="institucionAyudasTecnicasOpcionA">A. Gobierno Central?</string>
     <string name="institucionAyudasTecnicasOpcionB">B. Gobiernos Autónomos Descentralizados - GADs?</string>
     <string name="institucionAyudasTecnicasOpcionC">C. Organizaciones Privadas?</string>
@@ -547,7 +547,7 @@
     <string name="enfermedadCatastroficaOpcion9">9. Aneurisma tóraco - abdominal?</string>
 
     <!-- Seccion 5 Pregunta 23-->
-    <string name="ayudasTecnicas">23. Qué ayudas técnicas recibió o necesita recibir:</string>
+    <string name="ayudasTecnicas">23. Qué ayudas técnicas o médicas recibió o necesita recibir:</string>
     <string name="ayudasTecnicasDiscapacidadFisica">Discapacidad Física</string>
     <string name="ayudasTecnicasOpcionA">A. Silla de ruedas?</string>
     <string name="ayudasTecnicasOpcionB">B. Muletas?</string>
@@ -817,6 +817,7 @@
     <string name="seccion5MensajePorcentajeConadis">Tiene carnet de discapacidad y no hay dato en porcentaje (Prg. 19)</string>
     <string name="mensajeJefeHogarMasUno">No puede existir más de un Jefe de Hogar</string>
     <string name="mensajeEstadoCivil">El jefe(a) del Hogar y el Esposo(a) o conviviente debe tener el mismo estado civil</string>
+    <string name="mensajeEdadCero">Debe ser mayor que cero</string>
 
 
 

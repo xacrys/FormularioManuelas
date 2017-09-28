@@ -435,6 +435,12 @@ public class MiembrosHogarFragment extends Fragment {
 
             }
         }
+        if(!_persona.getCorreoelectronico().equals(Global.CADENAS_VACIAS)){
+            correoEditText.setText(_persona.getCorreoelectronico());
+        }
+        else{
+            correoEditText.setText("");
+        }
         posicion = Utilitarios.getPosicionByKey((ArrayAdapter<Values>) parentescoSpinner.getAdapter(),String.valueOf(_persona.getIdparentesco()));
         parentescoSpinner.setSelection(posicion);
 
@@ -594,6 +600,18 @@ public class MiembrosHogarFragment extends Fragment {
                 }
             }
         }
+
+        if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton){
+            if (Integer.parseInt(aniosEditText.getText().toString()) ==0){
+                if (Integer.parseInt(mesesEditText.getText().toString()) == 0){
+                    mesesEditText.setError(getString(R.string.mensajeEdadCero));
+                    mesesEditText.requestFocus();
+                    return true;
+
+                }
+            }
+        }
+
 
         return cancel;
     }
@@ -832,7 +850,6 @@ public class MiembrosHogarFragment extends Fragment {
             persona.setIdhogar(hogar.getId());
             persona.setIdresidente(Integer.valueOf(((Values) tipoResidenteSpinner.getSelectedItem()).getKey()));
             persona.setOrden(ordenPersona + 1);
-
             persona.setNombres(nombresEditText.getText().toString().trim());
             persona.setApellidos(apellidosEditText.getText().toString().trim());
             persona.setSexo(Integer.valueOf(((Values) sexoSpinner.getSelectedItem()).getKey()));
@@ -859,7 +876,11 @@ public class MiembrosHogarFragment extends Fragment {
             persona.setInformacioncompleta(Global.INFORMACION_INCOMPLETA);
             persona.setFechainicio(Utilitarios.getCurrentDateAndHour());
 
-            persona.setCorreoelectronico(correoEditText.getText().toString().trim());
+            if (!TextUtils.isEmpty(correoEditText.getText().toString())) {
+                persona.setCorreoelectronico(correoEditText.getText().toString());
+            } else {
+                persona.setCorreoelectronico(Global.CADENAS_VACIAS);
+            }
 
             persona.setIddocumentacion(Integer.parseInt(((Values) documentoSpinner.getSelectedItem()).getKey()));
 
@@ -931,7 +952,11 @@ public class MiembrosHogarFragment extends Fragment {
                 persona.setNombres(nombresEditText.getText().toString().trim());
                 persona.setApellidos(apellidosEditText.getText().toString().trim());
                 persona.setIddocumentacion(Integer.parseInt(((Values) documentoSpinner.getSelectedItem()).getKey()));
-                persona.setCorreoelectronico(correoEditText.getText().toString().trim());
+                if (!TextUtils.isEmpty(correoEditText.getText().toString())) {
+                    persona.setCorreoelectronico(correoEditText.getText().toString());
+                } else {
+                    persona.setCorreoelectronico(Global.CADENAS_VACIAS);
+                }
                 persona.setIdparentesco(Integer.valueOf(((Values) parentescoSpinner.getSelectedItem()).getKey()));
                 if (!TextUtils.isEmpty(cedulaEditText.getText().toString())) {
                     persona.setCi(cedulaEditText.getText().toString());
