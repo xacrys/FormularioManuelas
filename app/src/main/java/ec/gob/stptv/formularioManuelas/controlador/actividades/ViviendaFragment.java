@@ -462,6 +462,8 @@ public class ViviendaFragment extends Fragment {
      */
     public void habilitarDeshabilitar() {
 
+        edificioEditText.setText("1");
+        edificioEditText.setEnabled(false);
         hogarInicialSpinner.setEnabled(true);
         hogarInicialSpinner.setSelection(1);
 //        parroquiaUrbanoSpinner.setEnabled(false);
@@ -1147,22 +1149,22 @@ public class ViviendaFragment extends Fragment {
      */
     private void mallasValidacion() {
 
-        tipoLevantamientoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (((Values) tipoLevantamientoSpinner.getSelectedItem()).getKey().equals("1")) {
-                    edificioEditText.setText("1");
-                    edificioEditText.setEnabled(false);
-                } else {
-                    edificioEditText.setText("");
-                    edificioEditText.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
+//        tipoLevantamientoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                if (((Values) tipoLevantamientoSpinner.getSelectedItem()).getKey().equals("1")) {
+//                    edificioEditText.setText("1");
+//                    edificioEditText.setEnabled(false);
+//                } else {
+//                    edificioEditText.setText("");
+//                    edificioEditText.setEnabled(true);
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//            }
+//        });
 
 //        edificioEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override

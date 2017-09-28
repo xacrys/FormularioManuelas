@@ -338,7 +338,7 @@ public class LoginActivity extends Activity {
                 }
                 else
                 {
-                    Utilitarios.logError("No deveulve nada pero busca en la base","error busca en la base");
+                    Utilitarios.logError("1 nada pero busca en la base","error busca en la base");
                     String where= Usuario.whereByUsuarioYPassword;
                     String[] parametros = new String[] {
                             mEmailView.getText().toString(),
@@ -541,6 +541,11 @@ public class LoginActivity extends Activity {
                                 mAuthTask = null;
                                 showProgress(false);
                                 getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDispositivoFaseVersion));
+                                break;
+                            case -9:
+                                mAuthTask = null;
+                                showProgress(false);
+                                getAlert(getString(R.string.validacion_aviso), getString(R.string.errorRol));
                                 break;
 
                             default:

@@ -90,6 +90,7 @@
     <string name="errorDispositivoVersion">Usuario sin dispositivo y versión incorrecta </string>
     <string name="errorFaseVersion">Usuario sin fase y versión incorrecta </string>
     <string name="errorDispositivoFaseVersion">Usuario sin dispositivo ni fase y versión incorrecta </string>
+    <string name="errorRol">Usuario sin permiso para acceder al sistema</string>
 
 
 

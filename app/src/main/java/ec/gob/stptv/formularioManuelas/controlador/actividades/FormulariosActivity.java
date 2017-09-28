@@ -1103,6 +1103,10 @@ public class FormulariosActivity extends Activity {
 							getAlert(getString(R.string.validacion_aviso), getString(R.string.errorDispositivoFaseVersion));
 							break;
 
+						case -9:
+							getAlert(getString(R.string.validacion_aviso), getString(R.string.errorRol));
+							break;
+
 						default:
 							break;
 					}
