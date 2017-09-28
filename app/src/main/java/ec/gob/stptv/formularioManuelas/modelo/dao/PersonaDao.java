@@ -45,15 +45,18 @@ public class PersonaDao extends Persona{
     public static int updateCabezera(ContentResolver cr, Persona persona,
                                      String[] selectionArgs) {
         ContentValues values = new ContentValues();
+        values.put(COLUMNA_IDRESIDENTE, persona.getIdresidente());
         values.put(COLUMNA_IDDOCUMENTACION, persona.getIddocumentacion());
         values.put(COLUMNA_CI, persona.getCi());
-        values.put(COLUMNA_IDRESIDENTE, persona.getIdresidente());
         values.put(COLUMNA_APELLIDOS, persona.getApellidos());
         values.put(COLUMNA_NOMBRES, persona.getNombres());
         values.put(COLUMNA_SEXO, persona.getSexo());
+        values.put(COLUMNA_TIPOEDAD, persona.getTipoEdad());
+        values.put(COLUMNA_FECHANACIMIENTO, persona.getFechanacimiento());
         values.put(COLUMNA_EDADANIO, persona.getEdadanio());
         values.put(COLUMNA_EDADMES, persona.getEdadmes());
         values.put(COLUMNA_IDPARENTESCO, persona.getIdparentesco());
+        values.put(COLUMNA_CORREOELECTRONICO, persona.getCorreoelectronico());
 
         return cr.update(FormularioManuelasProvider.CONTENT_URI_PERSONA,
                 values, whereById, selectionArgs);

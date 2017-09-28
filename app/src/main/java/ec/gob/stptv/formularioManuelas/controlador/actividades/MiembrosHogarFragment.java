@@ -613,6 +613,35 @@ public class MiembrosHogarFragment extends Fragment {
         }
 
 
+        // valida un correo valido
+        String email  = correoEditText.getText().toString();
+        if (!TextUtils.isEmpty(email)) {
+
+            if (!email.contains("@")) {
+                correoEditText.setError(getString(R.string.error_invalid_email));
+                correoEditText.requestFocus();
+                return true;
+            } else {
+                if (email.contains("@")) {
+                    String[] a = email.split("@");
+                    Log.e("", "a length: " + a.length);
+
+                    if (a.length == 1) {
+                        correoEditText.setError(getString(R.string.error_invalid_email));
+                        correoEditText.requestFocus();
+                        return true;
+                    }
+                    if (a.length > 2) {
+                        correoEditText.setError(getString(R.string.error_invalid_email));
+                        correoEditText.requestFocus();
+                        return true;
+                    }
+                }
+            }
+
+        }
+
+
         return cancel;
     }
 

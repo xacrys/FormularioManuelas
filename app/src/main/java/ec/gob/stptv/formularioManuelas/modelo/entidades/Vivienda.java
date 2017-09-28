@@ -59,7 +59,6 @@ public class Vivienda implements Serializable {
     private String idprovincia;//local
     private String idcanton;//local
     private String idparroquia;//local
-    private Integer aniodpa;//local
     private String zona;
     private String sector;
     private Integer estadosincronizacion;
@@ -392,16 +391,6 @@ public class Vivienda implements Serializable {
     public void setIdparroquia(String idparroquia) {
         this.idparroquia = idparroquia;
     }
-
-
-    public Integer getAniodpa() {
-        return aniodpa;
-    }
-
-    public void setAniodpa(Integer aniodpa) {
-        this.aniodpa = aniodpa;
-    }
-
 
     public String getLocalidad() {
         return localidad;

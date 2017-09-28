@@ -818,6 +818,7 @@
     <string name="mensajeJefeHogarMasUno">No puede existir más de un Jefe de Hogar</string>
     <string name="mensajeEstadoCivil">El jefe(a) del Hogar y el Esposo(a) o conviviente debe tener el mismo estado civil</string>
     <string name="mensajeEdadCero">Debe ser mayor que cero</string>
+    <string name="error_invalid_email">El correo electronico es invalido</string>
 
 
 
