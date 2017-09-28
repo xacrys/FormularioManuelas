@@ -18,7 +18,7 @@ import android.database.Cursor;
 public class DpaManzanaDao extends DpaManzana {
 
 
-    public static ArrayList<Values> getZonaSectorManzana(Cursor result) {
+    public static ArrayList<Values> getZonaSector(Cursor result) {
 
         ArrayList<Values> dpaManzanas = new ArrayList<Values>();
         dpaManzanas.add(new Values(String.valueOf(Global.VALOR_SELECCIONE_DPA), "Seleccione.."));

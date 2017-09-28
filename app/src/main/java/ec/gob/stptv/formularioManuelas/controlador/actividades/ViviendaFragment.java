@@ -735,7 +735,7 @@ public class ViviendaFragment extends Fragment {
         }
 
         if (!((Values) zonaSpinner.getSelectedItem()).getKey().equals("999")){
-            if (((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE_DPA))) {
+            if (((Values) manzanaSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_CADENA_MANZANA))) {
                 getAlert(
                         getString(R.string.validacion_aviso),
                         getString(R.string.seleccione_pregunta)
@@ -1393,7 +1393,7 @@ public class ViviendaFragment extends Fragment {
                                     DpaManzana.whereByProvinciaCantonParroquia, args,
                                     DpaManzana.COLUMNA_ZONA);
 
-                            localidades = DpaManzanaDao.getZonaSectorManzana(cursor);
+                            localidades = DpaManzanaDao.getZonaSector(cursor);
 
                             ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(
                                     getActivity(), android.R.layout.simple_spinner_item,
@@ -1481,7 +1481,7 @@ public class ViviendaFragment extends Fragment {
                             DpaManzana.whereByProvinciaCantonParroquiaZona,
                             args, DpaManzana.COLUMNA_SECTOR);
 
-                    localidades = DpaManzanaDao.getZonaSectorManzana(cursor);
+                    localidades = DpaManzanaDao.getZonaSector(cursor);
 
 
                     ArrayAdapter<Values> adapter1 = new ArrayAdapter<>(
