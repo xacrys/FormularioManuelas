@@ -435,6 +435,7 @@ public class MiembrosHogarFragment extends Fragment {
 
             }
         }
+        Utilitarios.logError("loreeeeeee", ""+_persona.getCorreoelectronico());
         if(!_persona.getCorreoelectronico().equals(Global.CADENAS_VACIAS)){
             correoEditText.setText(_persona.getCorreoelectronico());
         }
@@ -1073,6 +1074,7 @@ public class MiembrosHogarFragment extends Fragment {
                     personaNew.setOrden(persona.getOrden());
                     personaNew.setIddocumentacion(persona.getIddocumentacion());
                     personaNew.setCi(persona.getCi());
+                    personaNew.setCorreoelectronico(persona.getCorreoelectronico());
 
                     if (persona.getOrden() == 1) {
                         personaNew.setIdparentesco(persona.getIdparentesco());
