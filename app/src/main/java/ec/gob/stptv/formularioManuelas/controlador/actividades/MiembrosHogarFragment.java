@@ -505,69 +505,84 @@ public class MiembrosHogarFragment extends Fragment {
      * @return estado de la validación
      */
     protected Boolean validarCampos() {
-        Boolean cancel = true;
+        Boolean cancel = false;
         cedulaEditText.setError(null);
         cedulaEditText.clearFocus();
         if (((Values) tipoResidenteSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoResidente));
-        } else if (((Values) documentoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            return true;
+        }
+        if (((Values) documentoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.etiquetaCedula));
-        } else if ((((Values) documentoSpinner.getSelectedItem()).getKey().equals("1") ||
+            return true;
+        }
+        if ((((Values) documentoSpinner.getSelectedItem()).getKey().equals("1") ||
                 ((Values) documentoSpinner.getSelectedItem()).getKey().equals("2")) &&
                 TextUtils.isEmpty(cedulaEditText.getText().toString().trim())) {
             cedulaEditText.setError(null);
             cedulaEditText.clearFocus();
             cedulaEditText.setError(getString(R.string.errorCampoRequerido));
             cedulaEditText.requestFocus();
-        } else if (TextUtils.isEmpty(apellidosEditText.getText().toString().trim())) {
+            return true;
+        }
+        if (TextUtils.isEmpty(apellidosEditText.getText().toString().trim())) {
             apellidosEditText.setError(null);
             apellidosEditText.clearFocus();
             apellidosEditText.setError(getString(R.string.errorCampoRequerido));
             apellidosEditText.requestFocus();
-        } else if (TextUtils.isEmpty(nombresEditText.getText().toString().trim())) {
+            return true;
+        }
+        if (TextUtils.isEmpty(nombresEditText.getText().toString().trim())) {
             nombresEditText.setError(null);
             nombresEditText.clearFocus();
             nombresEditText.setError(getString(R.string.errorCampoRequerido));
-            apellidosEditText.requestFocus();
-        } else if (((Values) sexoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            nombresEditText.requestFocus();
+            return true;
+        }
+        if (((Values) sexoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.sexoTitulo));
-        } else if (edadRadioGroup.getCheckedRadioButtonId() == -1) {
+            return true;
+        }
+        if (edadRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.edadTitulo));
-        } else if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton &&
+            return true;
+        }
+        if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton &&
                 TextUtils.isEmpty(aniosEditText.getText().toString().trim())
                 ) {
             aniosEditText.setError(null);
             aniosEditText.clearFocus();
             aniosEditText.setError(getString(R.string.errorCampoRequerido));
             aniosEditText.requestFocus();
-        } else
-            if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton &&
-                TextUtils.isEmpty(mesesEditText.getText().toString().trim()) &&  mesesEditText.getVisibility() == View.VISIBLE
+            return true;
+        }
+        if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton &&
+                TextUtils.isEmpty(mesesEditText.getText().toString().trim()) && mesesEditText.getVisibility() == View.VISIBLE
                 ) {
             mesesEditText.setError(null);
             mesesEditText.clearFocus();
             mesesEditText.setError(getString(R.string.errorCampoRequerido));
-                mesesEditText.requestFocus();
-//            focusView = mesesEditText;
+            mesesEditText.requestFocus();
+            return true;
         }
 
-        else if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton &&
+        if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadFechaNacimientoOpcion1RadioButton &&
                 fechaNacimientoButton.getText().toString().trim().equals(getString(R.string.fechaSeleccione))) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + "Botón fecha de Nacimiento");
-        }else if (((Values) parentescoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.parentescoJefeHogar));
+            return true;
         }
-        else {
-            cancel = false;
+        if (((Values) parentescoSpinner.getSelectedItem()).getKey().equals(String.valueOf(Global.VALOR_SELECCIONE))) {
+            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.parentescoJefeHogar));
+            return true;
         }
 
         if (!TextUtils.isEmpty(cedulaEditText.getText().toString())) {
-            if ((cedulaEditText.getText().toString().length() != 10) || (cedulaEditText.getText().toString().equals("0000000000"))){
+            if ((cedulaEditText.getText().toString().length() != 10) || (cedulaEditText.getText().toString().equals("0000000000"))) {
                 getAlert(getString(R.string.validacion_aviso),
                         getString(R.string.seccion5MensajeNoCedula));
                 return true;
             }
-            if (!Utilitarios.validadorCedula(cedulaEditText.getText().toString())){
+            if (!Utilitarios.validadorCedula(cedulaEditText.getText().toString())) {
                 getAlert(getString(R.string.validacion_aviso),
                         getString(R.string.seccion5MensajeNoCedula));
                 cedulaEditText.requestFocus();
@@ -577,17 +592,17 @@ public class MiembrosHogarFragment extends Fragment {
             String where;
             String parametros[];
             where = Persona.whereByIdHogarCedula;
-            parametros = new String[] {String.valueOf(hogar.getId()), cedulaEditText.getText().toString()};
+            parametros = new String[]{String.valueOf(hogar.getId()), cedulaEditText.getText().toString()};
             Persona _persona = PersonaDao.getPersona(contentResolver, where, parametros);
-            if (tipoGestion == 1){
-                if (_persona != null){
+            if (tipoGestion == 1) {
+                if (_persona != null) {
                     getAlert(getString(R.string.validacion_aviso),
                             getString(R.string.seccion5MensajeCedulaExistente));
                     cedulaEditText.requestFocus();
                     return true;
                 }
-            }else{
-                if (tipoGestion == 2){
+            } else {
+                if (tipoGestion == 2) {
                     if (_persona != null) {
                         if (persona != null) {
                             if (!_persona.getId().equals(persona.getId())) {
@@ -602,20 +617,19 @@ public class MiembrosHogarFragment extends Fragment {
             }
         }
 
-        if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton){
-            if (Integer.parseInt(aniosEditText.getText().toString()) ==0){
-                if (Integer.parseInt(mesesEditText.getText().toString()) == 0){
+        if (edadRadioGroup.getCheckedRadioButtonId() == R.id.edadAniosCumplidosOpcion2RadioButton) {
+            if (Integer.parseInt(aniosEditText.getText().toString()) == 0) {
+                if (Integer.parseInt(mesesEditText.getText().toString()) == 0) {
                     mesesEditText.setError(getString(R.string.mensajeEdadCero));
                     mesesEditText.requestFocus();
                     return true;
-
                 }
             }
         }
 
 
         // valida un correo valido
-        String email  = correoEditText.getText().toString();
+        String email = correoEditText.getText().toString();
         if (!TextUtils.isEmpty(email)) {
 
             if (!email.contains("@")) {

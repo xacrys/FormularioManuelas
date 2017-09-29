@@ -16,7 +16,7 @@ public class Global {
     public static final String DEVELOPMENT_ENVIRONMENT = "DEV";
     public static final String PRODUCTION_ENVIRONMENT = "PRO";
     public static final String PRODUCTION_ENVIRONMENT_PRUEBAS = "PRUEBAS";
-    public static final String ENVIRONMENT = DEVELOPMENT_ENVIRONMENT;
+    public static final String ENVIRONMENT = PRODUCTION_ENVIRONMENT_PRUEBAS;
 
     /**
      * IPS de produccion
