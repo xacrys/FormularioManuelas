@@ -21,7 +21,6 @@ public class Usuario implements Serializable {
 	private String imei;
 	private String maxvivcodigo;
 	private String fecharegistro;
-	private Integer codigo;
 
 	//Nombre de la tabla
 	public final static String NOMBRE_TABLA = "usuario";
@@ -37,7 +36,6 @@ public class Usuario implements Serializable {
 	public final static String COLUMNA_IMEI = "imei";
 	public final static String COLUMNA_MAXVIVCODIGO = "maxvivcodigo";
 	public final static String COLUMNA_FECHAREGISTRO = "fechaingreso";
-	public final static String COLUMNA_CODIGO = "codigo";
 
 
 	//crear un string con las columnas de la tabla
@@ -52,7 +50,6 @@ public class Usuario implements Serializable {
 			COLUMNA_IMEI,
 			COLUMNA_MAXVIVCODIGO,
 			COLUMNA_FECHAREGISTRO,
-			COLUMNA_CODIGO
 	};
 
 	//consultas
@@ -80,7 +77,6 @@ public class Usuario implements Serializable {
 		values.put(COLUMNA_IMEI, usuario.getImei());
 		values.put(COLUMNA_MAXVIVCODIGO, usuario.getMaxvivcodigo());
 		values.put(COLUMNA_FECHAREGISTRO, usuario.getFecharegistro());
-		values.put(COLUMNA_CODIGO, usuario.getCodigo());
 		return values;
 	}
 
@@ -101,7 +97,6 @@ public class Usuario implements Serializable {
 		usuario.setImei(result.getString(result.getColumnIndex(COLUMNA_IMEI)));
 		usuario.setMaxvivcodigo(result.getString(result.getColumnIndex(COLUMNA_MAXVIVCODIGO)));
 		usuario.setFecharegistro(result.getString(result.getColumnIndex(COLUMNA_FECHAREGISTRO)));
-		usuario.setCodigo(result.getInt(result.getColumnIndex(COLUMNA_CODIGO)));
 		return usuario;
 	}
 
@@ -176,14 +171,6 @@ public class Usuario implements Serializable {
 
 	public void setFecharegistro(String fecharegistro) {
 		this.fecharegistro = fecharegistro;
-	}
-
-	public Integer getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getImei() {

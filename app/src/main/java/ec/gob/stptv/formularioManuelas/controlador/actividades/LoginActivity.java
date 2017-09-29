@@ -854,7 +854,6 @@ public class LoginActivity extends Activity {
                             _usuario.setImei(Utilitarios.getImeiDispositivo(getApplicationContext()));
                             _usuario.setMaxvivcodigo(_respuesta);
                             _usuario.setFecharegistro(formato.format(fechaActual));
-                            _usuario.setCodigo(respuestaUsuario.getInt("codigo"));
                             UsuarioDao.save(contentResolver, _usuario);
                             usuario = _usuario;
                         }
