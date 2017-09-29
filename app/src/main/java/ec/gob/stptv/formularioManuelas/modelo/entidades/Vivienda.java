@@ -121,7 +121,6 @@ public class Vivienda implements Serializable {
     public final static String COLUMNA_FECHASINCRONIZACION = "fechasincronizacion";
     public final static String COLUMNA_ESTADOSINCRONIZACION = "estadosincronizacion";
     public final static String COLUMNA_OBSERVACION = "observacion";
-    public final static String COLUMNA_CERTIFICADO = "certificado";
     public final static String COLUMNA_IDLOCALIDAD = "idlocalidad";
 
 
@@ -175,7 +174,6 @@ public class Vivienda implements Serializable {
             COLUMNA_FECHASINCRONIZACION,
             COLUMNA_ESTADOSINCRONIZACION,
             COLUMNA_OBSERVACION,
-            COLUMNA_CERTIFICADO,
             COLUMNA_IDLOCALIDAD
     };
 
