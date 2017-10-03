@@ -1608,84 +1608,100 @@ public class MiembrosHogarTodasPersonasFragment extends Fragment {
         } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 carnetConadisRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.carneDiscapacidadTitulo));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        }
+
+        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadIntelectual));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
-                discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton &&
-                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
-                TextUtils.isEmpty(porcentajeIntelectualEditText.getText().toString().trim())) {
-            porcentajeIntelectualEditText.setError(null);
-            porcentajeIntelectualEditText.clearFocus();
-            porcentajeIntelectualEditText.setError(getString(R.string.errorCampoRequerido));
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        }
+//        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+//                discapacidadIntelectualRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadIntelectualOpcion1RadioButton &&
+//                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+//                TextUtils.isEmpty(porcentajeIntelectualEditText.getText().toString().trim())) {
+//            porcentajeIntelectualEditText.setError(null);
+//            porcentajeIntelectualEditText.clearFocus();
+//            porcentajeIntelectualEditText.setError(getString(R.string.errorCampoRequerido));
+//            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
+//        }
+        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadFisica));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
-                discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton &&
-                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
-                TextUtils.isEmpty(porcentajeFisicaEditText.getText().toString().trim())) {
-            porcentajeFisicaEditText.setError(null);
-            porcentajeFisicaEditText.clearFocus();
-            porcentajeFisicaEditText.setError(getString(R.string.errorCampoRequerido));
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        }
+//        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+//                discapacidadFisicaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadFisicaOpcion1RadioButton &&
+//                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+//                TextUtils.isEmpty(porcentajeFisicaEditText.getText().toString().trim())) {
+//            porcentajeFisicaEditText.setError(null);
+//            porcentajeFisicaEditText.clearFocus();
+//            porcentajeFisicaEditText.setError(getString(R.string.errorCampoRequerido));
+//            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
+//        }
+        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadCeguera));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
-                discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton &&
-                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
-                TextUtils.isEmpty(porcentajeCegueraEditText.getText().toString().trim())) {
-            porcentajeCegueraEditText.setError(null);
-            porcentajeCegueraEditText.clearFocus();
-            porcentajeCegueraEditText.setError(getString(R.string.errorCampoRequerido));
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        }
+//        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+//                discapacidadCegueraRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadCegueraOpcion1RadioButton &&
+//                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+//                TextUtils.isEmpty(porcentajeCegueraEditText.getText().toString().trim())) {
+//            porcentajeCegueraEditText.setError(null);
+//            porcentajeCegueraEditText.clearFocus();
+//            porcentajeCegueraEditText.setError(getString(R.string.errorCampoRequerido));
+//            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
+//        }
+        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadVisionRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadBajaVision));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
-                discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton &&
-                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
-                TextUtils.isEmpty(porcentajeVisionEditText.getText().toString().trim())) {
-            porcentajeVisionEditText.setError(null);
-            porcentajeVisionEditText.clearFocus();
-            porcentajeVisionEditText.setError(getString(R.string.errorCampoRequerido));
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        }
+//        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+//                discapacidadVisionRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadVisionOpcion1RadioButton &&
+//                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+//                TextUtils.isEmpty(porcentajeVisionEditText.getText().toString().trim())) {
+//            porcentajeVisionEditText.setError(null);
+//            porcentajeVisionEditText.clearFocus();
+//            porcentajeVisionEditText.setError(getString(R.string.errorCampoRequerido));
+//            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
+//        }
+        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadSordera));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
-                discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton &&
-                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
-                TextUtils.isEmpty(porcentajeSorderaEditText.getText().toString().trim())) {
-            porcentajeSorderaEditText.setError(null);
-            porcentajeSorderaEditText.clearFocus();
-            porcentajeSorderaEditText.setError(getString(R.string.errorCampoRequerido));
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        }
+//        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+//                discapacidadSorderaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadSorderaOpcion1RadioButton &&
+//                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+//                TextUtils.isEmpty(porcentajeSorderaEditText.getText().toString().trim())) {
+//            porcentajeSorderaEditText.setError(null);
+//            porcentajeSorderaEditText.clearFocus();
+//            porcentajeSorderaEditText.setError(getString(R.string.errorCampoRequerido));
+//            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
+//        }
+        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadHipoacusia));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
-                discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion1RadioButton &&
-                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
-                TextUtils.isEmpty(porcentajeHipoacusiaEditText.getText().toString().trim())) {
-            porcentajeHipoacusiaEditText.setError(null);
-            porcentajeHipoacusiaEditText.clearFocus();
-            porcentajeHipoacusiaEditText.setError(getString(R.string.errorCampoRequerido));
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+        }
+//        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+//                discapacidadHipoacusiaRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadHipoacusiaOpcion1RadioButton &&
+//                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+//                TextUtils.isEmpty(porcentajeHipoacusiaEditText.getText().toString().trim())) {
+//            porcentajeHipoacusiaEditText.setError(null);
+//            porcentajeHipoacusiaEditText.clearFocus();
+//            porcentajeHipoacusiaEditText.setError(getString(R.string.errorCampoRequerido));
+//            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
+//        }
+        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
                 discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == -1) {
             getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + " " + getString(R.string.tipoDiscapacidadPsicosociales));
-        } else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
-                discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton &&
-                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
-                TextUtils.isEmpty(porcentajePsicosocialesEditText.getText().toString().trim())) {
-            porcentajePsicosocialesEditText.setError(null);
-            porcentajePsicosocialesEditText.clearFocus();
-            porcentajePsicosocialesEditText.setError(getString(R.string.errorCampoRequerido));
-            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
-        } else if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+        }
+//        else if (discapacidadRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadOpcion1RadioButton &&
+//                discapacidadPsicosocialesRadioGroup.getCheckedRadioButtonId() == R.id.discapacidadPsicosocialesOpcion1RadioButton &&
+//                carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
+//                TextUtils.isEmpty(porcentajePsicosocialesEditText.getText().toString().trim())) {
+//            porcentajePsicosocialesEditText.setError(null);
+//            porcentajePsicosocialesEditText.clearFocus();
+//            porcentajePsicosocialesEditText.setError(getString(R.string.errorCampoRequerido));
+//            getAlert(getString(R.string.validacion_aviso), getString(R.string.seleccione_pregunta) + getString(R.string.tipoDiscapacidadTitulo) + getString(R.string.tipoDiscapacidadPorcentajeError));
+//        }
+        else if (carnetConadisRadioGroup.getCheckedRadioButtonId() == R.id.carnetConadisOpcion1RadioButton &&
                 porcentajeIntelectualEditText.getText().toString().equals("") &&
                 porcentajeFisicaEditText.getText().toString().equals("") &&
                 porcentajeCegueraEditText.getText().toString().equals("") &&

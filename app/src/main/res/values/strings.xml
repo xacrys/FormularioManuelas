@@ -165,7 +165,7 @@
     <string name="materialTechoOpcion3">3. Zinc?</string>
     <string name="materialTechoOpcion4">4. Teja?</string>
     <string name="materialTechoOpcion5">5. Palma/paja/hoja?</string>
-    <string name="materialTechoOpcion6">6. Otro material?</string>
+    <string name="materialTechoOpcion6">6. Otro, cuál (especifique)?</string>
     <!--  Seccion 3 Pregunta 4  -->
     <string name="materialPiso">4. El material predominante del PISO de la VIVIENDA es:</string>
     <string name="materialPisoOpcion1">1. Duela/parket, tablón tratado, tabloncillo, piso flotante?</string>
