@@ -16,14 +16,18 @@ public class Global {
     public static final String DEVELOPMENT_ENVIRONMENT = "DEV";
     public static final String PRODUCTION_ENVIRONMENT = "PRO";
     public static final String PRODUCTION_ENVIRONMENT_PRUEBAS = "PRUEBAS";
-    public static final String ENVIRONMENT = PRODUCTION_ENVIRONMENT_PRUEBAS;
+    public static final String ENVIRONMENT = PRODUCTION_ENVIRONMENT;
+
+    /**
+     * IPS de pruebas
+     */
+//    public static final String IP_SERVIDOR = "http://200.125.208.21:8080";
 
     /**
      * IPS de produccion
      */
-    //public static final String IP_SERVIDOR = "http://192.168.10.151:8080";
-    public static final String IP_SERVIDOR = "http://200.125.208.21:8080";
-    //public static final String IP_SERVIDORIMA = "http://192.168.1.108:8080";
+    public static final String IP_SERVIDOR = "http://www.todaunavidainfo.gob.ec";
+
 
     /**
      * WEB SERVICES
